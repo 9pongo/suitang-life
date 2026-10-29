@@ -242,8 +242,12 @@ function checkStep(g, before, from, seedNo) {
   // 年幼接班的人只該在十六歲選一次人生重心
   if (st.fired.st_focus15 && st.fired.st_heir_focus_young) flagIssue('年幼接班的人十五、十六歲連續選了兩次人生重心', seedNo);
 }
+// 結局冊：每一代實際拿到的結局（章末、身故、最終）與人生故事的旗標
+const reachedEnd = new Map(), reachedFlag = new Map();
+function reach(st, id) { if (id) reachedEnd.set(id, (reachedEnd.get(id) || 0) + 1); for (const f in st.flags || {}) if (st.flags[f]) reachedFlag.set(f, (reachedFlag.get(f) || 0) + 1); }
 function checkEnding(st, r, seedNo) {
   if (!r) return;
+  reach(st, r.id);
   if (KID_WORDS && !st.children.some((c) => c.alive)) for (const t of [r.text, ...(r.memories || [])]) if (KID_WORDS.test(t || '')) flagIssue(`沒有孩子在世，結局「${r.id}」或往事卻寫到自家孩子`, seedNo, String(t).slice(0, 30));
 }
 
@@ -280,7 +284,7 @@ for (let i = 0; i < N; i++) {
       if (h.parentName === dead.name && !h.flags[dead.gender === 'm' ? 'father_dead' : 'mother_dead']) flagIssue('接班人的父／母剛過世，卻沒有記為已過世', g.seed);
       continue;
     }
-    if (g.interlude) { const ch = g.interlude.chapter; countPerson(g.state); if (ch >= 2) { stats.fac[ch] ??= { live: {}, dead: {} }; inc(stats.fac[ch].live, g.state.faction || 'civ'); } inc(stats.interludes, g.interlude.id); inc(stats.chAlive, g.interlude.chapter); if (g.interlude.chapter === 1) stats.ch1Alive++; g.continueChapter(); continue; }
+    if (g.interlude) { const ch = g.interlude.chapter; reach(g.state, g.interlude.id); countPerson(g.state); if (ch >= 2) { stats.fac[ch] ??= { live: {}, dead: {} }; inc(stats.fac[ch].live, g.state.faction || 'civ'); } inc(stats.interludes, g.interlude.id); inc(stats.chAlive, g.interlude.chapter); if (g.interlude.chapter === 1) stats.ch1Alive++; g.continueChapter(); continue; }
     if (g.pending) {
       const p = g.pending;
       const evId = g.state.log.filter((e) => e.type === 'decision').pop().id;
@@ -331,6 +335,9 @@ for (let i = 0; i < N; i++) {
 // 跑得夠多時：從沒觸發的事件、從沒被選到的選項都算提醒
 if (N >= 2000) {
   for (const e of data.events) if (!stats.events[e.id]) warns.push(`事件 ${e.id}：模擬 ${N} 條人生從未觸發`);
+  // 結局冊裡每一格都要拿得到（保底結局除外）；稀有的格子要跑到一萬條才算數
+  if (N >= 10000) for (const e of data.endings) if (!e.fallback && !reachedEnd.has(e.id)) warns.push(`結局 ${e.id}「${e.title}」：模擬 ${N} 條人生從來沒有人拿到`);
+  if (N >= 10000) for (const a of world.arcBook || []) for (const it of a.items) if (!(it.all || [it.id]).every((f) => reachedFlag.has(f)) || (it.any && !it.any.some((f) => reachedFlag.has(f)))) warns.push(`人生故事「${a.name}・${it.title}」：模擬 ${N} 條人生從來沒有人拿到`);
   for (const ev of data.events) (ev.choices || []).forEach((c, i) => { if (stats.events[ev.id] && !stats.optPick[`${ev.id}#${i}`]) warns.push(`事件 ${ev.id} 選項「${c.t}」：從來沒有被選到（出現 ${stats.optShown[`${ev.id}#${i}`] || 0} 次）`); });
 }
 for (const [k, v] of Object.entries(consist)) errors.push(`一致性：${k}（${v.n} 次，例如種子 ${v.seed}${v.example ? `：「${v.example}…」` : ''}）`);
@@ -384,6 +391,15 @@ for (const b in data.bonds) {
 L.push('', '## 事件觸發率（每條人生至少觸發一次的比例）', '');
 const never = data.events.filter((e) => !stats.events[e.id]);
 L.push(never.length ? `**從未觸發（${never.length}）**：${never.map((e) => e.id).join('、')}` : '所有事件都至少觸發過一次。', '');
+// 結局冊裡很難拿到的格子（每一代都算；換個種子可能就拿不到）
+{
+  const scale = 10000 / N;
+  const rareEnd = data.endings.filter((e) => !e.fallback && (reachedEnd.get(e.id) || 0) * scale < 5);
+  const rareArc = (world.arcBook || []).flatMap((a) => a.items.map((it) => ({ ...it, arc: a.name })))
+    .filter((it) => Math.min(...(it.all || [it.id]).map((f) => reachedFlag.get(f) || 0)) * scale < 5 && !(it.any && it.any.some((f) => (reachedFlag.get(f) || 0) * scale >= 5)));
+  L.push(`**很難拿到的結局（每萬條不到 5 次）**：${rareEnd.map((e) => `${e.id}（${reachedEnd.get(e.id) || 0}）`).join('、') || '無'}`, '');
+  L.push(`**很難拿到的人生故事**：${rareArc.map((it) => `${it.arc}・${it.title}`).join('、') || '無'}`, '');
+}
 L.push('| 事件 | 類型 | 觸發率 |', '|---|---|---|');
 for (const e of [...data.events].sort((a, b) => (stats.events[b.id] || 0) - (stats.events[a.id] || 0))) L.push(`| ${e.id} | ${e.kind} | ${pct(stats.events[e.id] || 0)} |`);
 L.push('', '## 從來沒有被選到的選項', '');

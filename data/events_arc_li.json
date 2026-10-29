@@ -3181,7 +3181,7 @@
       "id": "li_a4_old",
       "when": "alive",
       "chapter": 4,
-      "before": "a4_default",
+      "before": "zz_a4_xuanzang",
       "req": {
         "anyFlag": [
           "li_shiding",
@@ -3254,7 +3254,6 @@
       "id": "li_a4_she",
       "when": "alive",
       "chapter": 4,
-      "before": "a4_default",
       "req": {
         "anyFlag": [
           "li_she_guan",
@@ -3266,13 +3265,14 @@
         ]
       },
       "title": "社中管事",
-      "text": "{name}在社裡管了好些年的事。春秋二社，誰家該出什麼、誰家遲到該罰，都過{name}的手。貞觀二十三年的秋座，社人們說，這些年社裡沒散，多虧了{name}。"
+      "text": "{name}在社裡管了好些年的事。春秋二社，誰家該出什麼、誰家遲到該罰，都過{name}的手。貞觀二十三年的秋座，社人們說，這些年社裡沒散，多虧了{name}。",
+      "pin": true
     },
     {
       "id": "li_a5_old",
       "when": "alive",
       "chapter": 5,
-      "before": "a5_default",
+      "before": "zz_a5_dafeichuan",
       "req": {
         "anyFlag": [
           "li_shiding",
@@ -3310,7 +3310,7 @@
       "id": "li_a5_yizi",
       "when": "alive",
       "chapter": 5,
-      "before": "a5_default",
+      "before": "fo_a5_seng",
       "req": {
         "anyFlag": [
           "li_she_yizi",
@@ -3378,7 +3378,7 @@
       "id": "li_a6_old",
       "when": "alive",
       "chapter": 6,
-      "before": "a6_default",
+      "before": "zz_a6_qidan",
       "req": {
         "anyFlag": [
           "li_shiding",
@@ -3400,7 +3400,7 @@
       "id": "li_a6_lin",
       "when": "alive",
       "chapter": 6,
-      "before": "a6_default",
+      "before": "zz_a6_qidan",
       "req": {
         "anyFlag": [
           "li_feud",
@@ -3421,41 +3421,10 @@
       "text": "{name}在這條巷子裡住了大半輩子，跟鄰里吵過、讓過、一起淘過井、一起救過火。這些年逃的人越來越多，空了的屋子又搬進了生人。先天元年，{name}已經叫不全巷子裡每一戶的名字了。"
     },
     {
-      "id": "li_a7_lin",
-      "when": "alive",
-      "chapter": 7,
-      "before": "a7_default",
-      "req": {
-        "anyFlag": [
-          "li_feud",
-          "li_wall_yield",
-          "li_wall_done",
-          "li_ox_done",
-          "li_gossip_done",
-          "li_theft_done",
-          "li_well_done",
-          "li_baozhang",
-          "li_tantao",
-          "li_bao",
-          "li_lent",
-          "li_gave",
-          "li_lie",
-          "li_friend_lent",
-          "li_bao_no",
-          "li_lend_no"
-        ],
-        "noflag": [
-          "gong_in"
-        ]
-      },
-      "title": "開元鄰里",
-      "text": "{name}在里中住了大半輩子，人情往來，一本帳記在心裡。開元年間括戶，保裡來了新附的客戶，巷子裡的人家比從前多了一倍。天寶十四載，認得{name}的人，卻一年比一年少了。"
-    },
-    {
       "id": "li_a7_old",
       "when": "alive",
       "chapter": 7,
-      "before": "a7_default",
+      "before": "zz_a7_yan_army",
       "req": {
         "anyFlag": [
           "li_shiding",
@@ -3497,7 +3466,7 @@
       "id": "li_a7_she",
       "when": "alive",
       "chapter": 7,
-      "before": "a7_default",
+      "before": "zz_a7_yan_army",
       "req": {
         "anyFlag": [
           "li_she_elder",

@@ -73,7 +73,7 @@
       "text": "寒食節，家家不舉火，吃的是前一天做好的冷粥和麥餅。第二天清明，你跟著家人去上墳，在墳頭壓了幾張紙錢。",
       "alt": ["寒食那幾天，坊裡的孩子們在樹上掛了鞦韆，盪得比牆還高。大人們去上墳，回來的路上折了幾枝柳條插在門上。"] },
     { "id": "f_shangyuan", "kind": "flavor", "w": 2, "repeat": 2, "repeatGap": 10, "tag": "日常", "scene": "festival",
-      "req": { "age": [5, 70], "region": ["guanzhong", "luoyang", "yangzhou", "yizhou"] }, "eff": { "名": 1 },
+      "req": { "age": [5, 70], "year": [713, 763], "region": ["guanzhong", "luoyang", "yangzhou", "yizhou"] }, "eff": { "名": 1 },
       "text": "正月十五上元夜，城裡不宵禁。燈輪、燈樹一座比一座高，你擠在人群裡，被人踩掉了一隻鞋。",
       "alt": ["上元夜，你們一家走到街上看燈。踏歌的女子手拉著手，從坊門一直唱到天亮。"] },
     { "id": "f_xingxiang", "kind": "flavor", "w": 2, "repeat": 2, "repeatGap": 10, "tag": "日常", "scene": "temple",

@@ -28,13 +28,21 @@ function loadData() {
     if (p.epilogues) world.epilogues = [...(world.epilogues || []), ...p.epilogues];
   }
   const base = endings.endings.slice();
-  for (const p of parts) for (const e of p.endings || []) {
+  // 先放沒指定位置的，再放指定 before 的（before 可以指向後面檔案裡的結局）
+  const partEnds = parts.flatMap((p) => p.endings || []);
+  for (const e of [...partEnds.filter((x) => !x.before), ...partEnds.filter((x) => x.before)]) {
     const anchor = e.before || (e.when === 'alive'
       ? (base.find((x) => x.when === 'alive' && x.chapter === e.chapter) || {}).id
       : world.partDeadBefore);
     const i = endings.endings.findIndex((x) => x.id === anchor);
     const { before, ...rest } = e;
     endings.endings.splice(i < 0 ? endings.endings.length : i, 0, rest);
+  }
+  // pin：放到同一章同一類（章末／身故）的最前面（只給條件很窄、又常被別的結局搶走的）
+  for (const e of endings.endings.filter((x) => x.pin).reverse()) { // 倒著搬，釘住的幾個保持原本的先後
+    endings.endings.splice(endings.endings.indexOf(e), 1);
+    const i = endings.endings.findIndex((x) => x.when === e.when && x.chapter === e.chapter);
+    endings.endings.splice(i < 0 ? endings.endings.length : i, 0, e);
   }
   const data = E.mergeData(world, parts, endings, strings, scenes);
   data.poems = poems;
