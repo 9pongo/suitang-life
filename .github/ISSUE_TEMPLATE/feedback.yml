@@ -1,0 +1,35 @@
+name: 意見回饋
+description: 玩《天下一戶》時覺得哪裡怪、哪裡好玩、哪裡看不懂
+title: "回饋："
+labels: ["回饋"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        謝謝你玩《天下一戶》。在結局頁按「到 GitHub 回饋」會自動帶入這一局的資訊；如果你是直接來這裡的，可以在遊戲結局頁按「複製這一局的資訊」，貼到下面。
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 哪一類
+      options:
+        - 劇情前後不合理
+        - 史實或時代不對
+        - 錯字或看不懂
+        - 操作、畫面的問題
+        - 建議或想法
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: 想說的話
+      description: 發生了什麼、你覺得應該怎樣。可以直接引用遊戲裡的那段文字。
+    validations:
+      required: true
+  - type: textarea
+    id: info
+    attributes:
+      label: 這一局的資訊（選填）
+      description: 結局頁的「複製這一局的資訊」。有存檔碼的話，作者可以照著重現你看到的劇情。
+      render: text
