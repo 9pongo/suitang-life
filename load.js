@@ -18,7 +18,11 @@ function loadData() {
   const scenes = fs.existsSync(path.join(DIR, 'scenes.json')) ? readJson('scenes.json') : {};
   const endings = readJson('endings.json');
   const parts = EVENT_FILES.map(readJson);
-  return { world, strings, scenes, endings, parts, data: E.mergeData(world, parts, endings, strings, scenes) };
+  // 雜報上刊的詩（可有可無；引擎不讀，只給介面用）
+  const poems = fs.existsSync(path.join(DIR, 'poems.json')) ? readJson('poems.json').poems : [];
+  const data = E.mergeData(world, parts, endings, strings, scenes);
+  data.poems = poems;
+  return { world, strings, scenes, endings, parts, poems, data };
 }
 
 module.exports = { loadData, EVENT_FILES };

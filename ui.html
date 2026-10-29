@@ -173,8 +173,33 @@ button:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
 .en.choice p { color: var(--muted); }
 .en.choice p b { color: var(--ink); }
 .en.bond p { font-weight: 600; }
-.note { font-size: 13px; color: var(--muted); line-height: 1.7; }
-.note::before { content: "史"; display: inline-block; font-size: 11px; border: 1px solid var(--muted); padding: 0 3px; margin-right: 6px; line-height: 1.4; transform: translateY(-1px); }
+/* ---------- 雜報：有出處的大事印成一張直行的抄報，由右往左讀 */
+.en:has(> .gz) { grid-template-columns: minmax(0, 1fr); }
+.gz { margin-top: 6px; min-width: 0; }
+.gz > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); font-family: var(--font-ui); }
+.gz > summary::-webkit-details-marker { display: none; }
+.gz > summary .gzk { font-family: var(--font-display); font-weight: 900; font-size: 13px; color: var(--paper-ink, var(--ink)); border: 1px solid var(--ink); padding: 1px 6px; letter-spacing: .2em; }
+.gz[open] > summary .gzo { display: none; }
+.gz:not([open]) > summary .gzf { display: none; }
+.gzs {
+  margin-top: 6px; writing-mode: vertical-rl; overflow-x: auto; overflow-y: hidden; max-width: 100%;
+  height: calc(15.2em + 24px); font-size: 14px; line-height: 1.85; padding: 12px 10px; box-sizing: border-box;
+  background: var(--slip); color: var(--ink); border: 1px solid var(--line); border-top: 3px double var(--ink); border-bottom: 3px double var(--ink);
+  background-image: repeating-linear-gradient(to left, transparent 0 calc(1.85em - 1px), var(--line) calc(1.85em - 1px) 1.85em);
+  background-position: right 10px top 0; text-orientation: mixed; scrollbar-width: thin;
+}
+.gzs > * { margin: 0 0 0 0; }
+.gzs .mast { font-family: var(--font-display); font-weight: 900; font-size: 26px; letter-spacing: .35em; line-height: 1.2; padding-left: 8px; margin-left: 6px; border-left: 1px solid var(--ink); }
+.gzs .date { font-size: 12px; color: var(--muted); letter-spacing: .1em; padding-left: 10px; }
+.gzs .hl { font-family: var(--font-display); font-weight: 900; font-size: 17px; letter-spacing: .15em; padding-left: 4px; }
+.gzs .src { color: var(--red); font-weight: 600; }
+.gzs .tx { text-align: justify; }
+.gzs .pm { margin-right: 12px; padding-right: 12px; border-right: 1px dashed var(--muted); display: flex; flex-direction: column; gap: 0; }
+.gzs .pm .pk { display: inline-block; font-size: 11px; color: var(--red); border: 1px solid var(--red); padding: 2px 0; line-height: 1.2; margin-bottom: 6px; }
+.gzs .pm .pt { font-weight: 900; font-family: var(--font-display); }
+.gzs .pm .pa { font-size: 12px; color: var(--muted); }
+.gzs .pm .pl { letter-spacing: .08em; }
+.gzs .pm .pn { font-size: 11px; color: var(--muted); line-height: 1.6; max-height: 100%; }
 .delta { display: flex; gap: 6px; flex-wrap: wrap; font-size: 12px; font-family: var(--font-ui); font-variant-numeric: tabular-nums; }
 .delta span { color: var(--green); }
 .delta span.neg { color: var(--red); }
@@ -1251,6 +1276,45 @@ const DATA = /*__DATA__*/;
     return parts.length ? `<div class="delta">${parts.join('')}</div>` : '';
   }
 
+  // 雜報：把史料出處排成一張直行的抄報。報尾偶爾刊一首詩：
+  // 只挑那一年已經寫成、而且還是近幾十年的，住在詩裡那個地方的人比較容易讀到；一局裡同一首不登兩次。
+  // 挑哪一首只看種子、事件與年份，接續或重播時登的是同一首。
+  const GZ = UI.gazette || {};
+  let poemSeen = new Set(), poemGame = null;
+  function hashStr(str) { let x = 2166136261; for (let i = 0; i < str.length; i++) x = Math.imul(x ^ str.charCodeAt(i), 16777619); return x >>> 0; }
+  function poemFor(e) {
+    if (poemGame !== game) { poemGame = game; poemSeen = new Set(); }
+    const all = (DATA.poems || []).filter((p) => p.year <= e.year && e.year - p.year <= (GZ.window ?? 40) && !poemSeen.has(p.id));
+    if (!all.length) return null;
+    const hv = hashStr(game.seed + ':' + e.id + ':' + e.year);
+    if ((hv % 1000) / 1000 >= (GZ.chance ?? 0.35)) return null;
+    const near = all.filter((p) => (p.regions || []).includes(game.state.region));
+    const pool = near.length && (hv >>> 10) % 3 ? near : all;
+    const p = pool[(hv >>> 12) % pool.length];
+    poemSeen.add(p.id);
+    return p;
+  }
+  function gazetteHtml(e) {
+    // 「《書名》：引文……《另一本》：引文」切成一段一段，書名用硃筆
+    const segs = [];
+    const re = /《[^》]+》(?:卷[一二三四五六七八九十百〇]+)?[：:]?/g;
+    let m, last = 0, src = '';
+    while ((m = re.exec(e.note))) {
+      const before = e.note.slice(last, m.index).replace(/^……/, '');
+      if (before.trim() && (src || segs.length || before.trim().length > 1)) segs.push({ src, tx: before });
+      src = m[0].replace(/[：:]$/, ''); last = re.lastIndex;
+    }
+    segs.push({ src, tx: e.note.slice(last) });
+    const body = segs.filter((g) => g.src || g.tx.trim())
+      .map((g) => `<p class="tx">${g.src ? `<span class="src">${esc(g.src)}</span>　` : ''}${esc(g.tx)}</p>`).join('');
+    const p = poemFor(e);
+    const poem = p ? `<div class="pm"><span><span class="pk">${esc(GZ.poem || '詩')}</span>　<span class="pt">${esc(p.title)}</span>　<span class="pa">${esc(p.author)}</span></span>${p.lines.map((x) => `<span class="pl">${esc(x)}</span>`).join('')}${p.note ? `<span class="pn">${esc(p.note)}</span>` : ''}</div>` : '';
+    const date = `${game.eraLabel(e.year)}・${game.ganzhi(e.year)}`;
+    return `<details class="gz"${quiet ? '' : ' open'}><summary><span class="gzk">${esc(GZ.head || '雜報')}</span><span class="gzo">${esc(GZ.open || '')}</span><span class="gzf">${esc(GZ.fold || '')}</span></summary>`
+      + `<div class="gzs" tabindex="0"><p class="mast">${esc(GZ.head || '雜報')}</p><p class="date">${esc(date)}</p>`
+      + `${e.title || e.tag ? `<p class="hl">${esc(e.title || e.tag)}</p>` : ''}${body}${poem}</div></details>`;
+  }
+
   // 接續時把整局紀錄先組在記憶體裡、一次放進頁面，也不播淡入動畫（幾百條同時動畫，慢的手機會卡）
   let renderTarget = null, quiet = false;
   function renderEntry(e) {
@@ -1285,7 +1349,7 @@ const DATA = /*__DATA__*/;
       if (e.type === 'choice') html += `<p>${e.title ? esc(e.title) + '｜' : ''}你選了<b>「${esc(e.text)}」</b></p>`;
       else html += `<p>${esc(e.text)}</p>`;
       html += deltaHtml(e.delta);
-      if (e.note) html += `<div class="note">${esc(e.note)}</div>`;
+      if (e.note) html += gazetteHtml(e);
       log.append(h('div', cls, html));
     }
   }

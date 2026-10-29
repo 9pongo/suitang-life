@@ -176,6 +176,18 @@ for (const a of world.arcBook || []) for (const it of a.items) {
   arcIds.add(it.id);
   for (const f of [...(it.all || [it.id]), ...(it.any || [])]) if (!flagsSet.has(f)) errors.push(`人生故事「${a.name}」的「${it.title}」要的旗標「${f}」沒有任何地方設定`);
 }
+// 雜報上的詩：欄位齊全、年份不晚於故事結束（晚了永遠登不出來）、地區存在
+const poemIds = new Set();
+const lastYear = (world.chapters || []).at(-1)?.end ?? Infinity;
+for (const p of data.poems || []) {
+  const where = `詩「${p.title || p.id}」`;
+  if (!p.id || poemIds.has(p.id)) errors.push(`${where} 沒有 id 或 id 重複`);
+  poemIds.add(p.id);
+  if (!p.author || !p.title || !Array.isArray(p.lines) || !p.lines.length) errors.push(`${where} 缺作者、題目或詩句`);
+  if (!Number.isFinite(p.year) || p.year > lastYear) errors.push(`${where} 的年份 ${p.year} 不在故事範圍內`);
+  for (const r of p.regions || []) if (!REGIONS.has(r)) errors.push(`${where} 的地區「${r}」不存在`);
+}
+
 for (const [f, where] of flagsSet) if (!flagsRead.has(f) && !reserved.has(f)) warns.push(`旗標「${f}」設定了但沒有任何地方讀它（${where[0]}）`);
 
 // ------------------------------------------------------------ 模擬
