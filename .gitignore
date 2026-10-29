@@ -1,0 +1,8 @@
+# 本機設定
+.claude/
+
+# 打包與稽核產物（GitHub Actions 每次推送都會重新產生）
+dist/
+reports/
+
+node_modules/

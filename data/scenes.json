@@ -1,0 +1,1403 @@
+{
+  "_說明": "插圖：介面依這份資料畫出山水皮影的一幕。regions 是各地的山水底稿；village 是村落隨年代的盛衰（屋數與景況）；landmarks 是某些年份才有的地標；costume 是各時期人物的衣著；scenes 是每一種情節要擺上的道具。道具與人偶的畫法在介面裡，這裡只決定擺什麼、擺在哪。",
+  "regions": {
+    "guanzhong": {
+      "hills": [
+        {
+          "base": 92,
+          "amp": 46,
+          "freq": 3,
+          "seed": 11,
+          "op": 0.14
+        },
+        {
+          "base": 122,
+          "amp": 24,
+          "freq": 5,
+          "seed": 12,
+          "op": 0.24
+        }
+      ],
+      "water": {
+        "kind": "river",
+        "y": 166,
+        "w": 6
+      },
+      "trees": [
+        "willow",
+        "jujube"
+      ],
+      "tint": "yellow"
+    },
+    "luoyang": {
+      "hills": [
+        {
+          "base": 104,
+          "amp": 30,
+          "freq": 4,
+          "seed": 21,
+          "op": 0.15
+        },
+        {
+          "base": 128,
+          "amp": 18,
+          "freq": 6,
+          "seed": 22,
+          "op": 0.24
+        }
+      ],
+      "water": {
+        "kind": "river",
+        "y": 168,
+        "w": 9
+      },
+      "trees": [
+        "willow",
+        "willow",
+        "jujube"
+      ],
+      "tint": "yellow"
+    },
+    "hebei": {
+      "hills": [
+        {
+          "base": 126,
+          "amp": 14,
+          "freq": 3,
+          "seed": 31,
+          "op": 0.12
+        },
+        {
+          "base": 142,
+          "amp": 6,
+          "freq": 7,
+          "seed": 32,
+          "op": 0.2
+        }
+      ],
+      "water": null,
+      "trees": [
+        "poplar",
+        "jujube",
+        "poplar"
+      ],
+      "tint": "yellow"
+    },
+    "yangzhou": {
+      "hills": [
+        {
+          "base": 120,
+          "amp": 20,
+          "freq": 4,
+          "seed": 41,
+          "op": 0.12
+        },
+        {
+          "base": 138,
+          "amp": 10,
+          "freq": 6,
+          "seed": 42,
+          "op": 0.18
+        }
+      ],
+      "water": {
+        "kind": "river",
+        "y": 164,
+        "w": 14
+      },
+      "trees": [
+        "willow",
+        "willow"
+      ],
+      "tint": "green"
+    },
+    "yizhou": {
+      "hills": [
+        {
+          "base": 70,
+          "amp": 64,
+          "freq": 5,
+          "seed": 51,
+          "op": 0.13
+        },
+        {
+          "base": 108,
+          "amp": 40,
+          "freq": 7,
+          "seed": 52,
+          "op": 0.2
+        },
+        {
+          "base": 136,
+          "amp": 14,
+          "freq": 9,
+          "seed": 53,
+          "op": 0.26
+        }
+      ],
+      "mist": true,
+      "water": {
+        "kind": "river",
+        "y": 170,
+        "w": 5
+      },
+      "trees": [
+        "bamboo",
+        "bamboo",
+        "willow"
+      ],
+      "tint": "green"
+    },
+    "shazhou": {
+      "hills": [
+        {
+          "base": 104,
+          "amp": 30,
+          "freq": 2,
+          "seed": 61,
+          "op": 0.16,
+          "smooth": true
+        },
+        {
+          "base": 132,
+          "amp": 16,
+          "freq": 3,
+          "seed": 62,
+          "op": 0.24,
+          "smooth": true
+        }
+      ],
+      "water": null,
+      "trees": [
+        "poplar"
+      ],
+      "tint": "yellow",
+      "sand": true
+    },
+    "lingnan": {
+      "hills": [
+        {
+          "base": 100,
+          "amp": 34,
+          "freq": 4,
+          "seed": 71,
+          "op": 0.14,
+          "smooth": true
+        },
+        {
+          "base": 130,
+          "amp": 14,
+          "freq": 5,
+          "seed": 72,
+          "op": 0.2,
+          "smooth": true
+        }
+      ],
+      "water": {
+        "kind": "sea",
+        "y": 158,
+        "w": 22
+      },
+      "trees": [
+        "palm",
+        "banana",
+        "palm"
+      ],
+      "tint": "green"
+    },
+    "xizhou": {
+      "hills": [
+        {
+          "base": 98,
+          "amp": 22,
+          "freq": 9,
+          "seed": 81,
+          "op": 0.22,
+          "ridged": true,
+          "tint": "red"
+        },
+        {
+          "base": 134,
+          "amp": 12,
+          "freq": 3,
+          "seed": 82,
+          "op": 0.18,
+          "smooth": true
+        }
+      ],
+      "water": null,
+      "trees": [
+        "poplar",
+        "vine"
+      ],
+      "tint": "red",
+      "sand": true
+    }
+  },
+  "village": {
+    "_說明": "[年份, 屋數, 景況]：從這一年起村落是這個樣子。景況 peace 太平、rich 富庶、labor 徭役（男丁不在、田荒了一半）、war 兵亂（冒煙、有屋塌）、ruin 殘破（屋塌、田荒、烏鴉）。",
+    "default": [
+      [
+        560,
+        3,
+        "peace"
+      ],
+      [
+        605,
+        4,
+        "labor"
+      ],
+      [
+        613,
+        3,
+        "war"
+      ],
+      [
+        617,
+        2,
+        "ruin"
+      ],
+      [
+        622,
+        3,
+        "peace"
+      ],
+      [
+        650,
+        4,
+        "peace"
+      ],
+      [
+        690,
+        5,
+        "peace"
+      ],
+      [
+        713,
+        6,
+        "rich"
+      ],
+      [
+        755,
+        4,
+        "war"
+      ],
+      [
+        763,
+        3,
+        "ruin"
+      ]
+    ],
+    "guanzhong": [
+      [
+        560,
+        3,
+        "peace"
+      ],
+      [
+        583,
+        4,
+        "peace"
+      ],
+      [
+        605,
+        4,
+        "labor"
+      ],
+      [
+        617,
+        3,
+        "war"
+      ],
+      [
+        619,
+        3,
+        "peace"
+      ],
+      [
+        628,
+        3,
+        "ruin"
+      ],
+      [
+        629,
+        4,
+        "peace"
+      ],
+      [
+        650,
+        5,
+        "peace"
+      ],
+      [
+        682,
+        3,
+        "ruin"
+      ],
+      [
+        684,
+        4,
+        "peace"
+      ],
+      [
+        691,
+        3,
+        "peace"
+      ],
+      [
+        713,
+        6,
+        "rich"
+      ],
+      [
+        740,
+        7,
+        "rich"
+      ],
+      [
+        754,
+        6,
+        "ruin"
+      ],
+      [
+        755,
+        6,
+        "rich"
+      ],
+      [
+        756,
+        3,
+        "war"
+      ],
+      [
+        758,
+        3,
+        "ruin"
+      ],
+      [
+        763,
+        3,
+        "war"
+      ]
+    ],
+    "luoyang": [
+      [
+        560,
+        3,
+        "peace"
+      ],
+      [
+        605,
+        5,
+        "labor"
+      ],
+      [
+        613,
+        4,
+        "war"
+      ],
+      [
+        619,
+        3,
+        "war"
+      ],
+      [
+        620,
+        1,
+        "ruin"
+      ],
+      [
+        622,
+        2,
+        "peace"
+      ],
+      [
+        650,
+        4,
+        "peace"
+      ],
+      [
+        684,
+        5,
+        "peace"
+      ],
+      [
+        690,
+        7,
+        "rich"
+      ],
+      [
+        705,
+        6,
+        "rich"
+      ],
+      [
+        755,
+        3,
+        "war"
+      ],
+      [
+        756,
+        2,
+        "ruin"
+      ],
+      [
+        757,
+        2,
+        "war"
+      ],
+      [
+        758,
+        3,
+        "peace"
+      ],
+      [
+        759,
+        2,
+        "war"
+      ],
+      [
+        762,
+        1,
+        "ruin"
+      ]
+    ],
+    "hebei": [
+      [
+        560,
+        3,
+        "peace"
+      ],
+      [
+        608,
+        3,
+        "labor"
+      ],
+      [
+        612,
+        2,
+        "ruin"
+      ],
+      [
+        613,
+        2,
+        "war"
+      ],
+      [
+        618,
+        3,
+        "peace"
+      ],
+      [
+        621,
+        2,
+        "war"
+      ],
+      [
+        624,
+        3,
+        "peace"
+      ],
+      [
+        650,
+        4,
+        "peace"
+      ],
+      [
+        696,
+        3,
+        "war"
+      ],
+      [
+        698,
+        2,
+        "ruin"
+      ],
+      [
+        700,
+        3,
+        "peace"
+      ],
+      [
+        713,
+        5,
+        "peace"
+      ],
+      [
+        730,
+        6,
+        "rich"
+      ],
+      [
+        755,
+        3,
+        "war"
+      ],
+      [
+        763,
+        3,
+        "war"
+      ]
+    ],
+    "yangzhou": [
+      [
+        560,
+        3,
+        "peace"
+      ],
+      [
+        589,
+        3,
+        "war"
+      ],
+      [
+        590,
+        4,
+        "peace"
+      ],
+      [
+        605,
+        5,
+        "rich"
+      ],
+      [
+        612,
+        4,
+        "labor"
+      ],
+      [
+        618,
+        2,
+        "war"
+      ],
+      [
+        621,
+        3,
+        "peace"
+      ],
+      [
+        650,
+        4,
+        "peace"
+      ],
+      [
+        684,
+        3,
+        "war"
+      ],
+      [
+        685,
+        4,
+        "peace"
+      ],
+      [
+        713,
+        6,
+        "rich"
+      ],
+      [
+        760,
+        3,
+        "war"
+      ],
+      [
+        761,
+        3,
+        "ruin"
+      ],
+      [
+        762,
+        5,
+        "peace"
+      ]
+    ],
+    "yizhou": [
+      [
+        560,
+        3,
+        "peace"
+      ],
+      [
+        605,
+        3,
+        "labor"
+      ],
+      [
+        618,
+        4,
+        "peace"
+      ],
+      [
+        650,
+        4,
+        "peace"
+      ],
+      [
+        713,
+        5,
+        "rich"
+      ],
+      [
+        756,
+        6,
+        "rich"
+      ]
+    ],
+    "shazhou": [
+      [
+        560,
+        2,
+        "peace"
+      ],
+      [
+        609,
+        2,
+        "labor"
+      ],
+      [
+        618,
+        2,
+        "war"
+      ],
+      [
+        620,
+        2,
+        "peace"
+      ],
+      [
+        650,
+        3,
+        "peace"
+      ],
+      [
+        713,
+        4,
+        "rich"
+      ],
+      [
+        756,
+        3,
+        "peace"
+      ]
+    ],
+    "lingnan": [
+      [
+        560,
+        2,
+        "peace"
+      ],
+      [
+        589,
+        2,
+        "war"
+      ],
+      [
+        591,
+        3,
+        "peace"
+      ],
+      [
+        650,
+        3,
+        "peace"
+      ],
+      [
+        713,
+        4,
+        "rich"
+      ],
+      [
+        758,
+        2,
+        "ruin"
+      ],
+      [
+        759,
+        3,
+        "peace"
+      ]
+    ],
+    "xizhou": [
+      [
+        560,
+        2,
+        "peace"
+      ],
+      [
+        640,
+        2,
+        "war"
+      ],
+      [
+        641,
+        3,
+        "peace"
+      ],
+      [
+        713,
+        4,
+        "rich"
+      ],
+      [
+        751,
+        3,
+        "peace"
+      ]
+    ]
+  },
+  "landmarks": [
+    {
+      "region": "guanzhong",
+      "from": 583,
+      "glyph": "citywall",
+      "x": 560,
+      "label": "大興城"
+    },
+    {
+      "region": "guanzhong",
+      "from": 652,
+      "glyph": "pagoda",
+      "x": 616,
+      "tiers": 5,
+      "label": "慈恩寺塔"
+    },
+    {
+      "region": "guanzhong",
+      "from": 707,
+      "glyph": "pagoda",
+      "x": 470,
+      "tiers": 7,
+      "small": true,
+      "label": "薦福寺塔"
+    },
+    {
+      "region": "luoyang",
+      "from": 605,
+      "glyph": "citywall",
+      "x": 560,
+      "label": "東都"
+    },
+    {
+      "region": "luoyang",
+      "from": 688,
+      "to": 694,
+      "glyph": "mingtang",
+      "x": 610,
+      "label": "明堂"
+    },
+    {
+      "region": "luoyang",
+      "from": 695,
+      "to": 714,
+      "glyph": "pillar",
+      "x": 500,
+      "label": "天樞"
+    },
+    {
+      "region": "luoyang",
+      "from": 696,
+      "to": 756,
+      "glyph": "mingtang",
+      "x": 610,
+      "label": "通天宮"
+    },
+    {
+      "region": "luoyang",
+      "from": 605,
+      "glyph": "boats",
+      "x": 330,
+      "y": 168,
+      "label": "通濟渠"
+    },
+    {
+      "region": "hebei",
+      "from": 608,
+      "glyph": "boats",
+      "x": 360,
+      "y": 162,
+      "canal": true,
+      "label": "永濟渠"
+    },
+    {
+      "region": "yangzhou",
+      "from": 601,
+      "glyph": "pagoda",
+      "x": 600,
+      "tiers": 7,
+      "label": "棲靈塔"
+    },
+    {
+      "region": "yangzhou",
+      "from": 605,
+      "glyph": "boats",
+      "x": 340,
+      "y": 166,
+      "label": "邗溝"
+    },
+    {
+      "region": "yizhou",
+      "glyph": "bridge",
+      "x": 520,
+      "y": 170,
+      "label": "萬里橋"
+    },
+    {
+      "region": "yizhou",
+      "from": 760,
+      "glyph": "hut",
+      "x": 640,
+      "label": "浣花草堂"
+    },
+    {
+      "region": "shazhou",
+      "glyph": "caves",
+      "x": 560,
+      "label": "莫高窟"
+    },
+    {
+      "region": "shazhou",
+      "from": 695,
+      "glyph": "bigshrine",
+      "x": 590,
+      "label": "北大像"
+    },
+    {
+      "region": "lingnan",
+      "glyph": "ships",
+      "x": 560,
+      "y": 160,
+      "label": "海舶"
+    },
+    {
+      "region": "xizhou",
+      "glyph": "citywall",
+      "x": 570,
+      "label": "高昌城"
+    },
+    {
+      "region": "xizhou",
+      "glyph": "wells",
+      "x": 380,
+      "label": "坎兒井"
+    },
+    {
+      "from": 690,
+      "to": 705,
+      "glyph": "pagoda",
+      "x": 30,
+      "tiers": 3,
+      "small": true,
+      "notRegions": [
+        "shazhou",
+        "xizhou"
+      ],
+      "label": "大雲寺"
+    }
+  ],
+  "costume": [
+    {
+      "to": 617,
+      "m": "robe",
+      "f": "highwaist",
+      "hat": "futou"
+    },
+    {
+      "to": 689,
+      "m": "robe",
+      "f": "highwaist",
+      "hat": "futou",
+      "shawl": true
+    },
+    {
+      "to": 763,
+      "m": "robe",
+      "f": "fullsleeve",
+      "hat": "tallfutou",
+      "shawl": true,
+      "bun": "high"
+    }
+  ],
+  "clsLook": {
+    "hu": "hu",
+    "siyuan": "plain",
+    "kehu": "plain",
+    "gentry_gl": "scholar",
+    "gentry_sd": "scholar",
+    "gentry_jn": "scholar",
+    "lizheng": "scholar"
+  },
+  "factionLook": {
+    "sui": "armor",
+    "rebel": "armor",
+    "tang": "armor",
+    "yan": "armor"
+  },
+  "scenes": {
+    "army": {
+      "props": [
+        [
+          "soldiers",
+          470,
+          5
+        ],
+        [
+          "banner",
+          430
+        ]
+      ],
+      "armor": true
+    },
+    "registry": {
+      "props": [
+        [
+          "desk",
+          500
+        ],
+        [
+          "official",
+          540
+        ]
+      ]
+    },
+    "court": {
+      "props": [
+        [
+          "palace",
+          540
+        ]
+      ]
+    },
+    "palace": {
+      "props": [
+        [
+          "palace",
+          540
+        ],
+        [
+          "laborers",
+          400,
+          3
+        ]
+      ]
+    },
+    "flee": {
+      "props": [
+        [
+          "walkers",
+          470,
+          4
+        ],
+        [
+          "cart",
+          600
+        ]
+      ],
+      "family": "walk"
+    },
+    "temple": {
+      "props": [
+        [
+          "pagoda",
+          560,
+          5
+        ],
+        [
+          "monk",
+          480
+        ]
+      ]
+    },
+    "road": {
+      "props": [
+        [
+          "road",
+          0
+        ],
+        [
+          "walkers",
+          520,
+          2
+        ]
+      ],
+      "family": "walk"
+    },
+    "funeral": {
+      "props": [
+        [
+          "banners",
+          480,
+          3
+        ],
+        [
+          "coffin",
+          560
+        ]
+      ]
+    },
+    "market": {
+      "props": [
+        [
+          "stall",
+          450
+        ],
+        [
+          "stall",
+          560
+        ],
+        [
+          "camel",
+          640
+        ]
+      ]
+    },
+    "home": {
+      "props": [
+        [
+          "house",
+          500
+        ]
+      ]
+    },
+    "harvest": {
+      "props": [
+        [
+          "sheaves",
+          470,
+          4
+        ]
+      ],
+      "fields": "full"
+    },
+    "field": {
+      "props": [
+        [
+          "oxplow",
+          500
+        ]
+      ],
+      "fields": "full"
+    },
+    "study": {
+      "props": [
+        [
+          "desk",
+          480
+        ],
+        [
+          "scrolls",
+          530
+        ]
+      ]
+    },
+    "old": {
+      "props": [
+        [
+          "tree",
+          520
+        ]
+      ],
+      "family": "old"
+    },
+    "night": {
+      "props": [
+        [
+          "lamp",
+          470
+        ]
+      ],
+      "night": true
+    },
+    "fire": {
+      "props": [
+        [
+          "fire",
+          520
+        ],
+        [
+          "smoke",
+          560
+        ]
+      ]
+    },
+    "caravan": {
+      "props": [
+        [
+          "camel",
+          470
+        ],
+        [
+          "camel",
+          540
+        ],
+        [
+          "camel",
+          610
+        ]
+      ]
+    },
+    "canal": {
+      "props": [
+        [
+          "laborers",
+          430,
+          4
+        ],
+        [
+          "boat",
+          590
+        ]
+      ]
+    },
+    "wedding": {
+      "props": [
+        [
+          "sedan",
+          520
+        ],
+        [
+          "lanterns",
+          600
+        ]
+      ],
+      "accent": "red"
+    },
+    "festival": {
+      "props": [
+        [
+          "lanterns",
+          450
+        ],
+        [
+          "lanterns",
+          560
+        ],
+        [
+          "lanterns",
+          640
+        ]
+      ],
+      "night": true
+    },
+    "city": {
+      "props": [
+        [
+          "gate",
+          540
+        ]
+      ]
+    },
+    "boat": {
+      "props": [
+        [
+          "boat",
+          520
+        ],
+        [
+          "waves",
+          520
+        ]
+      ]
+    },
+    "play": {
+      "props": [
+        [
+          "kite",
+          520
+        ]
+      ],
+      "family": "kids"
+    },
+    "labor": {
+      "props": [
+        [
+          "laborers",
+          460,
+          4
+        ],
+        [
+          "wall",
+          600
+        ]
+      ]
+    },
+    "harbor": {
+      "props": [
+        [
+          "ship",
+          520
+        ],
+        [
+          "ship",
+          610
+        ]
+      ]
+    },
+    "drought": {
+      "props": [
+        [
+          "cracks",
+          480
+        ]
+      ],
+      "sun": "fierce",
+      "fields": "dead"
+    },
+    "village": {
+      "props": [
+        [
+          "house",
+          500
+        ],
+        [
+          "tree",
+          580
+        ]
+      ]
+    },
+    "sick": {
+      "props": [
+        [
+          "bed",
+          500
+        ],
+        [
+          "medicine",
+          560
+        ]
+      ]
+    },
+    "she": {
+      "props": [
+        [
+          "feast",
+          500
+        ]
+      ]
+    },
+    "loom": {
+      "props": [
+        [
+          "loom",
+          510
+        ]
+      ]
+    },
+    "locust": {
+      "props": [
+        [
+          "locusts",
+          500
+        ]
+      ],
+      "fields": "dead"
+    },
+    "heir": {
+      "props": [
+        [
+          "incense",
+          520
+        ]
+      ]
+    },
+    "flood": {
+      "props": [
+        [
+          "waves",
+          420
+        ],
+        [
+          "waves",
+          560
+        ]
+      ],
+      "flood": true
+    },
+    "dragonboat": {
+      "props": [
+        [
+          "dragonboat",
+          520
+        ],
+        [
+          "waves",
+          520
+        ]
+      ]
+    },
+    "contract": {
+      "props": [
+        [
+          "desk",
+          500
+        ],
+        [
+          "contract",
+          540
+        ]
+      ]
+    },
+    "storm": {
+      "props": [
+        [
+          "wind",
+          500
+        ],
+        [
+          "hut",
+          560
+        ]
+      ]
+    },
+    "puppet": {
+      "props": [
+        [
+          "puppetstage",
+          520
+        ]
+      ],
+      "night": true
+    },
+    "grave": {
+      "props": [
+        [
+          "mound",
+          520
+        ],
+        [
+          "tree",
+          580
+        ]
+      ]
+    },
+    "cave": {
+      "props": [
+        [
+          "caves",
+          540
+        ]
+      ]
+    },
+    "birth": {
+      "props": [
+        [
+          "cradle",
+          500
+        ]
+      ]
+    },
+    "death": {
+      "props": [
+        [
+          "mound",
+          520
+        ],
+        [
+          "banners",
+          460,
+          2
+        ]
+      ],
+      "family": "none"
+    }
+  }
+}

@@ -1,0 +1,1748 @@
+<title>__TITLE__</title>
+<script>/* 選過底色的人，一開始就用那個底色，不要先閃一下系統的顏色 */try{var t=localStorage.getItem('__PREFIX__theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&display=swap">
+<style>
+/* 版面：單欄竹簡卷軸。上方是戶籍與數值，中間是逐年展開的紀錄，抉擇以木牘卡片插在紀錄裡，底部是速度控制。 */
+:root {
+  --bg: #e6e3d3;        /* 乾竹 */
+  --slip: #f0eee2;      /* 簡面 */
+  --ink: #23211a;       /* 墨 */
+  --muted: #5e5a48;     /* 淡墨 */
+  --line: #cdc8b0;      /* 編繩 */
+  --yellow: #b8861a;    /* 主色 */
+  --yellow-soft: #efe2b8;
+  --red: #9a2f22;       /* 硃砂：死、印 */
+  --green: #4f6b3a;     /* 增益 */
+  --font-display: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  --font-body: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  --font-ui: system-ui, -apple-system, "Microsoft JhengHei", "PingFang TC", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #191812; --slip: #23211a; --ink: #e8e3cd; --muted: #a39e86; --line: #3a372c;
+    --yellow: #d9a83a; --yellow-soft: #3b3220; --red: #cf5a44; --green: #93b072; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #191812; --slip: #23211a; --ink: #e8e3cd; --muted: #a39e86; --line: #3a372c;
+  --yellow: #d9a83a; --yellow-soft: #3b3220; --red: #cf5a44; --green: #93b072; color-scheme: dark;
+}
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+/* 捲動定位時，避開頂部的數值列與底部的控制列 */
+html { scroll-padding-top: calc(var(--hud-h, 0px) + 8px); scroll-padding-bottom: calc(var(--ctrl-h, 0px) + 12px); }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body);
+  font-size: 16px; line-height: 1.85; margin: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 680px; margin: 0 auto; padding-block: 24px 120px; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+.ui { font-family: var(--font-ui); }
+
+/* ---------- 開場 */
+#intro { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: start; padding-top: 24px; }
+.vtitle {
+  writing-mode: vertical-rl; font-family: var(--font-display); font-weight: 900;
+  font-size: clamp(56px, 13vw, 96px); line-height: 1; letter-spacing: .08em; margin: 0;
+  color: var(--ink); text-shadow: 0 0 0 transparent;
+}
+.vtitle em { font-style: normal; color: var(--yellow); }
+.intro-body { min-width: 0; display: grid; gap: 16px; padding-top: 8px; }
+.intro-body h2 { font-size: 20px; margin: 0; font-weight: 600; text-wrap: balance; }
+.intro-body p { margin: 0; max-width: 34em; }
+#introText { display: grid; gap: 16px; }
+.slogan { border-left: 3px solid var(--yellow); padding-left: 12px; color: var(--muted); }
+.cta {
+  justify-self: start; background: var(--ink); color: var(--slip); border: 0; border-radius: 2px;
+  padding: 12px 28px; font-family: var(--font-display); font-weight: 900; font-size: 20px; letter-spacing: .3em;
+}
+.cta:hover { background: var(--yellow); color: var(--ink); }
+.fine { font-size: 13px; color: var(--muted); line-height: 1.7; }
+.how { display: grid; gap: 6px; font-size: 14px; color: var(--muted); }
+.how b { color: var(--ink); font-weight: 600; }
+@media (max-width: 480px) {
+  #intro { grid-template-columns: 1fr; gap: 12px; padding-top: 8px; }
+  .vtitle { writing-mode: horizontal-tb; font-size: 52px; }
+  /* 手機上先讓人看到「投胎」，章節說明放後面 */
+  .intro-body > * { order: 3; }
+  .intro-body > .slogan { order: 1; }
+  .intro-body > h2 { order: 2; }
+  .intro-body > .cta, .intro-body > .cta-row { order: 4; }
+  .intro-body > .how { order: 5; }
+  .intro-body > .fine, .intro-body > .theme-row { order: 6; }
+  .intro-body > .codex { order: 7; }
+}
+
+/* ---------- 戶籍 */
+.register {
+  background: var(--slip); border: 1px solid var(--line); padding: 20px 20px 16px; display: grid; gap: 14px;
+  background-image: repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), var(--line) calc(25% - 1px) 25%);
+  background-size: 100% 100%;
+}
+.register .who { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; background: var(--slip); }
+.register .name { font-family: var(--font-display); font-weight: 900; font-size: 34px; line-height: 1.2; }
+.register .meta { color: var(--muted); font-size: 15px; }
+.register dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px 16px; margin: 0; background: var(--slip); }
+.register dt { font-size: 12px; color: var(--muted); letter-spacing: .15em; }
+.register dd { margin: 0; font-weight: 600; }
+.codex { font-size: 14px; }
+.codex summary { cursor: pointer; color: var(--muted); font-family: var(--font-ui); padding: 4px 0; }
+.codex summary b { color: var(--ink); }
+.codex h5 { margin: 12px 0 4px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.codex .chip-list { display: flex; flex-wrap: wrap; gap: 4px; }
+.codex .chip-list span { border: 1px solid var(--line); padding: 1px 6px; font-size: 13px; }
+.codex .chip-list span.unseen { color: var(--muted); border-style: dashed; }
+.codex .chip-list span.rare { border-color: var(--yellow); }
+.codex details.arcs { margin: 10px 0 4px; display: grid; gap: 6px; }
+.codex details.arcs summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+.codex .chip-list span.arc-name { border: 0; padding-left: 0; color: var(--muted); min-width: 5.5em; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.talent { display: inline-block; border: 1px solid var(--yellow); color: var(--ink); padding: 0 8px; margin: 2px 6px 2px 0; font-size: 14px; background: var(--yellow-soft); }
+.talent small { color: var(--muted); font-weight: 400; margin-left: 4px; }
+
+/* ---------- 遊戲中頂部 */
+#hud {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  padding-block: 12px 10px; border-bottom: 1px solid var(--line); display: grid; gap: 8px;
+}
+.hud-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.hud-name { font-family: var(--font-display); font-weight: 900; font-size: 22px; }
+.hud-name small { font-family: var(--font-body); font-weight: 400; font-size: 14px; color: var(--muted); margin-left: 8px; }
+.hud-age { font-family: var(--font-display); font-weight: 900; font-size: 30px; line-height: 1; font-variant-numeric: tabular-nums; }
+.hud-age small { font-size: 14px; font-weight: 400; color: var(--muted); margin-left: 4px; }
+.hud-era { font-size: 13px; color: var(--muted); text-align: right; }
+.stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.stat { display: grid; gap: 2px; }
+.stat .k { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; font-family: var(--font-ui); font-variant-numeric: tabular-nums; }
+.stat .k b { color: var(--ink); font-weight: 600; }
+.bar { height: 4px; background: var(--line); }
+.bar i { display: block; height: 100%; background: var(--ink); transition: width .4s; }
+.stat.hp .bar i { background: var(--red); }
+.chips { display: flex; flex-wrap: wrap; gap: 4px 6px; font-size: 12px; }
+.chip { border: 1px solid var(--line); padding: 0 6px; color: var(--muted); font-family: var(--font-ui); }
+.chip.route { border-color: var(--yellow); color: var(--ink); background: var(--yellow-soft); }
+.chip.bond { border-color: var(--ink); color: var(--ink); }
+
+/* ---------- 紀錄 */
+#log { display: grid; gap: 10px; padding-top: 14px; }
+/* 長家族的紀錄有幾百條：畫面外的舊紀錄先不排版（接續時第一次排版從約 0.6 秒降到 0.07 秒）；最後幾條照常排，捲到底才會準 */
+#log > :not(:nth-last-child(-n+12)) { content-visibility: auto; contain-intrinsic-size: auto 80px; }
+.yr { display: flex; align-items: baseline; gap: 10px; margin-top: 10px; }
+.yr .a { font-family: var(--font-display); font-weight: 900; font-size: 20px; min-width: 2.6em; font-variant-numeric: tabular-nums; }
+.yr .e { font-size: 13px; color: var(--muted); }
+.yr::after { content: ""; flex: 1; border-bottom: 1px dashed var(--line); transform: translateY(-4px); }
+.chap { margin: 28px 0 6px; padding: 14px 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); font-family: var(--font-display); font-weight: 900; font-size: 24px; letter-spacing: .12em; }
+.chip.faction { border-color: var(--red); color: var(--ink); }
+/* 章末：人還活著就不停下來，在紀錄裡夾一張章末卡，接著往下活 */
+.chap-end { margin: 22px 0 6px; padding: 14px 16px; background: var(--slip); border: 1px solid var(--line); border-left: 6px solid var(--red); display: grid; gap: 6px; }
+.chap-end .k { font-size: 13px; color: var(--red); letter-spacing: .08em; }
+.chap-end b { font-family: var(--font-display); font-weight: 900; font-size: 20px; letter-spacing: .06em; }
+.chap-end p { margin: 0; }
+.chap-end .w { font-size: 14px; color: var(--muted); }
+.heirline { margin: 26px 0 4px; padding: 10px 0 10px 14px; border-left: 6px solid var(--yellow); font-family: var(--font-display); font-weight: 900; font-size: 22px; letter-spacing: .1em; background: var(--slip); }
+.tree { display: grid; gap: 0; border-left: 2px solid var(--line); margin-left: 6px; }
+.tree div { position: relative; padding: 6px 0 6px 18px; display: grid; grid-template-columns: 4.2em 1fr; gap: 4px 10px; font-size: 14px; }
+.tree div::before { content: ""; position: absolute; left: -6px; top: 14px; width: 10px; height: 10px; border-radius: 50%; background: var(--slip); border: 2px solid var(--ink); }
+.tree div.now::before { background: var(--yellow); border-color: var(--yellow); }
+.tree .g { color: var(--muted); font-variant-numeric: tabular-nums; }
+.tree b { font-family: var(--font-display); white-space: nowrap; }
+.tree .memo { grid-column: 2; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.heirs { display: grid; gap: 8px; justify-items: start; }
+.after .card.memory { border-left-color: var(--yellow); }
+.after .card.world { border-left-color: var(--muted); color: var(--muted); }
+.after details.more { display: grid; gap: 10px; }
+.after details.more summary { cursor: pointer; font-size: 13px; color: var(--muted); padding-left: 14px; list-style: none; }
+.after details.more summary::before { content: "＋ "; }
+.after details.more[open] summary::before { content: "－ "; }
+.after details.more[open] { gap: 10px; }
+.heirs h4 { margin: 0 0 2px; font-size: 13px; letter-spacing: .2em; color: var(--muted); font-weight: 600; }
+.end-actions { align-items: center; }
+.en { padding-left: 14px; border-left: 2px solid var(--line); display: grid; gap: 4px; }
+.en p { margin: 0; }
+.en .tag { font-size: 12px; letter-spacing: .15em; color: var(--yellow); font-weight: 600; }
+.en.big { border-left-color: var(--yellow); }
+.en.death { border-left-color: var(--red); }
+.en.death p { color: var(--red); }
+.en.choice p { color: var(--muted); }
+.en.choice p b { color: var(--ink); }
+.en.bond p { font-weight: 600; }
+.note { font-size: 13px; color: var(--muted); line-height: 1.7; }
+.note::before { content: "史"; display: inline-block; font-size: 11px; border: 1px solid var(--muted); padding: 0 3px; margin-right: 6px; line-height: 1.4; transform: translateY(-1px); }
+.delta { display: flex; gap: 6px; flex-wrap: wrap; font-size: 12px; font-family: var(--font-ui); font-variant-numeric: tabular-nums; }
+.delta span { color: var(--green); }
+.delta span.neg { color: var(--red); }
+
+/* ---------- 抉擇木牘 */
+.dec { background: var(--slip); border: 1px solid var(--ink); padding: 18px 18px 14px; display: grid; gap: 10px; margin-top: 6px; }
+.dec .head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.dec h3 { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: 22px; text-wrap: balance; }
+.dec .who { font-size: 13px; color: var(--muted); }
+.dec .who b { color: var(--yellow); }
+.dec p { margin: 0; }
+.opts { display: grid; gap: 8px; margin-top: 4px; }
+.opt {
+  text-align: left; background: transparent; border: 1px solid var(--line); padding: 10px 12px;
+  display: grid; grid-template-columns: 1.6em 1fr; gap: 2px 8px; align-items: baseline; border-radius: 0;
+}
+.opt:hover:not(:disabled) { border-color: var(--ink); background: var(--yellow-soft); }
+.opt .n { font-family: var(--font-display); font-weight: 900; color: var(--yellow); grid-row: span 2; }
+.opt .t { font-weight: 600; }
+.opt .s { font-size: 13px; color: var(--muted); }
+.opt:disabled { cursor: not-allowed; opacity: .55; }
+.opt:disabled .t { text-decoration: line-through; text-decoration-color: var(--muted); }
+.auto-hint { font-size: 12px; color: var(--muted); font-family: var(--font-ui); }
+
+/* ---------- 底部控制 */
+#ctrl {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: var(--bg); border-top: 1px solid var(--line);
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+#ctrl .in { max-width: 680px; margin: 0 auto; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.cb { background: transparent; border: 1px solid var(--line); padding: 4px 10px; font-size: 13px; border-radius: 0; }
+.cb[aria-pressed="true"] { background: var(--ink); color: var(--slip); border-color: var(--ink); }
+.cb.fate[aria-pressed="true"] { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
+.sp { flex: 1; }
+.theme-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.theme-row a.ghost { padding: 6px 14px; font-size: 14px; }
+.theme-row .ghost { padding: 6px 14px; font-size: 14px; }
+@media (pointer: coarse) { .cb { min-height: 42px; min-width: 42px; padding: 6px 12px; } } /* 手指好按 */
+/* 手機上一列要擺下暫停、三種速度、音樂、底色、天命：按鈕收窄一點，不要擠成兩行 */
+@media (max-width: 480px) { #ctrl .in { gap: 3px; } .cb { min-width: 34px; padding: 6px 7px; } }
+
+/* ---------- 結局 */
+#end { display: grid; gap: 22px; padding-top: 18px; }
+.end-head { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: start; }
+.seal {
+  writing-mode: vertical-rl; font-family: var(--font-display); font-weight: 900; font-size: 34px; line-height: 1.05;
+  color: var(--slip); background: var(--red); padding: 14px 10px; letter-spacing: .12em; border-radius: 3px;
+  box-shadow: inset 0 0 0 3px var(--red), inset 0 0 0 5px var(--slip);
+}
+.seal.alive { background: var(--ink); box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 5px var(--slip); }
+.end-body { min-width: 0; display: grid; gap: 10px; }
+.end-body .rare { font-size: 12px; letter-spacing: .2em; color: var(--yellow); font-weight: 600; }
+.end-body h2 { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: 30px; line-height: 1.3; }
+.end-body .epi { font-size: 15px; color: var(--muted); }
+.end-sec h4 { margin: 0 0 8px; font-size: 13px; letter-spacing: .2em; color: var(--muted); font-weight: 600; }
+.after { display: grid; gap: 10px; }
+.after .card { border-left: 2px solid var(--ink); padding-left: 12px; }
+.after .card b { font-family: var(--font-display); }
+.after .card small { color: var(--muted); margin-left: 6px; }
+.tl { display: grid; gap: 4px; font-size: 14px; }
+.tl div { display: grid; grid-template-columns: 3.4em 1fr; gap: 8px; }
+.tl .y { color: var(--muted); font-variant-numeric: tabular-nums; }
+.tl b { font-weight: 600; }
+.end-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.ghost { background: transparent; border: 1px solid var(--ink); padding: 10px 18px; border-radius: 0; }
+a.ghost { color: var(--ink); text-decoration: none; display: inline-block; }
+.share-ov { position: fixed; inset: 0; z-index: 20; background: rgba(0, 0, 0, .6); display: flex; padding: 16px; overflow-y: auto; }
+.share-box { background: var(--bg); border: 1px solid var(--line); padding: 16px; display: grid; gap: 10px; max-width: 560px; width: 100%; margin: auto; } /* 內容比畫面高時從頂端開始捲，不會被切掉 */
+.share-box img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+.share-box .fine { margin: 0; }
+.tip { border: 1px dashed var(--yellow); background: var(--yellow-soft); padding: 12px 14px; display: grid; gap: 6px; font-size: 14px; line-height: 1.7; }
+.tip p { margin: 0; }
+.fine .ver { display: block; margin-top: 4px; font-size: 12px; opacity: .8; font-variant-numeric: tabular-nums; }
+.ancestors { display: grid; gap: 6px; background: var(--slip); }
+.ancestors h4 { margin: 0; font-size: 12px; letter-spacing: .15em; color: var(--muted); font-weight: 400; }
+.tip dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; margin: 0; }
+.tip dt { font-weight: 600; white-space: nowrap; }
+.tip dd { margin: 0; color: var(--muted); }
+.tip .ghost { justify-self: start; padding: 6px 16px; font-size: 14px; }
+#transfer { display: grid; gap: 8px; }
+#transfer[open] { padding-bottom: 8px; }
+#transfer textarea { width: 100%; box-sizing: border-box; min-height: 5.5em; font: 12px/1.5 ui-monospace, monospace; background: var(--slip); color: var(--ink); border: 1px solid var(--line); padding: 8px; word-break: break-all; }
+#transfer .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+#transfer .ghost { padding: 6px 14px; font-size: 14px; }
+#transfer .msg { font-size: 13px; color: var(--muted); }
+@media (max-width: 480px) {
+  .end-head { grid-template-columns: 1fr; }
+  .seal { writing-mode: horizontal-tb; justify-self: start; font-size: 26px; padding: 8px 14px; }
+  /* 手機上把頂部壓扁：六項數值一列、標籤一行可橫滑 */
+  #hud { padding-block: 8px 6px; gap: 6px; }
+  .hud-name { font-size: 18px; }
+  .hud-age { font-size: 24px; }
+  .stats { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; }
+  .stat .k { font-size: 11px; }
+  .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+/* ---------- 桌機兩側：固定不捲動的竹簡邊飾，只有中間的紀錄往下長 */
+.side { display: none; }
+@media (min-width: 1100px) {
+  .side {
+    display: flex; position: fixed; top: 0; bottom: 0; width: calc((100vw - 680px) / 2 - 40px);
+    align-items: center; justify-content: center; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .side-l { left: 0; } .side-r { right: 0; }
+  /* 編繩與竹片的縱紋，上下淡出 */
+  .side::before {
+    content: ""; position: absolute; inset: 0 auto 0 50%; width: min(220px, 70%); transform: translateX(-50%);
+    background: repeating-linear-gradient(90deg, transparent 0 27px, var(--line) 27px 28px);
+    -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+    mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); opacity: .55;
+  }
+  .side-in { position: relative; display: flex; flex-direction: column; align-items: center; gap: 28px; }
+  .side-big {
+    writing-mode: vertical-rl; font-family: var(--font-display); font-weight: 900; line-height: 1;
+    font-size: clamp(30px, 3vw, 46px); letter-spacing: .32em; color: var(--ink); opacity: .13;
+    background: var(--bg); padding: 14px 8px; white-space: nowrap; transition: opacity .6s;
+  }
+  .side-small {
+    writing-mode: vertical-rl; font-family: var(--font-display); font-size: 15px; letter-spacing: .4em;
+    color: var(--muted); background: var(--bg); padding: 10px 4px; white-space: nowrap;
+  }
+  .side-seal {
+    width: 44px; height: 44px; border: 2px solid var(--red); color: var(--red); border-radius: 3px;
+    display: grid; grid-template: 1fr 1fr / 1fr 1fr; place-items: center; font-family: var(--font-display);
+    font-weight: 900; font-size: 16px; line-height: 1; padding: 3px; opacity: .75; background: var(--bg);
+  }
+  /* 印文由右行讀起，上而下 */
+  .side-seal span:nth-child(1) { grid-area: 1 / 2; } .side-seal span:nth-child(2) { grid-area: 2 / 2; }
+  .side-seal span:nth-child(3) { grid-area: 1 / 1; } .side-seal span:nth-child(4) { grid-area: 2 / 1; }
+  .wrap { position: relative; z-index: 1; }
+}
+/* ---------- 插圖：燈影戲的幕 */
+.plate { margin: 0; position: relative; border: 1px solid var(--line); background: var(--slip); overflow: hidden; }
+.plate svg { display: block; width: 100%; height: 100%; }
+.plate .ink { fill: var(--ink); } .plate .paper { fill: var(--slip); } .plate .red { fill: var(--red); } .plate .yel { fill: var(--yellow); }
+.plate .ks { stroke: var(--ink); } .plate .rs { stroke: var(--red); } .plate .ys { stroke: var(--yellow); } .plate .ps { stroke: var(--slip); } .plate .gs { stroke: var(--green); }
+.plate .rod { stroke-opacity: .28; }
+#hudInfo { display: grid; gap: 8px; min-width: 0; }
+#scene { height: 168px; margin-top: 2px; min-width: 0; }
+#scene.off { height: 26px; border-style: dashed; }
+#scene.off .plate-box, #scene.off figcaption { display: none; }
+.plate-box { position: absolute; inset: 0; }
+.plate-in { position: absolute; inset: 0; transition: opacity .6s ease; }
+.plate-in.out { opacity: 0; }
+#scene figcaption { position: absolute; left: 8px; right: 70px; bottom: 4px; display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: var(--muted); pointer-events: none; text-shadow: 0 0 3px var(--slip), 0 0 3px var(--slip); }
+.plate-btn { position: absolute; right: 4px; top: 3px; font-size: 11px; padding: 1px 8px; border: 1px solid var(--line); background: var(--slip); color: var(--muted); border-radius: 2px; }
+.intro-plate { height: 150px; }
+.birth-plate { height: 130px; margin-bottom: 12px; }
+@media (max-width: 480px) { #scene { height: 112px; } .intro-plate { height: 110px; } .birth-plate { height: 100px; } }
+.fadein { animation: fi .35s ease-out; }
+@keyframes fi { from { opacity: .2; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+</style>
+
+<aside class="side side-l" aria-hidden="true"><div class="side-in"><div class="side-big" id="sideL"></div><div class="side-seal" id="sideSeal"></div></div></aside>
+<aside class="side side-r" aria-hidden="true"><div class="side-in"><div class="side-small" id="sideR2"></div><div class="side-big" id="sideR"></div></div></aside>
+<div class="wrap">
+  <section id="intro">
+    <h1 class="vtitle" id="introTitle"></h1>
+    <div class="intro-body">
+      <p class="slogan" id="introSlogan"></p>
+      <h2 id="introHead"></h2>
+      <figure class="plate intro-plate" id="introPlate" aria-hidden="true"></figure>
+      <div id="introText"></div>
+      <div class="how" id="introHow"></div>
+      <button class="cta" id="btnStart" type="button">投胎</button>
+      <p class="fine"><span id="introFine"></span><span class="ver">版本 __BUILD__</span></p>
+      <div class="theme-row ui"><button class="ghost btnTheme" id="btnThemeIntro" type="button">換成黑底</button><button class="ghost btnMusic" type="button" aria-pressed="false">開啟音樂</button><a class="ghost" id="lnkFeedback" href="#" target="_blank" rel="noopener">意見回饋</a></div>
+      <details class="codex" id="codex" hidden></details>
+      <details class="codex" id="transfer"><summary>換裝置：存檔碼</summary></details>
+    </div>
+  </section>
+
+  <section id="birth" hidden></section>
+  <section id="game" hidden>
+    <div id="hud"><div id="hudInfo"></div><figure class="plate" id="scene" hidden><div class="plate-box" id="scenePlate"></div><figcaption class="ui" id="sceneCap"></figcaption><button class="plate-btn ui" id="btnScene" type="button"></button></figure></div>
+    <div id="log" aria-live="polite"></div>
+  </section>
+  <section id="end" hidden></section>
+</div>
+
+<nav id="ctrl" hidden aria-label="播放控制">
+  <div class="in ui">
+    <button class="cb" id="btnPause" type="button" aria-pressed="false">暫停</button>
+    <button class="cb spd" data-s="1" type="button" aria-pressed="true">1×</button>
+    <button class="cb spd" data-s="2" type="button" aria-pressed="false">2×</button>
+    <button class="cb spd" data-s="4" type="button" aria-pressed="false">4×</button>
+    <span class="sp"></span>
+    <button class="cb btnMusic" type="button" aria-pressed="false" title="開啟音樂">♪</button>
+    <button class="cb btnTheme" type="button" aria-label="切換底色" title="切換底色">◐</button>
+    <button class="cb fate" id="btnFate" type="button" aria-pressed="false">交給天命</button>
+  </div>
+</nav>
+
+<script>/*__ENGINE__*/</script>
+<script>
+const DATA = /*__DATA__*/;
+(function () {
+  'use strict';
+  const $ = (s, el = document) => el.querySelector(s);
+  const h = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+  const esc = (t) => String(t ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const E = window.LifeEngine;
+  const UI = DATA.strings.ui;
+  const PFX = UI.storagePrefix || 'life_';
+  const STAT_ORDER = DATA.world.stats;
+  const HP = DATA.world.hpStat;
+  const ROUTE_NAME = DATA.world.routes || {};
+  const FACTION_NAME = DATA.world.factions || {};
+  const factionName = (f) => FACTION_NAME[f] || f;
+  const tplU = (t, v) => String(t || '').replace(/\{(\w+)\}/g, (m, k) => (k in v ? v[k] : m));
+
+  let game = null, speed = 1, paused = false, fate = false, timer = null, lastAge = -1;
+
+  function pref(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  speed = parseInt(pref(PFX + 'speed') || '1', 10) || 1;
+
+  // 底色：黑底或原色底。沒選過就跟著系統，選過就記住
+  const isDark = () => { const t = document.documentElement.dataset.theme; return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; };
+  function applyTheme(t) {
+    if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+    const label = isDark() ? '換成原色底' : '換成黑底';
+    const intro = document.getElementById('btnThemeIntro');
+    if (intro) intro.textContent = label;
+    document.querySelectorAll('.btnTheme').forEach((b) => { b.title = label; b.setAttribute('aria-label', label); });
+  }
+  applyTheme(pref(PFX + 'theme'));
+  document.querySelectorAll('.btnTheme').forEach((b) => b.addEventListener('click', () => {
+    const t = isDark() ? 'light' : 'dark';
+    pref(PFX + 'theme', t); applyTheme(t);
+  }));
+
+  // ---------------- 背景音樂：不用音檔，當場合成。撥弦（Karplus-Strong）彈五聲音階，底下一層很輕的低音持續音
+  // 預設關閉；開過的人下次點任何按鈕就接著響（瀏覽器規定聲音要等使用者先點過）
+  const music = (() => {
+    let ctx = null, out = null, on = pref(PFX + 'music') === '1', timer = null, step = 0, last = 5;
+    const SCALE = [146.83, 164.81, 185.0, 220.0, 246.94]; // D 宮五聲：宮商角徵羽
+    const notes = [];
+    for (let o = 0; o < 3; o++) for (const f of SCALE) notes.push(f * 2 ** (o - 1));
+    const bufs = {};
+    function pluck(f) {
+      if (bufs[f]) return bufs[f];
+      const sr = ctx.sampleRate, n = Math.floor(sr * 4), N = Math.round(sr / f);
+      const b = ctx.createBuffer(1, n, sr), d = b.getChannelData(0), ring = new Float32Array(N);
+      for (let i = 0; i < N; i++) ring[i] = Math.random() * 2 - 1;
+      let p = 0, prev = 0;
+      for (let i = 0; i < n; i++) {
+        const v = ring[p]; const nv = 0.4985 * (v + prev); prev = v; ring[p] = nv; p = (p + 1) % N;
+        d[i] = v * 0.5;
+      }
+      return (bufs[f] = b);
+    }
+    function play(f, t, vol) {
+      const src = ctx.createBufferSource(); src.buffer = pluck(f);
+      const g = ctx.createGain(); g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.001, t + 3.8);
+      src.connect(g); g.connect(out); src.start(t); src.stop(t + 4);
+    }
+    function setup() {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      out = ctx.createGain(); out.gain.value = 0;
+      const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2400;
+      // 簡單的殘響：兩條回授延遲
+      const dl = ctx.createDelay(), fb = ctx.createGain(), wet = ctx.createGain();
+      dl.delayTime.value = 0.33; fb.gain.value = 0.35; wet.gain.value = 0.3;
+      out.connect(lp); lp.connect(ctx.destination); lp.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(wet); wet.connect(ctx.destination);
+      for (const [f, v] of [[73.42, 0.05], [110, 0.03]]) {
+        const o = ctx.createOscillator(), g = ctx.createGain(), lfo = ctx.createOscillator(), lg = ctx.createGain();
+        o.frequency.value = f; g.gain.value = v; lfo.frequency.value = 0.05 + Math.random() * 0.05; lg.gain.value = v * 0.6;
+        lfo.connect(lg); lg.connect(g.gain); o.connect(g); g.connect(out); o.start(); lfo.start();
+      }
+    }
+    // 旋律：在音階上隨機小步走，偶爾兩音同彈、偶爾停一拍
+    function phrase() {
+      if (!on || !ctx) return;
+      const t = ctx.currentTime + 0.05;
+      if (Math.random() < 0.18) { timer = setTimeout(phrase, 1800); return; }
+      last = Math.max(2, Math.min(notes.length - 2, last + [-2, -1, -1, 1, 1, 2, 0][Math.floor(Math.random() * 7)]));
+      play(notes[last], t, 0.5);
+      if (Math.random() < 0.25) play(notes[Math.max(0, last - 3)], t + 0.02, 0.3);
+      if (++step % 8 === 0) play(notes[0], t, 0.35); // 每隔一段落回宮音
+      timer = setTimeout(phrase, 1100 + Math.random() * 1600);
+    }
+    function start() {
+      if (!ctx) setup();
+      ctx.resume();
+      out.gain.cancelScheduledValues(ctx.currentTime);
+      out.gain.setTargetAtTime(0.18, ctx.currentTime, 1.2);
+      clearTimeout(timer); phrase();
+    }
+    function stop() {
+      clearTimeout(timer);
+      if (ctx) out.gain.setTargetAtTime(0, ctx.currentTime, 0.4);
+    }
+    function label() {
+      document.querySelectorAll('.btnMusic').forEach((b) => {
+        b.setAttribute('aria-pressed', on); b.title = on ? '關掉音樂' : '開啟音樂';
+        b.textContent = b.classList.contains('cb') ? '♪' : (on ? '關掉音樂' : '開啟音樂');
+      });
+    }
+    function toggle() { on = !on; pref(PFX + 'music', on ? '1' : '0'); on ? start() : stop(); label(); }
+    // 開過音樂的人：第一次點畫面就接著放
+    document.addEventListener('pointerdown', () => { if (on && (!ctx || ctx.state !== 'running')) start(); }, { once: false });
+    document.addEventListener('visibilitychange', () => { if (!ctx) return; document.hidden ? ctx.suspend() : on && ctx.resume(); });
+    document.querySelectorAll('.btnMusic').forEach((b) => b.addEventListener('click', (e) => { e.stopPropagation(); toggle(); }));
+    label();
+    return { toggle };
+  })();
+
+  // ---------------- 存檔：只記種子和每一步操作，重新打開時照著重播一遍
+  // 內容改版（事件或結局數量變了）以後，舊存檔重播可能走樣：照樣接續，對不上的那一步起就由玩家接手
+  const DATA_VER = DATA.events.length + '/' + DATA.endings.length;
+  const BUILD_ID = '__BUILD__'; // 打包時換成建置日期與 git 提交號
+  let save = null;
+  function persist() { if (save) pref(PFX + 'save', JSON.stringify(save)); }
+  function record(a) { if (save) { save.acts.push(a); persist(); } }
+  function loadSave() {
+    try {
+      const v = JSON.parse(pref(PFX + 'save') || 'null');
+      return v && v.v === 1 && Number.isFinite(v.seed) && Array.isArray(v.acts) ? v : null;
+    } catch (e) { return null; }
+  }
+  // ---------------- 結局冊：記住所有遊玩中見過的結局
+  function loadSeen() { try { return new Set(JSON.parse(pref(PFX + 'seen') || '[]')); } catch (e) { return new Set(); } }
+  function markSeen(id) {
+    const seen = loadSeen();
+    if (!id || seen.has(id)) return false;
+    seen.add(id); pref(PFX + 'seen', JSON.stringify([...seen]));
+    return true;
+  }
+  // 人生故事：故事線走到的結局，跟結局一起記在 seen（前面加 arc:）
+  const arcItems = () => (DATA.world.arcBook || []).flatMap((a) => a.items.map((it) => ({ ...it, arc: a.name })));
+  const arcGot = (it, flags) => (it.all || [it.id]).every((f) => flags[f]) && (!it.any || it.any.some((f) => flags[f]));
+  function markArcs(s) {
+    const seen = loadSeen(), fresh = [];
+    for (const it of arcItems()) if (!seen.has('arc:' + it.id) && arcGot(it, s.flags || {})) { seen.add('arc:' + it.id); fresh.push(it); }
+    if (fresh.length) pref(PFX + 'seen', JSON.stringify([...seen]));
+    return fresh;
+  }
+  // 人物：每位歷史人物在所有遊玩中達到過的最高交情
+  function loadBonds() { try { return JSON.parse(pref(PFX + 'bonds') || '{}') || {}; } catch (e) { return {}; } }
+  function markBonds(bonds) {
+    const best = loadBonds();
+    let changed = false;
+    for (const id in bonds) if ((bonds[id] || 0) > (best[id] || 0)) { best[id] = bonds[id]; changed = true; }
+    if (changed) pref(PFX + 'bonds', JSON.stringify(best));
+  }
+  function renderCodex() {
+    const seen = loadSeen();
+    const box = $('#codex');
+    if (!box) return;
+    // 保底結局（正常玩法幾乎遇不到）不算進分母，也不佔「？？」的位置；真的遇到了才列出來
+    const all = DATA.endings.filter((e) => !e.fallback || seen.has(e.id));
+    const total = DATA.endings.filter((e) => !e.fallback).length;
+    const got = DATA.endings.filter((e) => !e.fallback && seen.has(e.id)).length;
+    if (!seen.size) { box.hidden = true; return; }
+    box.innerHTML = `<summary>結局冊：已見過 <b>${got}</b> / ${total} 種</summary>`;
+    const best = loadBonds();
+    const ids = Object.keys(DATA.bonds);
+    const met = ids.filter((id) => best[id] > 0).length;
+    box.append(h('h5', null, `人物　${met} / ${ids.length}`));
+    const brow = h('div', 'chip-list');
+    for (const id of ids) {
+      const d = DATA.bonds[id], v = Math.max(0, Math.min(Math.floor(Number(best[id])) || 0, d.tiers.length - 1)), top = v >= d.tiers.length - 1;
+      brow.append(h('span', v ? (top ? 'rare' : '') : 'unseen', v ? `${esc(d.name)}・${esc(d.tiers[v])}${top ? '★' : ''}` : '？？'));
+    }
+    box.append(brow);
+    // 人生故事：收在一個小抽屜裡，一條故事線一列
+    const arcs = DATA.world.arcBook || [];
+    if (arcs.length) {
+      const items = arcItems(), gotN = items.filter((it) => seen.has('arc:' + it.id)).length;
+      const ad = h('details', 'arcs');
+      ad.append(h('summary', null, `人生故事　${gotN} / ${items.length}`));
+      for (const a of arcs) {
+        const row = h('div', 'chip-list');
+        row.append(h('span', 'arc-name', esc(a.name)));
+        for (const it of a.items) { const ok = seen.has('arc:' + it.id); row.append(h('span', ok ? '' : 'unseen', ok ? esc(it.title) : '？？')); }
+        ad.append(row);
+      }
+      box.append(ad);
+    }
+    const groups = new Map();
+    for (const e of all) {
+      const key = e.chapter == null ? '不分章' : `第${CN[e.chapter]}章・${e.when === 'alive' ? '章末' : '身故'}`;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(e);
+    }
+    // 依章節排：每一章先章末、再身故；不分章的放最後
+    const rank = (e) => (e.chapter == null ? 99 : e.chapter) * 2 + (e.when === 'alive' ? 0 : 1);
+    const ordered = [...groups].sort((x, y) => rank(x[1][0]) - rank(y[1][0]));
+    for (const [key, list] of ordered) {
+      const n = list.filter((e) => seen.has(e.id)).length;
+      box.append(h('h5', null, `${esc(key)}　${n} / ${list.length}`));
+      const row = h('div', 'chip-list');
+      for (const e of list) {
+        const ok = seen.has(e.id);
+        // 標題裡的 {place} 依住處換字，圖鑑裡用第一個地區的地名
+        row.append(h('span', ok ? (e.rare ? 'rare' : '') : 'unseen', ok ? esc(e.title.replace('{place}', DATA.world.regions[0].place)) + (e.rare ? '★' : '') : '？？'));
+      }
+      box.append(row);
+    }
+    box.hidden = false;
+  }
+  const CN = '〇一二三四五六七八九十';
+  function clearSave() { save = null; try { localStorage.removeItem(PFX + 'save'); } catch (e) { /* 無痕視窗等情況 */ } }
+
+  // ---------------- 換裝置：把進行中的家族、結局冊、人物紀錄打包成一串文字
+  // 讀入時結局冊與人物紀錄是「合併」（只會變多），進行中的家族則換成存檔碼裡的那一家
+  const CODE_HEAD = UI.codeHead || 'LIFE1.';
+  // ---------------- 意見回饋：把這一局的資訊整理好，帶到 GitHub Issues，或複製下來傳給作者
+  const FEEDBACK_REPO = (UI.feedbackRepo || '') + '/new';
+  function feedbackInfo(e, sv) {
+    const s = game && game.state;
+    const lines = [`【${UI.title}・這一局的資訊】`, `版本：${BUILD_ID}（內容 ${DATA_VER}）`];
+    if (s) {
+      lines.push(`種子：${game.seed}${s.lateStart ? '（後代投胎）' : ''}`);
+      lines.push(`人物：第${cnGen(s.generation)}代 ${s.name}，${s.regionName}・${s.clsName}，${s.year} 年 ${s.age} 歲`);
+      if (e) lines.push(`結局：「${e.title}」（${e.id}）`);
+    }
+    lines.push(`裝置：${matchMedia('(pointer: coarse)').matches ? '手機或平板' : '電腦'}，${innerWidth}×${innerHeight}`);
+    const code = sv ? exportCodeOf(sv) : '';
+    if (code && code.length < 3000) lines.push(`存檔碼：${code}`);
+    return lines.join('\n');
+  }
+  function exportCodeOf(sv) {
+    const bytes = new TextEncoder().encode(JSON.stringify({ s: sv, e: [], b: {} }));
+    let bin = ''; for (const c of bytes) bin += String.fromCharCode(c);
+    return CODE_HEAD + btoa(bin);
+  }
+  function feedbackButtons(e, sv) {
+    const row = h('div', 'end-actions');
+    const info = feedbackInfo(e, sv);
+    const title = '回饋：' + (e ? `「${e.title}」` : '');
+    // 用 GitHub 的回饋表單（.github/ISSUE_TEMPLATE/feedback.yml）：這一局的資訊預先填進「info」欄位，會自動加上「回饋」標籤
+    const gh = h('a', 'ghost ui', '到 GitHub 回饋');
+    gh.href = `${FEEDBACK_REPO}?template=feedback.yml&title=${encodeURIComponent(title)}&info=${encodeURIComponent(info)}`;
+    gh.target = '_blank'; gh.rel = 'noopener';
+    const cp = h('button', 'ghost ui', '複製這一局的資訊'); cp.type = 'button';
+    cp.addEventListener('click', async () => {
+      let ok = false;
+      try { await navigator.clipboard.writeText(info); ok = true; } catch (err) {
+        const ta = document.createElement('textarea'); ta.value = info; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.append(ta); ta.select();
+        try { ok = document.execCommand('copy'); } catch (e2) { ok = false; }
+        ta.remove();
+      }
+      cp.textContent = ok ? '已複製，貼給作者就好' : '複製失敗';
+      setTimeout(() => { cp.textContent = '複製這一局的資訊'; }, 2500);
+    });
+    row.append(gh, cp);
+    const box = h('div', 'end-sec feedback');
+    box.append(h('h4', null, '覺得哪裡怪、哪裡好玩？'));
+    box.append(h('p', 'fine', '回饋會附上這一局的種子與存檔碼，作者可以照著重現你看到的劇情。沒有 GitHub 帳號的話，按「複製這一局的資訊」，貼到 LINE 或訊息裡傳給作者就好。'));
+    box.append(row);
+    return box;
+  }
+
+  function exportCode() {
+    const json = JSON.stringify({ s: loadSave(), e: [...loadSeen()], b: loadBonds() });
+    const bytes = new TextEncoder().encode(json);
+    let bin = ''; for (const c of bytes) bin += String.fromCharCode(c);
+    return CODE_HEAD + btoa(bin);
+  }
+  function parseCode(code) {
+    const t = String(code || '').replace(/\s+/g, '');
+    if (!t.startsWith(CODE_HEAD)) return null;
+    try {
+      const bin = atob(t.slice(CODE_HEAD.length));
+      const d = JSON.parse(new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))));
+      if (!d || !Array.isArray(d.e) || typeof d.b !== 'object') return null;
+      const sv = d.s && d.s.v === 1 && Number.isFinite(d.s.seed) && Array.isArray(d.s.acts) ? d.s : null;
+      // 只收真的結局與人物，交情限制在 0 到最高一級之間（偽造或來自別的版本的資料不會讓結局冊出現怪字）
+      const known = new Set([...DATA.endings.map((x) => x.id), ...arcItems().map((it) => 'arc:' + it.id)]);
+      const b = {};
+      for (const id in d.b || {}) {
+        const def = DATA.bonds[id], v = Math.floor(Number(d.b[id]));
+        if (def && Number.isFinite(v) && v > 0) b[id] = Math.min(v, def.tiers.length - 1);
+      }
+      return { s: sv, e: d.e.filter((x) => typeof x === 'string' && known.has(x)), b };
+    } catch (e) { return null; }
+  }
+  function renderTransfer() {
+    const box = $('#transfer');
+    if (!box) return;
+    box.append(h('p', 'fine', '在原本的裝置按「產生存檔碼」並複製，到新的裝置（或另一個瀏覽器）貼上後按「讀入」。進行中的家族、結局冊和人物紀錄都會搬過去。'));
+    const out = h('textarea'); out.readOnly = true; out.hidden = true; out.setAttribute('aria-label', '這台裝置的存檔碼');
+    const mk = h('button', 'ghost ui', '產生存檔碼'); mk.type = 'button';
+    const cp = h('button', 'ghost ui', '複製'); cp.type = 'button'; cp.hidden = true;
+    const r1 = h('div', 'row'); r1.append(mk, cp);
+    mk.addEventListener('click', () => { out.value = exportCode(); out.hidden = false; cp.hidden = false; out.select(); });
+    cp.addEventListener('click', async () => {
+      let ok = false;
+      try { await navigator.clipboard.writeText(out.value); ok = true; } catch (e) { out.select(); try { ok = document.execCommand('copy'); } catch (e2) { ok = false; } }
+      cp.textContent = ok ? '已複製' : '請手動選取複製';
+      setTimeout(() => { cp.textContent = '複製'; }, 2000);
+    });
+    const inp = h('textarea'); inp.placeholder = '把存檔碼貼在這裡'; inp.setAttribute('aria-label', '貼上存檔碼');
+    const go = h('button', 'ghost ui', '讀入'); go.type = 'button';
+    const msg = h('span', 'msg');
+    const r2 = h('div', 'row'); r2.append(go, msg);
+    let armed = false;
+    inp.addEventListener('input', () => { armed = false; go.textContent = '讀入'; msg.textContent = ''; });
+    go.addEventListener('click', () => {
+      const d = parseCode(inp.value);
+      if (!d) { msg.textContent = '這不是有效的存檔碼，請確認有完整複製。'; return; }
+      const here = loadSave();
+      // 這台裝置也有一個沒玩完的家族，而且跟存檔碼裡的不是同一家：先提醒一次
+      if (d.s && here && (here.seed !== d.s.seed || here.acts.length !== d.s.acts.length) && !armed) {
+        armed = true; go.textContent = '確定讀入';
+        msg.textContent = `這台裝置上還有「${here.name || '未完成'}」一家沒玩完，讀入後會換成「${d.s.name || '存檔碼裡'}」一家。`;
+        return;
+      }
+      const seen = loadSeen(); for (const id of d.e) seen.add(id);
+      pref(PFX + 'seen', JSON.stringify([...seen]));
+      markBonds(d.b);
+      if (d.s) pref(PFX + 'save', JSON.stringify(d.s));
+      msg.textContent = '讀入完成，重新載入中…';
+      setTimeout(() => location.reload(), 600);
+    });
+    box.append(r1, out, h('p', 'fine', '從別的裝置搬過來：'), inp, r2);
+  }
+
+  // ---------------- 插圖：山水皮影的一幕（擺什麼、擺在哪由 data/scenes.json 決定；這裡只管怎麼畫）
+  // 畫面像一面燈影戲的幕：後頭是水墨山水與村落，前面是這一家人的皮影，右邊是這件事的道具
+  const SC = DATA.scenes || {};
+  const sceneUi = (DATA.strings.ui.scene) || {};
+  const SW = 680, SH = 200, GY = 172; // 幕的寬高、人偶站的地面
+  let svgSeq = 0;
+  const rngOf = (seed) => () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const f1 = (n) => Math.round(n * 10) / 10;
+  const G = (inner, x, y, s, flip, extra) => `<g transform="translate(${f1(x)} ${f1(y)})${s && s !== 1 ? ` scale(${flip ? -s : s} ${s})` : flip ? ' scale(-1 1)' : ''}"${extra || ''}>${inner}</g>`;
+  const P = (d, cls, op, more) => `<path d="${d}" class="${cls}"${op != null ? ` fill-opacity="${op}"` : ''}${more || ''}/>`;
+  const L = (d, w, op, cls) => `<path d="${d}" class="${cls || 'ks'}" fill="none" stroke-width="${w}" stroke-linecap="round"${op != null ? ` stroke-opacity="${op}"` : ''}/>`;
+  const C = (x, y, r, cls, op) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${r}" class="${cls}"${op != null ? ` fill-opacity="${op}"` : ''}/>`;
+
+  // 遠山：幾道正弦疊起來的山脊，往下暈開成水墨
+  function hills(h, i, uid) {
+    const R = rngOf(h.seed), ph = [R() * 6.3, R() * 6.3, R() * 6.3], k = (2 * Math.PI) / SW;
+    let d = `M-10 ${SH}`;
+    for (let x = -10; x <= SW + 10; x += 8) {
+      let n = Math.sin(x * k * h.freq + ph[0]) * 0.6 + (h.smooth ? 0 : Math.sin(x * k * h.freq * 2.3 + ph[1]) * 0.28) + (h.smooth ? 0 : Math.sin(x * k * h.freq * 5.1 + ph[2]) * 0.12);
+      if (h.ridged) n = 1 - Math.abs(n) * 1.6;
+      d += ` L${x} ${f1(h.base - h.amp * (n * 0.5 + 0.5))}`;
+    }
+    d += ` L${SW + 10} ${SH} Z`;
+    const id = uid + 'h' + i;
+    const col = h.tint === 'red' ? 'var(--red)' : 'var(--ink)';
+    return `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:${col}" stop-opacity="${h.op}"/><stop offset=".75" style="stop-color:${col}" stop-opacity="${h.op * 0.25}"/><stop offset="1" style="stop-color:${col}" stop-opacity="0"/></linearGradient></defs><path d="${d}" fill="url(#${id})"/>`;
+  }
+
+  // 樹：各地不同（柳、棗、楊、竹、棕櫚、芭蕉、葡萄架）
+  function tree(kind, x, y, s) {
+    let g = '';
+    if (kind === 'willow') { g = L('M0 0 Q1 -14 -1 -26', 2.2, 0.7) + [-10, -5, 0, 5, 10].map((dx) => L(`M0 -26 Q${dx} -24 ${dx * 1.3} -6`, 0.8, 0.45)).join(''); }
+    else if (kind === 'jujube') { g = L('M0 0 L0 -16', 2.2, 0.7) + C(0, -22, 9, 'ink', 0.35) + C(-6, -18, 6, 'ink', 0.3) + C(6, -19, 6, 'ink', 0.3); }
+    else if (kind === 'poplar') { g = L('M0 0 L0 -12', 2, 0.7) + P('M0 -40 Q7 -24 4 -10 L-4 -10 Q-7 -24 0 -40 Z', 'ink', 0.4); }
+    else if (kind === 'bamboo') { g = [-4, 0, 4].map((dx, i) => L(`M${dx} 0 Q${dx + 2} -18 ${dx + 3 - i} -38`, 1.1, 0.6) + L(`M${dx + 2} -24 l6 -3 M${dx + 2} -30 l-6 -2 M${dx + 3} -35 l5 -4`, 0.8, 0.45)).join(''); }
+    else if (kind === 'palm') { g = L('M0 0 Q3 -16 1 -34', 2, 0.7) + [[-14, -28], [-10, -40], [12, -40], [14, -28], [0, -44]].map(([a, b]) => L(`M1 -34 Q${a / 2} ${b - 4} ${a} ${b}`, 1.4, 0.55)).join(''); }
+    else if (kind === 'banana') { g = L('M0 0 L0 -14', 2.4, 0.7) + P('M0 -14 Q-16 -22 -14 -34 Q-4 -26 0 -14 Z', 'ink', 0.35) + P('M0 -14 Q16 -24 14 -36 Q4 -26 0 -14 Z', 'ink', 0.4); }
+    else if (kind === 'vine') { g = L('M-12 0 L-12 -14 M12 0 L12 -14 M-14 -14 L14 -14', 1.2, 0.6) + [-8, -2, 4, 10].map((dx) => C(dx, -12, 2.4, 'ink', 0.35)).join(''); }
+    return G(g, x, y, s);
+  }
+
+  // 房子：夯土牆、兩面坡的屋頂；殘破的少一角屋頂、牆斜了
+  function house(x, y, s, broken, big) {
+    const w = big ? 30 : 22;
+    let g = P(`M${-w / 2} 0 L${-w / 2} -12 L${w / 2} -12 L${w / 2} 0 Z`, 'ink', 0.32) + P('M-3 0 L-3 -7 L3 -7 L3 0 Z', 'paper', 0.9);
+    g += broken
+      ? P(`M${-w / 2 - 4} -12 L${-w / 4} -20 L${w / 8} -14 L${w / 4} -19 L${w / 2 + 2} -12 Z`, 'ink', 0.5) + L(`M${w / 4} -19 L${w / 3} -24`, 0.8, 0.5)
+      : P(`M${-w / 2 - 5} -11 Q${-w / 2 - 2} -12 0 -22 Q${w / 2 + 2} -12 ${w / 2 + 5} -11 Z`, 'ink', 0.62);
+    return G(g, x, y, s);
+  }
+
+  // ---- 皮影人偶：腳在 0、頭頂約 -66；面朝右，flip 就面朝左
+  // 人偶用墨色剪影，身上鏤空幾個小孔，衣帶、裙子用半透明的紅與黃，手上接一根操縱的竹籤
+  function puppet(o) {
+    const look = o.look, child = o.age === 'child', old = o.age === 'old';
+    let g = '', hand = [12, -30];
+    const lie = o.pose === 'lie';
+    const walk = o.pose === 'walk';
+    // 下身與衣服
+    if (look === 'armor') {
+      g += P('M-7 -48 L7 -48 L10 -18 L-10 -18 Z', 'ink', 0.88) + L('M-7 -40 L7 -40 M-8 -32 L8 -32 M-9 -24 L9 -24', 0.8, 0.9, 'ps');
+      g += P(walk ? 'M-6 -18 L-2 -18 L-6 0 L-11 0 Z M2 -18 L6 -18 L10 0 L5 0 Z' : 'M-6 -18 L-2 -18 L-3 0 L-8 0 Z M2 -18 L6 -18 L7 0 L2 0 Z', 'ink', 0.88);
+      g += L('M14 -90 L12 6', 1.1, 0.85) + P('M14 -90 l-2 -8 l4 0 Z', 'ink', 0.9);
+      hand = [12, -30];
+    } else if (look === 'hu') {
+      g += P('M-7 -48 L7 -48 L10 -14 L-10 -14 Z', 'ink', 0.86) + P('M2 -48 L7 -48 L3 -36 Z', 'paper', 0.8) + P('M-9 -30 L9 -30 L9 -28 L-9 -28 Z', 'yel', 0.8);
+      g += P(walk ? 'M-6 -14 L-2 -14 L-6 0 L-11 0 Z M2 -14 L6 -14 L10 0 L5 0 Z' : 'M-6 -14 L-2 -14 L-3 0 L-8 0 Z M2 -14 L6 -14 L7 0 L2 0 Z', 'ink', 0.86);
+    } else if (look === 'plain' || child) {
+      g += P(child ? 'M-6 -44 L6 -44 L8 -20 L-8 -20 Z' : 'M-7 -48 L7 -48 L9 -20 L-9 -20 Z', 'ink', 0.84);
+      g += P(walk ? 'M-6 -20 L-2 -20 L-6 0 L-10 0 Z M2 -20 L6 -20 L10 0 L5 0 Z' : 'M-5 -20 L-1 -20 L-2 0 L-6 0 Z M1 -20 L5 -20 L6 0 L2 0 Z', 'ink', 0.84);
+      g += P(child ? 'M-8 -32 L8 -32 L8 -30 L-8 -30 Z' : 'M-9 -34 L9 -34 L9 -32 L-9 -32 Z', 'yel', 0.75);
+    } else if (look === 'monk') {
+      g += P('M-7 -48 L7 -48 L11 0 L-11 0 Z', 'ink', 0.84) + L('M-6 -46 L9 -6', 2.2, 0.75, 'rs');
+    } else if (o.g === 'f') {
+      const full = look === 'fullsleeve';
+      g += P(full ? 'M-6 -48 L6 -48 L8 -40 L-8 -40 Z' : 'M-5 -48 L5 -48 L6 -40 L-6 -40 Z', 'ink', 0.86);
+      g += P(full ? 'M-8 -40 L8 -40 L15 0 L-15 0 Z' : 'M-6 -40 L6 -40 L12 0 L-12 0 Z', 'red', 0.55) + P(full ? 'M-8 -40 L8 -40 L15 0 L-15 0 Z' : 'M-6 -40 L6 -40 L12 0 L-12 0 Z', 'ink', 0.45);
+      g += C(0, -26, 1.3, 'paper', 0.9) + C(-3, -14, 1.3, 'paper', 0.9) + C(3, -14, 1.3, 'paper', 0.9);
+      if (full) g += P('M5 -46 Q16 -38 14 -20 L8 -22 Q10 -34 4 -40 Z', 'ink', 0.7);
+      if (o.shawl) g += L(full ? 'M-6 -46 C-18 -34 -12 -18 -20 -4' : 'M-5 -46 C-14 -36 -10 -20 -16 -8', 1.4, 0.85, 'ys');
+    } else {
+      // 圓領袍；讀書人的袍子長到腳面、袖子寬
+      const sch = look === 'scholar';
+      g += P(sch ? 'M-7 -48 L7 -48 L11 -1 L-11 -1 Z' : 'M-6 -48 L6 -48 L9 -30 L11 -4 L-11 -4 L-9 -30 Z', 'ink', 0.86);
+      g += P('M-9 -31 L9 -31 L9 -29 L-9 -29 Z', 'yel', 0.8) + C(0, -40, 1.3, 'paper', 0.9) + C(0, -18, 1.3, 'paper', 0.9);
+      if (!sch) g += P(walk ? 'M-6 -4 L-2 -4 L-6 0 L-11 0 Z M2 -4 L6 -4 L10 0 L5 0 Z' : 'M-6 -4 L-2 -4 L-2 0 L-8 0 Z M2 -4 L6 -4 L7 0 L2 0 Z', 'ink', 0.9);
+      if (sch) g += P('M5 -46 Q15 -38 13 -22 L8 -24 Q9 -34 4 -40 Z', 'ink', 0.75);
+    }
+    // 頭、髮式、帽子
+    const hy = child ? -50 : -55;
+    g += C(0, hy, child ? 5 : 6, 'ink', 0.9) + P(`M${child ? 4.5 : 5.5} ${hy - 1} l3 2 l-3 1 Z`, 'ink', 0.9);
+    if (child) g += C(-4, hy - 6, 2.6, 'ink', 0.9) + C(4, hy - 6, 2.6, 'ink', 0.9);
+    else if (look === 'armor') g += P(`M-7 ${hy + 1} Q-7 ${hy - 10} 0 ${hy - 10} Q7 ${hy - 10} 7 ${hy + 1} Z`, 'ink', 0.95) + L(`M0 ${hy - 10} L-2 ${hy - 17}`, 1.4, 0.9, 'rs');
+    else if (look === 'hu') g += P(`M-6 ${hy - 2} L1 ${hy - 20} L6 ${hy - 2} Z`, 'ink', 0.95) + P(`M2 ${hy + 3} Q6 ${hy + 9} 1 ${hy + 9} Z`, 'ink', 0.9);
+    else if (look === 'monk') g += '';
+    else if (o.g === 'f') g += o.bun === 'high' ? P(`M-5 ${hy - 3} Q-6 ${hy - 16} 0 ${hy - 17} Q4 ${hy - 14} 3 ${hy - 4} Z`, 'ink', 0.95) + L(`M-4 ${hy - 12} l10 -3`, 0.8, 0.9, 'ys') : C(-3, hy - 7, 3.6, 'ink', 0.95);
+    else if (look === 'plain') g += P(`M-6 ${hy - 1} Q-6 ${hy - 8} 0 ${hy - 8} Q6 ${hy - 8} 6 ${hy - 1} Z`, 'ink', 0.95);
+    else {
+      const tall = o.hat === 'tallfutou';
+      g += P(`M-6 ${hy - 1} Q-6 ${hy - (tall ? 13 : 10)} 0 ${hy - (tall ? 13 : 10)} Q6 ${hy - (tall ? 13 : 10)} 6 ${hy - 1} Z`, 'ink', 0.95) + L(`M-5 ${hy - 2} q-6 4 -8 11 M-4 ${hy - 2} q-4 5 -5 12`, 1, 0.9);
+    }
+    if (old && o.g === 'm') g += P(`M3 ${hy + 4} Q5 ${hy + 13} 0 ${hy + 12} Z`, 'paper', 0.85);
+    // 手臂與竹籤
+    const sx = 4, sy = child ? -40 : -45;
+    if (o.carry) g += P(`M-14 ${sy - 2} Q-16 ${sy + 12} -6 ${sy + 14} L-4 ${sy} Z`, 'ink', 0.7); // 背上的包袱
+    if (old) { hand = [10, -26]; g += L('M10 -26 L14 0', 1.2, 0.85); }
+    g += L(`M${sx} ${sy} L${hand[0]} ${hand[1]}`, child ? 3 : 3.6, 0.88) + C(hand[0], hand[1], 1.8, 'ink', 0.9);
+    if (o.hold === 'baby') g += P(`M${hand[0] - 4} ${hand[1] - 6} q8 -4 9 4 q-6 4 -9 -4 Z`, 'yel', 0.85);
+    if (o.hold === 'scroll') g += L(`M${hand[0]} ${hand[1] - 4} l0 10`, 2.4, 0.9, 'ys');
+    g += `<path d="M${hand[0]} ${hand[1]} L${hand[0] + 6} 46 M0 ${sy + 2} L-3 46" class="ks rod" fill="none" stroke-width=".7"/>`;
+    const tilt = old ? ' rotate(6)' : '';
+    if (lie) return `<g transform="translate(${f1(o.x)} ${f1(o.y - 6)}) rotate(-90) scale(${o.s})">${g}</g>`;
+    return `<g transform="translate(${f1(o.x)} ${f1(o.y)}) scale(${o.flip ? -o.s : o.s} ${o.s})${tilt}">${g}</g>`;
+  }
+
+  // 一般人偶的樣子：依年代的衣著、家世、身在哪一軍
+  function lookOf(p, year, opts = {}) {
+    const cos = (SC.costume || []).find((c) => year <= (c.to ?? 9999)) || (SC.costume || []).slice(-1)[0] || {};
+    let look = p.g === 'f' ? cos.f : cos.m;
+    const cl = (SC.clsLook || {})[p.cls];
+    if (cl && (p.g === 'm' || cl === 'plain')) look = cl; // 家世的樣子（胡服、讀書人）只套在男子身上
+    if (opts.armor && p.g === 'm' && (SC.factionLook || {})[p.faction]) look = SC.factionLook[p.faction];
+    return { look, hat: cos.hat, bun: cos.bun, shawl: cos.shawl };
+  }
+
+  // 道具：x 是擺放的位置，n 是數量
+  function prop(name, x, n, ctx) {
+    const y = GY;
+    switch (name) {
+      case 'soldiers': { let g = ''; for (let i = 0; i < n; i++) g += puppet({ x: x + i * 22 - (n - 1) * 11, y: y - (i % 2) * 3, s: 0.78, look: 'armor', g: 'm', flip: true }); return g; }
+      case 'banner': return L(`M${x} ${y} L${x} ${y - 112}`, 1.4, 0.85) + P(`M${x} ${y - 112} L${x + 34} ${y - 108} L${x + 28} ${y - 98} L${x + 36} ${y - 88} L${x} ${y - 90} Z`, ctx.accent === 'yellow' ? 'yel' : 'red', 0.7);
+      case 'desk': return P(`M${x - 22} ${y - 18} L${x + 22} ${y - 18} L${x + 22} ${y - 14} L${x - 22} ${y - 14} Z`, 'ink', 0.8) + L(`M${x - 18} ${y - 14} L${x - 18} ${y} M${x + 18} ${y - 14} L${x + 18} ${y}`, 1.6, 0.8) + P(`M${x - 12} ${y - 22} L${x + 8} ${y - 22} L${x + 10} ${y - 18} L${x - 10} ${y - 18} Z`, 'paper', 0.95) + L(`M${x - 8} ${y - 20} L${x + 6} ${y - 20}`, 0.5, 0.6);
+      case 'official': return puppet({ x, y, s: 0.95, look: 'scholar', g: 'm', hat: 'futou', flip: true, hold: 'scroll' });
+      case 'scrolls': return [0, 7, 14].map((d) => P(`M${x + d - 2} ${y - 20 + (d % 2)} l4 0 l0 20 l-4 0 Z`, 'yel', 0.7)).join('');
+      case 'palace': {
+        const r = (w, yy, h) => P(`M${x - w - 10} ${yy} Q${x - w} ${yy - 2} ${x - w + 8} ${yy - h} L${x + w - 8} ${yy - h} Q${x + w} ${yy - 2} ${x + w + 10} ${yy} Z`, 'ink', 0.75);
+        let g = P(`M${x - 66} ${y} L${x + 66} ${y} L${x + 58} ${y - 14} L${x - 58} ${y - 14} Z`, 'ink', 0.45);
+        for (let i = -3; i <= 3; i++) g += P(`M${x + i * 16 - 2} ${y - 14} l4 0 l0 -30 l-4 0 Z`, 'red', 0.75);
+        return g + r(56, y - 44, 14) + r(36, y - 66, 10);
+      }
+      case 'walkers': { let g = ''; for (let i = 0; i < n; i++) g += puppet({ x: x + i * 24, y: y - (i % 2) * 2, s: 0.72, look: 'plain', g: i % 3 === 1 ? 'f' : 'm', pose: 'walk', carry: true, flip: true }); return g; }
+      case 'cart': return C(x, y - 9, 9, 'ink', 0) + `<circle cx="${x}" cy="${y - 9}" r="9" class="ks" fill="none" stroke-width="1.6" stroke-opacity=".8"/>` + P(`M${x - 18} ${y - 26} L${x + 16} ${y - 26} L${x + 14} ${y - 12} L${x - 16} ${y - 12} Z`, 'ink', 0.7) + L(`M${x - 18} ${y - 18} L${x - 42} ${y - 10}`, 1.4, 0.7);
+      case 'pagoda': return pagoda(x, y, n || 5, ctx.small);
+      case 'monk': return puppet({ x, y, s: 0.9, look: 'monk', g: 'm', flip: true });
+      case 'road': return L(`M0 ${y + 8} Q200 ${y - 6} 360 ${y + 2} T680 ${y - 4}`, 6, 0.08);
+      case 'banners': { let g = ''; for (let i = 0; i < n; i++) { const bx = x + i * 26; g += L(`M${bx} ${y} L${bx} ${y - 80}`, 1.2, 0.8) + P(`M${bx} ${y - 80} L${bx + 9} ${y - 80} L${bx + 9} ${y - 30} L${bx + 4.5} ${y - 36} L${bx} ${y - 30} Z`, 'paper', 0.95) + `<path d="M${bx} ${y - 80} L${bx + 9} ${y - 80} L${bx + 9} ${y - 30} L${bx + 4.5} ${y - 36} L${bx} ${y - 30} Z" class="ks" fill="none" stroke-width=".6"/>`; } return g; }
+      case 'coffin': return P(`M${x - 26} ${y - 4} L${x + 26} ${y - 8} L${x + 26} ${y - 24} L${x - 26} ${y - 18} Z`, 'ink', 0.8) + P(`M${x - 30} ${y} L${x + 30} ${y} L${x + 30} ${y - 4} L${x - 30} ${y - 4} Z`, 'ink', 0.5);
+      case 'stall': return L(`M${x - 22} ${y} L${x - 22} ${y - 40} M${x + 22} ${y} L${x + 22} ${y - 40}`, 1.3, 0.8) + P(`M${x - 30} ${y - 38} L${x + 30} ${y - 46} L${x + 30} ${y - 40} L${x - 30} ${y - 32} Z`, 'yel', 0.65) + P(`M${x - 24} ${y - 18} L${x + 24} ${y - 18} L${x + 24} ${y - 14} L${x - 24} ${y - 14} Z`, 'ink', 0.75) + [-14, -6, 2, 10].map((d) => C(x + d, y - 21, 3, d % 4 ? 'red' : 'ink', 0.6)).join('');
+      case 'camel': return G(P('M-18 -22 Q-16 -36 -8 -30 Q-2 -40 6 -30 Q12 -26 14 -22 L14 -18 L-18 -18 Z', 'ink', 0.82) + L('M14 -22 Q20 -26 20 -38 L24 -40', 3.4, 0.82) + L('M-14 -18 L-15 0 M-8 -18 L-7 0 M6 -18 L5 0 M11 -18 L13 0', 2, 0.82) + P('M-12 -34 L4 -34 L2 -40 L-10 -40 Z', 'red', 0.55), x, y, 1, false);
+      case 'house': return house(x, y, 1.5, false, true);
+      case 'sheaves': { let g = ''; for (let i = 0; i < n; i++) g += P(`M${x + i * 20 - 5} ${y} L${x + i * 20 - 2} ${y - 20} L${x + i * 20 + 2} ${y - 20} L${x + i * 20 + 5} ${y} Z`, 'yel', 0.75) + L(`M${x + i * 20 - 3} ${y - 9} L${x + i * 20 + 3} ${y - 9}`, 1, 0.8); return g; }
+      case 'oxplow': return G(P('M-30 -14 Q-30 -26 -18 -26 L4 -26 Q10 -26 12 -20 L18 -22 L18 -16 L12 -14 Z', 'ink', 0.82) + L('M-26 -14 L-27 0 M-20 -14 L-19 0 M0 -14 L-1 0 M6 -14 L8 0', 2.2, 0.82) + L('M-30 -22 L-48 -10 L-56 0', 1.6, 0.8), x, y, 1, false) + puppet({ x: x - 66, y, s: 0.8, look: 'plain', g: 'm' });
+      case 'tree': return tree((ctx.trees || ['willow'])[0], x, y, 1.6);
+      case 'lamp': return C(x, y - 30, 18, 'yel', 0.18) + P(`M${x - 4} ${y} L${x + 4} ${y} L${x + 2} ${y - 26} L${x - 2} ${y - 26} Z`, 'ink', 0.8) + P(`M${x} ${y - 38} Q${x + 4} ${y - 31} ${x} ${y - 28} Q${x - 4} ${y - 31} ${x} ${y - 38} Z`, 'yel', 0.95);
+      case 'fire': return [[-14, 0.7], [0, 0.9], [14, 0.7]].map(([d, k]) => P(`M${x + d - 10} ${y} Q${x + d - 12} ${y - 30 * k} ${x + d} ${y - 52 * k} Q${x + d + 12} ${y - 30 * k} ${x + d + 10} ${y} Z`, 'red', 0.6) + P(`M${x + d - 5} ${y} Q${x + d - 6} ${y - 16 * k} ${x + d} ${y - 28 * k} Q${x + d + 6} ${y - 16 * k} ${x + d + 5} ${y} Z`, 'yel', 0.8)).join('');
+      case 'smoke': return [0, 1, 2].map((i) => C(x + i * 10, y - 60 - i * 22, 12 + i * 5, 'ink', 0.12 - i * 0.03)).join('');
+      case 'laborers': { let g = ''; for (let i = 0; i < n; i++) { const lx = x + i * 26; g += puppet({ x: lx, y, s: 0.72, look: 'plain', g: 'm', flip: i % 2 === 1 }) + L(`M${lx - 12} ${y - 34} L${lx + 12} ${y - 32}`, 1.2, 0.8) + P(`M${lx - 15} ${y - 32} l6 0 l-1 8 l-4 0 Z M${lx + 9} ${y - 31} l6 0 l-1 8 l-4 0 Z`, 'ink', 0.7); } return g; }
+      case 'boat': return G(P('M-34 -6 Q0 6 34 -10 L28 -2 Q0 8 -28 0 Z', 'ink', 0.85) + P('M-14 -6 L10 -8 L10 -22 L-14 -20 Z', 'ink', 0.55) + L('M30 -8 L44 4', 1.2, 0.8), x, y - 4, 1, false);
+      case 'waves': return [0, 1, 2].map((i) => L(`M${x - 50 + i * 30} ${y + 2} q8 -8 16 0 q8 8 16 0`, 1.2, 0.5)).join('');
+      case 'sedan': return C(x - 16, y - 10, 10, 'ink', 0) + `<circle cx="${x - 16}" cy="${y - 10}" r="10" class="ks" fill="none" stroke-width="1.8"/>` + P(`M${x - 36} ${y - 18} L${x + 10} ${y - 18} L${x + 10} ${y - 42} Q${x - 13} ${y - 54} ${x - 36} ${y - 42} Z`, 'red', 0.7) + P(`M${x - 30} ${y - 22} L${x + 4} ${y - 22} L${x + 4} ${y - 40} L${x - 30} ${y - 40} Z`, 'yel', 0.35) + G(P('M-26 -14 Q-26 -24 -14 -24 L6 -24 Q12 -24 14 -18 L20 -20 L20 -14 L14 -12 Z', 'ink', 0.82) + L('M-22 -12 L-23 0 M-16 -12 L-15 0 M2 -12 L1 0 M8 -12 L10 0', 2, 0.82), x + 38, y, 1, false);
+      case 'lanterns': return L(`M${x} ${y} L${x} ${y - 100} M${x - 22} ${y - 96} L${x + 22} ${y - 96}`, 1.2, 0.8) + [-16, 0, 16].map((d, i) => L(`M${x + d} ${y - 96} l0 ${8 + i * 6}`, 0.6, 0.7) + C(x + d, y - 82 + i * 6, 6, 'yel', 0.85) + C(x + d, y - 82 + i * 6, 12, 'yel', 0.15)).join('');
+      case 'gate': return P(`M${x - 90} ${y} L${x - 90} ${y - 44} L${x + 90} ${y - 44} L${x + 90} ${y} Z`, 'ink', 0.55) + P(`M${x - 14} ${y} L${x - 14} ${y - 26} Q${x} ${y - 38} ${x + 14} ${y - 26} L${x + 14} ${y} Z`, 'paper', 0.9) + P(`M${x - 34} ${y - 44} L${x + 34} ${y - 44} L${x + 30} ${y - 64} L${x - 30} ${y - 64} Z`, 'ink', 0.65) + P(`M${x - 44} ${y - 62} Q${x - 30} ${y - 64} ${x - 26} ${y - 76} L${x + 26} ${y - 76} Q${x + 30} ${y - 64} ${x + 44} ${y - 62} Z`, 'ink', 0.8) + Array.from({ length: 9 }, (_, i) => P(`M${x - 88 + i * 20} ${y - 44} l8 0 l0 -6 l-8 0 Z`, 'ink', 0.55)).join('');
+      case 'kite': return P(`M${x + 40} ${y - 120} l10 12 l-10 14 l-10 -14 Z`, 'red', 0.7) + L(`M${x + 40} ${y - 94} Q${x + 20} ${y - 60} ${x - 30} ${y - 36}`, 0.6, 0.6) + L(`M${x + 40} ${y - 94} q4 10 -2 16 q-4 6 2 12`, 0.8, 0.6);
+      case 'wall': return [0, 1, 2, 3].map((i) => P(`M${x - 50} ${y - i * 10} L${x + 50 - i * 6} ${y - i * 10} L${x + 50 - i * 6} ${y - i * 10 - 9} L${x - 50} ${y - i * 10 - 9} Z`, 'ink', 0.3 + i * 0.08)).join('') + L(`M${x - 50} ${y - 40} L${x - 50} ${y - 52} M${x + 30} ${y - 40} L${x + 30} ${y - 52}`, 1.2, 0.7);
+      case 'ship': return G(P('M-46 -8 Q0 8 46 -12 L40 0 Q0 10 -40 2 Z', 'ink', 0.85) + L('M-4 -10 L-4 -78', 1.4, 0.8) + P('M-2 -76 L26 -70 L24 -20 L-2 -16 Z', 'yel', 0.55) + L('M-2 -66 L25 -61 M-2 -54 L25 -50 M-2 -42 L24 -38 M-2 -30 L24 -27', 0.6, 0.6) + P('M-30 -8 L-30 -24 L-12 -24 L-12 -8 Z', 'ink', 0.6), x, y - 4, 1, false);
+      case 'cracks': return L(`M${x - 80} ${y + 4} l20 -4 l10 6 l18 -6 M${x - 10} ${y + 6} l14 -6 l12 4 l20 -2 M${x + 40} ${y + 2} l16 6 l22 -6`, 1, 0.6);
+      case 'bed': return P(`M${x - 34} ${y - 12} L${x + 34} ${y - 12} L${x + 34} ${y - 6} L${x - 34} ${y - 6} Z`, 'ink', 0.8) + L(`M${x - 32} ${y - 6} L${x - 32} ${y} M${x + 32} ${y - 6} L${x + 32} ${y}`, 1.6, 0.8) + puppet({ x: x + 4, y: y - 6, s: 0.62, look: 'plain', g: 'm', pose: 'lie' });
+      case 'medicine': return P(`M${x - 8} ${y} L${x + 8} ${y} L${x + 10} ${y - 14} L${x - 10} ${y - 14} Z`, 'ink', 0.8) + C(x, y - 18, 7, 'ink', 0.75) + L(`M${x - 3} ${y - 26} q-3 -6 0 -12 M${x + 3} ${y - 26} q3 -6 0 -12`, 0.8, 0.45);
+      case 'feast': return P(`M${x - 40} ${y - 14} L${x + 40} ${y - 14} L${x + 40} ${y - 10} L${x - 40} ${y - 10} Z`, 'ink', 0.8) + L(`M${x - 36} ${y - 10} L${x - 36} ${y} M${x + 36} ${y - 10} L${x + 36} ${y}`, 1.6, 0.8) + [-26, -10, 6, 22].map((d) => P(`M${x + d - 5} ${y - 14} q5 -8 10 0 Z`, 'yel', 0.75)).join('') + puppet({ x: x + 56, y, s: 0.78, look: 'plain', g: 'm', flip: true });
+      case 'loom': return L(`M${x - 24} ${y} L${x - 24} ${y - 46} M${x + 24} ${y} L${x + 24} ${y - 46} M${x - 28} ${y - 46} L${x + 28} ${y - 46} M${x - 24} ${y - 24} L${x + 24} ${y - 24}`, 2, 0.8) + Array.from({ length: 8 }, (_, i) => L(`M${x - 18 + i * 5} ${y - 46} L${x - 18 + i * 5} ${y - 24}`, 0.5, 0.5)).join('') + P(`M${x - 20} ${y - 24} L${x + 20} ${y - 24} L${x + 20} ${y - 30} L${x - 20} ${y - 30} Z`, 'yel', 0.6);
+      case 'locusts': { const R = rngOf(x); let g = ''; for (let i = 0; i < 46; i++) g += `<ellipse cx="${f1(x - 120 + R() * 240)}" cy="${f1(y - 130 + R() * 110)}" rx="2.2" ry="1" class="ink" fill-opacity=".6" transform="rotate(${Math.round(R() * 60 - 30)} ${f1(x)} ${y})"/>`; return g; }
+      case 'incense': return P(`M${x - 26} ${y - 22} L${x + 26} ${y - 22} L${x + 26} ${y - 18} L${x - 26} ${y - 18} Z`, 'ink', 0.8) + L(`M${x - 22} ${y - 18} L${x - 22} ${y} M${x + 22} ${y - 18} L${x + 22} ${y}`, 1.6, 0.8) + P(`M${x - 8} ${y - 22} L${x + 8} ${y - 22} L${x + 6} ${y - 32} L${x - 6} ${y - 32} Z`, 'yel', 0.8) + L(`M${x} ${y - 34} q-6 -10 0 -20 q6 -10 0 -22`, 0.8, 0.4) + P(`M${x - 22} ${y - 40} L${x - 12} ${y - 40} L${x - 12} ${y - 22} L${x - 22} ${y - 22} Z`, 'paper', 0.95);
+      case 'dragonboat': return G(P('M-60 -6 Q0 6 54 -6 L50 0 Q0 8 -56 0 Z', 'red', 0.7) + P('M54 -6 Q64 -14 62 -24 L68 -20 Q70 -10 58 -2 Z', 'ink', 0.85) + Array.from({ length: 7 }, (_, i) => C(-40 + i * 13, -10, 3, 'ink', 0.85) + L(`M${-40 + i * 13} -8 l-6 10`, 1, 0.7)).join(''), x, y - 4, 1, false);
+      case 'contract': return P(`M${x - 14} ${y - 50} L${x + 14} ${y - 50} L${x + 14} ${y - 18} L${x - 14} ${y - 18} Z`, 'paper', 0.97) + `<path d="M${x - 14} ${y - 50} L${x + 14} ${y - 50} L${x + 14} ${y - 18} L${x - 14} ${y - 18} Z" class="ks" fill="none" stroke-width=".6"/>` + [0, 1, 2, 3].map((i) => L(`M${x + 9 - i * 6} ${y - 46} L${x + 9 - i * 6} ${y - 26}`, 0.6, 0.6)).join('') + L(`M${x - 10} ${y - 30} l0 8 M${x - 12} ${y - 27} l4 0 M${x - 12} ${y - 24} l4 0`, 0.8, 0.8, 'rs');
+      case 'wind': return [0, 1, 2].map((i) => L(`M${x - 120} ${y - 100 + i * 22} q40 -14 80 0 t80 0`, 1, 0.35)).join('');
+      case 'hut': return G(P('M-16 0 L-16 -14 L16 -14 L16 0 Z', 'ink', 0.45) + P('M-22 -12 Q0 -36 22 -12 Z', 'yel', 0.55) + L('M-18 -16 L18 -28 M-14 -22 L16 -16', 0.6, 0.5), x, y, 1.2, false);
+      case 'puppetstage': return P(`M${x - 50} ${y} L${x - 50} ${y - 70} L${x + 50} ${y - 70} L${x + 50} ${y} Z`, 'ink', 0.75) + P(`M${x - 40} ${y - 18} L${x - 40} ${y - 62} L${x + 40} ${y - 62} L${x + 40} ${y - 18} Z`, 'yel', 0.45) + puppet({ x: x - 14, y: y - 20, s: 0.55, look: 'armor', g: 'm' }) + puppet({ x: x + 16, y: y - 20, s: 0.55, look: 'fullsleeve', g: 'f', flip: true, shawl: true, bun: 'high' });
+      case 'mound': return P(`M${x - 30} ${y} Q${x} ${y - 36} ${x + 30} ${y} Z`, 'ink', 0.5) + P(`M${x + 34} ${y} L${x + 34} ${y - 22} L${x + 42} ${y - 22} L${x + 42} ${y} Z`, 'ink', 0.7);
+      case 'caves': return caves(x, y);
+      case 'cradle': return P(`M${x - 18} ${y - 18} Q${x} ${y + 2} ${x + 18} ${y - 18} Z`, 'yel', 0.7) + L(`M${x - 22} ${y} Q${x} ${y - 8} ${x + 22} ${y}`, 1.6, 0.7) + C(x + 6, y - 18, 4, 'ink', 0.85);
+      default: return '';
+    }
+  }
+  function pagoda(x, y, tiers, small) {
+    const k = small ? 0.55 : 1;
+    let g = P(`M${-22} 0 L22 0 L20 -10 L-20 -10 Z`, 'ink', 0.6), yy = -10, w = 18;
+    for (let i = 0; i < tiers; i++) {
+      const h = 14 - i;
+      g += P(`M${-w} ${yy} L${w} ${yy} L${w - 1} ${yy - h} L${-w + 1} ${yy - h} Z`, 'ink', 0.55) + P(`M${-w - 6} ${yy - h + 1} Q${-w} ${yy - h - 1} ${-w + 2} ${yy - h - 4} L${w - 2} ${yy - h - 4} Q${w} ${yy - h - 1} ${w + 6} ${yy - h + 1} Z`, 'ink', 0.8) + C(0, yy - h / 2, 1.6, 'paper', 0.9);
+      yy -= h + 4; w -= 2;
+    }
+    g += L(`M0 ${yy} L0 ${yy - 18}`, 1.4, 0.8) + C(0, yy - 6, 2.4, 'ink', 0.8);
+    return G(g, x, y, k);
+  }
+  function caves(x, y) {
+    let g = P(`M${x - 80} ${y} L${x - 76} ${y - 96} Q${x} ${y - 112} ${x + 90} ${y - 100} L${x + 96} ${y} Z`, 'ink', 0.28);
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 6; c++) g += P(`M${x - 62 + c * 26 + r * 6} ${y - 18 - r * 28} l0 -12 q5 -6 10 0 l0 12 Z`, 'ink', 0.65);
+    return g;
+  }
+  // 背景裡的東西：用道具的畫法、縮小、放淡（道具的地面在 GY，縮放後落在 y）
+  const bg = (inner, x, y, s, op) => `<g opacity="${op}" transform="translate(${f1(x)} ${f1(y - GY * s)}) scale(${s})">${inner}</g>`;
+  // 地標：背景裡、比人偶淡一點
+  function landmark(m) {
+    const y = m.y ?? 152;
+    switch (m.glyph) {
+      case 'citywall': return bg(prop('gate', 0, 0, {}), m.x, y, 0.62, 0.5);
+      case 'pagoda': return `<g opacity=".7">${pagoda(m.x, y, m.tiers || 5, m.small)}</g>`;
+      case 'mingtang': { const x = m.x; let g = P(`M${x - 34} ${y} L${x + 34} ${y} L${x + 30} ${y - 10} L${x - 30} ${y - 10} Z`, 'ink', 0.5); let yy = y - 10, w = 30; for (let i = 0; i < 3; i++) { g += P(`M${x - w} ${yy} L${x + w} ${yy} L${x + w - 2} ${yy - 14} L${x - w + 2} ${yy - 14} Z`, 'ink', 0.45) + P(`M${x - w - 8} ${yy - 12} Q${x} ${yy - 24} ${x + w + 8} ${yy - 12} Z`, 'ink', 0.7); yy -= 22; w -= 7; } g += P(`M${x - 6} ${yy} L${x + 6} ${yy} L${x} ${yy - 12} Z`, 'yel', 0.85); return `<g opacity=".8">${g}</g>`; }
+      case 'pillar': return `<g opacity=".75">${P(`M${m.x - 12} ${y} L${m.x + 12} ${y} L${m.x + 8} ${y - 10} L${m.x - 8} ${y - 10} Z`, 'ink', 0.6)}${P(`M${m.x - 3} ${y - 10} L${m.x + 3} ${y - 10} L${m.x + 3} ${y - 96} L${m.x - 3} ${y - 96} Z`, 'yel', 0.7)}${P(`M${m.x - 16} ${y - 96} Q${m.x} ${y - 112} ${m.x + 16} ${y - 96} Z`, 'ink', 0.7)}</g>`;
+      case 'bigshrine': { let g = ''; for (let i = 0; i < 4; i++) g += P(`M${m.x - 18 + i * 2} ${y - 2 - i * 22} L${m.x + 18 - i * 2} ${y - 2 - i * 22} L${m.x + 16 - i * 2} ${y - 20 - i * 22} L${m.x - 16 + i * 2} ${y - 20 - i * 22} Z`, 'red', 0.45) + P(`M${m.x - 24 + i * 2} ${y - 18 - i * 22} Q${m.x} ${y - 26 - i * 22} ${m.x + 24 - i * 2} ${y - 18 - i * 22} Z`, 'ink', 0.75); return `<g opacity=".85">${g}</g>`; }
+      case 'boats': return `<g opacity=".6">${(m.canal ? L(`M0 ${y + 2} L${SW} ${y + 2}`, 8, 0.12) : '')}${G(P('M-20 -3 Q0 4 20 -6 L16 0 Q0 6 -16 1 Z', 'ink', 0.8) + P('M-6 -4 L6 -5 L6 -14 L-6 -13 Z', 'ink', 0.5), m.x, y, 0.9)}${G(P('M-20 -3 Q0 4 20 -6 L16 0 Q0 6 -16 1 Z', 'ink', 0.8) + L('M0 -4 L0 -22', 1, 0.7) + P('M1 -22 L12 -20 L12 -8 L1 -6 Z', 'yel', 0.5), m.x + 70, y + 1, 0.8)}</g>`;
+      case 'bridge': return `<g opacity=".7">${P(`M${m.x - 50} ${y} Q${m.x} ${y - 30} ${m.x + 50} ${y} L${m.x + 44} ${y} Q${m.x} ${y - 22} ${m.x - 44} ${y} Z`, 'ink', 0.7)}${L(`M${m.x - 46} ${y - 4} Q${m.x} ${y - 32} ${m.x + 46} ${y - 4}`, 0.8, 0.6)}</g>`;
+      case 'hut': return bg(prop('hut', 0, 0, {}), m.x, y, 0.8, 0.8);
+      case 'caves': return `<g opacity=".8">${caves(m.x, y + 8)}</g>`;
+      case 'ships': return bg(prop('ship', 0, 0, {}), m.x, y, 0.6, 0.55) + bg(prop('ship', 0, 0, {}), m.x + 60, y + 4, 0.45, 0.5);
+      case 'wells': return `<g opacity=".6">${Array.from({ length: 7 }, (_, i) => P(`M${m.x - 60 + i * 20 - 5} ${y + 6} Q${m.x - 60 + i * 20} ${y - 2} ${m.x - 60 + i * 20 + 5} ${y + 6} Z`, 'ink', 0.6)).join('')}</g>`;
+      default: return '';
+    }
+  }
+
+  // 這一年、這個地方的村落是什麼樣子（data/scenes.json 的 village）
+  function villageAt(region, year) {
+    const V = SC.village || {};
+    const list = V[region] || V.default || [[0, 3, 'peace']];
+    let cur = list[0];
+    for (const v of list) if (year >= v[0]) cur = v;
+    return { n: cur[1], state: cur[2] };
+  }
+
+  // 畫一整幕。fam：這一家站在幕前的人；scene：這件事的道具
+  function sceneSvg({ region, year, scene, fam }) {
+    const R = (SC.regions || {})[region] || { hills: [{ base: 110, amp: 30, freq: 4, seed: 1, op: 0.15 }], trees: ['willow'] };
+    const S = (SC.scenes || {})[scene] || {};
+    const vil = villageAt(region, year);
+    const rnd = rngOf((year * 31) ^ region.length * 977);
+    const night = !!S.night;
+    const uid = 'sc' + (++svgSeq); // 每一幅的漸層各用各的 id：頁面上同時有好幾幅，共用 id 會指到藏起來的那一幅
+    let g = '';
+    // 燈影的幕：中間亮、四周暗
+    g += `<defs><radialGradient id="${uid}g" cx=".42" cy=".42" r=".75"><stop offset="0" style="stop-color:var(--yellow-soft)" stop-opacity="${night ? 0.55 : 0.9}"/><stop offset="1" style="stop-color:var(--slip)" stop-opacity="1"/></radialGradient></defs>`;
+    g += `<rect x="0" y="0" width="${SW}" height="${SH}" fill="url(#${uid}g)"/>`;
+    // 日月
+    if (night) g += C(560, 40, 15, 'paper', 0.95) + C(566, 36, 13, 'ink', 0.06);
+    else if (S.sun === 'fierce') g += C(560, 44, 22, 'red', 0.55) + Array.from({ length: 12 }, (_, i) => { const a = (i * Math.PI) / 6; return L(`M${f1(560 + Math.cos(a) * 28)} ${f1(44 + Math.sin(a) * 28)} L${f1(560 + Math.cos(a) * 38)} ${f1(44 + Math.sin(a) * 38)}`, 1.4, 0.45, 'rs'); }).join('');
+    else g += C(580 - (year % 7) * 30, 38 + (year % 3) * 6, 11, 'red', 0.35);
+    (R.hills || []).forEach((h, i) => { g += hills(h, i, uid); });
+    if (R.mist) g += `<rect x="0" y="118" width="${SW}" height="20" class="paper" fill-opacity=".35"/>`;
+    // 地面、水
+    g += `<rect x="0" y="${GY - 2}" width="${SW}" height="${SH - GY + 2}" class="ink" fill-opacity="${R.sand ? 0.1 : 0.07}"/>`;
+    if (R.water || S.flood) {
+      const w = R.water || { y: 166, w: 10 };
+      const wy = S.flood ? 150 : w.y, ww = S.flood ? 40 : w.w;
+      g += `<path d="M0 ${wy} Q170 ${wy - 4} 340 ${wy + 1} T${SW} ${wy - 2} L${SW} ${wy + ww} Q500 ${wy + ww + 3} 340 ${wy + ww - 1} T0 ${wy + ww} Z" class="ink" fill-opacity="${R.water && R.water.kind === 'sea' ? 0.14 : 0.1}"/>`;
+      for (let i = 0; i < 6; i++) g += L(`M${30 + i * 110} ${wy + ww / 2} q6 -3 12 0 q6 3 12 0`, 0.7, 0.3);
+    }
+    // 地標
+    for (const m of SC.landmarks || []) {
+      if (m.region && m.region !== region) continue;
+      if (m.notRegions && m.notRegions.includes(region)) continue;
+      if (year < (m.from ?? -9999) || year > (m.to ?? 9999)) continue;
+      g += landmark(m);
+    }
+    // 村落：屋數與景況隨年代變；田在村子前頭
+    const fieldState = S.fields || (vil.state === 'ruin' ? 'dead' : vil.state === 'labor' ? 'half' : 'full');
+    for (let i = 0; i < 26; i++) {
+      const fx = 20 + i * 14;
+      if (fieldState === 'dead' && i % 3) continue;
+      if (fieldState === 'half' && i % 2) continue;
+      g += L(`M${fx} ${GY - 6} l0 -${fieldState === 'dead' ? 2 : 5 + (i % 3)}`, 1, fieldState === 'dead' ? 0.25 : 0.4, fieldState === 'full' && !night ? 'gs' : 'ks');
+    }
+    const houses = Math.max(1, Math.min(8, vil.n));
+    const broken = vil.state === 'ruin' ? Math.ceil(houses / 2) : vil.state === 'war' ? 1 : 0;
+    for (let i = 0; i < houses; i++) {
+      const hx = 34 + i * (330 / houses) + rnd() * 16, hy = 150 + (i % 2) * 6;
+      g += house(hx, hy, 0.8 + (i % 2) * 0.12, i < broken, vil.state === 'rich' && i % 3 === 0);
+      if (vil.state === 'rich' && i % 3 === 1) g += L(`M${f1(hx + 16)} ${hy} L${f1(hx + 16)} ${hy - 30}`, 0.8, 0.6) + P(`M${f1(hx + 16)} ${hy - 30} l10 2 l-10 5 Z`, 'red', 0.6);
+    }
+    for (let i = 0; i < 3; i++) g += tree(R.trees[i % R.trees.length], 18 + i * 140 + rnd() * 40, 158 + (i % 2) * 4, 0.9);
+    if (vil.state === 'war') g += prop('smoke', 120 + rnd() * 160, 0, {});
+    if (vil.state === 'ruin') for (let i = 0; i < 4; i++) g += L(`M${f1(120 + rnd() * 240)} ${f1(40 + rnd() * 50)} q4 -4 8 0 q4 -4 8 0`, 1, 0.6);
+    // 這件事的道具
+    const ctx = { trees: R.trees, accent: S.accent };
+    for (const [name, x, n] of S.props || []) g += prop(name, x, n, ctx);
+    // 這一家：主角在前，配偶在旁，孩子在腳邊
+    if (fam && S.family !== 'none') {
+      const walk = S.family === 'walk';
+      let x = 170;
+      const order = S.family === 'kids' ? fam.slice(1).concat(fam.slice(0, 1)) : fam;
+      order.forEach((p, i) => {
+        const lk = lookOf(p, year, { armor: S.armor });
+        const isKid = p.age === 'child';
+        const o = { x: x, y: GY + (i % 2) * 2, s: isKid ? 0.85 : 1.15, g: p.g, age: p.age, ...lk, pose: walk ? 'walk' : 'stand', carry: walk && !isKid, hold: scene === 'birth' && i === 0 && p.g === 'f' ? 'baby' : null };
+        if (S.family === 'old' && i === 0) o.age = 'old';
+        g += puppet(o);
+        x += isKid ? 26 : 42;
+      });
+    }
+    if (night) g += `<rect x="0" y="0" width="${SW}" height="${SH}" class="ink" fill-opacity=".14"/>`;
+    return `<svg viewBox="0 0 ${SW} ${SH}" preserveAspectRatio="xMidYMax slice" role="img">${g}</svg>`;
+  }
+
+  // 這一家站上幕前的人：自己、在身邊的配偶、最多三個在家的孩子
+  function famOf(s) {
+    const ageOf = (a) => (a < 13 ? 'child' : a >= 60 ? 'old' : 'adult');
+    const fam = [{ g: s.gender, age: ageOf(s.age), cls: s.cls, faction: s.faction }];
+    const f = s.flags || {};
+    if (s.spouse && !f.widowed && !f.spouse_dead_old && !(f.spouse_taken && !f.spouse_returned)) fam.push({ g: s.gender === 'm' ? 'f' : 'm', age: ageOf(s.age), cls: s.cls });
+    for (const c of (s.children || []).filter((c) => c.alive && !c.away).slice(-3)) fam.push({ g: c.gender, age: ageOf(s.year - c.born), cls: s.cls });
+    return fam;
+  }
+
+  // 幕：放在頂部數值列底下，跟著故事換景；可以收起來
+  let sceneKey = 'home', sceneTitle = '', sceneDrawn = '';
+  function sceneOn() { return pref(PFX + 'scene') !== '0'; }
+  function drawScene(force) {
+    const box = $('#scene');
+    if (!box || !game) return;
+    box.hidden = false;
+    box.classList.toggle('off', !sceneOn());
+    if (!sceneOn()) return;
+    const s = game.state;
+    const fam = famOf(s);
+    const key = [s.region, s.year, sceneKey, JSON.stringify(fam)].join('|');
+    if (!force && key === sceneDrawn) return;
+    sceneDrawn = key;
+    const plate = $('#scenePlate');
+    const svg = sceneSvg({ region: s.region, year: s.year, scene: sceneKey, fam });
+    const next = h('div', 'plate-in', svg);
+    plate.append(next);
+    while (plate.children.length > 2) plate.firstElementChild.remove();
+    if (plate.children.length > 1) { requestAnimationFrame(() => { plate.firstElementChild.classList.add('out'); setTimeout(() => { if (plate.children.length > 1) plate.firstElementChild.remove(); }, 600); }); }
+    $('#sceneCap').innerHTML = `<span>${esc(s.regionName)}・${esc(game.eraLabel(s.year))}</span><span>${esc(sceneTitle)}</span>`;
+    next.firstElementChild.setAttribute('aria-label', `${s.regionName}，${game.eraLabel(s.year)}${sceneTitle ? '，' + sceneTitle : ''}`);
+  }
+  function setScene(e) {
+    if (!e || !e.scene) return;
+    sceneKey = e.scene; sceneTitle = e.title || e.tag || '';
+  }
+  function initSceneToggle() {
+    const b = $('#btnScene');
+    if (!b) return;
+    const label = () => { b.textContent = sceneOn() ? (sceneUi.hide || '−') : (sceneUi.show || '+'); b.setAttribute('aria-pressed', String(sceneOn())); };
+    label();
+    b.addEventListener('click', () => { pref(PFX + 'scene', sceneOn() ? '0' : '1'); label(); drawScene(true); syncBars(); });
+  }
+  initSceneToggle();
+
+  // ---------------- 開場與戶籍
+  function renderIntro() {
+    $('#introTitle').innerHTML = UI.titleHtml || esc(UI.title);
+    $('#introSlogan').innerHTML = UI.slogan || '';
+    $('#introHead').textContent = UI.headline || '';
+    $('#introText').innerHTML = (UI.intro || []).map((p) => `<p>${esc(p)}</p>`).join('');
+    $('#introHow').innerHTML = (UI.how || []).map(([k, v]) => `<div><b>${esc(k)}</b>　${esc(v)}</div>`).join('');
+    $('#introFine').textContent = tplU(UI.fine, { EVENTS: DATA.events.length, ENDINGS: DATA.endings.length });
+    $('#sideL').textContent = UI.sideLeft || '';
+    $('#sideR').textContent = UI.sideRight || '';
+    $('#sideSeal').innerHTML = (UI.sideSeal || []).map((c) => `<span>${esc(c)}</span>`).join('');
+    const fb = $('#lnkFeedback'); if (UI.feedbackRepo) fb.href = UI.feedbackRepo; else fb.hidden = true;
+    const ip = UI.introPlate;
+    if (ip) $('#introPlate').innerHTML = sceneSvg({ region: ip.region, year: ip.year, scene: ip.scene, fam: ip.fam });
+    else $('#introPlate').hidden = true;
+  }
+  renderIntro();
+  $('#btnStart').addEventListener('click', start);
+  renderCodex();
+  renderTransfer();
+  const saved = loadSave();
+  if (saved) {
+    const r = h('button', 'ghost ui', saved.name ? `接續上次的家族（${esc(saved.name)}）` : '接續上次的家族');
+    if (saved.ver !== DATA_VER) r.title = '遊戲內容更新過，接續後的劇情可能跟上次略有不同';
+    r.type = 'button'; r.id = 'btnResume';
+    r.addEventListener('click', () => resume(saved));
+    // 跟「投胎」包在同一列，手機版重新排序時才會一起移動
+    const row = h('div', 'cta-row');
+    $('#btnStart').before(row);
+    row.append($('#btnStart'), r);
+  }
+
+  function resume(sv) {
+    unpause();
+    game = E.createGame(DATA, sv.seed, { late: !!sv.late });
+    lastAge = -1; save = sv;
+    $('#intro').hidden = true; $('#end').hidden = true; $('#birth').hidden = true;
+    $('#log').innerHTML = ''; $('#game').hidden = false; $('#ctrl').hidden = false;
+    const all = [...game.state.log];
+    const run = () => { let n = 0; while (!game.pending && !game.ended && !game.interlude && !game.succession && n++ < 3000) all.push(...game.step()); };
+    // 一步一步照紀錄重播；哪一步對不上（內容改版後選項變了），就停在那裡交還給玩家
+    let done = 0;
+    try {
+      for (const a of sv.acts) {
+        run();
+        if (a[0] === 'c' && game.pending && game.pending.opts[a[1]] && game.pending.opts[a[1]].ok) all.push(...game.choose(a[1]));
+        else if (a[0] === 'h' && game.succession && game.succession.heirs[a[1]]) all.push(...game.continueAsHeir(a[1]));
+        else if (a[0] === 'n' && game.interlude) all.push(...game.continueChapter());
+        else break;
+        done++;
+      }
+    } catch (e) { clearSave(); start(); return; }
+    const diverged = done < sv.acts.length || sv.ver !== DATA_VER;
+    sv.acts = sv.acts.slice(0, done); sv.ver = DATA_VER; persist();
+    const frag = document.createDocumentFragment();
+    renderTarget = frag; quiet = true;
+    try { for (const e of all) renderEntry(e); } finally { renderTarget = null; quiet = false; }
+    $('#log').append(frag);
+    // 重播了一整局，紀錄很長：先直接跳到底，不用平滑捲動（距離太長會捲不到位）
+    window.scrollTo(0, document.documentElement.scrollHeight);
+    if (diverged) renderEntry({ type: 'event', tag: '改版', text: '（遊戲內容更新過。從這裡開始，故事可能跟你上次玩的不太一樣。）' });
+    renderHud();
+    if (game.ended) return showEnd();
+    if (game.succession) return showEnd('heir');
+    if (game.interlude) return goOnChapter();
+    if (game.pending) renderDecision(game.pending);
+    else scrollEnd();
+    schedule();
+  }
+
+  // 新的一局（或接續）一律從「播放中」開始，不沿用上一局的暫停
+  function unpause() {
+    paused = false;
+    stopLater(); // 上一局排著的下一步不要帶過來
+    const b = $('#btnPause');
+    if (b) { b.setAttribute('aria-pressed', 'false'); b.textContent = '暫停'; }
+  }
+
+  function start() {
+    unpause();
+    // 有一部分的投胎，會落在某個家族的後代：祖上幾代的人生，已經在背後跑過一遍
+    game = E.createGame(DATA, undefined, { late: Math.random() < ((DATA.world.lateStart || {}).chance || 0) });
+    lastAge = -1;
+    $('#intro').hidden = true; $('#end').hidden = true;
+    $('#log').innerHTML = '';
+    renderBirth();
+    $('#birth').hidden = false; $('#game').hidden = true; $('#ctrl').hidden = true;
+    window.scrollTo(0, 0);
+  }
+
+  // 新手提示：第一次開局時插在紀錄裡，看完按「知道了」日子才開始走，之後不再出現
+  function showTips(then) {
+    if (pref(PFX + 'tips')) return false;
+    const touch = matchMedia('(pointer: coarse)').matches;
+    const tip = h('div', 'tip ui');
+    tip.append(h('b', null, '怎麼玩'));
+    tip.append(h('p', null, `日子會自己一年一年往下走。遇到要拿主意的事，會停下來等你選${touch ? '' : '（也可以按鍵盤的數字鍵）'}。`));
+    const dl = h('dl');
+    for (const [k, v] of [['暫停', '停在這一年，想慢慢看的時候用'], ['1×　2×　4×', '日子過得多快'], ['◐', '換成黑底或原色底'], ['交給天命', '開著的時候，抉擇會自動替你選']]) {
+      dl.append(h('dt', null, esc(k)), h('dd', null, esc(v)));
+    }
+    tip.append(dl);
+    tip.append(h('p', null, esc(UI.tipsEnd || '')));
+    const ok = h('button', 'ghost', '知道了'); ok.type = 'button';
+    ok.addEventListener('click', () => { pref(PFX + 'tips', '1'); tip.remove(); then(); });
+    tip.append(ok);
+    $('#log').append(tip);
+    tip.scrollIntoView({ block: 'nearest' });
+    ok.focus({ preventScroll: true });
+    return true;
+  }
+
+  function renderBirth() {
+    const s = game.state, b = s.birth;
+    const W = DATA.world;
+    const sec = $('#birth');
+    sec.innerHTML = '';
+    const reg = h('div', 'register fadein');
+    reg.append(h('div', 'who', `<span class="name">${esc(s.name)}</span><span class="meta">${s.gender === 'm' ? '男' : '女'}　·　${esc(b.era)}　${esc(b.ganzhi)}　·　西元 ${s.birthYear} 年</span>`));
+    const dl = h('dl');
+    const items = [
+      ['籍貫', b.region.name], ['家世', b.cls.name], b.late || !UI.countdown ? ['世代', `第${cnGen(s.generation)}代`] : [UI.countdown.label, `${UI.countdown.year - s.birthYear} 歲`], ['身子', s.hp >= 75 ? '結實' : s.hp >= 55 ? '尋常' : '瘦弱'],
+    ];
+    for (const [k, v] of items) { dl.append(h('dt', null, esc(k))); dl.append(h('dd', null, esc(v))); }
+    reg.append(dl);
+    reg.append(h('p', null, esc(b.region.desc) + ' ' + esc(b.family)));
+    // 投胎在某個家族的後代：祖上幾代是怎麼過的
+    if (b.late && s.lineage.length) {
+      const anc = h('div', 'ancestors');
+      anc.append(h('h4', null, '祖上'));
+      const t = h('div', 'tree');
+      for (const p of s.lineage) t.append(treeRow(p));
+      // 還在世的父母（這一代當家的人）不在家譜的紀錄裡，另外補一行
+      const pa = b.parent;
+      if (pa) t.append(h('div', 'now', `<span class="g">第${cnGen(pa.gen)}代</span><span><b>${esc(pa.name)}</b>　${pa.born}–　如今當家</span>`));
+      anc.append(t);
+      reg.append(anc);
+    }
+    const tal = h('div');
+    for (const t of b.talents) tal.append(h('span', 'talent', `${esc(t.id)}<small>${esc(t.desc)}</small>`));
+    reg.append(tal);
+    reg.append(h('p', 'fine', esc(b.late ? UI.birthFineLate : UI.birthFine)));
+    const bp = h('figure', 'plate birth-plate');
+    bp.setAttribute('aria-hidden', 'true');
+    bp.innerHTML = sceneSvg({ region: s.region, year: s.year, scene: 'birth', fam: [{ g: 'f', age: 'adult', cls: s.cls }, { g: 'm', age: 'adult', cls: s.cls }] });
+    reg.prepend(bp);
+    sec.append(reg);
+    const row = h('div'); row.style.cssText = 'display:flex;gap:10px;flex-wrap:wrap;margin-top:16px';
+    const go = h('button', 'cta', '展開此生'); go.type = 'button';
+    go.addEventListener('click', () => { save = { v: 1, ver: DATA_VER, seed: game.seed, late: !!game.state.lateStart, name: game.state.name, acts: [] }; persist(); $('#birth').hidden = true; $('#game').hidden = false; $('#ctrl').hidden = false; renderHud(); flush(game.state.log); if (!showTips(schedule)) schedule(); });
+    const re = h('button', 'ghost ui', '重新投胎'); re.type = 'button'; re.addEventListener('click', start);
+    row.append(go, re);
+    sec.append(row);
+  }
+
+  // ---------------- 頂部
+  function renderHud() {
+    const s = game.state;
+    const hud = $('#hudInfo');
+    const era = game.eraLabel(s.year) + '　' + game.ganzhi(s.year);
+    let html = `<div class="hud-top"><div class="hud-name">${esc(s.name)}<small>${esc(s.regionName)}・${esc(s.clsName)}</small></div>
+      <div style="text-align:right"><div class="hud-age">${s.age}<small>歲</small></div><div class="hud-era">${esc(era)}・${s.year}</div></div></div>`;
+    html += '<div class="stats">';
+    for (const k of STAT_ORDER) html += `<div class="stat"><div class="k">${k}<b>${s.stats[k]}</b></div><div class="bar"><i style="width:${s.stats[k]}%"></i></div></div>`;
+    html += `<div class="stat hp"><div class="k">${esc(HP)}<b>${s.hp}</b></div><div class="bar"><i style="width:${s.hp}%"></i></div></div></div>`;
+    const chips = [];
+    if (s.route && s.generation === 1) chips.push(`<span class="chip route">${esc(tplU(UI.routeChip, { label: DATA.world.routeLabel || '', route: ROUTE_NAME[s.route] || s.route }))}</span>`);
+    const kids = (s.children || []).filter((c) => c.alive && !c.away).length;
+    if (kids) chips.push(`<span class="chip">子女 ${kids}</span>`);
+    if (s.chapter >= 2 && s.faction) chips.push(`<span class="chip faction">${esc(factionName(s.faction))}</span>`);
+    if (s.generation > 1) chips.push(`<span class="chip">第${cnGen(s.generation)}代</span>`);
+    if (s.focus) chips.push(`<span class="chip">${esc(s.focus)}</span>`);
+    for (const t of s.talents) chips.push(`<span class="chip">${esc(t)}</span>`);
+    for (const id in s.bonds) if (s.bonds[id] > 0) chips.push(`<span class="chip bond">${esc(DATA.bonds[id].name)}・${esc(DATA.bonds[id].tiers[s.bonds[id]])}</span>`);
+    if (s.spouse) chips.push(`<span class="chip">配偶 ${esc(s.spouse)}</span>`);
+    if (s.injuries.length) chips.push(`<span class="chip">舊傷 ${s.injuries.length}</span>`);
+    html += `<div class="chips">${chips.join('')}</div>`;
+    hud.innerHTML = html;
+    drawScene();
+    syncSides(s);
+    syncBars();
+  }
+
+  // 桌機兩側的大字跟著這一局走：左邊是第幾章，右邊是今年的年號
+  function syncSides(s) {
+    const ch = DATA.world.chapters.find((c) => c.n === s.chapter);
+    const [no, name] = (ch ? ch.title : '').split('　');
+    if (name) $('#sideL').textContent = name;
+    $('#sideR').textContent = game.eraLabel(s.year).replace(/[（(].*$/, '');
+    $('#sideR2').textContent = (no || '') + '　' + game.ganzhi(s.year) + '年';
+  }
+  function syncBars() {
+    const root = document.documentElement.style;
+    const hud = $('#hud'), ctrl = $('#ctrl');
+    root.setProperty('--hud-h', (hud && !$('#game').hidden ? hud.offsetHeight : 0) + 'px');
+    root.setProperty('--ctrl-h', (ctrl && !ctrl.hidden ? ctrl.offsetHeight : 0) + 'px');
+  }
+  window.addEventListener('resize', syncBars);
+
+  // ---------------- 紀錄
+  function deltaHtml(d) {
+    if (!d) return '';
+    const parts = Object.entries(d).map(([k, v]) => `<span class="${v < 0 ? 'neg' : ''}">${k} ${v > 0 ? '+' : '−'}${Math.abs(v)}</span>`);
+    return parts.length ? `<div class="delta">${parts.join('')}</div>` : '';
+  }
+
+  // 接續時把整局紀錄先組在記憶體裡、一次放進頁面，也不播淡入動畫（幾百條同時動畫，慢的手機會卡）
+  let renderTarget = null, quiet = false;
+  function renderEntry(e) {
+    if (e.scene) setScene(e);
+    const log = renderTarget || $('#log');
+    const fade = quiet ? '' : ' fadein';
+    if (e.type === 'heir') {
+      log.append(h('div', 'heirline' + fade, esc(e.text)));
+      return;
+    }
+    if (e.type === 'chapter') {
+      log.append(h('div', 'chap' + fade, esc(e.text)));
+      return;
+    }
+    if (e.type === 'year') {
+      const s = game.state;
+      log.append(h('div', 'yr' + fade, `<span class="a">${e.age}歲</span><span class="e">${esc(e.era)}・${esc(e.ganzhi)}・${e.year}</span>`));
+      return;
+    }
+    if (e.type === 'decision' || e.type === 'event' || e.type === 'note' || e.type === 'bond' || e.type === 'choice') {
+      if (e.age !== lastAge && e.type !== 'choice' && log.children.length === 0) {
+        log.append(h('div', 'yr', `<span class="a">${e.age}歲</span><span class="e">${esc(game.eraLabel(e.year))}・${esc(game.ganzhi(e.year))}・${e.year}</span>`));
+      }
+      lastAge = e.age;
+      let cls = 'en' + fade;
+      if (e.kind === 'anchor' || e.kind === 'bond' || e.type === 'decision') cls += ' big';
+      if (e.death) cls += ' death';
+      if (e.type === 'choice') cls += ' choice';
+      if (e.type === 'bond') cls += ' bond';
+      let html = '';
+      if (e.tag && e.type !== 'choice') html += `<span class="tag">${esc(e.tag)}</span>`;
+      if (e.type === 'choice') html += `<p>${e.title ? esc(e.title) + '｜' : ''}你選了<b>「${esc(e.text)}」</b></p>`;
+      else html += `<p>${esc(e.text)}</p>`;
+      html += deltaHtml(e.delta);
+      if (e.note) html += `<div class="note">${esc(e.note)}</div>`;
+      log.append(h('div', cls, html));
+    }
+  }
+
+  // 播放節奏（參考《江湖千萬人》）：一條一條出，年紀標題跟著當年的第一條一起出；
+  // 每條依自己的字數停一下：0.6 秒＋前 40 字每字 0.04 秒、之後每字 0.02 秒，最長 6 秒
+  const lineMs = (chars) => Math.min(6000, 600 + Math.min(chars, 40) * 40 + Math.max(0, chars - 40) * 20) / speed;
+  const textLen = (e) => (e.type === 'year' || !e.text ? 0 : e.text.length + (e.title ? e.title.length : 0));
+  // 唯一的計時器：記住下一步要做什麼，暫停、換速度時才能接著做
+  let nextFn = null, nextChars = 0;
+  function later(fn, chars) {
+    clearTimeout(timer);
+    nextFn = fn; nextChars = chars;
+    timer = setTimeout(() => { nextFn = null; fn(); }, lineMs(chars));
+  }
+  function stopLater() { clearTimeout(timer); nextFn = null; }
+  // 一次全部顯示（出生、接班、換章、接續）
+  let lastChars = 0;
+  function flush(entries) {
+    lastChars = 0;
+    for (const e of entries) lastChars += textLen(e);
+    for (const e of entries) renderEntry(e);
+    renderHud();
+    const p = game.pending;
+    if (p) renderDecision(p);
+    if (!game.pending && !game.ended) scrollEnd();
+  }
+  // 章末：人還活著，就不跳出結算頁。在紀錄裡放一張章末卡（照樣收進圖鑑），然後直接往下一章活
+  // 回傳章末卡的字數，讓下一步照字數停一下
+  function passChapter() {
+    const e = game.interlude, s = game.state;
+    const fresh = markSeen(e.id);
+    markBonds(s.bonds || {});
+    markArcs(s);
+    const tags = [e.chapterTitle || '', '章末', e.rare ? '稀有' : '', fresh ? '初見' : ''].filter(Boolean).join('・');
+    const world = (e.epilogue || []).map((t) => `<p class="w">${esc(t)}</p>`).join('');
+    $('#log').append(h('div', 'chap-end fadein', `<span class="k ui">${esc(tags)}</span><b>「${esc(e.title)}」</b><p>${esc(e.text)}</p>${world}`));
+    record(['n']);
+    return (e.title + e.text + (e.epilogue || []).join('')).length;
+  }
+  // 停在章末的時候：還有下一章就自動接下去；沒有了才出結算頁
+  function goOnChapter() {
+    if (!game.interlude.next) return showEnd(true);
+    const chars = passChapter();
+    scrollEnd();
+    const next = game.continueChapter();
+    later(() => reveal(next), chars);
+  }
+
+  // 一條一條顯示；都出完了再看要結局、抉擇，還是排下一年
+  function reveal(entries) {
+    const list = entries.slice();
+    const nextLine = () => {
+      const batch = [];
+      while (list.length) { const e = list.shift(); batch.push(e); if (e.type !== 'year' && e.type !== 'chapter' && e.type !== 'heir') break; }
+      for (const e of batch) renderEntry(e);
+      renderHud();
+      const chars = batch.reduce((n, e) => n + textLen(e), 0);
+      if (list.length) { scrollEnd(); return later(nextLine, chars); }
+      afterReveal(chars);
+    };
+    nextLine();
+  }
+  function afterReveal(chars) {
+    if (game.ended) return showEnd();
+    if (game.succession) return showEnd('heir');
+    if (game.interlude) return goOnChapter();
+    if (game.pending) return renderDecision(game.pending);
+    scrollEnd();
+    later(tick, chars);
+  }
+
+  function scrollEnd() {
+    const el = $('#log').lastElementChild;
+    if (el) el.scrollIntoView({ block: 'end', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }
+
+  // ---------------- 抉擇
+  function renderDecision(p) {
+    const card = h('div', 'dec fadein');
+    card.id = 'decision';
+    const who = p.who ? `<span class="who">人物　<b>${esc(p.who)}</b></span>` : '';
+    card.append(h('div', 'head', `<h3>${esc(p.title || p.tag || '抉擇')}</h3>${who}`));
+    const opts = h('div', 'opts');
+    p.opts.forEach((o, idx) => {
+      const b = h('button', 'opt', `<span class="n">${idx + 1}</span><span class="t">${esc(o.t)}</span><span class="s">${esc(o.ok ? (o.sub || '') : (o.lock || '條件不足'))}</span>`);
+      b.type = 'button';
+      b.disabled = !o.ok;
+      b.addEventListener('click', () => pick(idx));
+      opts.append(b);
+    });
+    card.append(opts);
+    if (fate) card.append(h('div', 'auto-hint', '交給天命中：稍後會自動替你選一條路。點任何選項可以自己決定。'));
+    $('#log').append(card);
+    card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    const first = card.querySelector('.opt:not(:disabled)');
+    if (first && !fate) first.focus({ preventScroll: true });
+    if (fate) later(() => { const ok = p.opts.map((o, i) => (o.ok ? i : -1)).filter((i) => i >= 0); pick(ok[Math.floor(Math.random() * ok.length)]); }, (p.text || '').length + p.opts.reduce((n, o) => n + o.t.length, 0));
+  }
+
+  function pick(idx) {
+    const card = $('#decision');
+    if (card) card.remove();
+    stopLater();
+    record(['c', idx]);
+    reveal(game.choose(idx));
+  }
+
+  document.addEventListener('keydown', (ev) => {
+    if (!game || !game.pending || !$('#decision')) return;
+    const n = parseInt(ev.key, 10);
+    if (n >= 1 && n <= game.pending.opts.length && game.pending.opts[n - 1].ok) pick(n - 1);
+  });
+
+  // ---------------- 推進
+  // 繼續往下走：剛才停在哪一步（暫停、換速度），就從那一步接著做
+  function schedule() {
+    if (paused || !game || game.ended || game.interlude || game.succession) { clearTimeout(timer); return; }
+    if (nextFn) return later(nextFn, nextChars);
+    if (game.pending) return;
+    later(tick, lastChars);
+  }
+  function tick() {
+    if (!game || game.pending || game.ended || game.interlude || game.succession || paused) return;
+    reveal(game.step());
+  }
+
+  $('#btnPause').addEventListener('click', (ev) => {
+    paused = !paused;
+    ev.currentTarget.setAttribute('aria-pressed', String(paused));
+    ev.currentTarget.textContent = paused ? '繼續' : '暫停';
+    if (!paused) schedule(); else clearTimeout(timer); // 暫停只停計時器，下一步記在 nextFn
+  });
+  document.querySelectorAll('.spd').forEach((b) => {
+    b.setAttribute('aria-pressed', String(+b.dataset.s === speed));
+    b.addEventListener('click', () => {
+      pref(PFX + 'tips', '1'); // 會用控制列的人，就不必再看新手提示了
+      speed = +b.dataset.s; pref(PFX + 'speed', String(speed));
+      document.querySelectorAll('.spd').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      if (!paused) schedule();
+    });
+  });
+  $('#btnFate').addEventListener('click', (ev) => {
+    pref(PFX + 'tips', '1');
+    fate = !fate;
+    ev.currentTarget.setAttribute('aria-pressed', String(fate));
+    if (game && !game.pending && !paused) schedule(); // 第一局還停在新手提示時，按交給天命也就開始了
+    // 抉擇卡還在的時候切換：重畫一次（開了就排上自動選，關了就取消已經排好的自動選）
+    if (game && game.pending && $('#decision')) { stopLater(); $('#decision').remove(); renderDecision(game.pending); }
+  });
+
+  // ---------------- 結局
+  // 家譜裡換過姓（女兒接班、入贅）就寫「秦家到周家」，不然只寫最後一位的姓會像是整家都姓周
+  function houses(s, L) {
+    const sur = (L || []).map((p) => p.name[0]);
+    const before = sur.filter((x, i) => x !== s.surname && sur.indexOf(x) === i);
+    return before.length ? before.map((x) => x + '家').join('、') + `到${s.surname}家` : `${s.surname}家`;
+  }
+  function familyText(s, e) {
+    const L = [`《${UI.title}》${houses(s, e.lineage)}的故事`, ''];
+    for (const p of e.lineage || []) { L.push(`第${cnGen(p.gen)}代　${p.name}（${p.born}–${p.died ?? ''}${p.died ? `，${p.age}歲` : ''}）「${p.title}」`); if (p.memo) L.push('　　' + p.memo); }
+    if (s.chapterEndings && s.chapterEndings.length) {
+      L.push('', '走過的章：');
+      for (const c of s.chapterEndings) L.push(`第${c.chapter}章・${c.name}「${c.title}」`);
+    }
+    L.push('', `結局「${e.title}」：${e.text}`);
+    if (e.memories && e.memories.length) { L.push('', '往事：'); for (const m of e.memories) L.push('・' + m); }
+    return L.join('\n');
+  }
+
+  // ---------------- 分享圖：把結局畫成一張 1080×1080 的卡片，顏色跟著目前的底色
+  function wrapText(ctx, text, maxW) {
+    const NO_HEAD = '，。、；：！？」』）》…—';
+    const lines = []; let cur = '';
+    for (const ch of [...text]) {
+      if (ctx.measureText(cur + ch).width > maxW && cur && !NO_HEAD.includes(ch)) { lines.push(cur); cur = ch; }
+      else cur += ch;
+    }
+    if (cur) lines.push(cur);
+    return lines;
+  }
+  function drawLines(ctx, lines, x, y, lh, max) {
+    const out = lines.slice(0, max);
+    if (lines.length > max) out[max - 1] = out[max - 1].slice(0, -1) + '…';
+    out.forEach((l, i) => ctx.fillText(l, x, y + i * lh));
+    return y + out.length * lh;
+  }
+  async function shareCard(s, e, kicker) {
+    const css = getComputedStyle(document.documentElement);
+    const C = (k) => css.getPropertyValue(k).trim();
+    const col = { bg: C('--bg'), slip: C('--slip'), ink: C('--ink'), muted: C('--muted'), line: C('--line'), red: C('--red'), yellow: C('--yellow') };
+    const SERIF = '"Noto Serif TC", "Songti TC", "PMingLiU", serif';
+    const SANS = 'system-ui, -apple-system, "Microsoft JhengHei", "PingFang TC", sans-serif';
+    const L = e.lineage || [];
+    const gender = s.gender === 'm' ? '男' : '女';
+    const detail = `${s.name}，${gender}，${s.birthYear}年生於${s.regionName}，${s.clsName}。` +
+      (e.alive ? `${s.year}年時${s.age}歲，還活著。` : `卒於${s.year}年，享年${s.age}歲。`);
+    const fam = L.length > 1
+      ? `${houses(s, L)}${cnGen(s.generation - (L[0].gen || 1) + 1)}代人，從${L[0].born}年走到${s.year}年：${L.slice(-5).map((p) => p.name).join(' → ')}`
+      : `第${cnGen(s.generation)}代當家・${s.surname}家`;
+    const all = e.title + kicker + s.name + e.text + detail + fam + e.cause + (UI.shareChars || '');
+    try { await Promise.race([Promise.all([document.fonts.load(`900 80px ${SERIF}`, all), document.fonts.load(`400 30px ${SERIF}`, all)]), new Promise((r) => setTimeout(r, 2500))]); } catch (err) { /* 字型載不到就用系統字 */ }
+
+    const W = 1080, H = 1080, cv = document.createElement('canvas');
+    cv.width = W; cv.height = H;
+    const x = cv.getContext('2d');
+    x.fillStyle = col.bg; x.fillRect(0, 0, W, H);
+    // 外框與四角
+    x.strokeStyle = col.muted; x.lineWidth = 2; x.strokeRect(40, 40, W - 80, H - 80);
+    x.strokeStyle = col.line; x.lineWidth = 1; x.strokeRect(54, 54, W - 108, H - 108);
+    x.strokeStyle = col.muted; x.lineWidth = 3;
+    for (const [cx, cy, dx, dy] of [[64, 64, 1, 1], [W - 64, 64, -1, 1], [64, H - 64, 1, -1], [W - 64, H - 64, -1, -1]]) {
+      x.beginPath(); x.moveTo(cx, cy + 36 * dy); x.lineTo(cx, cy); x.lineTo(cx + 36 * dx, cy); x.stroke();
+    }
+    // 左邊的印：結局標題直排
+    const chars = [...e.title].slice(0, 7);
+    const fs = Math.min(96, Math.floor(600 / chars.length));
+    const sw = fs + 56, sh = chars.length * (fs * 1.1) + 64, sx = 96, sy = 130;
+    x.save(); x.translate(sx + sw / 2, sy + sh / 2); x.rotate(-0.025); x.translate(-sw / 2, -sh / 2);
+    x.fillStyle = e.alive ? col.ink : col.red; x.fillRect(0, 0, sw, sh);
+    x.strokeStyle = col.slip; x.lineWidth = 3; x.strokeRect(10, 10, sw - 20, sh - 20);
+    x.fillStyle = col.slip; x.font = `900 ${fs}px ${SERIF}`; x.textAlign = 'center'; x.textBaseline = 'middle';
+    chars.forEach((c, i) => x.fillText(c, sw / 2, 32 + fs * 0.55 + i * fs * 1.1));
+    x.restore();
+    // 右欄
+    const rx = sx + sw + 50, rw = W - 90 - rx;
+    x.textAlign = 'left'; x.textBaseline = 'alphabetic';
+    let y = 160;
+    x.fillStyle = col.red; x.font = `400 28px ${SANS}`; x.fillText(kicker, rx, y);
+    y += 92;
+    x.fillStyle = col.ink; x.font = `900 84px ${SERIF}`;
+    let nameW = x.measureText(s.name).width;
+    x.fillText(s.name, rx, y);
+    x.font = `900 50px ${SERIF}`; x.fillText(` ${s.age}歲`, rx + nameW, y);
+    y += 70;
+    x.font = `400 36px ${SERIF}`; x.fillStyle = col.ink;
+    y = drawLines(x, wrapText(x, e.text, rw), rx, y, 58, 6) + 10;
+    x.font = `400 27px ${SERIF}`; x.fillStyle = col.muted;
+    y = drawLines(x, wrapText(x, detail, rw), rx, y, 44, 3) + 20;
+    // 框：死因或家族
+    const boxLines = [];
+    x.font = `400 27px ${SERIF}`;
+    if (!e.alive && e.cause) boxLines.push(['死因', e.cause]);
+    boxLines.push(['家族', fam]);
+    const wrapped = boxLines.map(([k, v]) => [k, wrapText(x, v, rw - 150).slice(0, 2)]);
+    const bh = 30 + wrapped.reduce((n, [, ls]) => n + ls.length * 42, 0) + 14;
+    x.fillStyle = col.slip; x.fillRect(rx, y, rw, bh);
+    let by = y + 52;
+    for (const [k, ls] of wrapped) {
+      x.fillStyle = col.red; x.font = `900 30px ${SERIF}`; x.fillText(k, rx + 26, by);
+      x.fillStyle = col.ink; x.font = `400 27px ${SERIF}`;
+      ls.forEach((l, i) => x.fillText(l, rx + 120, by + i * 42));
+      by += ls.length * 42;
+    }
+    // 數值不畫上去：死的時候「健」還很高之類的數字，放在結局卡上反而突兀
+    // 頁尾
+    x.textAlign = 'center';
+    x.fillStyle = col.ink; x.font = `900 52px ${SERIF}`; x.fillText(UI.title, W / 2, H - 170);
+    x.fillStyle = col.muted; x.font = `400 26px ${SERIF}`; x.fillText(UI.shareFoot || '', W / 2, H - 122);
+    x.fillStyle = col.red; x.font = `900 22px ${SERIF}`; x.fillText(UI.shareSource || '', W / 2, H - 84);
+    return cv;
+  }
+  // 第幾代：跟遊戲裡「第五代　余貞」的寫法一致，用中文數字
+  function cnGen(n) { return n <= 10 ? CN[n] : n < 20 ? '十' + CN[n % 10] : String(n); }
+  // 家譜的一行：名字、生卒、結局，底下一句這一代最難忘的往事
+  function treeRow(p) {
+    return h('div', null, `<span class="g">第${cnGen(p.gen)}代</span><span><b>${esc(p.name)}</b>　${p.born}–${p.died ?? ''}${p.died ? `，${p.age}歲` : ''}　「${esc(p.title)}」</span>` +
+      (p.memo ? `<span class="memo">${esc(p.memo)}</span>` : ''));
+  }
+
+  function openShare(cv, fileName) {
+    const url = cv.toDataURL('image/png');
+    const ov = h('div', 'share-ov');
+    ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', '分享圖');
+    const box = h('div', 'share-box');
+    const img = h('img'); img.src = url; img.alt = '這一生的結局卡';
+    box.append(img, h('p', 'fine', '手機請長按圖片存下來；電腦請在圖片上按右鍵，選「另存圖片」。如果「下載圖片」按了沒反應（有些分享連結不允許下載），也請用這個方法。'));
+    const row = h('div', 'end-actions');
+    const dl = h('a', 'ghost ui', '下載圖片'); dl.href = url; dl.download = fileName;
+    row.append(dl);
+    cv.toBlob((blob) => {
+      if (!blob) return;
+      // 複製圖片：分享連結不允許下載時，還可以直接貼到聊天軟體
+      if (navigator.clipboard && navigator.clipboard.write && window.ClipboardItem) {
+        const cp = h('button', 'ghost ui', '複製圖片'); cp.type = 'button';
+        cp.addEventListener('click', async () => {
+          // 有些嵌入的頁面不准寫圖片進剪貼簿，請求會一直沒有回應：三秒沒成功就請玩家改用右鍵或長按
+          const timeout = new Promise((_, no) => setTimeout(() => no(new Error('timeout')), 3000));
+          try { await Promise.race([navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]), timeout]); cp.textContent = '已複製，可以直接貼上'; }
+          catch (err) { cp.textContent = '這裡不能複製，請用右鍵或長按'; }
+          setTimeout(() => { cp.textContent = '複製圖片'; }, 2500);
+        });
+        dl.after(cp);
+      }
+      const file = new File([blob], fileName, { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        const sh = h('button', 'cta', '分享'); sh.type = 'button';
+        sh.addEventListener('click', () => navigator.share({ files: [file], title: UI.title }).catch(() => {}));
+        row.prepend(sh);
+      }
+    }, 'image/png');
+    const close = h('button', 'ghost ui', '關閉'); close.type = 'button';
+    const done = () => { ov.remove(); document.removeEventListener('keydown', onKey); };
+    const onKey = (ev) => { if (ev.key === 'Escape') done(); };
+    close.addEventListener('click', done);
+    ov.addEventListener('click', (ev) => { if (ev.target === ov) done(); });
+    document.addEventListener('keydown', onKey);
+    row.append(close);
+    box.append(row);
+    ov.append(box);
+    document.body.append(ov);
+    close.focus({ preventScroll: true });
+  }
+
+  function showEnd(mode) {
+    stopLater();
+    let afterAct = null;
+    const heirMode = mode === 'heir';
+    const interlude = mode === true;
+    const s = game.state, e = heirMode ? game.succession : interlude ? game.interlude : game.ended;
+    const lastSave = save; // 回饋要附存檔碼：家族結束時存檔會被清掉，先留一份
+    if (!heirMode && !interlude) clearSave(); // 這一家的故事說完了
+    const fresh = markSeen(e.id);
+    markBonds(s.bonds || {});
+    const freshArcs = markArcs(s);
+    $('#ctrl').hidden = true;
+    const sec = $('#end');
+    sec.innerHTML = '';
+    const sealText = e.title.length > 6 ? e.title.slice(0, 6) : e.title;
+    const head = h('div', 'end-head fadein');
+    head.append(h('div', 'seal' + (e.alive ? ' alive' : ''), esc(sealText)));
+    const chName = (e.chapterTitle || '').replace(/^\S+\s+/, '');
+    const life = e.alive ? `${s.birthYear}年生，${interlude ? '這一章結束時' : '活到'} ${s.age} 歲` : `${s.birthYear}–${s.year}，享年 ${s.age} 歲，${esc(e.cause || '')}`;
+    const first = fresh ? '・初見' : '';
+    const kicker = interlude ? `<span class="rare">${esc(e.chapterTitle || '')}・章末${e.rare ? '・稀有' : ''}${first}</span>`
+      : heirMode ? `<span class="rare">第${cnGen(s.generation)}代・一生${e.rare ? '・稀有' : ''}${first}</span>`
+      : (e.rare || fresh ? `<span class="rare">${e.rare ? '稀有結局' : '結局'}${first}</span>` : '');
+    head.append(h('div', 'end-body', `${kicker}<h2>${esc(s.name)}</h2><div class="epi">${esc(s.regionName)}・${esc(s.clsName)}・${life}</div><p>${esc(e.text)}</p>`));
+    sec.append(head);
+
+    const st = h('div', 'end-sec');
+    st.append(h('h4', null, '最後的樣子'));
+    st.append(h('div', 'delta', STAT_ORDER.map((k) => `<span style="color:var(--ink)">${k} ${s.stats[k]}</span>`).join('') + `<span style="color:var(--ink)">${esc(HP)} ${s.hp}</span>` + (s.route ? `<span style="color:var(--ink)">${esc(tplU(UI.routeEnd, { label: DATA.world.routeLabel || '', route: ROUTE_NAME[s.route] || s.route }))}</span>` : '')));
+    sec.append(st);
+
+    const extinct = !heirMode && !interlude && e.extinct;
+    const mem = e.memories || [];
+    if (e.after.length || e.epilogue.length || mem.length || extinct) {
+      const af = h('div', 'end-sec');
+      af.append(h('h4', null, interlude ? '這時候，天下的另一頭' : e.alive ? '後來' : '你走之後'));
+      const box = h('div', 'after');
+      for (const a of e.after) box.append(h('div', 'card', `<b>${esc(a.who)}</b><small>${esc(a.tier)}</small><p style="margin:4px 0 0">${esc(a.text)}</p>`));
+      // 往事：先放三件，其餘收起來
+      const SHOW = 3;
+      for (const t of mem.slice(0, SHOW)) box.append(h('div', 'card memory', `<p style="margin:0">${esc(t)}</p>`));
+      if (mem.length > SHOW) {
+        const more = h('details', 'more');
+        more.append(h('summary', 'ui', `還有 ${mem.length - SHOW} 件往事`));
+        for (const t of mem.slice(SHOW)) more.append(h('div', 'card memory', `<p style="margin:0">${esc(t)}</p>`));
+        box.append(more);
+      }
+      if (freshArcs.length) box.append(h('p', 'fine arc-new', `結局冊收進新的人生故事：${freshArcs.map((it) => esc(it.arc) + '・' + esc(it.title)).join('、')}`));
+      // 天下的收尾放最後，永遠看得見
+      if (extinct) box.append(h('div', 'card', `<p style="margin:0">${esc(UI.extinct || '')}</p>`));
+      for (const t of e.epilogue) box.append(h('div', 'card world', `<p style="margin:0">${esc(t)}</p>`));
+      af.append(box);
+      sec.append(af);
+    }
+
+    if (s.choices.length) {
+      const tl = h('div', 'end-sec');
+      tl.append(h('h4', null, '這一生的抉擇'));
+      const list = h('div', 'tl');
+      for (const c of s.choices) list.append(h('div', null, `<span class="y">${c.age}歲</span><span>${esc(c.title)}：<b>${esc(c.pick)}</b></span>`));
+      tl.append(list);
+      sec.append(tl);
+    }
+
+    // 家譜
+    if ((e.lineage || []).length > 1 || heirMode) {
+      const tr = h('div', 'end-sec');
+      tr.append(h('h4', null, '家譜'));
+      const t = h('div', 'tree');
+      for (const p of e.lineage || []) t.append(treeRow(p));
+      tr.append(t);
+      sec.append(tr);
+    }
+    const act = h('div', 'end-actions');
+    if (heirMode) {
+      const hs = h('div', 'heirs');
+      hs.append(h('h4', null, '由誰接下這個家'));
+      e.heirs.forEach((x, i) => {
+        const b = h('button', i === 0 ? 'cta' : 'ghost ui', `${esc(x.rel)}　${esc(x.name)}（${x.age}歲${x.via ? `，${esc(x.via)}的孩子` : ''}${x.house ? '，已經當家' : ''}）`);
+        b.type = 'button';
+        b.addEventListener('click', () => {
+          sec.hidden = true; $('#ctrl').hidden = false;
+          record(['h', i]);
+          if (save) { save.name = x.name; persist(); }
+          flush(game.continueAsHeir(i));
+          if (game.interlude) return goOnChapter();
+          if (game.ended) return showEnd();
+          schedule();
+        });
+        hs.append(b);
+      });
+      const hsec = h('div', 'end-sec');
+      hsec.append(hs);
+      sec.append(hsec);
+    }
+    if (interlude && e.next) {
+      const go = h('button', 'cta', '繼續活下去'); go.type = 'button';
+      go.title = e.next.title;
+      go.addEventListener('click', () => {
+        sec.hidden = true; $('#ctrl').hidden = false;
+        record(['n']);
+        flush(game.continueChapter());
+        schedule();
+      });
+      act.append(go, h('span', 'fine', esc(e.next.title)));
+    }
+    if (!interlude && s.chapterEndings && s.chapterEndings.length > 1) {
+      st.append(h('div', 'fine', '這一家走過的章：' + s.chapterEndings.map((c) => `第${c.chapter}章${c.name ? '・' + esc(c.name) : ''}「${esc(c.title)}」`).join('　')));
+    }
+    const again = h('button', interlude || heirMode ? 'ghost ui' : 'cta', '再投一次胎'); again.type = 'button'; again.addEventListener('click', start);
+    const back = h('button', 'ghost ui', '回到這一生的紀錄'); back.type = 'button'; back.addEventListener('click', () => $('#log').scrollIntoView({ behavior: 'smooth' }));
+    act.append(again, back);
+    // 分享圖：每一生的結局都可以存成一張圖
+    const card = h('button', 'ghost ui', '產生分享圖'); card.type = 'button';
+    card.addEventListener('click', async () => {
+      card.disabled = true; card.textContent = '畫圖中…';
+      const plain = (kicker.replace(/<[^>]+>/g, '') || (e.rare ? '稀有結局' : '結局')).replace(/&amp;/g, '&');
+      try { openShare(await shareCard(s, e, plain), `${UI.title}_${s.name}_${e.title}.png`); }
+      finally { card.disabled = false; card.textContent = '產生分享圖'; }
+    });
+    act.append(card);
+    afterAct = feedbackButtons(e, lastSave);
+    // 最終結局：把這一家的故事整理成一段文字，方便分享
+    if (!interlude && !heirMode) {
+      const share = h('button', 'ghost ui', '複製這一家的故事'); share.type = 'button';
+      share.addEventListener('click', async () => {
+        const text = familyText(s, e);
+        let ok = false;
+        try { await navigator.clipboard.writeText(text); ok = true; } catch (err) {
+          const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.append(ta); ta.select();
+          try { ok = document.execCommand('copy'); } catch (e2) { ok = false; }
+          ta.remove();
+        }
+        share.textContent = ok ? '已複製' : '複製失敗，請手動選取';
+        setTimeout(() => { share.textContent = '複製這一家的故事'; }, 2000);
+      });
+      act.append(share);
+    }
+    sec.append(act);
+    if (afterAct) sec.append(afterAct);
+    sec.hidden = false;
+    sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+})();
+</script>

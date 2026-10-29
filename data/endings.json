@@ -1,0 +1,433 @@
+{
+  "endings": [
+    {
+      "id": "d_moving",
+      "when": "dead",
+      "cause": "兵禍",
+      "req": {
+        "justMoved": true
+      },
+      "title": "半路",
+      "text": "{name}帶著一家人往{place}去，半路碰上了亂兵。家裡的人後來在{place}落了腳，{name}沒有走到。"
+    },
+    {
+      "id": "d_infant",
+      "when": "dead",
+      "req": {
+        "age": [
+          0,
+          4
+        ]
+      },
+      "title": "未及五歲",
+      "text": "{name}沒能活過五歲。在那個年代，這並不稀奇。爹娘後來又有了別的孩子，可是每年寒食上墳，總會在小土堆前多站一會兒。"
+    },
+    {
+      "id": "d_child",
+      "when": "dead",
+      "req": {
+        "age": [
+          5,
+          14
+        ]
+      },
+      "title": "童年",
+      "text": "{name}死的時候還是個孩子。家裡的人把{name}葬在祖墳的邊上，沒有立碑，只種了一棵棗樹。"
+    },
+    {
+      "id": "d_liao",
+      "when": "dead",
+      "cause": "征遼",
+      "title": "遼水",
+      "text": "{name}死在遼東，屍骨沒能回來。家裡的人在祖墳邊上起了一個空墳，裡頭埋的是{name}出門前穿過的一件舊衣裳。"
+    },
+    {
+      "id": "d_yi",
+      "when": "dead",
+      "cause": "役死",
+      "title": "死於役",
+      "text": "{name}死在服役的工地上。同去的人把{name}的名字報給了里正，簿子上那一行就這樣劃掉了。家裡的人從此聽到「徵發」兩個字，就會發抖。"
+    },
+    {
+      "id": "d_war",
+      "when": "dead",
+      "cause": "兵禍",
+      "title": "刀兵",
+      "text": "{name}死在兵亂裡，那年{age}歲。亂世裡死的人太多了，連一口薄棺都找不到。家裡的人只記得那一年，天下又換了一面旗子。"
+    },
+    {
+      "id": "d_famine",
+      "when": "dead",
+      "cause": "饑荒",
+      "title": "饑年",
+      "text": "{name}死在饑荒的那一年。最後那幾天，{name}把能吃的都留給了家裡的人。"
+    },
+    {
+      "id": "d_plague_young",
+      "when": "dead",
+      "cause": "疫病",
+      "req": {
+        "age": [
+          15,
+          39
+        ]
+      },
+      "title": "大疫",
+      "text": "{name}染上了疫病，沒幾天就走了，那年才{age}歲。那一年，坊裡家家都有人在哭。"
+    },
+    {
+      "id": "d_plague",
+      "when": "dead",
+      "cause": "疫病",
+      "title": "疫",
+      "text": "{name}在那一年的大疫裡走了。屍首被抬出坊門的時候，連送葬的人都找不齊。"
+    },
+    {
+      "id": "d_xing",
+      "when": "dead",
+      "cause": "刑戮",
+      "title": "刑戮",
+      "text": "{name}死在官府的刀下，那年{age}歲。家裡的人連夜把屍首領了回來，不敢辦喪事，也不敢哭出聲。"
+    },
+    {
+      "id": "d_drown",
+      "when": "dead",
+      "cause": "溺水",
+      "title": "水",
+      "text": "{name}沉在了水裡，屍首沒有找到。家裡的人每年到水邊燒一次紙，對著水面說幾句話。"
+    },
+    {
+      "id": "d_wound",
+      "when": "dead",
+      "cause": "傷病交加",
+      "title": "傷病",
+      "text": "{name}身上的舊傷一年比一年重，最後在一個冬天沒能挺過去，那年{age}歲。"
+    },
+    {
+      "id": "d_ill_young",
+      "when": "dead",
+      "cause": "病故",
+      "req": {
+        "age": [
+          15,
+          29
+        ]
+      },
+      "title": "青年早逝",
+      "text": "{name}只活了{age}歲。病來得急，走得也急。家裡的人說，{name}這輩子還有好多事沒做。"
+    },
+    {
+      "id": "d_ill_mid",
+      "when": "dead",
+      "cause": "病故",
+      "req": {
+        "age": [
+          30,
+          49
+        ]
+      },
+      "title": "早逝",
+      "text": "{name}在{age}歲那年病倒了，再也沒有起來。家裡的擔子，一下子落到了下一代的肩上。"
+    },
+    {
+      "id": "d_ill",
+      "when": "dead",
+      "cause": "病故",
+      "title": "病故",
+      "text": "{name}病了一場，就在{age}歲那年走了。走的時候是秋天，院子裡的棗子正紅。"
+    },
+    {
+      "id": "d_old_pair",
+      "when": "dead",
+      "cause": "壽終",
+      "req": {
+        "age": [
+          75,
+          200
+        ],
+        "married": true
+      },
+      "title": "白頭",
+      "text": "{name}活到了{age}歲，跟{spouse}一起白了頭。走的那天，{spouse}一直握著{name}的手。"
+    },
+    {
+      "id": "d_old",
+      "when": "dead",
+      "cause": "壽終",
+      "title": "壽終",
+      "text": "{name}活到了{age}歲，在那個年代，這已經是難得的高壽。兒孫們把{name}葬在祖墳裡，墓前立了一塊小碑。"
+    },
+    {
+      "id": "d_default",
+      "when": "dead",
+      "title": "一生",
+      "text": "{name}在{year}年走了，那年{age}歲。這一生不長也不短，跟這個時代裡千千萬萬的人一樣。"
+    },
+    {
+      "id": "a1_guanzhong",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "region": "guanzhong"
+      },
+      "title": "大興城",
+      "text": "{name}住在大興城外。新城的坊牆一道一道築起來，又直又方，像棋盤一樣。仁壽四年，文帝死在仁壽宮，太子即位。城裡的人說，那位新皇帝喜歡蓋大房子。"
+    },
+    {
+      "id": "a1_lingnan",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "region": "lingnan"
+      },
+      "title": "嶺南",
+      "text": "{name}住在{place}。這些年，嶺南歸了隋，冼夫人帶著各部的首領歸順了朝廷。北方的事傳到這裡，總要慢上大半年。"
+    },
+    {
+      "id": "a1_default",
+      "when": "alive",
+      "chapter": 1,
+      "title": "仁壽四年",
+      "text": "{name}活到了仁壽四年。文帝在位二十四年，倉裡的糧堆得滿滿的，可是老百姓的日子並沒有寬裕多少。這一年，文帝死了，太子楊廣即位。"
+    },
+    {
+      "id": "a2_rebel",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "route": "rebel"
+      },
+      "title": "義軍",
+      "text": "{name}跟著義軍東奔西走，打下了幾座城，又丟了幾座城。大業十三年，天下已經沒有一處是太平的了。"
+    },
+    {
+      "id": "a2_flee",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "route": "flee"
+      },
+      "title": "流離",
+      "text": "{name}帶著一家人逃離了老家，在{place}落了腳。這一年，天子還在江都，可是江都以外的天下，早就不是他的了。"
+    },
+    {
+      "id": "a2_shan",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "route": "shan"
+      },
+      "title": "山中",
+      "text": "{name}帶著一家人躲進了山裡，開了幾塊薄田，不納糧、不服役，也不知道外頭今年是誰的年號。"
+    },
+    {
+      "id": "a2_captive",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "liao_captive"
+      },
+      "title": "異鄉",
+      "text": "{name}還在遼東，在高句麗人的田裡幹活。中原的消息傳不過來，{name}只知道，回家的路越來越遠了。"
+    },
+    {
+      "id": "a2_default",
+      "when": "alive",
+      "chapter": 2,
+      "title": "大業十三年",
+      "text": "{name}活到了大業十三年。三征遼東、開運河、修長城，天下的男人一半被拉去服役。如今到處都在起兵，李淵也在太原起兵了。"
+    },
+    {
+      "id": "a3_hebei",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "region": "hebei"
+      },
+      "title": "夏亡",
+      "text": "{name}住在河北。夏王死了，劉黑闥也死了，河北的人終於可以安心種地了。只是說起夏王，大家還是會嘆一口氣。"
+    },
+    {
+      "id": "a3_luoyang",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "region": "luoyang"
+      },
+      "title": "洛陽",
+      "text": "{name}住在洛陽。圍城那年死了太多的人，城裡空了一大半。新來的官吏在坊門口貼告示，招逃散的人回來，分田、免役。"
+    },
+    {
+      "id": "a3_default",
+      "when": "alive",
+      "chapter": 3,
+      "title": "武德九年",
+      "text": "{name}活到了武德九年。仗總算打完了，新朝廷給每個丁男分田，每年交粟二石、絹二丈。這一年，秦王當了皇帝。"
+    },
+    {
+      "id": "a4_xizhou",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "region": "xizhou"
+      },
+      "title": "西州",
+      "text": "{name}住在西州，火焰山下的綠洲裡。這裡的戶籍和中原的一樣，寫在麻紙上，一戶一行。只是夏天熱得像蒸籠，冬天又冷得刺骨。"
+    },
+    {
+      "id": "a4_default",
+      "when": "alive",
+      "chapter": 4,
+      "title": "貞觀",
+      "text": "{name}活到了貞觀二十三年。這二十多年，米價便宜，夜不閉戶。後來的人一說起太平年月，第一個想到的就是貞觀。"
+    },
+    {
+      "id": "a5_luoyang",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "region": "luoyang"
+      },
+      "title": "神都",
+      "text": "{name}住在洛陽。這幾年皇帝和天后常住在這裡，洛陽改叫神都，城裡蓋起了明堂。洛水上的船，比從前多了一倍。"
+    },
+    {
+      "id": "a5_default",
+      "when": "alive",
+      "chapter": 5,
+      "title": "二聖",
+      "text": "{name}活到了永昌元年。朝廷裡的事，坊裡的人說不清楚，只知道天后說了算。銅匭擺在宮門口，人人說話都小心了起來。"
+    },
+    {
+      "id": "a6_hebei",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "region": "hebei"
+      },
+      "title": "河北",
+      "text": "{name}住在河北。契丹來過，突厥也來過，村子燒了又蓋，蓋了又燒。這一年，新皇帝即位了，河北的人只盼著別再打仗。"
+    },
+    {
+      "id": "a6_default",
+      "when": "alive",
+      "chapter": 6,
+      "title": "先天",
+      "text": "{name}活到了先天元年。周又改回了唐，宮裡的人殺來殺去。這一年，臨淄王即了位，他就是後來的開元天子。"
+    },
+    {
+      "id": "a7_hebei",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "region": "hebei"
+      },
+      "title": "范陽兵來",
+      "text": "{name}住在河北。十一月，范陽的兵從家門口過，旗子上寫著「燕」字。太平了一百多年的河北，又變成了戰場。"
+    },
+    {
+      "id": "a7_hu",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "cls": "hu"
+      },
+      "title": "胡人",
+      "text": "{name}一家是胡人，在大唐住了好幾代。安祿山反了，坊裡的人看{name}的眼神，一夜之間全變了。"
+    },
+    {
+      "id": "a7_default",
+      "when": "alive",
+      "chapter": 7,
+      "title": "天寶十四載",
+      "text": "{name}活到了天寶十四載。開元的米最便宜，天寶的人最多。這一年冬天，漁陽的鼙鼓響了。"
+    },
+    {
+      "id": "a8_guanzhong",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "region": "guanzhong"
+      },
+      "title": "長安",
+      "text": "{name}住在長安。八年的仗打完了，吐蕃又進了一回城。坊牆還在，坊裡的人卻少了一大半。這座城，再也回不到開元年間的樣子了。"
+    },
+    {
+      "id": "a8_hebei",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "region": "hebei"
+      },
+      "title": "藩鎮",
+      "text": "{name}住在河北。叛將換了一面旗子，成了朝廷的節度使。{name}家門口的兵還是那些兵，收稅的人也還是那些人。往後一百多年，河北都是這個樣子。"
+    },
+    {
+      "id": "a8_luoyang",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "region": "luoyang"
+      },
+      "title": "東都",
+      "text": "{name}住在洛陽。兩次收復，兩次被搶，城裡的寺都燒了。從前的神都，如今只剩下一片瓦礫和幾條還能走的街。"
+    },
+    {
+      "id": "a8_yangzhou",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "region": "yangzhou"
+      },
+      "title": "江淮",
+      "text": "{name}住在揚州。北方打得天翻地覆，逃來的人一批又一批。朝廷的錢糧，往後全靠江淮了。揚州城裡的燈，比從前更亮了。"
+    },
+    {
+      "id": "a8_yizhou",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "region": "yizhou"
+      },
+      "title": "蜀中",
+      "text": "{name}住在成都。皇帝來過，又走了；說長安話的人來了，有的又走了。浣花溪的水，還是那樣清。"
+    },
+    {
+      "id": "a8_shazhou",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "region": "shazhou"
+      },
+      "title": "河西",
+      "text": "{name}住在敦煌。河西的兵都調去了東邊，吐蕃一年比一年近。城裡的人照舊寫契約、記戶籍，用的還是大唐的年號。他們還不知道，這個年號往後要用很久很久。"
+    },
+    {
+      "id": "a8_xizhou",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "region": "xizhou"
+      },
+      "title": "西州",
+      "text": "{name}住在西州。商隊少了，往東的路斷了，長安的消息要大半年才傳得過來。可是西州的人照舊交租、寫契，簿子上的年號一個字也沒改。"
+    },
+    {
+      "id": "a8_lingnan",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "region": "lingnan"
+      },
+      "title": "南海",
+      "text": "{name}住在{place}。北方的仗打了八年，嶺南只是遠遠地聽著。港口裡的海船，照舊一年來一次。"
+    },
+    {
+      "id": "a8_default",
+      "when": "alive",
+      "chapter": 8,
+      "title": "廣德元年",
+      "text": "{name}活到了廣德元年。八年的仗打完了，天下的戶口只剩下從前的三分之一。你家的故事，從開皇元年說起，一直說到這裡。"
+    }
+  ]
+}
