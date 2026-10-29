@@ -17,6 +17,7 @@
 | `data/events_*.json` | 事件卡：人生（`life`）、隨機小事（`flavor`）、隋（`sui`）、唐（`tang1`～`tang3`）、歷史人物（`bonds`） |
 | `data/endings.json` | 結局（章末與身故），由上往下找第一個符合的 |
 | `sim.js` | 稽核與模擬：靜態檢查、執行時一致性檢查、統計報告 |
+| `assets/cover.js` | 產生分享用的封面圖 `assets/cover.png`（1200×630，用介面的插圖畫法，需要本機有 Chrome）；事件卡、結局數改變很多時重跑一次 |
 | `build.js` | 先跑稽核，再打包成 `dist/index.html`（發佈用）與 `dist/dev.html`（本機預覽用） |
 
 ## 工作流程

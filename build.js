@@ -53,9 +53,10 @@ fs.writeFileSync(path.join(__dirname, 'dist', 'index.html'), '<meta charset="utf
 // 這也是 GitHub Pages 的首頁：分享連結時，聊天軟體會讀 <head> 裡的標題、簡介和封面圖
 const SITE = UI.site || '';
 const desc = attr(fill(UI.desc));
-// 封面圖：專案裡有 cover.png 才寫進分享資訊
-const cover = fs.existsSync(path.join(__dirname, 'cover.png'));
-if (cover) fs.copyFileSync(path.join(__dirname, 'cover.png'), path.join(__dirname, 'dist', 'cover.png'));
+// 封面圖：有 assets/cover.png 才寫進分享資訊
+const coverSrc = path.join(__dirname, 'assets', 'cover.png'); // 1200×630，由 node assets/cover.js 產生
+const cover = fs.existsSync(coverSrc);
+if (cover) fs.copyFileSync(coverSrc, path.join(__dirname, 'dist', 'cover.png'));
 const icon = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="6" fill="#9a2f22"/><text x="32" y="47" font-size="44" text-anchor="middle" fill="#f0eee2" font-family="serif" font-weight="900">' + attr(UI.icon) + '</text></svg>');
 const head = [
   '<meta charset="utf-8">',
