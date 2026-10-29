@@ -1493,7 +1493,130 @@
     "official",
     "jiushi"
   ],
-  "arcBook": [],
+  "arcBook": [
+    {
+      "name": "仕途",
+      "items": [
+        {
+          "id": "sh_mingjing",
+          "title": "明經及第"
+        },
+        {
+          "id": "sh_jinshi",
+          "title": "進士及第"
+        },
+        {
+          "id": "sh_yanta",
+          "title": "雁塔題名"
+        },
+        {
+          "id": "sh_laoming",
+          "title": "老明經"
+        },
+        {
+          "id": "sh_givenup",
+          "title": "不再應舉"
+        },
+        {
+          "id": "sh_bribe",
+          "title": "打點吏部"
+        },
+        {
+          "id": "sh_harsh",
+          "title": "催科"
+        },
+        {
+          "id": "sh_lenient",
+          "title": "緩徵"
+        },
+        {
+          "id": "sh_up",
+          "title": "轉任"
+        },
+        {
+          "id": "sh_liu",
+          "title": "攀轅"
+        },
+        {
+          "id": "sh_li",
+          "title": "縣衙佐史"
+        },
+        {
+          "id": "sh_ruliu",
+          "title": "流外入流"
+        },
+        {
+          "id": "sh_zhishi",
+          "title": "致仕還鄉"
+        }
+      ]
+    },
+    {
+      "name": "宮人",
+      "items": [
+        {
+          "id": "gong_xuan",
+          "title": "采選入宮"
+        },
+        {
+          "id": "gong_bi",
+          "title": "連夜許親"
+        },
+        {
+          "id": "gong_bribe",
+          "title": "劃去名字"
+        },
+        {
+          "id": "gong_shu",
+          "title": "掖庭識字"
+        },
+        {
+          "id": "gong_out",
+          "title": "放出宮去"
+        },
+        {
+          "id": "gong_stay",
+          "title": "不走了"
+        },
+        {
+          "id": "gong_pao_wed",
+          "title": "袍中詩"
+        },
+        {
+          "id": "gong_flee756",
+          "title": "逃出長安"
+        },
+        {
+          "id": "gong_luoyang",
+          "title": "押往洛陽"
+        },
+        {
+          "id": "gong_baitou",
+          "title": "上陽白髮"
+        },
+        {
+          "id": "gong_wed",
+          "title": "出宮嫁人"
+        },
+        {
+          "id": "gong_d_bi",
+          "title": "替女兒訂親"
+        },
+        {
+          "id": "gong_d",
+          "title": "女兒入宮"
+        },
+        {
+          "id": "gong_d_letter",
+          "title": "宮裡來信"
+        },
+        {
+          "id": "gong_d_home",
+          "title": "女兒回家"
+        }
+      ]
+    }
+  ],
   "audit": {
     "weatherEvents": [
       "f_good_harvest",
@@ -1508,6 +1631,54 @@
     "surviveWords": "爬出|撿回|活下來|活了下來|逃回|回到家|才敢出來|找到了|回來|醒過來|躲過|第二年|後來那|一個都沒少"
   },
   "epilogues": [
+    {
+      "req": {
+        "flag": "gong_baitou"
+      },
+      "text": "你在上陽宮裡老了。宮外的人換了一代又一代，沒有人記得你是哪一年進來的。",
+      "final": true,
+      "pri": 3
+    },
+    {
+      "req": {
+        "flag": "gong_pao_wed"
+      },
+      "text": "你縫進袍子裡的那首詩，後來被人抄了去，傳了好多年。抄的人不知道，寫詩的那個宮人，後來在邊地的一座土屋裡生了三個孩子。",
+      "final": true,
+      "pri": 3
+    },
+    {
+      "req": {
+        "flag": "gong_out"
+      },
+      "text": "你在宮裡學會的那一手針線，後來教給了鄰里的女孩子。她們不知道，那是給皇帝縫衣裳的針法。",
+      "final": true,
+      "pri": 2
+    },
+    {
+      "req": {
+        "flag": "sh_liu"
+      },
+      "text": "那個縣裡的百姓，後來還記得一個肯緩徵的縣尉。他們記不住你的名字，只記得你騎的那匹馬是白的。",
+      "final": true,
+      "pri": 3
+    },
+    {
+      "req": {
+        "flag": "sh_yanta"
+      },
+      "text": "慈恩寺塔下的那面牆，後來題滿了名字。你的那一行，被後來的人擠到了角落裡，可是還在。",
+      "final": true,
+      "pri": 2
+    },
+    {
+      "req": {
+        "flag": "sh_ruliu"
+      },
+      "text": "你從一個抄手實的佐史，做到了九品官。家裡的人說起來，總說這一家是從你這一代開始「有官身」的。",
+      "final": true,
+      "pri": 2
+    },
     {
       "req": {
         "flag": "liao_captive"
@@ -1966,7 +2137,10 @@
       "text": "二十多年後，吐蕃攻下了沙州。敦煌的人在吐蕃治下過了六十年，直到張議潮起兵，才又回到了大唐。他們寫下的那些戶籍、契約、社條，後來封在一個石窟裡，過了九百年才被人找到。"
     }
   ],
-  "insideFlag": "liao_captive",
+  "insideFlag": [
+    "liao_captive",
+    "gong_in"
+  ],
   "names": {
     "surnames": [
       "王",

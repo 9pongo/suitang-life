@@ -174,6 +174,7 @@ const arcIds = new Set();
 for (const a of world.arcBook || []) for (const it of a.items) {
   if (arcIds.has(it.id)) errors.push(`人生故事「${a.name}」的「${it.title}」id 重複：${it.id}`);
   arcIds.add(it.id);
+  for (const f of [...(it.all || [it.id]), ...(it.any || [])]) add(flagsRead, f, '結局冊');
   for (const f of [...(it.all || [it.id]), ...(it.any || [])]) if (!flagsSet.has(f)) errors.push(`人生故事「${a.name}」的「${it.title}」要的旗標「${f}」沒有任何地方設定`);
 }
 // 雜報上的詩：欄位齊全、年份不晚於故事結束（晚了永遠登不出來）、地區存在

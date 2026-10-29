@@ -748,7 +748,8 @@
       const CA = W.campaignAge || [15, 55];
       if (ev.kind !== 'flavor' && isCampaign(ev) && (s.age > CA[1] || s.age < CA[0]) && !ev.req?.age) return null; // 上了年紀的、還小的不跟著隊伍出征
       if (ev.kind !== 'flavor' && s.fired[ev.id] && !ev.repeat) return null;
-      if (inside() && ev.kind === 'stage' && ev.year && ev.choices && !ev.inside && !arr(ev.req?.flag).includes(W.insideFlag)) return null; // 人被關著：外頭的事輪不到你拿主意
+      // 人被關著：外頭的事輪不到你拿主意；沒有年份的人生大事（說親、借貸、入社……）也碰不上
+      if (inside() && ev.kind === 'stage' && (ev.choices || !ev.year) && !ev.inside && !arr(ev.req?.flag).some((f) => INSIDE.includes(f))) return null;
       // 要你拿主意的劇情卡，沒寫年齡就當作是給大人的（年幼的接班人不會被問要不要上陣）
       const r = ev.req || {};
       if (ev.choices && !ev.age && !r.age && !r.son && !r.child && r.married == null && s.age < (W.minChoiceAge ?? 14)) return null;
@@ -844,8 +845,9 @@
       }
       return s.gender === 'm' && arr(A.factions).includes(s.faction) && !!s.flags.served && s.age <= (A.maxAge ?? 58) && s.year - (s.campaignYear ?? -99) <= (A.within ?? 3);
     }
-    // 被關在某處（world.insideFlag）
-    const inside = () => !!(W.insideFlag && S().flags[W.insideFlag]);
+    // 被關在某處（world.insideFlag，可以是一個或幾個旗標：被擄、入宮……）
+    const INSIDE = arr(W.insideFlag);
+    const inside = () => INSIDE.some((f) => S().flags[f]);
     // 一個人過日子：沒有配偶在身邊、沒有活著的孩子、爹娘也都不在了、也沒有還沒長大的弟妹
     function aloneNow() {
       const s = S(), f = s.flags;

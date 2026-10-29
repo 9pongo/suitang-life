@@ -63,6 +63,47 @@
       "text": "{name}死在饑荒的那一年。最後那幾天，{name}把能吃的都留給了家裡的人。"
     },
     {
+      "id": "d_gong_baitou",
+      "when": "dead",
+      "req": {
+        "flag": "gong_baitou"
+      },
+      "title": "上陽白髮",
+      "text": "{name}死在上陽宮裡，那年{age}歲。宮人死了，用一張蓆子裹著，從宮牆的小門抬出去。家裡沒有人知道，也沒有人來領。"
+    },
+    {
+      "id": "d_gong",
+      "when": "dead",
+      "req": {
+        "flag": "gong_in"
+      },
+      "title": "宮人斜",
+      "text": "{name}死在宮裡，那年{age}歲。宮人死了，葬在城外的宮人斜，墳前不立碑，只插一塊木牌，寫著入宮的年份。"
+    },
+    {
+      "id": "d_zhishi",
+      "when": "dead",
+      "cause": "壽終",
+      "req": {
+        "flag": "sh_zhishi"
+      },
+      "title": "致仕",
+      "text": "{name}致仕回鄉以後，又活了幾年，{age}歲上壽終。出殯那天，縣裡來了人，按品級給了一副儀仗。鄰里說，這一家出過官。"
+    },
+    {
+      "id": "d_official",
+      "when": "dead",
+      "req": {
+        "flag": "official",
+        "age": [
+          40,
+          200
+        ]
+      },
+      "title": "青袍",
+      "text": "{name}死的時候{age}歲，穿著那件洗得發白的青色官服入殮。一輩子的官做得不大，墓誌倒是請人寫了長長一篇。"
+    },
+    {
       "id": "d_plague_young",
       "when": "dead",
       "cause": "疫病",
@@ -164,6 +205,16 @@
       "text": "{name}在{year}年走了，那年{age}歲。這一生不長也不短，跟這個時代裡千千萬萬的人一樣。"
     },
     {
+      "id": "a1_gong",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "flag": "gong_in"
+      },
+      "title": "開皇宮人",
+      "text": "{name}在宮裡過了仁壽四年。這一年老皇帝崩了，宮裡掛滿了白布。掖庭的人說，新天子喜歡熱鬧，往後宮裡的人只會更多。"
+    },
+    {
       "id": "a1_guanzhong",
       "when": "alive",
       "chapter": 1,
@@ -189,6 +240,16 @@
       "chapter": 1,
       "title": "仁壽四年",
       "text": "{name}活到了仁壽四年。文帝在位二十四年，倉裡的糧堆得滿滿的，可是老百姓的日子並沒有寬裕多少。這一年，文帝死了，太子楊廣即位。"
+    },
+    {
+      "id": "a2_gong",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "gong_in"
+      },
+      "title": "大業宮人",
+      "text": "{name}在宮裡過了大業十三年。天子去了江都，再也沒有回來。留在宮裡的人每天聽著外頭的消息，不知道城門哪一天會打開。"
     },
     {
       "id": "a2_rebel",
@@ -238,6 +299,16 @@
       "text": "{name}活到了大業十三年。三征遼東、開運河、修長城，天下的男人一半被拉去服役。如今到處都在起兵，李淵也在太原起兵了。"
     },
     {
+      "id": "a3_gong",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "gong_in"
+      },
+      "title": "武德宮人",
+      "text": "{name}在宮裡過了武德九年。宮門外打過一場仗，掖庭的人關緊了門，聽了一整天的喊殺聲。"
+    },
+    {
       "id": "a3_hebei",
       "when": "alive",
       "chapter": 3,
@@ -265,6 +336,27 @@
       "text": "{name}活到了武德九年。仗總算打完了，新朝廷給每個丁男分田，每年交粟二石、絹二丈。這一年，秦王當了皇帝。"
     },
     {
+      "id": "a4_gong",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "flag": "gong_in"
+      },
+      "title": "貞觀宮人",
+      "text": "{name}在宮裡過了貞觀二十三年。老天子崩了，新天子即位。掖庭裡的宮人換了一批又一批，{name}還在。"
+    },
+    {
+      "id": "a4_official",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "flag": "official",
+        "gender": "m"
+      },
+      "title": "官身",
+      "text": "{name}在貞觀年間做了官。品級很低，俸祿也薄，可是回鄉的時候，縣令都要出來迎一迎。"
+    },
+    {
       "id": "a4_xizhou",
       "when": "alive",
       "chapter": 4,
@@ -280,6 +372,27 @@
       "chapter": 4,
       "title": "貞觀",
       "text": "{name}活到了貞觀二十三年。這二十多年，米價便宜，夜不閉戶。後來的人一說起太平年月，第一個想到的就是貞觀。"
+    },
+    {
+      "id": "a5_gong",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "gong_in"
+      },
+      "title": "永淳宮人",
+      "text": "{name}在宮裡又過了幾十年。宮裡的主人從天皇換成了天后，宮人們說話更小心了。"
+    },
+    {
+      "id": "a5_official",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "official",
+        "gender": "m"
+      },
+      "title": "官身",
+      "text": "{name}做官的這些年，朝廷裡的人換得很快。{name}不求升遷，只求平安，每一任都做滿了才走。"
     },
     {
       "id": "a5_luoyang",
@@ -299,6 +412,51 @@
       "text": "{name}活到了永昌元年。朝廷裡的事，坊裡的人說不清楚，只知道天后說了算。銅匭擺在宮門口，人人說話都小心了起來。"
     },
     {
+      "id": "a6_gong",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "flag": "gong_in"
+      },
+      "title": "先天宮人",
+      "text": "{name}在宮裡過了先天元年。這些年，宮裡死了好幾個皇帝，掖庭的宮人卻沒怎麼換。"
+    },
+    {
+      "id": "a6_official",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "flag": "official",
+        "gender": "m"
+      },
+      "title": "官身",
+      "text": "{name}在武周和中宗、睿宗的朝廷裡都做過官。告密的人最多的那幾年，{name}每天上衙門前都跟家裡人道一次別。"
+    },
+    {
+      "id": "a6_direnjie",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "bond": {
+          "direnjie": 2
+        }
+      },
+      "title": "狄公",
+      "text": "{name}活過了狄公。狄公死後，朝廷裡還有他薦上去的張柬之、桓彥範，後來扶著中宗復了位。{name}說，狄公人走了，可是他留下了人。"
+    },
+    {
+      "id": "a6_huineng",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "bond": {
+          "huineng": 2
+        }
+      },
+      "title": "曹溪",
+      "text": "{name}在嶺南過了先天元年。曹溪的大師還在說法，從北方來的和尚一年比一年多。{name}說，原來不識字的人，也能讓讀書人走幾千里路來聽。"
+    },
+    {
       "id": "a6_hebei",
       "when": "alive",
       "chapter": 6,
@@ -314,6 +472,39 @@
       "chapter": 6,
       "title": "先天",
       "text": "{name}活到了先天元年。周又改回了唐，宮裡的人殺來殺去。這一年，臨淄王即了位，他就是後來的開元天子。"
+    },
+    {
+      "id": "a7_gong",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "gong_in"
+      },
+      "title": "天寶宮人",
+      "text": "{name}在宮裡過了天寶十四載。宮裡的歌舞從早到晚沒停過，直到范陽起兵的消息傳進來。"
+    },
+    {
+      "id": "a7_official",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "official",
+        "gender": "m"
+      },
+      "title": "官身",
+      "text": "{name}在開元、天寶年間做官。天下最富的那些年，{name}在縣衙的帳簿上看到的，卻是一年比一年多的逃戶。"
+    },
+    {
+      "id": "a7_huineng",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "bond": {
+          "huineng": 2
+        }
+      },
+      "title": "本來無一物",
+      "text": "{name}活過了開元天寶。大師的真身還在曹溪，{name}每隔幾年就去拜一次。山門外賣香燭的人換了好幾代，還是那條路。"
     },
     {
       "id": "a7_hebei",
@@ -341,6 +532,27 @@
       "chapter": 7,
       "title": "天寶十四載",
       "text": "{name}活到了天寶十四載。開元的米最便宜，天寶的人最多。這一年冬天，漁陽的鼙鼓響了。"
+    },
+    {
+      "id": "a8_gong",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "gong_in"
+      },
+      "title": "廣德宮人",
+      "text": "{name}在宮裡過了廣德元年。長安陷落過兩回，宮裡的人死的死、散的散，{name}還在。"
+    },
+    {
+      "id": "a8_official",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "official",
+        "gender": "m"
+      },
+      "title": "官身",
+      "text": "{name}在安史之亂裡還做著官。城破的時候，有的同僚投了叛軍，有的死了。{name}活下來了，官袍還是那件青色的。"
     },
     {
       "id": "a8_guanzhong",
