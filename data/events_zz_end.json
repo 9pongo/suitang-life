@@ -1,0 +1,5097 @@
+{
+  "endings": [
+    {
+      "id": "zz_a1_liao",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "flag": "liao_kaihuang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "臨渝關",
+      "text": "{name}從遼東活著回來了。開皇十八年那一仗，大軍出了臨渝關就碰上大水，糧運不上去，軍中又起了疫病，十個人裡死了八九個。{name}很少提那一年。"
+    },
+    {
+      "id": "zz_a1_jiushi",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "flag": "jiushi",
+        "region": "guanzhong",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "東去就食",
+      "text": "{name}忘不了開皇十四年。關中大旱，皇帝帶著百姓往東到洛陽就食，扶老攜幼擠滿了官道。後來雨水回來了，一家人又回到關中，把那年欠下的糧慢慢還上。"
+    },
+    {
+      "id": "zz_a1_sheli_si",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "flag": "sheli",
+        "cls": "siyuan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "塔下佃戶",
+      "text": "{name}一家佃的寺田，就在新起的舍利塔下。仁壽年間朝廷把舍利分送各州起塔供養，寺裡的香火一下子旺了起來，佃戶們農閒時都被叫去搬磚。"
+    },
+    {
+      "id": "zz_a1_sheli",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "flag": "sheli",
+        "gender": "f",
+        "age": [
+          15,
+          50
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "迎舍利",
+      "text": "{name}記得送舍利的隊伍進城那天，滿街的人都跪在路邊，有人哭著念佛。{name}那天也跪著，求的是家裡的人平平安安，往後的租調能輕一點。"
+    },
+    {
+      "id": "zz_a1_in_she",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "flag": "in_she",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "社邑",
+      "text": "{name}入了村裡的社。社裡有人家辦喪事，大家出錢出力；春秋兩回設齋聚飲，念完社條，大家一起吃一頓。{name}說，在這世上，總得有幾個人能指望。"
+    },
+    {
+      "id": "zz_a1_lizheng",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "lizheng",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "輸籍",
+      "text": "{name}家當里正。開皇五年行輸籍法，每年正月縣令下鄉，幾個黨合成一團，照樣子定戶等。哪家上戶、哪家下戶，都要從{name}手上過一遍，鄰里見了又敬又怕。"
+    },
+    {
+      "id": "zz_a1_fubing_m",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "fubing",
+        "gender": "m",
+        "age": [
+          15,
+          60
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "驃騎府",
+      "text": "{name}的名字寫在驃騎府的兵籍上，農閒操練，輪到了就去京師番上。開皇十年以後，軍人也歸州縣管，跟百姓一樣受田、入籍帳，{name}家的地也寫進了里正的簿子。"
+    },
+    {
+      "id": "zz_a1_fubing_f",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "fubing",
+        "gender": "f",
+        "age": [
+          15,
+          70
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "兵家婦",
+      "text": "{name}家的男人在軍府裡，輪到番上，一走就是好幾個月。仁壽四年秋天，聽說漢王在并州起兵，{name}一整個秋天沒睡過一個好覺，直到聽說楊素把漢王打敗了。"
+    },
+    {
+      "id": "zz_a1_gentry_jn",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "gentry_jn",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "江左舊家",
+      "text": "{name}家祖上在江南做過官。開皇九年陳亡，建康的城邑宮室都被平毀，墾成了田，舊日的門第也跟著散了。{name}如今在江都過日子，說話還帶著江南的腔調。"
+    },
+    {
+      "id": "zz_a1_gentry_sd",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "gentry_sd",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "山東舊姓",
+      "text": "{name}家是山東舊姓的旁支，到這一代只剩幾頃地和一櫃子書。開皇年間朝廷改了選舉的法子，州裡每年貢士三人。族裡的長輩說，往後光靠姓氏是不夠了。"
+    },
+    {
+      "id": "zz_a1_gentry_gl",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "gentry_gl",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "關隴旁支",
+      "text": "{name}家跟關隴的大族沾一點親。天子姓楊，朝裡的大官多半是從西魏、北周一路跟過來的人家。可旁支就是旁支，{name}這一房還是要自己下田、自己交租。"
+    },
+    {
+      "id": "zz_a1_hu",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "hu",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "薩保",
+      "text": "{name}一家是粟特胡人，住在{place}。胡人多的州，朝廷設了薩保管他們的事，祆祠裡的火一年到頭不熄。{name}的漢話已經說得跟本地人一樣，只是過節還照胡俗。"
+    },
+    {
+      "id": "zz_a1_siyuan",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "siyuan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "寺田",
+      "text": "{name}一家種的是寺裡的地。開皇年間天子崇佛，各州度僧、起寺，寺裡的田一年比一年多，來佃地的人家也一年比一年多。{name}說，佛祖的地，租子一點也不比別家輕。"
+    },
+    {
+      "id": "zz_a1_kehu",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "kehu",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "莊客",
+      "text": "{name}一家是莊上的客戶，籍上沒有自己的田。開皇五年大索貌閱，好些藏在大戶家裡的人被查出來另立了戶。{name}一家沒被查到，還是替莊主種地。"
+    },
+    {
+      "id": "zz_a1_gs_yz",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "gongshang",
+        "region": "yangzhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "晉王總管",
+      "text": "{name}在江都做手藝買賣。晉王在揚州當了十年總管，招了好多江南的和尚、讀書人。如今晉王做了皇帝，城裡的人都說，江都往後要熱鬧了。"
+    },
+    {
+      "id": "zz_a1_gs_ln",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "gongshang",
+        "region": "lingnan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "海舶",
+      "text": "{name}在南海做買賣。城外的港口每年都有海船從南邊來，載著香藥、象牙、犀角。陳朝亡了，嶺南歸了隋，港口裡的船還是照著季風來去。"
+    },
+    {
+      "id": "zz_a1_gongshang",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "cls": "gongshang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "工商",
+      "text": "{name}靠手藝吃飯，籍上寫的是工商。開皇十六年朝廷下令，工商之家不得仕進。{name}說，反正也沒想過當官，只要大興城的兩市天天開門就好。"
+    },
+    {
+      "id": "zz_a1_child",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "age": [
+          3,
+          14
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "國喪",
+      "text": "{name}才{age}歲，還不懂大人們說的「天子崩了」是什麼意思，只記得那年秋天，大人們說話都壓低了聲音，里正來家裡念了好長一段詔書。"
+    },
+    {
+      "id": "zz_a1_loan",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "flag": "loan_late",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "舊債",
+      "text": "{name}家借的那筆債，到仁壽四年還沒還清。債主每年秋收以後上門，{name}量給他的粟，總比自家留下吃的還多。"
+    },
+    {
+      "id": "zz_a1_alone",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "alone": true,
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "孤身",
+      "text": "{name}爹娘都不在了，身邊也沒有家室。{age}歲的人，一個人守著幾畝地過日子。鄰里說起{name}，都說是個老實人，就是話太少。"
+    },
+    {
+      "id": "zz_a1_hebei",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "region": "hebei",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "漢王起兵",
+      "text": "{name}住在{place}。仁壽四年秋天，漢王楊諒在并州起兵，河北也亂了一陣。楊素帶兵打過來，不到兩個月漢王就降了，跟著漢王被殺、被流放的有二十多萬家。"
+    },
+    {
+      "id": "zz_a1_luoyang",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "region": "luoyang",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "長塹",
+      "text": "{name}住在洛陽。仁壽四年冬天，新皇帝到了洛陽，發了幾十萬丁男掘長塹，從龍門往東一直挖下去。城裡的人說，天子是要把都城搬過來了。"
+    },
+    {
+      "id": "zz_a1_yizhou",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "region": "yizhou",
+        "married": true,
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "蜀王",
+      "text": "{name}住在成都。蜀王楊秀在這裡鎮守多年，車馬服飾都學天子的樣子。仁壽二年，他被召回長安廢成了庶人。成都的人說，天高皇帝遠，也有遠不了的時候。"
+    },
+    {
+      "id": "zz_a1_yangzhou",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "region": "yangzhou",
+        "married": true,
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "渡江",
+      "text": "{name}住在江都，從前隔江就是陳朝。開皇九年正月，賀若弼從廣陵帶兵渡江，陳朝亡了。從此江南江北又是一家，江上的船一年比一年多。"
+    },
+    {
+      "id": "zz_a1_shazhou",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "region": "shazhou",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "烽燧",
+      "text": "{name}住在敦煌，城外就是沙磧。開皇初年突厥的騎兵常常南下，邊上的人年年修堡、守烽。後來突厥分成了東西兩部，邊上才安靜了一點。"
+    },
+    {
+      "id": "zz_d1_liao",
+      "when": "dead",
+      "chapter": 1,
+      "cause": "征遼",
+      "req": {
+        "year": [
+          598,
+          598
+        ],
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "臨渝",
+      "text": "{name}死在開皇十八年征遼的路上，那年{age}歲。大軍還沒見到高句麗的城，就先遇上了大水和疫病。家裡的人等到冬天，只等回一個從兵籍上劃掉的名字。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d1_jiushi",
+      "when": "dead",
+      "chapter": 1,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "jiushi"
+      },
+      "title": "就食之後",
+      "text": "{name}死的時候{age}歲。開皇十四年那趟往東就食的路，把{name}的身子拖垮了，往後幾年時好時壞，終究沒養回來。"
+    },
+    {
+      "id": "zz_d1_fubing",
+      "when": "dead",
+      "chapter": 1,
+      "cause": "病故",
+      "req": {
+        "cls": "fubing"
+      },
+      "title": "劃掉一名",
+      "text": "{name}死在{age}歲。府兵之家，男人輪番上京、農閒操練，家裡的事全靠一家人互相撐著。{name}一走，籍帳上又劃掉了一個名字，地還是那幾畝。"
+    },
+    {
+      "id": "zz_d1_hu",
+      "when": "dead",
+      "chapter": 1,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "hu"
+      },
+      "title": "胡俗漢葬",
+      "text": "{name}死在{place}，{age}歲。家裡先請了祆祠的人來，照胡人的規矩送了一程，又照漢人的規矩買地下葬。墓誌上，名字前頭寫的是祖上的國名。"
+    },
+    {
+      "id": "zz_d1_siyuan",
+      "when": "dead",
+      "chapter": 1,
+      "cause": "病故",
+      "req": {
+        "cls": "siyuan"
+      },
+      "title": "寺僧誦經",
+      "text": "{name}病死的時候{age}歲。寺裡的僧人來念了一夜的經，沒有收錢。佃的那幾畝寺田，第二年就換了別家來種。"
+    },
+    {
+      "id": "zz_d1_gongshang",
+      "when": "dead",
+      "chapter": 1,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "gongshang"
+      },
+      "title": "未完的活",
+      "text": "{name}死在{age}歲，手上還有一件沒做完的活。主顧來取的時候，聽說人已經不在了，在門口站了一會兒，把說好的工錢放下就走了。"
+    },
+    {
+      "id": "zz_d1_lizheng",
+      "when": "dead",
+      "chapter": 1,
+      "cause": "病故",
+      "req": {
+        "cls": "lizheng"
+      },
+      "title": "里正之喪",
+      "text": "{name}病死的時候{age}歲。里中的人都來弔喪，有真心來哭的，也有來打聽下一任里正會落在誰家的。"
+    },
+    {
+      "id": "zz_d1_kehu",
+      "when": "dead",
+      "chapter": 1,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "kehu"
+      },
+      "title": "莊頭一角",
+      "text": "{name}是莊上的客戶，死了也只能葬在莊主地頭的一角。莊主派人送來一斗米，說是給辦喪事用的。{name}那年{age}歲。"
+    },
+    {
+      "id": "zz_d1_married",
+      "when": "dead",
+      "chapter": 1,
+      "cause": "病故",
+      "req": {
+        "married": true,
+        "age": [
+          15,
+          24
+        ]
+      },
+      "title": "少年夫妻",
+      "text": "{name}走的時候才{age}歲，跟{spouse}成親沒幾年。{spouse}守了三年，族裡的長輩才開口勸，說日子總還要過下去。"
+    },
+    {
+      "id": "zz_d1_lingnan",
+      "when": "dead",
+      "chapter": 1,
+      "cause": "病故",
+      "req": {
+        "region": "lingnan"
+      },
+      "title": "熱病",
+      "text": "{name}死在{place}，{age}歲。北方來的人說嶺南有瘴氣，可是{name}生在這裡、長在這裡，最後還是沒躲過一場熱病。"
+    },
+    {
+      "id": "zz_d1_shazhou",
+      "when": "dead",
+      "chapter": 1,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "shazhou"
+      },
+      "title": "礫石灘",
+      "text": "{name}死在敦煌，{age}歲。家裡的人把{name}葬在城外的礫石灘上，墳頭壓了幾塊大石，免得被風沙吹平。"
+    },
+    {
+      "id": "zz_d1_yizhou",
+      "when": "dead",
+      "chapter": 1,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "yizhou"
+      },
+      "title": "雨中送葬",
+      "text": "{name}死在成都，{age}歲。出殯那天下著細雨，送葬的人穿著麻衣走在泥地裡。蜀中多雨，家裡的人把墳堆得高高的。"
+    },
+    {
+      "id": "zz_d1_luoyang",
+      "when": "dead",
+      "chapter": 1,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "luoyang"
+      },
+      "title": "北邙",
+      "text": "{name}死在洛陽，{age}歲。洛陽人死了都往北邙山上葬，山上的墳一層疊著一層，比山下的房子還密。"
+    },
+    {
+      "id": "zz_d1_guanzhong",
+      "when": "dead",
+      "chapter": 1,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "guanzhong",
+        "year": [
+          583,
+          604
+        ]
+      },
+      "title": "原上新墳",
+      "text": "{name}死的時候{age}歲，剛看著大興城的坊牆一道道築起來。家裡的人把{name}葬在城南的原上，那裡的新墳一年比一年多。"
+    },
+    {
+      "id": "zz_d1_yangzhou",
+      "when": "dead",
+      "chapter": 1,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "yangzhou"
+      },
+      "title": "江北崗子",
+      "text": "{name}死在江都，{age}歲。家裡的人把{name}葬在城北的崗子上，天晴的時候，站在墳前看得見江對岸的山。"
+    },
+    {
+      "id": "zz_d1_hebei",
+      "when": "dead",
+      "chapter": 1,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "hebei",
+        "gender": "f"
+      },
+      "title": "停靈",
+      "text": "{name}死在{place}，{age}歲。清河一帶的人家講究喪葬，家裡雖窮，還是請了鄉里的老人主喪，停靈哭了好幾天才下葬。"
+    },
+    {
+      "id": "zz_a2_liao_back",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "liao_back",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "薩水生還",
+      "text": "{name}是從薩水逃回來的。三十萬大軍渡過遼水，逃回遼東城的只有兩千七百人。後來聽見有人唱〈無向遼東浪死歌〉，{name}就起身走開。"
+    },
+    {
+      "id": "zz_a2_fushou",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "fushou",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "福手",
+      "text": "{name}的左手一直彎著。大業七年征遼，{name}自己砸斷了那隻手，躲過了徵發。後來聽說去遼東的人回來的沒幾個，{name}就再也不說後悔了。"
+    },
+    {
+      "id": "zz_a2_wall",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "wall",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "築長城",
+      "text": "{name}築過長城。大業三年一百多萬丁男被趕到北邊，死了十之五六。{name}活著回來了，可是每到冬天，兩條腿就疼得下不了地。"
+    },
+    {
+      "id": "zz_a2_canal_hb",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "canal",
+        "region": "hebei",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "永濟渠",
+      "text": "{name}挖過永濟渠。那年河北丁男不夠用，連婦人也被趕去渠邊挑土。後來渠通了，北上涿郡的糧船一艘接一艘，{name}看著，只覺得那些船是從自己肩上過去的。"
+    },
+    {
+      "id": "zz_a2_canal",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "canal",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "通濟渠",
+      "text": "{name}開過通濟渠。後來龍舟從河上過，兩岸栽著柳樹，岸上幾萬人拉著縴。{name}站在堤上看了一會兒，認出了自己挖過的那一段。"
+    },
+    {
+      "id": "zz_a2_dongdu",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "dongdu",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "東都役",
+      "text": "{name}給東都拉過木頭。大木從豫章運來，一根柱子要兩千人拉。如今東都的宮殿早蓋好了，{name}一次也沒進去過。"
+    },
+    {
+      "id": "zz_a2_luokou",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "luokou",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "洛口米",
+      "text": "{name}背過洛口倉的米。瓦崗軍開了倉，任百姓去取，路上灑的米被人踩進了泥裡。{name}背回家的那幾斗米，讓一家人熬過了大業十三年。"
+    },
+    {
+      "id": "zz_a2_mao_caught",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "mao_caught",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "貌閱板子",
+      "text": "{name}忘不了大業五年的貌閱。報小了年紀被官人一眼看穿，挨了板子，里正也被發配嶺南。從那以後，{name}家的籍帳一個字也不敢錯。"
+    },
+    {
+      "id": "zz_a2_mao_cheat",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "mao_cheat",
+        "noroute": [
+          "rebel",
+          "flee",
+          "shan"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "詐注老小",
+      "text": "{name}家在大業五年的貌閱裡把人報小報老，瞞過了官人，少交了好幾年的租調。如今天下大亂，籍帳早就沒人管了，那點小聰明，也沒人記得了。"
+    },
+    {
+      "id": "zz_a2_monk",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "monk_kid_private",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "私度",
+      "text": "{name}家有個孩子私自剃了度，躲在山寺裡。私度是要治罪的，可是比起去遼東、去工地，寺裡總還有一口飯吃。{name}每年偷偷送一回米上山。"
+    },
+    {
+      "id": "zz_a2_rebel_f",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "route": "rebel",
+        "gender": "f",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "營中婦",
+      "text": "{name}跟著義軍東奔西走，替人縫衣、做飯、裹傷。營裡的男人死了一批又來一批，{name}記不住所有人的名字，只記得他們老家在哪裡。"
+    },
+    {
+      "id": "zz_a2_shan_f",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "route": "shan",
+        "gender": "f",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "山中婦",
+      "text": "{name}跟著一家人躲在山裡，白天在山坡上開地，夜裡聽著山下的狗叫。山下換了誰的旗號，{name}不知道，也不想知道。"
+    },
+    {
+      "id": "zz_a2_hu",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "cls": "hu",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "豐都市",
+      "text": "{name}一家是粟特胡人。大業六年正月，東都端門外演了一個月的百戲，胡商進豐都市做買賣，吃酒吃飯都不收錢。才過了幾年，市上的胡商已經一個個往西走了。"
+    },
+    {
+      "id": "zz_a2_gentry",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "cls": [
+          "gentry_gl",
+          "gentry_sd",
+          "gentry_jn"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "族譜畫圈",
+      "text": "{name}家是讀書的舊姓旁支。大業年間朝廷四處徵發，士族也躲不過，族裡有人去了遼東，有人去了工地。到了大業十三年，族譜上畫了圈的名字多了好多。"
+    },
+    {
+      "id": "zz_a2_child",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "age": [
+          3,
+          14
+        ],
+        "noroute": [
+          "rebel",
+          "flee",
+          "shan"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "亂世童年",
+      "text": "{name}才{age}歲，記事起天下就在打仗。大人們說起從前米多便宜、路上沒有強盜，{name}聽著，只當是故事。"
+    },
+    {
+      "id": "zz_a2_widow",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "spouse_dead_old",
+        "gender": "f",
+        "noroute": [
+          "rebel",
+          "flee",
+          "shan"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "寡居",
+      "text": "{name}的丈夫走了以後，{name}一個人撐著家。大業年間婦人不再課役，可是家裡的地、門前的差，哪一樣也少不了{name}。"
+    },
+    {
+      "id": "zz_a2_women",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "gender": "f",
+        "age": [
+          25,
+          60
+        ],
+        "noroute": [
+          "rebel",
+          "flee",
+          "shan"
+        ],
+        "region": [
+          "guanzhong",
+          "luoyang",
+          "hebei",
+          "yangzhou",
+          "shazhou"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "田裡的女人",
+      "text": "{name}這些年下田、餵牛、紡麻，家裡的男人不是去了工地，就是去了遼東。到了大業十三年，里中的田大半是女人在種。"
+    },
+    {
+      "id": "zz_a2_jiangdu",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "region": "yangzhou",
+        "noroute": [
+          "rebel",
+          "flee",
+          "shan"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "江都宮",
+      "text": "{name}住在江都。皇帝的龍舟停在城下，說是不走了。驍果營裡的關中兵天天望著北邊，城裡的米越來越貴，宮裡卻照樣夜夜設宴。"
+    },
+    {
+      "id": "zz_a2_lingnan",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "region": "lingnan",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "楚帝",
+      "text": "{name}住在{place}。北方打成了一鍋粥，江西的林士弘稱了楚帝，說從九江到番禺都歸他管。嶺南的大族各守各的地方，誰的旗號也不急著換。"
+    },
+    {
+      "id": "zz_a2_shazhou",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "region": "shazhou",
+        "noroute": [
+          "rebel",
+          "flee",
+          "shan"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "大涼",
+      "text": "{name}住在敦煌。皇帝西巡、西域使者到張掖朝見，不過是幾年前的事。這一年，武威的李軌起兵，自稱河西大涼王，敦煌城頭的人都在等著看換不換旗。"
+    },
+    {
+      "id": "zz_a2_hebei",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "region": "hebei",
+        "noroute": [
+          "rebel",
+          "flee",
+          "shan"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "長樂王",
+      "text": "{name}住在清河。漳南人竇建德從前當過里長，如今在樂壽稱了長樂王。河北的人說起他，都說他不殺讀書人，搶來的東西都分給手下。"
+    },
+    {
+      "id": "zz_a2_guanzhong",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "region": "guanzhong",
+        "noroute": [
+          "rebel",
+          "flee",
+          "shan"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "約法",
+      "text": "{name}住在長安。十一月，太原來的李家兵進了城，跟百姓約法十二條，把隋朝的苛法都廢了。告示貼在坊門口，{name}請識字的人念了兩遍。"
+    },
+    {
+      "id": "zz_a2_luoyang",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "region": "luoyang",
+        "noroute": [
+          "rebel",
+          "flee",
+          "shan"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "東都城下",
+      "text": "{name}住在洛陽。瓦崗軍佔了洛口倉，又打到東都城下。城裡的米一天一個價，城外倉裡的米，卻多得灑在路上沒人收。"
+    },
+    {
+      "id": "zz_a2_yizhou",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "region": "yizhou",
+        "noflag": [
+          "flee_shu",
+          "gong_in",
+          "official",
+          "liao_captive"
+        ],
+        "gender": "m"
+      },
+      "title": "北人入蜀",
+      "text": "{name}住在成都。北邊逃來的人一批一批翻過秦嶺，說關中、河南都在打仗。蜀中倒還安靜，只是米價一年比一年高。"
+    },
+    {
+      "id": "zz_d2_dongdu",
+      "when": "dead",
+      "chapter": 2,
+      "cause": "役死",
+      "req": {
+        "flag": "dongdu",
+        "region": "luoyang",
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "東都役死",
+      "text": "{name}死在營建東都的工地上，{age}歲。役夫死了，裝在車上往東運到城皋、往北運到河陽，一車接一車，路上的人都看見了。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d2_canal_hb",
+      "when": "dead",
+      "chapter": 2,
+      "cause": "役死",
+      "req": {
+        "flag": "canal",
+        "region": "hebei",
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "渠邊",
+      "text": "{name}死在開永濟渠的工地上，{age}歲。那年河北丁男不夠用，連婦人也被趕去挖渠，家裡的田荒了一整季。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d2_canal",
+      "when": "dead",
+      "chapter": 2,
+      "cause": "役死",
+      "req": {
+        "flag": "canal",
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "泥水",
+      "text": "{name}死在開河的工地上，{age}歲。在泥水裡站了幾個月，腿上的爛瘡一天比一天大。同去的人把{name}抬到堤後草草埋了，帶回來的只有一頂斗笠。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d2_wall",
+      "when": "dead",
+      "chapter": 2,
+      "cause": "役死",
+      "req": {
+        "flag": "wall",
+        "region": [
+          "hebei",
+          "shazhou"
+        ],
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "長城下",
+      "text": "{name}死在北邊築長城的工地上，{age}歲。一百多萬人去，死了十之五六，{name}是其中一個。同去的人回來，只帶回一隻草鞋。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d2_salsu",
+      "when": "dead",
+      "chapter": 2,
+      "cause": "征遼",
+      "req": {
+        "region": [
+          "guanzhong",
+          "luoyang"
+        ],
+        "year": [
+          612,
+          612
+        ],
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "薩水",
+      "text": "{name}死在薩水，{age}歲。三十萬大軍渡過遼水，逃回遼東城的只有兩千七百人。{name}的名字跟著那幾十萬人，一起從兵籍上劃掉了。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d2_xuangan",
+      "when": "dead",
+      "chapter": 2,
+      "cause": "刑戮",
+      "req": {
+        "region": "luoyang",
+        "year": [
+          613,
+          613
+        ]
+      },
+      "title": "城南",
+      "text": "{name}那年領過楊玄感開倉放的米。叛亂平了以後，官府把領過米的人都抓了起來，坑殺在東都城南。{name}死的時候{age}歲。"
+    },
+    {
+      "id": "zz_d2_plague",
+      "when": "dead",
+      "chapter": 2,
+      "cause": "疫病",
+      "req": {
+        "year": [
+          612,
+          612
+        ],
+        "region": "hebei"
+      },
+      "title": "大業八年",
+      "text": "{name}死在大業八年的大疫裡，{age}歲。那年山東、河南又旱又疫，男人都去了遼東，留在家裡的人一個接一個倒下，連抬棺材的人都湊不齊。"
+    },
+    {
+      "id": "zz_d2_fushou",
+      "when": "dead",
+      "chapter": 2,
+      "cause": "病故",
+      "req": {
+        "flag": "fushou"
+      },
+      "title": "彎手",
+      "text": "{name}當年砸斷了自己的手，躲過了遼東，卻沒躲過一場病。{age}歲那年，{name}死在家裡，那隻手到死都彎著。"
+    },
+    {
+      "id": "zz_d2_liao_back",
+      "when": "dead",
+      "chapter": 2,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "liao_back"
+      },
+      "title": "遼東舊傷",
+      "text": "{name}從薩水逃回來以後，身子一直沒好。{age}歲那年冬天，一病就沒再起來。同村去遼東的人，到這時候已經沒剩幾個了。"
+    },
+    {
+      "id": "zz_d2_taohu",
+      "when": "dead",
+      "chapter": 2,
+      "cause": "病故",
+      "req": {
+        "flag": "taohu"
+      },
+      "title": "逃丁",
+      "text": "{name}死在躲役的山裡，{age}歲。同逃的人把{name}埋在一棵松樹下，不敢立碑，怕官府照著名字找上門來。"
+    },
+    {
+      "id": "zz_d2_mao",
+      "when": "dead",
+      "chapter": 2,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "mao_caught"
+      },
+      "title": "病根",
+      "text": "{name}挨過貌閱的板子，從那以後腰就一直不好。{age}歲那年一病不起，家裡的人說，那頓板子是落了病根的。"
+    },
+    {
+      "id": "zz_d2_women",
+      "when": "dead",
+      "chapter": 2,
+      "cause": "病故",
+      "req": {
+        "gender": "f",
+        "year": [
+          608,
+          617
+        ]
+      },
+      "title": "織機前",
+      "text": "{name}死的時候{age}歲。那幾年家裡的男人都被徵走了，{name}一個人下田、餵牛、紡麻，最後累倒在織機前，再也沒起來。"
+    },
+    {
+      "id": "zz_d2_lingnan",
+      "when": "dead",
+      "chapter": 2,
+      "cause": "病故",
+      "req": {
+        "region": "lingnan"
+      },
+      "title": "嶺外",
+      "text": "{name}死在{place}，{age}歲。北方那些開河、築城、征遼的大役，嶺南都沒趕上。可{name}還是沒躲過一場熱病。"
+    },
+    {
+      "id": "zz_d2_shazhou",
+      "when": "dead",
+      "chapter": 2,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "shazhou"
+      },
+      "title": "西巡之後",
+      "text": "{name}死在敦煌，{age}歲。那幾年皇帝西巡，西域的使者、商隊從城下經過，敦煌從沒這麼熱鬧過。{name}沒能多看幾年。"
+    },
+    {
+      "id": "zz_d2_yangzhou",
+      "when": "dead",
+      "chapter": 2,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "yangzhou"
+      },
+      "title": "獻食",
+      "text": "{name}死在江都，{age}歲。龍舟來江都那幾年，沿河的州縣都要獻食，{name}家把攢下的米也送了上去，那年冬天{name}就病倒了。"
+    },
+    {
+      "id": "zz_d2_yizhou",
+      "when": "dead",
+      "chapter": 2,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "yizhou"
+      },
+      "title": "幸在蜀中",
+      "text": "{name}死在成都，{age}歲。北方的消息一年比一年壞，{name}臨死前還在說，幸好是住在蜀中。"
+    },
+    {
+      "id": "zz_a3_liao_home",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "liao_home",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "遼東歸人",
+      "text": "{name}在高句麗過了十年，武德五年才跟著幾千個白了頭的人一起被放回來。家鄉的房子換了主人，認得{name}的人沒剩幾個。"
+    },
+    {
+      "id": "zz_a3_xia",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "xia_served",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "夏王舊人",
+      "text": "{name}在夏王竇建德手下管過倉。虎牢一戰夏王被擒，押到長安斬了。{name}回了清河，把那幾年的事都爛在肚子裡，只在寒食那天偷偷朝西邊燒一張紙。"
+    },
+    {
+      "id": "zz_a3_surrender",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "rebel_surrender",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "降唐",
+      "text": "{name}跟著義軍降了唐，唐將登記了名字，說既往不咎。如今{name}的名字寫在軍府的兵籍上，番上的時候，跟從前在陣前對砍過的人睡在同一個營裡。"
+    },
+    {
+      "id": "zz_a3_rebel_home",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "rebel_home",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "解甲",
+      "text": "{name}從義軍裡走回了家。官府說既往不咎，分了田、免了課役。可是村裡的人提起那幾年，背地裡還是管{name}叫「賊」。"
+    },
+    {
+      "id": "zz_a3_rebel_last",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "rebel_last",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "最後一仗",
+      "text": "{name}跟著義軍打到了最後，直到領頭的人兵敗，才混在潰兵裡回了家。身上的刀疤有好幾道，{name}一道也不肯說是在哪裡挨的。"
+    },
+    {
+      "id": "zz_a3_siege_stay",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "siege_stay",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "圍城餘生",
+      "text": "{name}在洛陽城裡熬過了那一年的圍城。人吃草根、吃浮泥做的餅，{name}親眼看著鄰居一家餓死在屋裡。城開那天，{name}排了半天隊，只為一碗粟。"
+    },
+    {
+      "id": "zz_a3_siege_escape",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "siege_escape",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "縋城",
+      "text": "{name}是在洛陽圍城的時候半夜縋城逃出來的。後來王世充降了唐，{name}回城去找從前的家，只找到半堵燒黑的牆。"
+    },
+    {
+      "id": "zz_a3_back_home",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "back_home",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "回鄉",
+      "text": "{name}一家從蜀中回到了老家。房子塌了一半，院子裡的棗樹還在。官府照著新令分了田，免了幾年課役，{name}在祖墳前跪了好久。"
+    },
+    {
+      "id": "zz_a3_shu_stay",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "flee_shu",
+        "region": "yizhou",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "蜀中客",
+      "text": "{name}一家逃到蜀中，就沒再回去，在成都城外安了家，說話早帶了蜀音。偶爾有同鄉回老家，{name}託人給祖墳帶一句話，帶不帶得到也不知道。"
+    },
+    {
+      "id": "zz_a3_shan",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "shan",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "下山",
+      "text": "天下定了以後，{name}一家從山裡下來，到縣裡附了籍。官府說，逃散的人回來的，分田、免幾年課役。{name}在山上開的那幾塊地，後來給了別人。"
+    },
+    {
+      "id": "zz_a3_hu",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "cls": "hu",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "安氏兄弟",
+      "text": "{name}一家是粟特胡人。武德二年，武威的安興貴、安修仁兄弟幫唐朝擒了李軌，河西就此歸了唐。坊裡的胡人說起這件事，臉上都有光。"
+    },
+    {
+      "id": "zz_a3_lizheng",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "cls": "lizheng",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "武德令",
+      "text": "{name}家又當起了里正。武德七年頒了新令，丁男受田一頃，每丁交粟二石、絹二丈、綿三兩。{name}拿著新令挨家去念，又照著新的樣子重造籍帳。"
+    },
+    {
+      "id": "zz_a3_fubing",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "cls": "fubing",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "十二軍",
+      "text": "{name}的名字又寫進了軍府的兵籍。武德年間，關中分成十二軍，府兵農忙種地、農閒操練，輪番進京宿衛。{name}的刀，又擦亮了。"
+    },
+    {
+      "id": "zz_a3_gongshang",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "cls": "gongshang",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "開元錢",
+      "text": "{name}靠手藝買賣過日子。武德四年朝廷鑄了開元通寶，一文錢沉甸甸的，比亂世裡那些又薄又輕的錢好用多了。{name}說，錢好了，買賣才做得下去。"
+    },
+    {
+      "id": "zz_a3_gentry",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "cls": [
+          "gentry_gl",
+          "gentry_sd",
+          "gentry_jn"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "重抄族譜",
+      "text": "{name}家是讀書的舊姓旁支。亂了這些年，族裡的人散的散、死的死，族譜也燒了一半。天下定了以後，族裡長輩頭一件事，就是把族譜重新抄一遍。"
+    },
+    {
+      "id": "zz_a3_child",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "age": [
+          3,
+          14
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "武德童子",
+      "text": "{name}才{age}歲，生在亂世的尾巴上。{name}記得的頭一件大事，是坊門口貼了新告示，大人們說：仗打完了。"
+    },
+    {
+      "id": "zz_a3_old",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "age": [
+          50,
+          200
+        ],
+        "region": [
+          "guanzhong",
+          "luoyang",
+          "hebei",
+          "shazhou",
+          "yizhou"
+        ],
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "三朝人",
+      "text": "{name}{age}歲了，這輩子見過三個朝廷：周、隋、唐。{name}說，換一回朝廷，換一回年號，老百姓的地還是那幾畝，租子也還是要交。"
+    },
+    {
+      "id": "zz_a3_widow",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "spouse_dead_old",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "未亡人",
+      "text": "{name}的老伴沒能熬過那幾年的亂。{name}一個人把家撐了下來，到了武德九年，日子總算安穩了，{name}卻常常一個人坐在門口發呆。"
+    },
+    {
+      "id": "zz_a3_yangzhou",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "region": "yangzhou",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "江淮定",
+      "text": "{name}住在江都。這幾年城頭換了好幾回旗。武德七年輔公祏在丹陽稱帝，趙郡王李孝恭帶兵平了他，江淮才算定下來。"
+    },
+    {
+      "id": "zz_a3_yizhou",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "region": "yizhou",
+        "noflag": [
+          "flee_shu",
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "蜀中安",
+      "text": "{name}住在成都。北方打了十年，蜀中早早歸了唐，算是天下最安穩的地方。逃來的人有的走了，有的在這裡娶了妻、置了地。"
+    },
+    {
+      "id": "zz_a3_lingnan",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "region": "lingnan",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "嶺南歸唐",
+      "text": "{name}住在{place}。武德五年，李靖越過五嶺招撫，馮盎也帶著自己的地方歸了唐。嶺南的大族還是那些大族，只是官文書上的年號換了。"
+    },
+    {
+      "id": "zz_a3_shazhou",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "region": "shazhou",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "大涼亡",
+      "text": "{name}住在敦煌。大涼王李軌只當了兩年的王，武德二年被自己人綁了送給唐朝。敦煌城頭的旗換了，城裡的人照舊種地、放牧、跟胡商換東西。"
+    },
+    {
+      "id": "zz_a3_guanzhong",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "region": "guanzhong",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official",
+          "liao_captive"
+        ]
+      },
+      "title": "便橋",
+      "text": "{name}住在長安。這年八月，突厥頡利可汗帶著十幾萬騎兵到了渭水北岸，新皇帝只帶著幾個人到便橋上跟他說話。突厥退了，城裡的人到現在還在說那一天。"
+    },
+    {
+      "id": "zz_d3_rebel",
+      "when": "dead",
+      "chapter": 3,
+      "cause": "兵禍",
+      "req": {
+        "flag": "rebel_joined",
+        "region": [
+          "hebei",
+          "luoyang"
+        ],
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "義軍末路",
+      "text": "{name}死在義軍的最後幾仗裡，{age}歲。唐軍收拾戰場的時候，把義軍的屍首堆在一起燒了。家裡的人只能對著東邊，喊了幾聲{name}的小名。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d3_siege",
+      "when": "dead",
+      "chapter": 3,
+      "cause": "兵禍",
+      "req": {
+        "region": "luoyang",
+        "year": [
+          620,
+          621
+        ],
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "城頭一箭",
+      "text": "{name}死在洛陽圍城的那一年，{age}歲。那天夜裡，{name}攀著繩子從城牆上往下滑，城頭的守軍發現了，一箭射了下來。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d3_old",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "age": [
+          50,
+          200
+        ],
+        "noregion": "lingnan"
+      },
+      "title": "見過三朝",
+      "text": "{name}死的時候{age}歲，見過周、隋、唐三個朝廷。老人們說，能在這樣的年頭活到這把年紀，已經是祖上積德了。"
+    },
+    {
+      "id": "zz_d3_xia",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "xia_served"
+      },
+      "title": "夏國倉單",
+      "text": "{name}死的時候{age}歲。家裡的人在{name}枕頭底下找到一張發黃的倉單，上頭蓋著夏國的印。誰也不知道該留還是該燒，最後放進了棺材裡。"
+    },
+    {
+      "id": "zz_d3_liao_home",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "liao_home"
+      },
+      "title": "歸鄉未久",
+      "text": "{name}在高句麗熬了十年才回到家，沒想到回來沒幾年就病倒了，{age}歲。臨走前，{name}說了幾句誰也聽不懂的話，是在遼東學的。"
+    },
+    {
+      "id": "zz_d3_back_home",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "back_home"
+      },
+      "title": "葬入祖墳",
+      "text": "{name}從蜀中回到了老家，在祖墳旁邊開了幾畝地。{age}歲那年病死了，總算是葬進了祖墳，沒有死在異鄉。"
+    },
+    {
+      "id": "zz_d3_flee_shu",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "flee_shu"
+      },
+      "title": "客死成都",
+      "text": "{name}死在成都，{age}歲，離老家一千多里。同鄉的人湊錢買了一口薄棺，說等天下太平了，再把骨頭背回去。"
+    },
+    {
+      "id": "zz_d3_siege_stay",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "siege_stay"
+      },
+      "title": "浮泥餅",
+      "text": "{name}熬過了洛陽圍城，卻落下了病根，腿腫了就不消。{age}歲那年，{name}走了。家裡的人說，那一年吃的浮泥餅，到底還是要了命。"
+    },
+    {
+      "id": "zz_d3_shan",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "shan",
+        "year": [
+          618,
+          621
+        ]
+      },
+      "title": "山中",
+      "text": "{name}死在山裡，{age}歲，沒等到下山的那一天。家裡的人把{name}埋在開出來的那塊地頭，下山以後，再也沒人回去找過。"
+    },
+    {
+      "id": "zz_d3_rebel_home",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "rebel_home"
+      },
+      "title": "舊袍澤",
+      "text": "{name}從義軍裡回了家，沒過幾年太平日子就病死了，{age}歲。出殯那天，當年一起打過仗的幾個人來了，站在最後頭，沒說話。"
+    },
+    {
+      "id": "zz_d3_hebei",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "hebei",
+        "year": [
+          622,
+          623
+        ]
+      },
+      "title": "黑闥再起",
+      "text": "{name}死在{age}歲，劉黑闥又在河北起兵的那幾年。唐軍來了又走，走了又來，{name}的喪事辦得匆匆忙忙，連墳都沒堆好。"
+    },
+    {
+      "id": "zz_d3_lingnan",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "lingnan",
+        "year": [
+          618,
+          621
+        ]
+      },
+      "title": "蕭梁年間",
+      "text": "{name}死在{place}，{age}歲。那時候嶺南名義上歸了江陵的蕭銑，可是誰也沒見過蕭銑派來的人。"
+    },
+    {
+      "id": "zz_d3_shazhou",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "shazhou"
+      },
+      "title": "只寫干支",
+      "text": "{name}死在敦煌，{age}歲。這幾年河西先歸大涼、又歸了唐，家裡的人在墳前插木牌，不知道該寫哪個年號，最後只寫了干支。"
+    },
+    {
+      "id": "zz_d3_guanzhong",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "guanzhong"
+      },
+      "title": "武德",
+      "text": "{name}死在長安，{age}歲。新朝的頭一個年號叫武德，{name}只看了這幾年，沒等到後來的太平。"
+    },
+    {
+      "id": "zz_d3_yangzhou",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "yangzhou",
+        "year": [
+          618,
+          622
+        ]
+      },
+      "title": "兩撥兵之間",
+      "text": "{name}死在江都，{age}歲。武德元年驍果兵變以後，江都城頭換了好幾回旗。{name}的喪事，是趁兩撥兵交替的空檔匆匆辦的。"
+    },
+    {
+      "id": "zz_d3_wife",
+      "when": "dead",
+      "chapter": 3,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "gender": "f",
+        "married": true
+      },
+      "title": "太平才開頭",
+      "text": "{name}死的時候{age}歲。{spouse}在墳前站了很久，說亂世裡跟著自己吃了那麼多苦，太平日子才剛開頭，人就沒了。"
+    },
+    {
+      "id": "zz_a4_xuanzang",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "flag": "xuanzang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "迎法師",
+      "text": "{name}那年擠在朱雀街上，看玄奘法師從天竺回來。經卷、佛像一馱一馱過去，街上的人多得走不動。{name}後來常說，那是這輩子見過最熱鬧的一天。"
+    },
+    {
+      "id": "zz_a4_liao645",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "flag": "liao645",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "安市城",
+      "text": "{name}跟著天子打過遼東。打下了遼東城、白巖城，卻在安市城下耗到了秋天。回來的路上遇上暴風雪，好多人凍死在渤錯水的泥裡，{name}是走回來的。"
+    },
+    {
+      "id": "zz_a4_sold",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "flag": "sold_child",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "貞觀二年",
+      "text": "{name}忘不了貞觀二年。那年關中又旱又蝗，{name}把一個孩子賣給了人家。後來朝廷拿出御府的金寶替百姓贖回兒女。那個孩子後來怎樣了，{name}從不跟人說。"
+    },
+    {
+      "id": "zz_a4_xizhou_fb",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "flag": "to_xizhou",
+        "cls": "fubing",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "西州戍",
+      "text": "{name}一家搬到了西州，{name}在那裡當府兵，守烽、戍城、屯田。火焰山下的夏天熱得像蒸籠，{name}說，熱是熱，好歹分到了田。"
+    },
+    {
+      "id": "zz_a4_suiyi",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "anyFlag": [
+          "canal",
+          "wall",
+          "dongdu"
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "大業舊役",
+      "text": "{name}年輕時給隋朝服過大役。到了貞觀年間，聽說皇帝常拿隋煬帝的事來警醒群臣，{name}只說：那些事，是我拿身子挨過的。"
+    },
+    {
+      "id": "zz_a4_liao_old",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "flag": "liao",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "遼東老兵",
+      "text": "{name}是大業年間從遼東回來的老兵。貞觀十九年天子親征遼東，村裡的年輕人爭著應募，{name}坐在門口看著，一句話也沒說。"
+    },
+    {
+      "id": "zz_a4_rebel_old",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "flag": "rebel_joined",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "義軍老人",
+      "text": "{name}年輕時跟著義軍打過仗。到了貞觀年間，那些事已經沒人提了。{name}成了村裡說話有分量的老人，誰家分家、爭地界，都來請{name}去說句公道話。"
+    },
+    {
+      "id": "zz_a4_gentry_sd",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "cls": "gentry_sd",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "氏族志",
+      "text": "{name}家是山東舊姓的旁支。貞觀十二年朝廷修成《氏族志》，皇帝把崔家從第一等改到了第三等。族裡的長輩氣了好幾天，可是上門來說親的人，一點也沒少。"
+    },
+    {
+      "id": "zz_a4_gentry_o",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "cls": [
+          "gentry_gl",
+          "gentry_jn"
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "今朝品秩",
+      "text": "{name}家是讀書的舊姓旁支。貞觀年間朝廷修《氏族志》，照當朝的官爵定門第高下。{name}這一房沒有人做官，在族譜上排得越來越後。"
+    },
+    {
+      "id": "zz_a4_hu",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "cls": "hu",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "西市胡商",
+      "text": "{name}一家是粟特胡人。東突厥亡了以後，好多胡人跟著降附的部落進了長安，西市裡的胡商一下子多了起來。{name}家的買賣，這些年也做大了。"
+    },
+    {
+      "id": "zz_a4_fubing",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "cls": "fubing",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "折衝府",
+      "text": "{name}在折衝府當府兵。貞觀十年軍府都改叫折衝府，每年冬天折衝都尉召集府兵教閱。輪到番上，{name}就背著自備的衣糧進京宿衛。"
+    },
+    {
+      "id": "zz_a4_lizheng",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "cls": "lizheng",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "手實計帳",
+      "text": "{name}家當里正。每年年底各戶報手實，{name}照著寫進計帳，三年一造籍。貞觀年間戶口一年比一年多，簿子也越寫越厚。"
+    },
+    {
+      "id": "zz_a4_siyuan",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "cls": "siyuan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "道先佛後",
+      "text": "{name}一家還在佃寺裡的地。貞觀十一年朝廷下詔，道士、女冠排在僧尼前頭，寺裡的僧人嘀咕了好一陣。可寺裡的田一畝也沒少，佃戶的租子也沒少。"
+    },
+    {
+      "id": "zz_a4_kehu",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "cls": "kehu",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "留在莊上",
+      "text": "{name}一家還是莊上的客戶。貞觀年間天下太平，逃散的人一批批回鄉附籍、分田，{name}一家卻沒有走：莊上的活雖苦，好歹年年有飯吃。"
+    },
+    {
+      "id": "zz_a4_gongshang",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "cls": "gongshang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "市鼓",
+      "text": "{name}在市上做買賣。每天午時市鼓一響就開市，太陽下山前鉦聲一響，就得收攤出市。貞觀四年一斗米才三四個錢，{name}說，東西賤，人心倒是寬了。"
+    },
+    {
+      "id": "zz_a4_old",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "age": [
+          65,
+          200
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "貞觀老人",
+      "text": "{name}{age}歲了，從開皇活到貞觀。年輕時挨過大業的徵發，老了才趕上太平。{name}常說，這輩子的好日子，都擠在了最後二十年。"
+    },
+    {
+      "id": "zz_a4_widow",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "flag": "spouse_dead_old",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "哭先帝",
+      "text": "{name}的老伴走了好幾年。貞觀二十三年五月，皇帝駕崩的消息傳來，{name}跟著鄰里一起哭了一場，哭到後來，也分不清是在哭誰了。"
+    },
+    {
+      "id": "zz_a4_child",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "age": [
+          3,
+          14
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "貞觀童子",
+      "text": "{name}才{age}歲。這一年皇帝駕崩了，大人們一連說了好幾天從前的事。{name}只記得那陣子市上的米還是很便宜，過年蒸的餅還是很香。"
+    },
+    {
+      "id": "zz_a4_shazhou",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "region": "shazhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "西路通",
+      "text": "{name}住在敦煌。貞觀年間伊吾歸了唐，高昌也平了，往西的路通了。駝隊一隊接一隊從城下過，城裡做買賣的胡人比從前多了許多。"
+    },
+    {
+      "id": "zz_a4_lingnan",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "region": "lingnan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "馮盎來朝",
+      "text": "{name}住在{place}。貞觀五年，馮盎親自進長安朝見，嶺南的大族從此都安分了。港口裡的海船一年比一年多，北方來的商人也多了。"
+    },
+    {
+      "id": "zz_a4_yangzhou",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "region": "yangzhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "移治江都",
+      "text": "{name}住在江都。武德末年，揚州的治所從江南搬到了江都，官府、商船都過了江。到了貞觀年間，城裡的市一年比一年熱鬧。"
+    },
+    {
+      "id": "zz_a4_yizhou",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "region": "yizhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "蜀錦",
+      "text": "{name}住在成都。蜀中的錦一匹一匹運出劍閣，送到長安。貞觀年間天下太平，蜀道上的人也多了起來，{name}在城門口就能聽見好幾種口音。"
+    },
+    {
+      "id": "zz_a4_hebei",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "region": "hebei",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "定州監國",
+      "text": "{name}住在{place}。貞觀十九年天子親征遼東，太子留在定州監國，河北各州運糧、造船，忙了整整一年。{name}也被叫去推了兩個月的糧車。"
+    },
+    {
+      "id": "zz_a4_guanzhong",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "region": "guanzhong",
+        "married": true,
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "天可汗",
+      "text": "{name}住在長安。貞觀四年，李靖滅了東突厥，頡利可汗被押進長安。各國的君長請皇帝稱天可汗，坊裡的人走起路來，腰都挺得直些。"
+    },
+    {
+      "id": "zz_a4_luoyang",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "region": "luoyang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "洛水溢",
+      "text": "{name}住在洛陽。貞觀十一年七月洛水暴漲，沖壞了好幾百戶人家。{name}家的牆塌了半面，重新築牆的那幾天，鄰里都來幫忙。"
+    },
+    {
+      "id": "zz_d4_liao645",
+      "when": "dead",
+      "chapter": 4,
+      "cause": "征遼",
+      "req": {
+        "region": "hebei",
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "柳城之祭",
+      "text": "{name}跟著天子去打遼東，死在安市城下，{age}歲。天子回師的時候，命人收拾戰死者的骸骨，在柳城東南設祭，親自哭了一場。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d4_plague",
+      "when": "dead",
+      "chapter": 4,
+      "cause": "疫病",
+      "req": {
+        "region": "guanzhong",
+        "year": [
+          636,
+          636
+        ],
+        "age": [
+          40,
+          200
+        ]
+      },
+      "title": "貞觀十年",
+      "text": "{name}死在貞觀十年關中的疫病裡，{age}歲。那一年長孫皇后也病逝了，坊裡的人說，連宮裡都擋不住這一場病。"
+    },
+    {
+      "id": "zz_d4_xizhou",
+      "when": "dead",
+      "chapter": 4,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "xizhou"
+      },
+      "title": "衣物疏",
+      "text": "{name}死在西州，{age}歲。家裡的人照西州的規矩，替{name}寫了一張衣物疏放進墓裡，上頭一件一件列著帶走的衣裳、被褥。"
+    },
+    {
+      "id": "zz_d4_xuanzang",
+      "when": "dead",
+      "chapter": 4,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "xuanzang"
+      },
+      "title": "見過法師",
+      "text": "{name}死的時候{age}歲。臨走前，{name}還說起那年在朱雀街上看見玄奘法師回來，經卷一馱一馱地過，說自己這輩子，也算是見過佛光了。"
+    },
+    {
+      "id": "zz_d4_suiyi",
+      "when": "dead",
+      "chapter": 4,
+      "cause": "壽終",
+      "req": {
+        "anyFlag": [
+          "canal",
+          "wall",
+          "dongdu"
+        ]
+      },
+      "title": "大業役夫",
+      "text": "{name}年輕時在隋朝的工地上差點送了命，沒想到最後活到了{age}歲，壽終在貞觀的太平年月裡。當年一同服役的人，一個也沒來送，都先走了。"
+    },
+    {
+      "id": "zz_d4_liao_old",
+      "when": "dead",
+      "chapter": 4,
+      "cause": "壽終",
+      "req": {
+        "flag": "liao"
+      },
+      "title": "多賺的命",
+      "text": "{name}是從遼東活著回來的人，又活到了{age}歲。臨終前{name}說，當年三十萬人只逃回兩千多，自己這條命，是多賺了幾十年。"
+    },
+    {
+      "id": "zz_d4_rebel",
+      "when": "dead",
+      "chapter": 4,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "rebel_joined"
+      },
+      "title": "包頭布",
+      "text": "{name}死的時候{age}歲。年輕時跟著義軍打仗的事，家裡的小輩只聽過一點點。整理遺物時，翻出一塊包頭的舊布，誰也不知道是做什麼用的。"
+    },
+    {
+      "id": "zz_d4_sold",
+      "when": "dead",
+      "chapter": 4,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "sold_child"
+      },
+      "title": "臨終念名",
+      "text": "{name}死的時候{age}歲。臨終前一直念著一個名字，家裡的人聽了半天才明白，是貞觀二年賣掉的那個孩子。"
+    },
+    {
+      "id": "zz_d4_fubing",
+      "when": "dead",
+      "chapter": 4,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "fubing",
+        "gender": "m",
+        "year": [
+          636,
+          649
+        ]
+      },
+      "title": "劃去兵籍",
+      "text": "{name}死的時候{age}歲。折衝府來人把{name}的名字從兵籍上劃掉，順口問家裡還有沒有到了歲數的男丁。"
+    },
+    {
+      "id": "zz_d4_lizheng",
+      "when": "dead",
+      "chapter": 4,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "lizheng"
+      },
+      "title": "收回籍帳",
+      "text": "{name}當了一輩子的里正，死的時候{age}歲。縣裡的書手來弔喪，順便把{name}手上那幾本籍帳收了回去。"
+    },
+    {
+      "id": "zz_d4_hu",
+      "when": "dead",
+      "chapter": 4,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "hu"
+      },
+      "title": "郡望",
+      "text": "{name}死在{place}，{age}歲。家裡請人寫了墓誌，照漢人的樣子先寫郡望，說祖上是從西域某國遷來的，又寫了好幾代先人的名字。"
+    },
+    {
+      "id": "zz_d4_gentry",
+      "when": "dead",
+      "chapter": 4,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": [
+          "gentry_gl",
+          "gentry_sd",
+          "gentry_jn"
+        ]
+      },
+      "title": "隱居不仕",
+      "text": "{name}死的時候{age}歲。族裡請了一位能文的親戚寫墓誌，從祖上幾代做過什麼官寫起，寫到{name}這一代，只剩一句「隱居不仕」。"
+    },
+    {
+      "id": "zz_d4_siyuan",
+      "when": "dead",
+      "chapter": 4,
+      "cause": "壽終",
+      "req": {
+        "cls": "siyuan"
+      },
+      "title": "老佃",
+      "text": "{name}佃了一輩子寺田，活到{age}歲。寺裡的老和尚親自來念經，說{name}到寺裡佃地的年頭，比他出家的年頭還長。"
+    },
+    {
+      "id": "zz_d4_gongshang",
+      "when": "dead",
+      "chapter": 4,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "gongshang"
+      },
+      "title": "傳給徒弟",
+      "text": "{name}做了一輩子手藝，死的時候{age}歲。用了幾十年的那套傢伙，照{name}的吩咐，傳給了跟{name}最久的那個徒弟。"
+    },
+    {
+      "id": "zz_d4_shazhou",
+      "when": "dead",
+      "chapter": 4,
+      "cause": "壽終",
+      "req": {
+        "region": "shazhou"
+      },
+      "title": "駝隊讓路",
+      "text": "{name}活到{age}歲，壽終在敦煌。出殯那天，城外的駝隊停下來讓路，牽駝的胡人站在路邊，等送葬的人走過去。"
+    },
+    {
+      "id": "zz_d4_lingnan",
+      "when": "dead",
+      "chapter": 4,
+      "cause": "病故",
+      "req": {
+        "region": "lingnan"
+      },
+      "title": "銅鼓",
+      "text": "{name}死在{place}，{age}歲。嶺南的鄉俗，辦喪事要敲銅鼓，那幾天，村裡的銅鼓從早響到晚。"
+    },
+    {
+      "id": "zz_a5_dafeichuan",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "dafeichuan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "大非川",
+      "text": "{name}從大非川回來了。那一仗十來萬唐軍幾乎全沒了，薛仁貴也被除了名。{name}回到折衝府，同一火的十個人只剩下兩個。"
+    },
+    {
+      "id": "zz_a5_baekje",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "baekje",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "白江口",
+      "text": "{name}坐過海船，跟著蘇定方打下了百濟。後來聽說龍朔三年白江口一戰，倭國的船燒了四百艘，海水都紅了。{name}說，這輩子坐夠了船。"
+    },
+    {
+      "id": "zz_a5_gaomi",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "gaomi",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "告密",
+      "text": "{name}當年寫了一封告密的信，那戶人家被抓走，再也沒回來。坊裡的人見了{name}都繞著走，{name}自己夜裡也常常驚醒。告密的人越來越多，誰也不知道下一個是誰。"
+    },
+    {
+      "id": "zz_a5_to_luoyang",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "to_luoyang",
+        "region": "luoyang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "東來就食",
+      "text": "{name}一家是永淳元年從關中逃荒來的。那年關中一斗米賣到三百多錢，連皇帝都帶著朝廷往東都就食。如今{name}在神都落了戶，說話還是關中口音。"
+    },
+    {
+      "id": "zz_a5_liao645",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "liao645",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "平壤",
+      "text": "{name}當年跟著太宗打過遼東，沒打下安市城。總章元年，聽說李勣終於打下了平壤，高句麗亡了，{name}一個人喝了一壺酒。"
+    },
+    {
+      "id": "zz_a5_xuanzang",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "xuanzang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "玉華寺",
+      "text": "{name}還記得看玄奘法師回長安的那一天。麟德元年，法師在玉華寺圓寂，出殯那天，送葬的人有一百多萬，{name}也在裡頭。"
+    },
+    {
+      "id": "zz_a5_gentry_sd",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "cls": "gentry_sd",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "禁婚家",
+      "text": "{name}家是山東舊姓的旁支。顯慶四年朝廷下詔，崔、盧、李、鄭、王幾家不准互相通婚，也不准多收聘財。族裡的人嘴上說遵旨，私下照舊偷偷結親。"
+    },
+    {
+      "id": "zz_a5_gentry_o",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "cls": [
+          "gentry_gl",
+          "gentry_jn"
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "勳格",
+      "text": "{name}家是讀書的舊姓旁支。朝廷改修《姓氏錄》，只照當朝官品排等級，立了軍功的兵卒都入了譜。老輩人撇著嘴說，這叫「勳格」，門第不值錢了。"
+    },
+    {
+      "id": "zz_a5_fubing",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "cls": "fubing",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "府兵苦",
+      "text": "{name}在折衝府當兵，番上、征行一樣不少。這些年東邊打高句麗、西邊打吐蕃，府兵出去的多、回來的少，有點家底的人家，都想法子從兵籍上脫身。"
+    },
+    {
+      "id": "zz_a5_lizheng",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "cls": "lizheng",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "銅匭",
+      "text": "{name}家當里正，這幾年最怕的不是收不上租，是有人告密。銅匭擺在神都，告密的人沿路由驛站送進京。{name}每寫一份文書，都要再三看過才敢交。"
+    },
+    {
+      "id": "zz_a5_siyuan",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "cls": "siyuan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "白馬寺",
+      "text": "{name}一家佃寺裡的地。垂拱年間，白馬寺的薛懷義出入宮禁，各處寺裡的僧人走路都帶風。佃戶的租子，倒是一點也沒少。"
+    },
+    {
+      "id": "zz_a5_hu",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "cls": "hu",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "四鎮商路",
+      "text": "{name}一家是粟特胡人。這些年吐蕃佔了安西四鎮，西邊的商路時通時斷，從西邊來的香料、寶石一年比一年貴。{name}家的買賣，全看這條路的臉色。"
+    },
+    {
+      "id": "zz_a5_gs_luoyang",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "cls": "gongshang",
+        "region": "luoyang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "明堂",
+      "text": "{name}在神都做工，垂拱四年給明堂運過木料。明堂蓋了三層，頂上立著一隻塗金的鐵鳳。完工那天，{name}擠在人群裡，指著說哪根柱子是自己抬的。"
+    },
+    {
+      "id": "zz_a5_gongshang",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "cls": "gongshang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "換年號",
+      "text": "{name}靠手藝和買賣過活。這些年年號換得勤，十來年就換了七八個，{name}的帳寫錯了好幾回，後來乾脆只寫干支。"
+    },
+    {
+      "id": "zz_a5_kehu",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "cls": "kehu",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "投莊",
+      "text": "{name}一家還是莊上的客戶。這些年徭役、征行越來越重，好些有籍的人家寧可把田賣了，投到大戶莊上當客戶。{name}說，莊上的人一年比一年多了。"
+    },
+    {
+      "id": "zz_a5_old",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "age": [
+          70,
+          200
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "見過貞觀",
+      "text": "{name}{age}歲了，見過貞觀的太平，也見過永淳的饑荒。如今天后說了算，坊裡的年輕人說起朝廷的事，{name}只是搖頭：說那麼多做什麼。"
+    },
+    {
+      "id": "zz_a5_widow",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "spouse_dead_old",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "曬太陽",
+      "text": "{name}的老伴走了以後，{name}白天坐在門口曬太陽，看坊裡的人來來去去。年號換了又換，{name}一個也記不住，只記得老伴是哪一年走的。"
+    },
+    {
+      "id": "zz_a5_child",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "age": [
+          3,
+          14
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "永昌",
+      "text": "{name}才{age}歲。大人們說，天后在洛水得了一塊寶圖，上頭寫著「聖母臨人，永昌帝業」，今年的年號也叫永昌。{name}聽不懂，只記得那幾天家裡吃了一頓肉。"
+    },
+    {
+      "id": "zz_a5_alone",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "alone": true,
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "十句話",
+      "text": "{name}一個人過日子，爹娘早走了，身邊也沒有家室。{age}歲的人，每天天亮下田、天黑關門，跟鄰里說的話，一天不超過十句。"
+    },
+    {
+      "id": "zz_a5_yangzhou",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "region": "yangzhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "討武檄",
+      "text": "{name}住在揚州。光宅元年徐敬業起兵，駱賓王寫的檄文貼滿了城門，說「請看今日之域中，竟是誰家之天下」。不到兩個月兵就敗了，城裡抓了好多人。"
+    },
+    {
+      "id": "zz_a5_guanzhong",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "region": "guanzhong",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "長安冷落",
+      "text": "{name}住在長安。永淳那年饑荒以後，皇帝和天后就常住東都，長安的宮殿空了一大半。弘道元年皇帝死在東都，再也沒回來。"
+    },
+    {
+      "id": "zz_a5_hebei",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "region": "hebei",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "北邊烽火",
+      "text": "{name}住在{place}。平高句麗那幾年，河北年年運糧、造船。仗打完了沒多久，北邊的突厥又起來了，邊上的烽火一年比一年近。"
+    },
+    {
+      "id": "zz_a5_lingnan",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "region": "lingnan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "南選",
+      "text": "{name}住在{place}。朝廷派了南選使到嶺南，就地選人補官，不必走幾千里路去長安。{name}聽說，鄰村有個讀書人就這樣補了一個縣尉。"
+    },
+    {
+      "id": "zz_a5_shazhou",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "region": "shazhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "四鎮失",
+      "text": "{name}住在沙州。吐蕃把安西四鎮都打下來了，往西的商路時通時斷。沙州的人照舊在渠邊種地，按時交租，只是城牆一年比一年修得高。"
+    },
+    {
+      "id": "zz_a5_xizhou",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "region": "xizhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "西州田",
+      "text": "{name}住在西州。這裡的田少，一丁受田只有十畝上下，地裡種的是粟麥和葡萄。每年冬天，縣裡照樣挨家寫手實，一戶一行，寫在麻紙上。"
+    },
+    {
+      "id": "zz_a5_yizhou",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "region": "yizhou",
+        "married": true,
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "蜀中夫妻",
+      "text": "{name}跟{spouse}住在成都，日子過得還算平順。北邊的朝廷換了年號又換年號，蜀中的人只管種稻、織錦，一年到頭忙著，倒也不覺得天下有什麼變了。"
+    },
+    {
+      "id": "zz_d5_dafeichuan",
+      "when": "dead",
+      "chapter": 5,
+      "cause": "兵禍",
+      "req": {
+        "cls": "fubing",
+        "year": [
+          670,
+          670
+        ],
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "青海邊",
+      "text": "{name}死在大非川，{age}歲。十來萬唐軍在青海邊上被吐蕃打得幾乎一個不剩，{name}自備的那把刀，也沒能帶回來。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d5_plague",
+      "when": "dead",
+      "chapter": 5,
+      "cause": "疫病",
+      "req": {
+        "year": [
+          682,
+          683
+        ],
+        "age": [
+          40,
+          200
+        ],
+        "region": "guanzhong"
+      },
+      "title": "永淳大疫",
+      "text": "{name}死在永淳年間，{age}歲。那年關中先水後旱，接著是蝗、是疫，兩京之間死的人多得來不及埋，路邊的屍首一個挨著一個。"
+    },
+    {
+      "id": "zz_d5_gaomi",
+      "when": "dead",
+      "chapter": 5,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "gaomi"
+      },
+      "title": "告密者",
+      "text": "{name}死的時候{age}歲。當年被{name}告發的那戶人家，再也沒有回來。出殯那天，坊裡的人來得很少，來了的也只站在門口。"
+    },
+    {
+      "id": "zz_d5_to_luoyang",
+      "when": "dead",
+      "chapter": 5,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "to_luoyang"
+      },
+      "title": "客死神都",
+      "text": "{name}是永淳那年逃荒到洛陽的，最後也死在了洛陽，{age}歲。臨死前說想回關中，家裡的人說等收成好了就送，後來到底沒送成。"
+    },
+    {
+      "id": "zz_d5_baekje",
+      "when": "dead",
+      "chapter": 5,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "baekje"
+      },
+      "title": "別葬河邊",
+      "text": "{name}死的時候{age}歲。年輕時渡海打過百濟，一輩子都怕水，臨走前還跟家裡人說，別把自己葬在河邊。"
+    },
+    {
+      "id": "zz_d5_liao645",
+      "when": "dead",
+      "chapter": 5,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "liao645"
+      },
+      "title": "看到結局",
+      "text": "{name}跟太宗打過遼東，後來又聽說高句麗亡了，總算看到了那場仗的結局。{age}歲那年，{name}走了。"
+    },
+    {
+      "id": "zz_d5_gentry",
+      "when": "dead",
+      "chapter": 5,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": [
+          "gentry_gl",
+          "gentry_sd",
+          "gentry_jn"
+        ]
+      },
+      "title": "祖塋",
+      "text": "{name}死的時候{age}歲。族裡的人把{name}送回祖塋安葬，照輩分排在父祖的下首。墓誌上寫著郡望，還寫了一長串祖上的官銜。"
+    },
+    {
+      "id": "zz_d5_fubing",
+      "when": "dead",
+      "chapter": 5,
+      "cause": "壽終",
+      "req": {
+        "cls": "fubing",
+        "gender": "m"
+      },
+      "title": "老府兵",
+      "text": "{name}在折衝府的兵籍上掛了大半輩子，活到{age}歲，壽終在家。府裡的人來看過一眼，說這樣的老兵，往後不多了。"
+    },
+    {
+      "id": "zz_d5_lizheng",
+      "when": "dead",
+      "chapter": 5,
+      "cause": "壽終",
+      "req": {
+        "cls": "lizheng"
+      },
+      "title": "老里正",
+      "text": "{name}當了幾十年里正，活到{age}歲。里中誰家幾口人、幾畝地，{name}閉著眼睛都說得出來。新來的里正，好幾回還是來向{name}請教。"
+    },
+    {
+      "id": "zz_d5_hu",
+      "when": "dead",
+      "chapter": 5,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "hu"
+      },
+      "title": "兩邊規矩",
+      "text": "{name}死在{place}，{age}歲。家裡的人請了祆祠的祝來，又請了漢人的匠人刻墓誌，胡漢兩邊的規矩都照著辦了一遍。"
+    },
+    {
+      "id": "zz_d5_siyuan",
+      "when": "dead",
+      "chapter": 5,
+      "cause": "壽終",
+      "req": {
+        "cls": "siyuan"
+      },
+      "title": "第三代",
+      "text": "{name}佃了一輩子寺田，活到{age}歲。寺裡的僧人說，{name}一家佃這塊地，已經是第三代了。"
+    },
+    {
+      "id": "zz_d5_kehu",
+      "when": "dead",
+      "chapter": 5,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "kehu"
+      },
+      "title": "莊後坡",
+      "text": "{name}在莊上做了一輩子客戶，死的時候{age}歲。莊主念著{name}幹活實在，讓家裡的人把{name}葬在莊後的坡上。"
+    },
+    {
+      "id": "zz_d5_lingnan",
+      "when": "dead",
+      "chapter": 5,
+      "cause": "壽終",
+      "req": {
+        "region": "lingnan"
+      },
+      "title": "嶺南高壽",
+      "text": "{name}活到了{age}歲，在嶺南算是高壽。家裡的人照鄉俗辦了喪事，敲了好幾天的銅鼓，連隔壁洞裡的人都來了。"
+    },
+    {
+      "id": "zz_d5_xizhou",
+      "when": "dead",
+      "chapter": 5,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "xizhou"
+      },
+      "title": "紙鞋紙帽",
+      "text": "{name}死在西州，{age}歲。家裡的人用舊文書糊了紙鞋、紙帽，放進墓裡，上頭還看得出縣裡寫給{name}家的字。"
+    },
+    {
+      "id": "zz_d5_shazhou",
+      "when": "dead",
+      "chapter": 5,
+      "cause": "壽終",
+      "req": {
+        "region": "shazhou"
+      },
+      "title": "施經",
+      "text": "{name}活到{age}歲，壽終在沙州。家裡請了寺裡的僧人來念經，又把{name}生前抄的一卷經施給了寺裡。"
+    },
+    {
+      "id": "zz_d5_yangzhou",
+      "when": "dead",
+      "chapter": 5,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "yangzhou",
+        "year": [
+          684,
+          689
+        ]
+      },
+      "title": "亂後薄葬",
+      "text": "{name}死在揚州，{age}歲。徐敬業兵敗以後，城裡抓人抓了好一陣，{name}的喪事辦得很低調，鄰里也只請了幾家。"
+    },
+    {
+      "id": "zz_a6_qidan",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "flag": "qidan_fled",
+        "region": "hebei",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "逃契丹",
+      "text": "{name}一家逃過契丹兵。萬歲通天元年，一家人把糧埋在院子裡，一路逃到黃河邊上，第二年才回來。房子還在，埋的糧被人挖走了，{name}到現在想起來還心疼。"
+    },
+    {
+      "id": "zz_a6_to_luoyang",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "flag": "to_luoyang",
+        "region": "luoyang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "實神都",
+      "text": "{name}一家是從關中遷來神都的。官府在城外給了田，地薄，離老家又遠。神龍以後皇帝回了長安，{name}一家卻留了下來，在洛陽生了根。"
+    },
+    {
+      "id": "zz_a6_gaomi",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "flag": "gaomi",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "來俊臣死",
+      "text": "{name}當年告過密。後來酷吏一個個倒了，來俊臣在洛陽被斬，仇家爭著去割他的肉。{name}聽說以後，好幾天沒出門。"
+    },
+    {
+      "id": "zz_a6_fubing",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "cls": "fubing",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "府兵零落",
+      "text": "{name}還在折衝府的兵籍上。這些年府兵番上越來越苦，好多人家逃了籍。到了先天元年，{name}一數，同府的人少了一大半。"
+    },
+    {
+      "id": "zz_a6_lizheng",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "cls": "lizheng",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "改字",
+      "text": "{name}家當里正。周改回了唐，天后造的那些新字一律不用了，簿子上的年號、國號又要重寫一遍。{name}說，這些年改的字，比收的租還多。"
+    },
+    {
+      "id": "zz_a6_hu",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "cls": "hu",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "天樞",
+      "text": "{name}一家是粟特胡人。延載年間，胡商們湊錢在神都端門外鑄了一根天樞，上頭刻著百官和四夷君長的名字。{name}家也出了錢，名字刻不上去，說起來也算有份。"
+    },
+    {
+      "id": "zz_a6_siyuan",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "cls": "siyuan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "大雲寺",
+      "text": "{name}一家佃的是寺裡的地。天授年間各州都蓋了大雲寺，寺田又多了一大片。佃戶們說，換了誰當皇帝，寺裡的地都只會越來越多。"
+    },
+    {
+      "id": "zz_a6_gentry",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "cls": [
+          "gentry_gl",
+          "gentry_sd",
+          "gentry_jn"
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "殿前策問",
+      "text": "{name}家是讀書的舊姓旁支。天后在殿上親自策問貢舉人，寒門出身的人也能中第。族裡的長輩說，往後光靠姓氏，是不夠了。"
+    },
+    {
+      "id": "zz_a6_gongshang",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "cls": "gongshang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "禁屠",
+      "text": "{name}靠手藝和買賣過活。長壽年間朝廷下令禁屠，賣肉的、打魚的都歇了業，江淮一帶還有人因此餓死。過了好幾年禁令鬆了，市上的肉案才又擺出來。"
+    },
+    {
+      "id": "zz_a6_kehu",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "cls": "kehu",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "檢括",
+      "text": "{name}一家還是莊上的客戶。這些年逃戶越來越多，有的逃到大戶的莊上，有的躲進了山裡。朝廷派人來檢括，莊主塞了些錢，事情就過去了。"
+    },
+    {
+      "id": "zz_a6_old",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "age": [
+          70,
+          200
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "米賤之君",
+      "text": "{name}{age}歲了，這輩子經過的皇帝數一數有好幾個，連女皇帝都見過了。坊裡的年輕人問哪個皇帝最好，{name}說：米便宜的那個。"
+    },
+    {
+      "id": "zz_a6_widow",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "flag": "spouse_dead_old",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "拔草",
+      "text": "{name}的老伴走了好些年。這些年朝廷裡殺來殺去，{name}一概不問，只管每年清明去墳上，把雜草拔乾淨，跟老伴說幾句家裡的事。"
+    },
+    {
+      "id": "zz_a6_child",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "age": [
+          3,
+          14
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "先天童子",
+      "text": "{name}才{age}歲。這幾年宮裡死了好幾個皇帝，大人們說起來都壓低了聲音。{name}只知道，今年又換了一個年號，叫先天。"
+    },
+    {
+      "id": "zz_a6_alone",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "alone": true,
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "獨身",
+      "text": "{name}一個人過日子，爹娘早走了，身邊也沒有家室。這些年天下改周又改唐，{name}的日子一點也沒變：天亮下田，天黑關門。"
+    },
+    {
+      "id": "zz_a6_luoyang",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "region": "luoyang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "通天宮",
+      "text": "{name}住在洛陽。明堂燒了又蓋，改叫通天宮。神龍元年以後神都又改回東都，皇帝也回了長安，城裡的官人搬走了一半。"
+    },
+    {
+      "id": "zz_a6_guanzhong",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "region": "guanzhong",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "還京",
+      "text": "{name}住在長安。天后住在神都的那些年，長安冷清了不少。中宗回了長安，城裡又熱鬧起來，安樂公主的宅子蓋得比宮裡還好。"
+    },
+    {
+      "id": "zz_a6_yizhou",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "region": "yizhou",
+        "married": true,
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "十幾個年號",
+      "text": "{name}住在成都。北邊朝廷裡殺來殺去，蜀道太遠，消息傳到這裡往往已經換了年號。這二十多年，{name}家簿子上的年號，改了十幾回。"
+    },
+    {
+      "id": "zz_a6_lingnan",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "region": "lingnan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "流人",
+      "text": "{name}住在{place}。這些年從北邊流放來的官越來越多，有的是天后的仇人，有的是天后的寵臣，一批來了，又一批被赦回去。"
+    },
+    {
+      "id": "zz_a6_shazhou",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "region": "shazhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "四鎮復",
+      "text": "{name}住在沙州。長壽元年，王孝傑收復了安西四鎮，朝廷派了三萬兵駐守。往西的路又通了，沙州的驛站一年到頭忙個不停。"
+    },
+    {
+      "id": "zz_a6_xizhou",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "region": "xizhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "驛路",
+      "text": "{name}住在西州。安西的兵、往來的商隊、送公文的驛馬都要從這裡過。西州的人家，十家有八家給官府當過差：運糧、餵馬、守烽。"
+    },
+    {
+      "id": "zz_a6_yangzhou",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "region": "yangzhou",
+        "married": true,
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "direnjie": 1,
+          "huineng": 1
+        }
+      },
+      "title": "揚州市",
+      "text": "{name}跟{spouse}在揚州過日子。北邊朝廷換了好幾回主人，揚州的市照樣天天開，船從江南來，鹽從海邊來，都在這裡過。"
+    },
+    {
+      "id": "zz_d6_qidan",
+      "when": "dead",
+      "chapter": 6,
+      "cause": "兵禍",
+      "req": {
+        "region": "hebei",
+        "year": [
+          696,
+          697
+        ],
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "契丹兵至",
+      "text": "{name}死在契丹兵手裡，{age}歲。萬歲通天元年，朝廷的兵在硤石谷全軍覆沒，契丹的騎兵一直打進了河北腹地，{name}沒能躲過去。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d6_plague",
+      "when": "dead",
+      "chapter": 6,
+      "cause": "疫病",
+      "req": {
+        "region": "hebei",
+        "year": [
+          707,
+          707
+        ],
+        "age": [
+          40,
+          200
+        ]
+      },
+      "title": "景龍疫",
+      "text": "{name}死在景龍元年河北的疫病裡，{age}歲。那年河北又旱又疫，死的人多，棺材鋪的木料都賣光了。"
+    },
+    {
+      "id": "zz_d6_qidan_fled",
+      "when": "dead",
+      "chapter": 6,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "qidan_fled"
+      },
+      "title": "死在家裡",
+      "text": "{name}逃過了契丹兵，卻在那之後病了好幾年。{age}歲那年，{name}死在自己家裡，總算沒死在逃難的路上。"
+    },
+    {
+      "id": "zz_d6_gaomi",
+      "when": "dead",
+      "chapter": 6,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "gaomi"
+      },
+      "title": "那封信",
+      "text": "{name}死的時候{age}歲。告密的事過去好多年了，可是直到最後，{name}也沒跟家裡人說起那封信。"
+    },
+    {
+      "id": "zz_d6_to_luoyang",
+      "when": "dead",
+      "chapter": 6,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "to_luoyang"
+      },
+      "title": "葬北邙",
+      "text": "{name}是被遷到神都的關中人，死在洛陽，{age}歲。家裡的人商量了好久，還是把{name}葬在北邙，說關中太遠，祖墳也沒人管了。"
+    },
+    {
+      "id": "zz_d6_hu",
+      "when": "dead",
+      "chapter": 6,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "hu"
+      },
+      "title": "胡歌",
+      "text": "{name}死在{place}，{age}歲。下葬那天，同鄉的胡人都來了，用胡語唱了一段誰也聽不懂的歌，鄰里站在一旁，安安靜靜地聽完。"
+    },
+    {
+      "id": "zz_d6_gentry",
+      "when": "dead",
+      "chapter": 6,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": [
+          "gentry_gl",
+          "gentry_sd",
+          "gentry_jn"
+        ],
+        "year": [
+          690,
+          704
+        ]
+      },
+      "title": "新字墓誌",
+      "text": "{name}死的時候{age}歲。請人寫的墓誌用的是天后的新字，「年」「月」「日」都寫得奇奇怪怪。後來朝廷不用新字了，那塊墓誌已經埋進了土裡。"
+    },
+    {
+      "id": "zz_d6_lizheng",
+      "when": "dead",
+      "chapter": 6,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "lizheng"
+      },
+      "title": "塗了又改",
+      "text": "{name}當了一輩子里正，{age}歲死了。這些年改字、改年號、改國號，{name}的簿子塗了又改、改了又塗，交到下一任手裡的時候，誰也看不懂了。"
+    },
+    {
+      "id": "zz_d6_fubing",
+      "when": "dead",
+      "chapter": 6,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "fubing",
+        "gender": "m"
+      },
+      "title": "牆上弓刀",
+      "text": "{name}死的時候{age}歲。折衝府的人來劃名字，順口說這兩年府裡的人又少了。{name}家的弓刀，從此掛在牆上，再也沒人拿下來。"
+    },
+    {
+      "id": "zz_d6_siyuan",
+      "when": "dead",
+      "chapter": 6,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "siyuan"
+      },
+      "title": "一聲鐘",
+      "text": "{name}死的時候{age}歲。那天寺裡的鐘響了一下，寺裡的僧人說，這是給{name}敲的。{name}佃了一輩子寺田，最後總算得了這一聲。"
+    },
+    {
+      "id": "zz_d6_gongshang",
+      "when": "dead",
+      "chapter": 6,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "gongshang"
+      },
+      "title": "足秤",
+      "text": "{name}死在{age}歲，鋪子關了三天。鄰里說，{name}做了一輩子買賣，秤從來沒少給過人。"
+    },
+    {
+      "id": "zz_d6_kehu",
+      "when": "dead",
+      "chapter": 6,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "kehu"
+      },
+      "title": "劃掉那一行",
+      "text": "{name}給莊主幹了一輩子活，{age}歲死了。莊主家的帳上，{name}一家還欠著一點租，莊主想了想，把那一行劃掉了。"
+    },
+    {
+      "id": "zz_d6_lingnan",
+      "when": "dead",
+      "chapter": 6,
+      "cause": "病故",
+      "req": {
+        "region": "lingnan"
+      },
+      "title": "流人寫碑",
+      "text": "{name}死在{place}，{age}歲。那幾年北邊流放來的官人很多，其中一個識字的，替{name}寫了一塊墓碑，算是答謝{name}送過的幾回米。"
+    },
+    {
+      "id": "zz_d6_shazhou",
+      "when": "dead",
+      "chapter": 6,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "shazhou"
+      },
+      "title": "施布",
+      "text": "{name}死在沙州，{age}歲。家裡的人在寺裡給{name}點了一盞燈，又施了一匹布，請僧人在齋日裡念一念{name}的名字。"
+    },
+    {
+      "id": "zz_d6_yizhou",
+      "when": "dead",
+      "chapter": 6,
+      "cause": "壽終",
+      "req": {
+        "region": "yizhou"
+      },
+      "title": "蜀中壽終",
+      "text": "{name}活到{age}歲，壽終在成都。蜀中人辦喪事講究，家裡請了樂人吹打，送葬的隊伍從坊裡一直排到城門口。"
+    },
+    {
+      "id": "zz_a7_yan_army",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "yan_army",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        }
+      },
+      "title": "燕軍",
+      "text": "{name}被點進了范陽的兵。十二月，大軍渡過黃河，打下了東京。{name}穿著燕軍的衣服站在洛陽城下，心裡想的，卻是家裡那幾畝地今年誰去收。"
+    },
+    {
+      "id": "zz_a7_pingyuan",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "pingyuan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ]
+      },
+      "title": "平原城頭",
+      "text": "{name}在平原郡的城頭上守著。河北的郡縣一個接一個開了城門，只有平原的顏太守關了城，招了一萬多人。{name}每天在城上操練，等著不知道哪天才來的援兵。"
+    },
+    {
+      "id": "zz_a7_flee_jh",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "flee_jianghuai",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ],
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "南渡",
+      "text": "{name}一家從北邊逃到了揚州，擠在城外的草棚裡。北邊來的人一天比一天多，揚州的米價一天比一天高。{name}夜裡睡不著，總在想老家的門有沒有關好。"
+    },
+    {
+      "id": "zz_a7_yunnan",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "yunnan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ],
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "雲南歸",
+      "text": "{name}去過雲南，是少數走回來的人。天寶十三載，李宓又帶著七萬人去打南詔，全軍覆沒。{name}聽說以後，關起門喝了一夜的酒。"
+    },
+    {
+      "id": "zz_a7_jianer",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "jianer",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ],
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "長征健兒",
+      "text": "{name}當過長征健兒，在邊上的軍鎮裡跟吐蕃、奚、契丹都打過，傷了一條腿才回家。聽說范陽的節度使反了，{name}說，邊上的兵只認節度使，早晚要出這種事。"
+    },
+    {
+      "id": "zz_a7_kuoqi",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "anyFlag": [
+          "kuoqi",
+          "fubing_off"
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ],
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "彍騎",
+      "text": "開元十年，{name}眼看著同府的人去應募長從宿衛，後來改叫彍騎。到了天寶年間，彍騎成了市井子弟掛名的差事，有的販繒彩，有的玩角抵，真打起仗來，沒幾個拿得動刀。"
+    },
+    {
+      "id": "zz_a7_fubing",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "cls": "fubing",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "停府兵",
+      "text": "{name}家是府兵之家。天寶八載，折衝府不再發魚書，府兵就此名存實亡。{name}的名字，從此只留在一本沒人再翻的兵籍裡。"
+    },
+    {
+      "id": "zz_a7_buhuang",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "buhuang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ],
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "捕蝗",
+      "text": "{name}忘不了開元四年夜裡在田邊點火捕蝗。那時候有人說殺蝗要遭天譴，可是那一年的收成到底保住了。姚崇的名字，{name}記了一輩子。"
+    },
+    {
+      "id": "zz_a7_jianzhen",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "jianzhen",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ],
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "鑑真",
+      "text": "{name}在揚州見過鑑真和尚。和尚好幾次東渡都沒走成，眼睛也瞎了。天寶十二載他第六次出海，聽說終於到了日本。{name}說，人要是想走，總是走得到的。"
+    },
+    {
+      "id": "zz_a7_kuohu",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "kuohu_done",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ],
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "附籍",
+      "text": "{name}一家是開元年間括戶時出來附籍的。頭六年免了賦役，後來照常交租調。{name}說，有了籍，交是交得多了，夜裡倒睡得踏實些。"
+    },
+    {
+      "id": "zz_a7_taohu",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "taohu",
+        "noflag": [
+          "kuohu_done",
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ],
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "籍外",
+      "text": "{name}一家到現在還不在籍上，替人種地、打短工過活。勸農使來括戶的那幾年，{name}一家躲了過去。如今天下又要亂了，有沒有籍，好像也不要緊了。"
+    },
+    {
+      "id": "zz_a7_siyuan",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "cls": "siyuan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "沙汰僧尼",
+      "text": "{name}一家佃寺裡的地。開元二年朝廷沙汰僧尼，一萬多個僧尼被勒令還俗，寺裡一下子少了好多人，田卻一畝也沒少。"
+    },
+    {
+      "id": "zz_a7_gongshang",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "cls": "gongshang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "開元米賤",
+      "text": "{name}靠手藝和買賣過活。開元末年絹一匹才二百錢，路上的店家酒飯齊備，出門走幾千里都不用帶兵器。{name}說，那是做買賣最好的年頭。"
+    },
+    {
+      "id": "zz_a7_lizheng",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "cls": "lizheng",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "攤逃",
+      "text": "{name}家當里正。開元、天寶年間戶口一年比一年多，逃走的人也一年比一年多。逃戶欠下的租調，上頭照樣叫{name}催，催不上來，{name}只好自己貼。"
+    },
+    {
+      "id": "zz_a7_kehu",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "cls": "kehu",
+        "noflag": [
+          "kuohu_done",
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "沒走的客戶",
+      "text": "{name}一家還在莊上當客戶。開元年間括戶，莊上的客戶走了一半，{name}一家沒走。莊主說，留下來的往後租子減一點，到頭來也沒減多少。"
+    },
+    {
+      "id": "zz_a7_gentry",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "cls": [
+          "gentry_gl",
+          "gentry_sd",
+          "gentry_jn"
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "詩賦",
+      "text": "{name}家是讀書的舊姓旁支。開元、天寶年間進士科越來越吃香，族裡的子弟都在學作詩賦。{name}說，祖宗靠門第，往後得靠文章了。"
+    },
+    {
+      "id": "zz_a7_old",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "age": [
+          70,
+          200
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ],
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "開元老人",
+      "text": "{name}{age}歲了，見過武周，見過中宗，最後趕上了開元的太平。這年冬天聽說范陽的安祿山反了，{name}說，自己這把年紀，怕是看不到太平了。"
+    },
+    {
+      "id": "zz_a7_widow",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "spouse_dead_old",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ],
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "哪兒也不去",
+      "text": "{name}的老伴走了好些年，{name}一個人守著老屋。天寶十四載冬天，范陽起兵的消息傳來，鄰里都在收拾東西，{name}坐在門口，哪兒也不想去。"
+    },
+    {
+      "id": "zz_a7_child",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "age": [
+          3,
+          14
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ],
+        "noregion": [
+          "hebei"
+        ]
+      },
+      "title": "天寶童子",
+      "text": "{name}才{age}歲，生在天下最富的年頭。這年冬天，大人們忽然都不說笑了，坊門早早就關，{name}只聽說，北邊有人造反了。"
+    },
+    {
+      "id": "zz_a7_lingnan",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "region": "lingnan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ]
+      },
+      "title": "大庾嶺",
+      "text": "{name}住在{place}。開元年間，張九齡奏請開了大庾嶺的新路，嶺南的貨物從此好走多了。港口裡停滿了從南海來的海船，城裡有了好多番商。"
+    },
+    {
+      "id": "zz_a7_yangzhou",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "region": "yangzhou",
+        "married": true,
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ]
+      },
+      "title": "廣陵潮",
+      "text": "{name}住在揚州。運河上的漕船一年比一年多，江淮的米、海邊的鹽，都在這裡裝船北上。天寶十載秋天廣陵起了大風，潮水一夜打翻了好幾千艘船。"
+    },
+    {
+      "id": "zz_a7_yizhou",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "region": "yizhou",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ]
+      },
+      "title": "南詔",
+      "text": "{name}住在成都。楊國忠遙領劍南節度，打南詔的仗卻一次比一次敗。蜀中的男丁被抓去雲南，回來的沒幾個。"
+    },
+    {
+      "id": "zz_a7_luoyang",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "region": "luoyang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ]
+      },
+      "title": "東京陷",
+      "text": "{name}住在洛陽。十二月叛軍進了城，封常清的兵退走了。東京留守李憕、御史中丞盧奕不肯降，都被殺了。城裡的人關緊了門，只聽見外頭的馬蹄聲。"
+    },
+    {
+      "id": "zz_a7_guanzhong",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "region": "guanzhong",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ]
+      },
+      "title": "秋霖",
+      "text": "{name}住在長安，天下最大的城。天寶十三載秋雨下了六十多天，牆塌了、米貴了，宮裡的歌舞卻沒停過，直到范陽的消息傳進來。"
+    },
+    {
+      "id": "zz_a7_shazhou",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "region": "shazhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ]
+      },
+      "title": "豆盧軍",
+      "text": "{name}住在沙州。河西節度使的大兵屯在涼州，沙州有豆盧軍守著西邊的門戶。這些年糧價平穩，莫高窟又開了好幾個新窟。"
+    },
+    {
+      "id": "zz_a7_xizhou",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "region": "xizhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "bondMax": {
+          "huineng": 1
+        },
+        "nocls": [
+          "hu"
+        ]
+      },
+      "title": "怛羅斯",
+      "text": "{name}住在西州。天寶十載，高仙芝在怛羅斯敗給了大食，西州有好幾家的兒子再也沒回來。商隊照舊從城下過，胡商說起西邊，話少了很多。"
+    },
+    {
+      "id": "zz_d7_luoyang",
+      "when": "dead",
+      "chapter": 7,
+      "cause": "兵禍",
+      "req": {
+        "region": "luoyang",
+        "year": [
+          755,
+          755
+        ],
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "東京之陷",
+      "text": "{name}死在叛軍攻進東京的那一天，{age}歲。封常清招來的兵都是市井裡的人，一戰就散了，{name}沒來得及跑出坊門。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d7_yunnan",
+      "when": "dead",
+      "chapter": 7,
+      "cause": "疫病",
+      "req": {
+        "year": [
+          751,
+          754
+        ],
+        "age": [
+          30,
+          200
+        ]
+      },
+      "title": "雲南瘴",
+      "text": "{name}死在去雲南的路上，{age}歲。南方又濕又熱，還沒見到南詔的兵，營裡就病倒了一大半。屍首沒能帶回來。"
+    },
+    {
+      "id": "zz_d7_buhuang",
+      "when": "dead",
+      "chapter": 7,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "buhuang"
+      },
+      "title": "捕蝗夜",
+      "text": "{name}死的時候{age}歲。開元四年那個夜裡，{name}在田邊點火、挖坑埋蝗，熬了一整夜。後來家裡的人說起{name}，總是先說那一夜。"
+    },
+    {
+      "id": "zz_d7_kuohu",
+      "when": "dead",
+      "chapter": 7,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "kuohu_done"
+      },
+      "title": "銷戶",
+      "text": "{name}死的時候{age}歲，名字好好地寫在籍帳上。里正來銷戶，在{name}的名字底下注了一個「死」字。這一家，總算是有始有終。"
+    },
+    {
+      "id": "zz_d7_jianer",
+      "when": "dead",
+      "chapter": 7,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "jianer"
+      },
+      "title": "陰天腿疼",
+      "text": "{name}年輕時當過健兒，在邊上傷了一條腿。老了以後，那條腿一到陰天就疼。{age}歲那年冬天，{name}再也沒能下床。"
+    },
+    {
+      "id": "zz_d7_fubing_off",
+      "when": "dead",
+      "chapter": 7,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "fubing_off"
+      },
+      "title": "最後一張弓",
+      "text": "{name}死的時候{age}歲。兵籍早就沒人翻了，{name}還留著當年番上用的那張弓，臨走前叫人拿下來擦了一遍。"
+    },
+    {
+      "id": "zz_d7_kuoqi",
+      "when": "dead",
+      "chapter": 7,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "kuoqi"
+      },
+      "title": "體面",
+      "text": "{name}在京城當過彍騎，吃了大半輩子官糧，{age}歲那年死了。同營的人來弔喪，穿得比做買賣的還體面。"
+    },
+    {
+      "id": "zz_d7_jianzhen",
+      "when": "dead",
+      "chapter": 7,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "jianzhen"
+      },
+      "title": "海那一頭",
+      "text": "{name}死在揚州，{age}歲。臨終前還說起那年見鑑真和尚出海的事，說自己這輩子沒出過遠門，聽說有人走到了海的那一頭，心裡也覺得寬。"
+    },
+    {
+      "id": "zz_d7_gentry",
+      "when": "dead",
+      "chapter": 7,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": [
+          "gentry_gl",
+          "gentry_sd",
+          "gentry_jn"
+        ]
+      },
+      "title": "雅好琴書",
+      "text": "{name}死的時候{age}歲。族裡的子弟替{name}寫了一篇墓誌，文辭華麗，說{name}「雅好琴書」。認得{name}的人都說，{name}一輩子摸得最多的是鋤頭。"
+    },
+    {
+      "id": "zz_d7_hu",
+      "when": "dead",
+      "chapter": 7,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "hu"
+      },
+      "title": "故土",
+      "text": "{name}死在{place}，{age}歲。{name}年輕時跟著駝隊往西走過好幾趟，最遠到過康國。臨走前，{name}讓人把一包從西邊帶回來的土撒在棺材裡。"
+    },
+    {
+      "id": "zz_d7_siyuan",
+      "when": "dead",
+      "chapter": 7,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "siyuan"
+      },
+      "title": "三代佃",
+      "text": "{name}死的時候{age}歲，寺裡的地，{name}家已經佃了好幾代。新來的知事僧拿著帳簿上門，說租子照舊，往後換{name}家別的人來交。"
+    },
+    {
+      "id": "zz_d7_lizheng",
+      "when": "dead",
+      "chapter": 7,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "lizheng"
+      },
+      "title": "貼租",
+      "text": "{name}當了半輩子里正，替逃戶貼了不少租調。死的時候{age}歲，家裡的地倒比當里正以前少了好幾畝。"
+    },
+    {
+      "id": "zz_d7_gongshang",
+      "when": "dead",
+      "chapter": 7,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "gongshang"
+      },
+      "title": "路祭",
+      "text": "{name}做了一輩子買賣，趕上了開元的好年頭，死的時候{age}歲。出殯那天，市上好幾家鋪子的人都來了，在路邊擺了一碗酒。"
+    },
+    {
+      "id": "zz_d7_lingnan",
+      "when": "dead",
+      "chapter": 7,
+      "cause": "壽終",
+      "req": {
+        "region": "lingnan"
+      },
+      "title": "番船",
+      "text": "{name}活到{age}歲，壽終在{place}。這一輩子，{name}看著港口裡的海船從十幾艘變成幾十艘，番商說的話，{name}也聽得懂幾句了。"
+    },
+    {
+      "id": "zz_d7_yangzhou",
+      "when": "dead",
+      "chapter": 7,
+      "cause": "病故",
+      "req": {
+        "region": "yangzhou"
+      },
+      "title": "揚州醫",
+      "text": "{name}死在揚州，{age}歲。揚州城裡什麼都有，好的醫人也有，可是{name}的病還是沒治好。"
+    },
+    {
+      "id": "zz_a8_yan_last",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "yan_last",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "潰兵歸來",
+      "text": "{name}跟著叛軍打到了最後。廣德元年正月，史朝義在林子裡自縊，{name}扔了刀，混在潰兵裡回了家。村裡的人看著{name}，誰也沒問這幾年去了哪裡。"
+    },
+    {
+      "id": "zz_a8_yan_home",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "yan_home",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "解甲回鄉",
+      "text": "{name}從燕軍裡走回了家。官軍說放下刀的一概不問，可是村裡的人記得清楚，誰家的人跟著叛軍南下過。{name}每天低著頭下田，話越來越少。"
+    },
+    {
+      "id": "zz_a8_pingyuan",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "pingyuan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "平原舊卒",
+      "text": "{name}守過平原城。後來顏太守棄了郡，渡河南去，{name}留在河北，換了好幾回主子。說起顏太守，{name}總要加一句：我在他手下守過城。"
+    },
+    {
+      "id": "zz_a8_yan_stay",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "yan_stay",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "陷賊",
+      "text": "{name}在叛軍佔著的長安城裡住了一年多。至德二載九月官軍收復長安，{name}站在路邊，跟所有人一起哭。廣德元年冬天吐蕃又進了城，{name}又躲了一回。"
+    },
+    {
+      "id": "zz_a8_flee_shu",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "flee_shu",
+        "region": "yizhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "幸蜀",
+      "text": "{name}一家跟著逃難的人進了蜀中，那時候皇帝也在成都，說長安話的人擠滿了城。如今長安收復了，{name}還在猶豫，要不要回去。"
+    },
+    {
+      "id": "zz_a8_flee_jh",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "flee_jianghuai",
+        "region": "yangzhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "江淮客",
+      "text": "{name}一家從北方逃到揚州，在城外搭了個棚子住下。上元二年平盧兵進城大掠，{name}一家又躲了一回。仗打完了，回不回北邊，{name}還拿不定主意。"
+    },
+    {
+      "id": "zz_a8_jianer",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "jianer",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "舊營",
+      "text": "{name}當過健兒，傷了腿才回家。這八年，從前同營的人有的跟著安祿山南下，有的跟著郭子儀打回來。{name}常想，要是自己還在營裡，會站在哪一邊。"
+    },
+    {
+      "id": "zz_a8_taohu",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flagWithin": {
+          "taohu": 6
+        },
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "躲丁",
+      "text": "{name}為了躲抓丁，翻牆跑過一回。那年九個節度使的兵在相州城下潰散，縣裡夜夜來人點人補兵。如今仗打完了，{name}的名字還記在逃丁的簿子上。"
+    },
+    {
+      "id": "zz_a8_hu_yz",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "cls": "hu",
+        "region": "yangzhou",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "揚州胡",
+      "text": "{name}一家是胡人，在揚州開了一間鋪子。上元二年平盧兵進城，見了高鼻深目的就殺，好幾千個胡商死在那幾天。{name}躲在寺裡，三天後才敢出來。"
+    },
+    {
+      "id": "zz_a8_hu",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "cls": "hu",
+        "noregion": [
+          "guanzhong",
+          "xizhou"
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "改姓",
+      "text": "{name}一家是粟特胡人。安祿山、史思明都是胡人，這仗打完，好多胡人改了姓、改了籍貫。連河西的安重璋都上表請改了姓，皇帝賜他姓李。"
+    },
+    {
+      "id": "zz_a8_ln_gs",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "cls": "gongshang",
+        "region": "lingnan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "番兵",
+      "text": "{name}在廣州做買賣。乾元元年，大食、波斯的兵從海上打進城，燒了倉庫、搶了貨物，刺史也棄城跑了。{name}的鋪子燒得只剩一根門柱，第二年又蓋了起來。"
+    },
+    {
+      "id": "zz_a8_gongshang",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "cls": "gongshang",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "noregion": [
+          "guanzhong",
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "大錢",
+      "text": "{name}靠買賣過活。這幾年朝廷先鑄乾元重寶，一枚當十；又鑄重輪錢，一枚當五十。錢越鑄越大，米價漲得沒邊，{name}的帳越記越糊塗。"
+    },
+    {
+      "id": "zz_a8_lizheng",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "cls": "lizheng",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "noregion": [
+          "guanzhong",
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "點兵",
+      "text": "{name}家當里正，這幾年最難的差事，就是點人補兵、催租催調。簿子上的戶一年比一年少，逃的逃、死的死，剩下的還要攤著交。"
+    },
+    {
+      "id": "zz_a8_siyuan",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "cls": "siyuan",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "noregion": [
+          "guanzhong",
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "度牒",
+      "text": "{name}一家佃寺裡的地。朝廷缺錢，開始賣度牒，交一筆錢就能剃度。寺裡的和尚一下子多了好多，佃戶的租子，倒是一點也沒少。"
+    },
+    {
+      "id": "zz_a8_fubing",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "cls": "fubing",
+        "gender": "m",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "noregion": [
+          "guanzhong",
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "弓刀生鏽",
+      "text": "{name}家祖上是府兵，兵籍早就沒人翻了。這一回打仗，靠的是節度使招來的兵。{name}家牆上的弓刀，掛在那裡生了鏽。"
+    },
+    {
+      "id": "zz_a8_kehu",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "cls": "kehu",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "noregion": [
+          "guanzhong",
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "莊主南逃",
+      "text": "{name}一家還是莊上的客戶。仗打了八年，莊主一家逃到了江南，莊上的地沒人管，{name}一家就這麼種著，也不知道往後租子交給誰。"
+    },
+    {
+      "id": "zz_a8_gentry",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "cls": [
+          "gentry_gl",
+          "gentry_sd",
+          "gentry_jn"
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "noregion": [
+          "guanzhong",
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "譜牒",
+      "text": "{name}家是讀書的舊姓旁支。兩京陷落的時候，好多世家帶著族譜往南逃，譜牒丟的丟、燒的燒。{name}憑著記性，把自家的世系重新寫了一遍。"
+    },
+    {
+      "id": "zz_a8_old",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "age": [
+          70,
+          200
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "noregion": [
+          "guanzhong",
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "開元遺老",
+      "text": "{name}{age}歲了，見過開元最好的年頭，也見過天下最亂的八年。坊裡的年輕人不信從前一斗米只要十幾個錢，{name}也懶得爭了。"
+    },
+    {
+      "id": "zz_a8_widow",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "spouse_dead_old",
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "noregion": [
+          "guanzhong",
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "你也聽聽",
+      "text": "{name}的老伴沒能熬過這八年。{name}一個人守著老屋，聽說仗打完了，就去墳上燒了一刀紙，說：仗打完了，你也聽聽。"
+    },
+    {
+      "id": "zz_a8_child",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "age": [
+          3,
+          14
+        ],
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "noregion": [
+          "guanzhong",
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "不打仗",
+      "text": "{name}才{age}歲，生下來就趕上打仗。廣德元年正月，大人們說仗打完了，{name}問：什麼是不打仗？大人們想了半天，也說不清楚。"
+    },
+    {
+      "id": "zz_a8_alone",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "alone": true,
+        "noflag": [
+          "gong_in",
+          "official"
+        ],
+        "noregion": [
+          "guanzhong",
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "活下來",
+      "text": "{name}爹娘都走了，身邊沒有家室。仗打了八年，{name}一個人活了下來，{age}歲，守著一間破屋。鄰里說，這年頭，能活下來就是本事。"
+    },
+    {
+      "id": "zz_d8_yan_last",
+      "when": "dead",
+      "chapter": 8,
+      "cause": "兵禍",
+      "req": {
+        "flag": "yan_last",
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "叛軍末路",
+      "text": "{name}死在叛軍的最後幾仗裡，{age}歲。史朝義兵敗如山倒，{name}倒在一條不知道名字的河邊，連個收屍的人也沒有。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d8_zhuading",
+      "when": "dead",
+      "chapter": 8,
+      "cause": "役死",
+      "req": {
+        "region": "luoyang",
+        "year": [
+          759,
+          759
+        ],
+        "noflag": [
+          "gong_in"
+        ]
+      },
+      "title": "河陽",
+      "text": "{name}被抓去河陽的營裡挑水做飯，{age}歲，沒能熬過那個冬天。九節度使在相州城下潰散以後，朝廷到處抓人補兵，連老人都不放過。",
+      "before": "d_liao"
+    },
+    {
+      "id": "zz_d8_yangzhou",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "yangzhou"
+      },
+      "title": "北人新墳",
+      "text": "{name}死在揚州，{age}歲。這幾年北邊來的人擠滿了城，城外的墳地也擠滿了新墳，有一半寫的是北方的州縣。"
+    },
+    {
+      "id": "zz_d8_yizhou",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "yizhou",
+        "year": [
+          756,
+          757
+        ]
+      },
+      "title": "車駕在蜀",
+      "text": "{name}死在成都，{age}歲。那時候皇帝的車駕還在城裡，滿城都是說長安話的人，{name}的喪事，也只能悄悄地辦。"
+    },
+    {
+      "id": "zz_d8_lingnan",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "lingnan",
+        "year": [
+          758,
+          763
+        ]
+      },
+      "title": "港口冷清",
+      "text": "{name}死在{place}，{age}歲。乾元元年大食、波斯的兵打進廣州以後，港口冷清了好幾年，{name}到死也沒再看見從前那樣多的海船。"
+    },
+    {
+      "id": "zz_d8_luoyang",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "luoyang",
+        "year": [
+          762,
+          763
+        ]
+      },
+      "title": "瓦礫中",
+      "text": "{name}死在洛陽，{age}歲。寶應元年回紇人進城，燒了寺、殺了人，躲進寺裡的人也沒躲過。{name}的喪事，是在一片瓦礫裡辦的。"
+    },
+    {
+      "id": "zz_d8_hebei",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "hebei",
+        "year": [
+          762,
+          763
+        ]
+      },
+      "title": "換旗",
+      "text": "{name}死在{place}，{age}歲，那時候叛將正要換旗子，當朝廷的節度使。家裡辦喪事的時候，門口站著的還是那些兵。"
+    },
+    {
+      "id": "zz_d8_yan_fled",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "yan_fled"
+      },
+      "title": "異鄉木牌",
+      "text": "{name}跟著逃難的人一路往南，最後死在了異鄉，{age}歲。家裡的人在墳前插了一塊木牌，寫著老家的州縣，說等太平了再遷回去。"
+    },
+    {
+      "id": "zz_d8_yan_stay",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "yan_stay"
+      },
+      "title": "熬乾",
+      "text": "{name}在叛軍佔著的長安熬了一年多，收復以後沒過幾年就死了，{age}歲。家裡的人說，那一年擔驚受怕，把{name}的心血都熬乾了。"
+    },
+    {
+      "id": "zz_d8_guanzhong",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "region": "guanzhong"
+      },
+      "title": "生面孔",
+      "text": "{name}死在長安，{age}歲。這幾年長安陷了又收，坊裡的熟人一年比一年少，{name}出殯那天，來送的多半是生面孔。"
+    },
+    {
+      "id": "zz_d8_kuohu",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "flag": "kuohu_done"
+      },
+      "title": "無人銷戶",
+      "text": "{name}死的時候{age}歲。開元年間附的籍，到這時候早已沒人管了，縣裡的籍帳燒的燒、丟的丟，{name}死了，也沒人來銷戶。"
+    },
+    {
+      "id": "zz_d8_hu",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "hu"
+      },
+      "title": "省了國名",
+      "text": "{name}死在{place}，{age}歲。那幾年胡人的名字惹人嫌，家裡的人在墓誌上只寫了漢姓，把祖上的國名省了。"
+    },
+    {
+      "id": "zz_d8_lizheng",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "lizheng"
+      },
+      "title": "逃與死",
+      "text": "{name}當了半輩子里正，死的時候{age}歲。這八年裡，里中的戶少了一大半，{name}手上的簿子，最後幾頁寫滿了「逃」「死」兩個字。"
+    },
+    {
+      "id": "zz_d8_kaiyuan",
+      "when": "dead",
+      "chapter": 8,
+      "cause": "壽終",
+      "req": {
+        "age": [
+          80,
+          200
+        ],
+        "noregion": [
+          "guanzhong",
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "開元舊夢",
+      "text": "{name}活到{age}歲，壽終的時候，嘴裡還在說開元年間的事：米一斗十幾個錢，出門不用帶刀。家裡的小輩聽著，只當是老人家的夢話。"
+    },
+    {
+      "id": "zz_d8_gongshang",
+      "when": "dead",
+      "chapter": 8,
+      "cause": [
+        "病故",
+        "壽終"
+      ],
+      "req": {
+        "cls": "gongshang"
+      },
+      "title": "物價",
+      "text": "{name}死的時候{age}歲。那幾年錢不值錢，辦一場喪事花掉的錢，在開元年間夠買好幾畝地。家裡的人咬著牙，還是給{name}買了一口好棺材。"
+    }
+  ]
+}

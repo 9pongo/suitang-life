@@ -1,0 +1,3733 @@
+{
+  "events": [
+    {
+      "id": "fo_sy_rent",
+      "kind": "flavor",
+      "w": 1,
+      "tag": "寺莊",
+      "scene": "harvest",
+      "req": {
+        "cls": "siyuan",
+        "age": [
+          16,
+          70
+        ]
+      },
+      "eff": {
+        "財": -1
+      },
+      "text": "秋收以後，寺裡管莊的和尚帶著兩個淨人來莊上量租。斛子是寺裡帶來的，比市上用的大一圈。你看著麥子一斗一斗倒進寺裡的口袋，沒有說話。"
+    },
+    {
+      "id": "fo_sy_zhai",
+      "kind": "flavor",
+      "w": 1,
+      "tag": "寺莊",
+      "scene": "temple",
+      "req": {
+        "cls": "siyuan",
+        "age": [
+          12,
+          65
+        ]
+      },
+      "text": "寺裡辦大齋，莊上每戶要出一個人去挑水、劈柴、蒸餅。你忙到半夜，分到兩個齋餅，一個自己吃了，一個揣在懷裡帶回去。"
+    },
+    {
+      "id": "fo_sy_bell",
+      "kind": "flavor",
+      "w": 1,
+      "tag": "寺莊",
+      "scene": "village",
+      "req": {
+        "cls": "siyuan",
+        "age": [
+          8,
+          80
+        ]
+      },
+      "text": "天還沒亮，山上寺裡的鐘就響了。莊上的人聽鐘起床、聽鼓收工，地裡的活什麼時候開頭、什麼時候收尾，都跟著寺裡的鐘鼓走。"
+    },
+    {
+      "id": "fo_sy_seed",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.35,
+      "tag": "寺莊",
+      "scene": "field",
+      "req": {
+        "cls": "siyuan",
+        "age": [
+          22,
+          55
+        ],
+        "noflag": "fo_zy_done"
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_zhuang"
+        }
+      },
+      "text": "寺裡新換了一個管莊的和尚，年紀輕，帳算得精。他在莊上轉了兩天，把每一塊地的步數都重新量了一遍，量完了，在本子上記了好些字。"
+    },
+    {
+      "id": "fo_zhuang",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "寺莊",
+      "title": "加租",
+      "scene": "contract",
+      "req": {
+        "cls": "siyuan",
+        "age": [
+          22,
+          58
+        ],
+        "noflag": "fo_zy_done"
+      },
+      "text": "新來管莊的和尚說，常住的田租了這麼多年，租子一直沒漲，寺裡吃了虧。從明年起，你家佃的那幾十畝，每畝要多交一斗。",
+      "choices": [
+        {
+          "t": "認了",
+          "eff": {
+            "財": -2,
+            "flag": "fo_zy_done"
+          },
+          "out": "你在新的租契上畫了指節。那一年冬天，家裡的粥稀了一些。"
+        },
+        {
+          "t": "去求寺主",
+          "sub": "寺裡的事，寺主說了算",
+          "chk": {
+            "base": 0.35,
+            "stat": "德",
+            "k": 0.02
+          },
+          "eff": {
+            "flag": "fo_zy_done"
+          },
+          "ok": {
+            "eff": {
+              "flag": "fo_zy_kang",
+              "德": 1
+            },
+            "out": "寺主是個老和尚，聽你說完，翻了翻舊帳，說你家佃這塊地兩三代了，從沒拖欠過。加租的事，到你家就免了。"
+          },
+          "fail": {
+            "eff": {
+              "名": -1
+            },
+            "out": "寺主在坐禪，你在門外跪了一個時辰，出來的是管莊的和尚。他說，寺主的意思也是這樣。"
+          }
+        },
+        {
+          "t": "退佃不種了",
+          "eff": {
+            "財": -1,
+            "flag": [
+              "fo_zy_done",
+              "fo_zy_quit"
+            ]
+          },
+          "out": "你把地退給了寺裡，去給附近的大戶打短工。頭一年，日子比佃寺田的時候還緊。"
+        }
+      ]
+    },
+    {
+      "id": "fo_loan_seed",
+      "kind": "flavor",
+      "w": 2,
+      "p": 0.05,
+      "tag": "寺債",
+      "scene": "contract",
+      "req": {
+        "flag": [
+          "loan_temple",
+          "loan_late"
+        ],
+        "noflag": "fo_loan_end",
+        "age": [
+          20,
+          65
+        ]
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_loan_seize"
+        }
+      },
+      "text": "寺裡的淨人路過你家門口，往院子裡看了好幾眼。去年欠寺裡的那幾石麥，利滾著利，已經不是當初那個數了。"
+    },
+    {
+      "id": "fo_loan_seize",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "寺債",
+      "title": "掣奪",
+      "scene": "contract",
+      "req": {
+        "flag": "loan_temple",
+        "age": [
+          20,
+          70
+        ],
+        "noflag": "fo_loan_end"
+      },
+      "text": "知事僧帶著契紙來了。契上寫得明白：如違限不還，任掣奪家資雜物，用充麥直。他看了看你家的牛欄，又看了看屋裡的織機。",
+      "choices": [
+        {
+          "t": "讓他牽走牛",
+          "eff": {
+            "財": -3,
+            "flag": "fo_loan_end"
+          },
+          "out": "淨人把牛牽走了。牛走到院門口，回頭叫了一聲。那年春耕，你是跟鄰家換工借牛犁的地。"
+        },
+        {
+          "t": "去寺裡做工抵債",
+          "eff": {
+            "健": -3,
+            "flag": [
+              "fo_loan_end",
+              "fo_loan_work"
+            ]
+          },
+          "out": "你答應給寺裡白做一年工。挑水、舂米、修牆，什麼都幹。年底知事僧把契紙還給了你，上頭劃了一道。"
+        },
+        {
+          "t": "求寺主免了利",
+          "chk": {
+            "base": 0.3,
+            "stat": "德",
+            "k": 0.02
+          },
+          "eff": {
+            "flag": "fo_loan_end"
+          },
+          "ok": {
+            "eff": {
+              "flag": "fo_loan_forgive",
+              "德": 1
+            },
+            "out": "寺主說，常住的東西本是十方的，借給窮人救急，也算一樁功德。本照還，利就免了。"
+          },
+          "fail": {
+            "eff": {
+              "財": -2
+            },
+            "out": "寺主說常住的帳不能亂，他也做不了主。你只好把家裡的兩匹布抵了出去。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fo_wj_seed",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.008,
+      "tag": "寺院",
+      "scene": "road",
+      "req": {
+        "year": [
+          620,
+          718
+        ],
+        "region": [
+          "guanzhong",
+          "luoyang"
+        ],
+        "age": [
+          20,
+          62
+        ],
+        "noflag": "fo_wj",
+        "nofaction": "rebel"
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_wujin"
+        }
+      },
+      "text": "里中有人從長安回來，說城裡的化度寺有個無盡藏院，天下人施捨的錢帛堆得像山。窮人去借，不寫契，到期送還就是了。"
+    },
+    {
+      "id": "fo_wujin",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "寺院",
+      "title": "無盡藏",
+      "scene": "temple",
+      "req": {
+        "year": [
+          620,
+          720
+        ],
+        "age": [
+          20,
+          66
+        ],
+        "noflag": "fo_wj"
+      },
+      "text": "正月初四，你跟著人進了長安城，去化度寺的無盡藏院。院子裡人擠著人，有人把整車的錢帛往裡送，也有人空著手來，報個名字，領了錢就走。",
+      "choices": [
+        {
+          "t": "施幾百文",
+          "eff": {
+            "財": -1,
+            "德": 2,
+            "flag": [
+              "fo_wj",
+              "fo_wj_give"
+            ]
+          },
+          "out": "你把攢了半年的幾百文放進了箱子。管藏的和尚沒問你的名字，只合掌念了一聲佛。"
+        },
+        {
+          "t": "借錢回去",
+          "sub": "不立文約，到期自己送還",
+          "eff": {
+            "財": 3,
+            "flag": [
+              "fo_wj",
+              "fo_wj_borrow"
+            ],
+            "later": {
+              "in": 2,
+              "id": "fo_wj_repay"
+            }
+          },
+          "out": "你說家裡缺種子，借了兩貫錢。和尚在冊子上記了一筆，沒讓你畫押，也沒問你什麼時候還。"
+        },
+        {
+          "t": "看看就走",
+          "eff": {
+            "flag": "fo_wj"
+          },
+          "out": "你在院子裡站了一會兒，看人來人往，什麼也沒做，就回去了。"
+        }
+      ],
+      "note": "據《太平廣記》引《辨疑志》：長安化度寺無盡藏，貞觀以後施捨錢帛金玉，積聚不可勝計；四方來取給者甚眾，借貸不作文約，至期還送而已。"
+    },
+    {
+      "id": "fo_wj_repay",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "寺院",
+      "title": "還無盡藏",
+      "scene": "road",
+      "req": {
+        "flag": "fo_wj_borrow",
+        "age": [
+          20,
+          72
+        ]
+      },
+      "text": "借無盡藏的錢已經兩年了。沒有人來催，手裡也沒有契紙。你要是不還，誰也不知道。",
+      "choices": [
+        {
+          "t": "照數送回去",
+          "req": {
+            "stat": {
+              "財": 3
+            }
+          },
+          "lock": "家裡實在拿不出錢",
+          "eff": {
+            "財": -3,
+            "德": 2,
+            "flag": "fo_wj_repaid"
+          },
+          "out": "你走了好幾天的路，把兩貫錢送回化度寺。管藏的和尚翻了冊子，在你的名字底下劃了一道。"
+        },
+        {
+          "t": "就這麼算了",
+          "eff": {
+            "德": -2,
+            "flag": "fo_wj_keep"
+          },
+          "out": "你沒有去。後來有人說起無盡藏，你就把話岔開。"
+        }
+      ]
+    },
+    {
+      "id": "fo_wj_ban",
+      "kind": "flavor",
+      "w": 6,
+      "year": [
+        721,
+        726
+      ],
+      "tag": "寺院",
+      "scene": "registry",
+      "req": {
+        "anyFlag": [
+          "fo_wj_give",
+          "fo_wj_borrow"
+        ],
+        "age": [
+          20,
+          95
+        ]
+      },
+      "text": "朝廷下了詔，說化度寺的無盡藏名為濟貧，其實多有姦欺，從此禁斷，藏裡的錢帛交官府清點。你想起當年在院子裡擠來擠去的那些人。"
+    },
+    {
+      "id": "fo_jiang_seed",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.0035,
+      "tag": "講經",
+      "scene": "temple",
+      "req": {
+        "year": [
+          640,
+          763
+        ],
+        "age": [
+          14,
+          70
+        ],
+        "noflag": "fo_jiang",
+        "noregion": "xizhou"
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_jiang"
+        }
+      },
+      "text": "寺門口貼出了告示，說下個月寺裡開講，請的是外州來的法師，能把經上的故事唱出來，不識字的人也聽得懂。"
+    },
+    {
+      "id": "fo_jiang",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "講經",
+      "title": "寺裡開講",
+      "scene": "temple",
+      "req": {
+        "age": [
+          14,
+          75
+        ],
+        "noflag": "fo_jiang"
+      },
+      "text": "法師坐在高座上，唱一段，說一段。今天講的是目連救母：目連的娘生前慳吝，死後墮在餓鬼道裡，飯送到嘴邊就化成了火。底下的婦人們都在擦眼睛。",
+      "choices": [
+        {
+          "t": "解下錢來施捨",
+          "eff": {
+            "財": -1,
+            "德": 1,
+            "flag": "fo_jiang"
+          },
+          "out": "散座的時候，和尚捧著盤子挨個走過來。你把身上的錢都放了進去，回去的路上，一直想著你娘。"
+        },
+        {
+          "t": "回去講給鄰里聽",
+          "eff": {
+            "名": 1,
+            "flag": "fo_jiang"
+          },
+          "out": "你回到里中，在樹底下把目連救母從頭講了一遍。後來好幾個晚上，都有人來找你再講一回。"
+        },
+        {
+          "t": "聽了一半就走",
+          "eff": {
+            "flag": "fo_jiang"
+          },
+          "out": "地裡還有活。你聽到目連下了地獄，就擠了出去。後頭的事，是聽別人說的。"
+        }
+      ]
+    },
+    {
+      "id": "fo_zx_seed",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.0018,
+      "tag": "造像",
+      "scene": "village",
+      "req": {
+        "age": [
+          25,
+          65
+        ],
+        "noflag": "fo_zx",
+        "noregion": "xizhou"
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_zaoxiang"
+        }
+      },
+      "text": "里中的社邑商量著要合起來造一尊石像，立在村口的佛堂裡。社官挨家挨戶地問，誰家出多少，名字就刻在碑後頭。",
+      "textIf": [
+        {
+          "req": {
+            "region": "shazhou"
+          },
+          "text": "里中的社邑商量著要合起來在鳴沙山上供養一個窟。社官挨家挨戶地問，誰家出多少，名字就寫在窟壁上。"
+        }
+      ]
+    },
+    {
+      "id": "fo_zaoxiang",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "造像",
+      "title": "造像",
+      "scene": "temple",
+      "req": {
+        "age": [
+          25,
+          70
+        ],
+        "noflag": "fo_zx"
+      },
+      "text": "石匠從州裡請來了，一塊青石擺在佛堂前。社官攤開一張紙，上頭已經寫了十幾個名字，名字後頭寫著錢數。",
+      "textIf": [
+        {
+          "req": {
+            "region": "shazhou"
+          },
+          "text": "窟已經鑿好了，畫匠吊在架子上畫經變。社官攤開一張紙，上頭已經寫了十幾個名字，名字後頭寫著錢數。窟壁的下沿空著，要畫一排供養人。"
+        }
+      ],
+      "choices": [
+        {
+          "t": "出錢題名",
+          "req": {
+            "stat": {
+              "財": 3
+            }
+          },
+          "lock": "家裡拿不出這筆錢",
+          "eff": {
+            "財": -3,
+            "德": 1,
+            "名": 1,
+            "flag": [
+              "fo_zx",
+              "fo_zx_name"
+            ]
+          },
+          "out": "像造好了，碑後頭刻著：佛弟子某某，為亡過父母及見存眷屬，敬造石像一軀。你的名字在第三行。",
+          "outIf": [
+            {
+              "req": {
+                "region": "shazhou"
+              },
+              "out": "窟畫好了。窟壁下沿畫著一排供養人，手裡捧著花，每個人旁邊寫著名字。畫匠把你畫得比本人體面。"
+            }
+          ]
+        },
+        {
+          "t": "出力幫工",
+          "eff": {
+            "健": -1,
+            "德": 1,
+            "flag": [
+              "fo_zx",
+              "fo_zx_li"
+            ]
+          },
+          "out": "你跟著搬了好幾天石頭、和了好幾天泥。題名裡沒有你，可是開光那天，你站在最前頭。"
+        },
+        {
+          "t": "今年不出",
+          "eff": {
+            "flag": "fo_zx"
+          },
+          "out": "你說家裡今年緊。社官沒說什麼，把紙收了起來。"
+        }
+      ]
+    },
+    {
+      "id": "fo_xj_seed",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.06,
+      "tag": "寫經",
+      "scene": "funeral",
+      "req": {
+        "flagWithin": {
+          "father_dead": 2,
+          "mother_dead": 2
+        },
+        "age": [
+          18,
+          70
+        ],
+        "noflag": "fo_xj_done",
+        "noregion": "xizhou"
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_xiejing"
+        }
+      },
+      "text": "七七齋快滿了。寺裡的和尚說，替亡人寫一卷經，功德最大。城裡有經生，寫一卷《金剛經》要好幾百文。"
+    },
+    {
+      "id": "fo_xiejing",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "寫經",
+      "title": "寫經",
+      "scene": "study",
+      "req": {
+        "age": [
+          18,
+          75
+        ],
+        "noflag": "fo_xj_done"
+      },
+      "text": "你去城裡找經生。鋪子裡掛著一卷卷寫好的經，黃紙烏絲欄，一行十七個字，寫得端端正正。卷尾空著幾行，是留給你寫題記的。",
+      "choices": [
+        {
+          "t": "請經生寫一卷",
+          "eff": {
+            "財": -2,
+            "德": 1,
+            "flag": [
+              "fo_xj_done",
+              "fo_xj"
+            ]
+          },
+          "out": "經寫好了。卷尾寫著：佛弟子某，為亡過父母敬寫《金剛經》一卷，願神生淨土。你不識字，讓經生念了兩遍。"
+        },
+        {
+          "t": "自己抄",
+          "show": {
+            "stat": {
+              "文": 8
+            }
+          },
+          "eff": {
+            "德": 2,
+            "flag": [
+              "fo_xj_done",
+              "fo_xj",
+              "fo_xj_self"
+            ]
+          },
+          "out": "你借了一卷經回來，每天夜裡抄幾行。抄了兩個月才抄完，在卷尾寫上自己的名字，送到寺裡供著。"
+        },
+        {
+          "t": "念佛就是了",
+          "eff": {
+            "德": 1,
+            "flag": "fo_xj_done"
+          },
+          "out": "你說，心到了就是了。那天晚上，你在靈前念了一夜的佛。"
+        }
+      ]
+    },
+    {
+      "id": "fo_js_seed",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.3,
+      "tag": "寫經",
+      "scene": "study",
+      "req": {
+        "stat": {
+          "文": 8
+        },
+        "cls": [
+          "junfarmer",
+          "kehu",
+          "gongshang",
+          "siyuan",
+          "lizheng"
+        ],
+        "region": [
+          "guanzhong",
+          "luoyang",
+          "yangzhou",
+          "yizhou",
+          "shazhou"
+        ],
+        "age": [
+          16,
+          45
+        ],
+        "year": [
+          660,
+          713
+        ],
+        "noflag": [
+          "fo_jingsheng",
+          "fo_jingsheng_no"
+        ]
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_jingsheng"
+        }
+      },
+      "text": "城裡寫經鋪的掌櫃看了你寫的字，說你的字端正，問你願不願意來鋪子裡抄經，按卷算錢。"
+    },
+    {
+      "id": "fo_jingsheng",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "寫經",
+      "title": "經生",
+      "scene": "study",
+      "req": {
+        "age": [
+          16,
+          50
+        ],
+        "noflag": [
+          "fo_jingsheng",
+          "fo_jingsheng_no"
+        ]
+      },
+      "text": "抄經是細活。一行十七個字，錯一個字，整張紙就要重寫。抄好的經賣給來寺裡還願、追福的人家，工錢按卷算，掌櫃抽一半。",
+      "choices": [
+        {
+          "t": "去抄經",
+          "eff": {
+            "財": 2,
+            "文": 1,
+            "flag": "fo_jingsheng"
+          },
+          "out": "你在鋪子裡坐了下來。頭一個月，你廢了好幾張紙。到了年底，你一天能抄一千多字。"
+        },
+        {
+          "t": "還是種地",
+          "eff": {
+            "flag": "fo_jingsheng_no"
+          },
+          "out": "你說家裡的地沒人種。掌櫃說，可惜了這一手字。"
+        }
+      ]
+    },
+    {
+      "id": "fo_jing714",
+      "kind": "stage",
+      "year": [
+        714,
+        716
+      ],
+      "order": 40,
+      "homeOnly": true,
+      "tag": "寫經",
+      "title": "禁坊市寫經",
+      "scene": "market",
+      "req": {
+        "flag": "fo_jingsheng",
+        "noflag": "fo_jing714_done",
+        "age": [
+          18,
+          85
+        ]
+      },
+      "text": "官府來人，把鋪子門口掛的經卷都摘了下來。說朝廷下了詔：坊市裡不許再開鋪寫經、鑄佛像，要讀經禮佛的，到寺裡去。",
+      "choices": [
+        {
+          "t": "到寺裡去抄",
+          "eff": {
+            "flag": [
+              "fo_jing714_done",
+              "fo_jing_si"
+            ]
+          },
+          "out": "你託人進了城裡的一座寺，在經坊裡抄經。工錢少了，可是中午有一頓齋飯。"
+        },
+        {
+          "t": "收了筆墨",
+          "eff": {
+            "財": -1,
+            "flag": [
+              "fo_jing714_done",
+              "fo_jing_quit"
+            ]
+          },
+          "out": "你把筆墨收了起來，回去種地。後來里中有人要寫契、寫信，還是來找你。"
+        }
+      ]
+    },
+    {
+      "id": "fo_cj_seed",
+      "kind": "flavor",
+      "w": 2,
+      "p": 0.2,
+      "tag": "出家",
+      "scene": "temple",
+      "req": {
+        "focus": "親近佛門",
+        "married": false,
+        "age": [
+          15,
+          24
+        ],
+        "noflag": [
+          "fo_seng",
+          "single",
+          "fo_chujia_no"
+        ]
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_chujia"
+        }
+      },
+      "text": "你在寺裡待的日子，比在家裡還多。寺裡的師父說你有善根，問你想不想剃度。"
+    },
+    {
+      "id": "fo_cj_seed2",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.007,
+      "tag": "出家",
+      "scene": "temple",
+      "req": {
+        "married": false,
+        "age": [
+          14,
+          18
+        ],
+        "noflag": [
+          "fo_seng",
+          "single",
+          "fo_chujia_no"
+        ]
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_chujia"
+        }
+      },
+      "text": "寺裡的師父來家裡化緣，看了你半天，說這孩子眉目清淨，跟佛有緣。家裡人聽了，都沒有接話。"
+    },
+    {
+      "id": "fo_chujia",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "出家",
+      "title": "剃度",
+      "scene": "temple",
+      "req": {
+        "married": false,
+        "age": [
+          14,
+          26
+        ],
+        "noflag": [
+          "fo_seng",
+          "single",
+          "fo_chujia_no"
+        ]
+      },
+      "text": "出家的人要入僧籍。入了籍，就不再算家裡的丁口，不交租調，不服徭役。所以官府管得緊，要等朝廷下詔度人，名字報上去批了，才能正正經經地剃度。",
+      "textIf": [
+        {
+          "req": {
+            "year": [
+              581,
+              604
+            ]
+          },
+          "text": "開皇年間，朝廷崇佛，下過詔，天下人願意出家的都聽任。可是要入僧籍，名字還得報到州裡，等批下來，才能正正經經地剃度。"
+        },
+        {
+          "req": {
+            "year": [
+              705,
+              763
+            ]
+          },
+          "text": "出家的人要入僧籍，不再算家裡的丁口，不交租調，不服徭役。所以官府管得緊：如今要先到州裡試經，背得出規定的經文，才准剃度。"
+        }
+      ],
+      "choices": [
+        {
+          "t": "求官度",
+          "sub": "名字報上去，等州裡批",
+          "subIf": [
+            {
+              "req": {
+                "year": [
+                  705,
+                  763
+                ]
+              },
+              "sub": "去州裡試經"
+            }
+          ],
+          "chk": {
+            "base": 0.5,
+            "stat": "文",
+            "k": 0.015
+          },
+          "ok": {
+            "eff": {
+              "flag": [
+                "fo_seng",
+                "fo_dudie",
+                "single"
+              ],
+              "德": 2
+            },
+            "out": "州裡的牒文下來了，你的名字入了僧籍。剃度那天，師父替你剃下最後一縷頭髮，給你取了法名。"
+          },
+          "fail": {
+            "eff": {
+              "flag": "fo_chujia_no"
+            },
+            "out": "名額只有那麼幾個，給了州裡大戶人家的子弟。師父嘆了口氣，說：再等吧。你就沒有再等。",
+            "outIf": [
+              {
+                "req": {
+                  "year": [
+                    705,
+                    763
+                  ]
+                },
+                "out": "你在州裡背經，背到一半，腦子裡一片白。試官揮了揮手，讓你下去。你回了家，往後再也沒提過剃度的事。"
+              }
+            ]
+          }
+        },
+        {
+          "t": "請師父私度",
+          "sub": "不入僧籍；被查出來，要杖一百",
+          "eff": {
+            "德": -1,
+            "flag": [
+              "fo_seng",
+              "fo_sidu",
+              "single"
+            ]
+          },
+          "out": "師父在夜裡關了門，替你剃了頭。你的名字還在家裡的籍帳上，人卻住進了寺裡。"
+        },
+        {
+          "t": "還是在家",
+          "eff": {
+            "德": 1,
+            "flag": "fo_chujia_no"
+          },
+          "out": "你說家裡還要人。往後你還是常去寺裡，只是不再提剃度的事。"
+        }
+      ]
+    },
+    {
+      "id": "fo_cj_w_seed",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.009,
+      "tag": "出家",
+      "scene": "temple",
+      "req": {
+        "flag": "spouse_dead_old",
+        "age": [
+          42,
+          68
+        ],
+        "noflag": [
+          "fo_seng",
+          "fo_chujia_no",
+          "fo_nvguan"
+        ]
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_chujia_w"
+        }
+      },
+      "text": "{spouse}走了以後，你常一個人去寺裡坐著，一坐就是半天。寺裡的師父說，塵緣盡了的人，也可以出家。"
+    },
+    {
+      "id": "fo_chujia_w",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "出家",
+      "title": "晚年出家",
+      "scene": "temple",
+      "req": {
+        "flag": "spouse_dead_old",
+        "age": [
+          42,
+          72
+        ],
+        "noflag": [
+          "fo_seng",
+          "fo_chujia_no",
+          "fo_nvguan"
+        ]
+      },
+      "text": "你想把頭髮剃了，到寺裡去過剩下的日子。往後田裡的事、籍帳上的事，就交給別人去管了。",
+      "choices": [
+        {
+          "t": "求官度",
+          "chk": {
+            "base": 0.5,
+            "stat": "德",
+            "k": 0.01
+          },
+          "ok": {
+            "eff": {
+              "flag": [
+                "fo_seng",
+                "fo_dudie",
+                "single"
+              ],
+              "德": 2
+            },
+            "out": "州裡准了。剃度那天，你跪在佛前，聽著剃刀刮過頭皮的聲音，心裡很靜。"
+          },
+          "fail": {
+            "eff": {
+              "flag": "fo_chujia_no"
+            },
+            "out": "州裡說今年沒有度人的名額。你在寺門外站了一會兒，回去了，往後就在家裡念佛。"
+          }
+        },
+        {
+          "t": "私下剃度",
+          "sub": "名字還留在籍帳上",
+          "eff": {
+            "flag": [
+              "fo_seng",
+              "fo_sidu",
+              "single"
+            ]
+          },
+          "out": "寺裡的老和尚替你剃了頭。籍帳上，你還是你家的人；寺裡，你是廚下燒火的那個老行者。"
+        },
+        {
+          "t": "在家念佛",
+          "eff": {
+            "德": 1,
+            "flag": "fo_chujia_no"
+          },
+          "out": "你在屋裡供了一尊小佛像，早晚上一炷香。出家不出家，你說，佛都看得見。"
+        }
+      ]
+    },
+    {
+      "id": "fo_sl_1",
+      "kind": "flavor",
+      "w": 3,
+      "tag": "寺裡",
+      "scene": "temple",
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu"
+      },
+      "text": "天不亮就起來上早課。你跟著眾人念經，念到一半打了個瞌睡，維那回頭瞪了你一眼。"
+    },
+    {
+      "id": "fo_sl_2",
+      "kind": "flavor",
+      "w": 3,
+      "tag": "寺裡",
+      "scene": "field",
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu"
+      },
+      "text": "寺裡的人分好幾等：有講經的，有管帳的，也有像你這樣在廚下燒火、在園裡種菜的。你種的蔓菁，今年長得最好。"
+    },
+    {
+      "id": "fo_sl_3",
+      "kind": "flavor",
+      "w": 3,
+      "tag": "寺裡",
+      "scene": "old",
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu",
+        "age": [
+          40,
+          100
+        ]
+      },
+      "eff": {
+        "名": 1
+      },
+      "text": "你出家這麼多年，經背得爛熟了，寺裡新來的小沙彌都跟著你念。附近有人家死了人，也來請你去誦經。"
+    },
+    {
+      "id": "fo_sl_kin",
+      "kind": "flavor",
+      "w": 2,
+      "tag": "寺裡",
+      "scene": "home",
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu",
+        "flagFor": {
+          "fo_seng": 2
+        }
+      },
+      "text": "家裡託人捎來一雙新鞋，鞋底納得密密的。你穿上試了試，正合腳。"
+    },
+    {
+      "id": "fo_626",
+      "kind": "stage",
+      "year": 626,
+      "order": 40,
+      "tag": "出家",
+      "title": "沙汰",
+      "scene": "temple",
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu"
+      },
+      "text": "五月裡下了詔，說天下的僧尼、道士多有偽濫，要沙汰：京城只留三座寺、兩座觀，各州只留一所，其餘的都要還俗。寺裡的人都在收拾包袱。",
+      "choices": [
+        {
+          "t": "等等看",
+          "out": "你沒走。六月初，長安出了大事，秦王做了太子，大赦天下。沙汰的事，後來就沒有人再提了。"
+        },
+        {
+          "t": "先回家去",
+          "out": "你回了家，在家裡住了幾個月。後來聽說詔書不行了，你又回到了寺裡。"
+        }
+      ],
+      "note": "據《舊唐書・高祖紀》：武德九年五月，詔沙汰僧尼、道士、女冠，京師留寺三所、觀二所，諸州各留一所，餘悉罷之；六月立秦王為皇太子，大赦，事竟不行。"
+    },
+    {
+      "id": "fo_704",
+      "kind": "flavor",
+      "w": 6,
+      "year": [
+        704,
+        705
+      ],
+      "tag": "寺裡",
+      "scene": "temple",
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu"
+      },
+      "eff": {
+        "財": -1
+      },
+      "text": "太后要在白司馬坂造一尊大像，讓天下的僧尼每人每天出一文錢助工。寺裡的常住錢不夠，知事僧讓大家都出去化緣。",
+      "note": "據《資治通鑑》：長安四年，太后將造大像，使天下僧尼日出一錢以助其功；李嶠等上疏諫止。"
+    },
+    {
+      "id": "fo_shatai714",
+      "kind": "stage",
+      "year": [
+        714,
+        715
+      ],
+      "order": 40,
+      "tag": "出家",
+      "title": "沙汰僧尼",
+      "scene": "registry",
+      "req": {
+        "anyFlag": [
+          "fo_sidu",
+          "fo_dudie"
+        ],
+        "noflag": [
+          "fo_huansu",
+          "fo_shatai_done"
+        ],
+        "age": [
+          16,
+          95
+        ]
+      },
+      "text": "姚相公奏請沙汰天下僧尼。縣裡的官帶著僧籍一座寺一座寺地查：籍上沒有名字的，是偽濫，要還俗；籍上有名字的，也要當面念經，念不出來的一樣還俗。",
+      "choices": [
+        {
+          "t": "當面念經",
+          "show": {
+            "flag": "fo_dudie"
+          },
+          "chk": {
+            "base": 0.55,
+            "stat": "文",
+            "k": 0.02
+          },
+          "ok": {
+            "eff": {
+              "flag": "fo_shatai_done"
+            },
+            "out": "你念了一段《法華經》，官人點了點頭，在僧籍上你的名字旁邊畫了一個圈。"
+          },
+          "fail": {
+            "eff": {
+              "flag": [
+                "fo_shatai_done",
+                "fo_huansu"
+              ],
+              "unflag": "single"
+            },
+            "out": "你念到一半忘了詞。官人在你的名字上劃了一道。第二天，你換上俗家的衣裳回了家。"
+          }
+        },
+        {
+          "t": "還俗回家",
+          "eff": {
+            "flag": [
+              "fo_shatai_done",
+              "fo_huansu"
+            ],
+            "unflag": "single"
+          },
+          "out": "你把袈裟疊好，交還給了寺裡。回到家，家裡人看著你的光頭，不知道該說什麼。"
+        },
+        {
+          "t": "躲進山裡",
+          "show": {
+            "flag": "fo_sidu"
+          },
+          "chk": {
+            "base": 0.5
+          },
+          "ok": {
+            "eff": {
+              "flag": "fo_shatai_done",
+              "德": -1
+            },
+            "out": "你在山裡的一座小蘭若躲了大半年，等查的人走了才回來。"
+          },
+          "fail": {
+            "eff": {
+              "flag": [
+                "fo_shatai_done",
+                "fo_huansu"
+              ],
+              "unflag": "single",
+              "健": -3
+            },
+            "out": "查的人順著山路找了上來。你挨了一頓杖，被押回本貫，勒令還俗。"
+          }
+        }
+      ],
+      "note": "《資治通鑑》：開元二年正月，……命有司沙汰天下僧尼，以偽濫還俗者萬二千餘人。"
+    },
+    {
+      "id": "fo_kid714",
+      "kind": "flavor",
+      "w": 8,
+      "year": [
+        714,
+        716
+      ],
+      "tag": "出家",
+      "scene": "registry",
+      "req": {
+        "flag": "monk_kid_private",
+        "age": [
+          28,
+          95
+        ]
+      },
+      "eff": {
+        "德": -1,
+        "flag": "fo_kid714"
+      },
+      "text": "縣裡沙汰僧尼，查出了寺裡私度的人。你那個私下剃度的孩子也在冊子上，被杖了一頓，勒令還俗。孩子沒有回家，跟著師父往山裡去了。",
+      "note": "《唐律疏議・戶婚》：諸私入道及度之者，杖一百；若由家長，家長當罪。已除貫者，徒一年。本貫主司及觀寺三綱知情者，與同罪。"
+    },
+    {
+      "id": "fo_kid_seed",
+      "kind": "flavor",
+      "w": 2,
+      "p": 0.6,
+      "tag": "出家",
+      "scene": "temple",
+      "req": {
+        "flag": "monk_kid_ok",
+        "noflag": "fo_kid_visit",
+        "age": [
+          35,
+          80
+        ]
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_kid_visit_ev"
+        }
+      },
+      "text": "寺裡有人捎話來，說你那個出家的孩子如今在寺裡管藏經，問你身子可好。"
+    },
+    {
+      "id": "fo_kid_visit_ev",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "出家",
+      "title": "去寺裡看孩子",
+      "scene": "temple",
+      "req": {
+        "flag": "monk_kid_ok",
+        "noflag": "fo_kid_visit",
+        "age": [
+          35,
+          85
+        ]
+      },
+      "text": "你走了兩天的路，到了孩子出家的那座寺。山門口的小沙彌進去通報，過了好一陣，出來一個穿著袈裟的人，頭剃得青青的。你差一點沒認出來。",
+      "choices": [
+        {
+          "t": "叫一聲小名",
+          "eff": {
+            "德": 1,
+            "flag": "fo_kid_visit"
+          },
+          "out": "你叫了一聲小名。對方愣了一下，合起掌來，叫了你一聲施主，眼圈卻紅了。"
+        },
+        {
+          "t": "說說家裡的事",
+          "eff": {
+            "flag": "fo_kid_visit"
+          },
+          "out": "你們在廊下坐了一個下午，說的都是家裡的事：誰娶了親，誰添了丁，哪塊地今年收得好。臨走的時候，塞給你一包寺裡的素餅。"
+        }
+      ]
+    },
+    {
+      "id": "fo_xiangshui",
+      "kind": "stage",
+      "year": [
+        757,
+        759
+      ],
+      "order": 40,
+      "homeOnly": true,
+      "tag": "度牒",
+      "title": "香水錢",
+      "scene": "temple",
+      "req": {
+        "anyFlag": [
+          "fo_sidu",
+          "fo_chujia_no",
+          "fo_jiang",
+          "fo_xj",
+          "fo_zx_name",
+          "fo_kid_visit"
+        ],
+        "noflag": [
+          "fo_maidie_done",
+          "fo_huansu",
+          "fo_dudie"
+        ],
+        "region": [
+          "guanzhong",
+          "luoyang",
+          "yangzhou",
+          "yizhou"
+        ],
+        "nopower": "yan",
+        "age": [
+          16,
+          85
+        ]
+      },
+      "text": "打了兩年仗，朝廷缺錢養兵。大州都設了戒壇，誰肯納錢，就給一道祠部牒，名字正正經經入僧籍。寺裡的人管這叫香水錢。",
+      "choices": [
+        {
+          "t": "納錢買牒",
+          "req": {
+            "stat": {
+              "財": 3
+            }
+          },
+          "lock": "家裡湊不出這筆錢",
+          "eff": {
+            "財": -3,
+            "flag": [
+              "fo_maidie_done",
+              "fo_maidie",
+              "fo_seng",
+              "single"
+            ]
+          },
+          "out": "你把錢交了上去，換回一道牒，上頭蓋著祠部的印。從今往後，你是僧籍上有名有姓的出家人了。"
+        },
+        {
+          "t": "不買",
+          "eff": {
+            "flag": "fo_maidie_done"
+          },
+          "out": "你說，佛在心裡，不在一張紙上。"
+        }
+      ]
+    },
+    {
+      "id": "fo_581",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.15,
+      "year": [
+        581,
+        590
+      ],
+      "tag": "寺院",
+      "scene": "temple",
+      "req": {
+        "age": [
+          10,
+          80
+        ],
+        "power": "sui"
+      },
+      "text": "新天子下了詔，天下人願意出家的，任聽出家，還讓各家按人口出錢，營造經像。州裡的寺一座接一座地蓋，連村裡人家的箱底，都壓著一兩卷佛經。",
+      "note": "《隋書・經籍志》：開皇元年，高祖普詔天下，任聽出家，仍令計口出錢，營造經像。……天下之人，從風而靡，競相景慕，民間佛經，多於六經數十百倍。"
+    },
+    {
+      "id": "fo_wz_build",
+      "kind": "flavor",
+      "w": 2,
+      "year": [
+        690,
+        704
+      ],
+      "tag": "寺院",
+      "scene": "labor",
+      "req": {
+        "region": "luoyang",
+        "gender": "m",
+        "age": [
+          18,
+          55
+        ]
+      },
+      "eff": {
+        "健": -1,
+        "flag": "fo_wz_yi"
+      },
+      "text": "神都又在大興土木，造寺、造佛像。坊里的丁男輪番去搬木頭，木頭是從江南、嶺南運來的大料，十幾個人才扛得動一根。工地上天天有人被砸傷。"
+    },
+    {
+      "id": "fo_695",
+      "kind": "flavor",
+      "w": 5,
+      "year": [
+        695,
+        698
+      ],
+      "tag": "佛窟",
+      "scene": "cave",
+      "req": {
+        "region": "shazhou",
+        "age": [
+          6,
+          85
+        ]
+      },
+      "text": "鳴沙山上的北大像造好了。禪師靈隱和居士陰祖領著人鑿了好些年，彌勒佛坐在崖裡，有十四丈高，要仰著脖子才看得見臉。",
+      "note": "據莫高窟第一五六窟前室北壁墨書《莫高窟記》：延載二年，禪師靈隱共居士陰祖等造北大像，高一百四十尺。"
+    },
+    {
+      "id": "fo_laojun620",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.08,
+      "year": [
+        620,
+        624
+      ],
+      "tag": "道觀",
+      "scene": "village",
+      "req": {
+        "region": [
+          "guanzhong",
+          "luoyang",
+          "hebei"
+        ],
+        "power": "tang",
+        "age": [
+          10,
+          80
+        ]
+      },
+      "text": "有人從晉州來，說羊角山上有個叫吉善行的老漢，看見一個騎白馬的老人，說：替我告訴唐天子，我是他的祖宗。朝廷已經在那裡立了廟。"
+    },
+    {
+      "id": "fo_666",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.3,
+      "year": [
+        666,
+        667
+      ],
+      "tag": "道觀",
+      "scene": "festival",
+      "req": {
+        "region": [
+          "guanzhong",
+          "luoyang",
+          "hebei",
+          "yangzhou"
+        ],
+        "age": [
+          10,
+          85
+        ]
+      },
+      "text": "天子封了泰山，回來的路上到亳州的老君廟祭拜，給老子上了尊號，叫太上玄元皇帝。里正說，老子姓李，是當今皇家的老祖宗。",
+      "note": "據《舊唐書・高宗紀》：乾封元年二月，次亳州，幸老君廟，追號曰太上玄元皇帝。"
+    },
+    {
+      "id": "fo_691",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.15,
+      "year": [
+        691,
+        694
+      ],
+      "tag": "道觀",
+      "scene": "temple",
+      "req": {
+        "age": [
+          10,
+          85
+        ]
+      },
+      "text": "朝廷下了制書：從今往後，釋教在道法之上，僧尼排在道士、女冠前頭。城裡的道觀冷清了好些，寺裡的香火倒更旺了。",
+      "note": "據《舊唐書・則天皇后紀》：天授二年四月，令釋教在道法之上，僧尼處道士、女冠之前。"
+    },
+    {
+      "id": "fo_711",
+      "kind": "flavor",
+      "w": 3,
+      "year": [
+        711,
+        712
+      ],
+      "tag": "道觀",
+      "scene": "city",
+      "req": {
+        "region": "guanzhong",
+        "age": [
+          10,
+          85
+        ]
+      },
+      "text": "宮裡的兩位公主入了道，做了女冠。朝廷在城裡給她們各造一座道觀，拆了好些民宅，諫官上疏說花費太大，也沒能攔住。"
+    },
+    {
+      "id": "fo_649",
+      "kind": "flavor",
+      "w": 3,
+      "year": [
+        649,
+        650
+      ],
+      "tag": "煉丹",
+      "scene": "palace",
+      "req": {
+        "region": "guanzhong",
+        "age": [
+          14,
+          85
+        ]
+      },
+      "text": "宮裡傳出來的話，說天子是吃了天竺來的方士煉的長生藥，病才一天比一天重的。這話，只敢關起門來小聲說。"
+    },
+    {
+      "id": "fo_laozi733",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.5,
+      "year": [
+        733,
+        738
+      ],
+      "tag": "道觀",
+      "scene": "study",
+      "req": {
+        "age": [
+          18,
+          85
+        ],
+        "noflag": "fo_laozi_book",
+        "nofaction": "rebel"
+      },
+      "eff": {
+        "文": 1,
+        "flag": "fo_laozi_book"
+      },
+      "text": "里正來傳話：朝廷有制，天下士庶之家，每家都要藏一本《老子》。你家沒有人識字，還是花了幾十文，請人抄了一本，五千來字，用布包著放進了箱子。",
+      "textIf": [
+        {
+          "req": {
+            "stat": {
+              "文": 8
+            }
+          },
+          "text": "里正來傳話：朝廷有制，天下士庶之家，每家都要藏一本《老子》。你借了一本來，自己抄了一部，五千來字，抄了三個晚上。"
+        }
+      ],
+      "note": "據《舊唐書・玄宗紀》：開元二十一年正月，制令士庶家藏《老子》一本，貢舉人減《尚書》《論語》策，加《老子》策。"
+    },
+    {
+      "id": "fo_miao741",
+      "kind": "flavor",
+      "w": 3,
+      "year": [
+        741,
+        743
+      ],
+      "tag": "道觀",
+      "scene": "labor",
+      "req": {
+        "gender": "m",
+        "age": [
+          18,
+          55
+        ],
+        "nofaction": "rebel"
+      },
+      "eff": {
+        "健": -1,
+        "flag": "fo_miao_yi"
+      },
+      "text": "朝廷下了制，兩京和各州都要立一座玄元皇帝廟。州裡把里中的丁男派去搬木頭、夯土，一夯一夯地把殿基打起來。",
+      "note": "據《舊唐書・玄宗紀》：開元二十九年正月，兩京及諸州各置玄元皇帝廟一所，並置崇玄學，習《老子》《莊子》《列子》《文子》，每年准明經例考試。"
+    },
+    {
+      "id": "fo_742",
+      "kind": "flavor",
+      "w": 4,
+      "year": [
+        742,
+        742
+      ],
+      "tag": "道觀",
+      "scene": "city",
+      "req": {
+        "region": "guanzhong",
+        "age": [
+          10,
+          85
+        ]
+      },
+      "text": "正月裡，有個叫田同秀的官人上奏，說他在丹鳳門外看見了玄元皇帝，告訴他有一道靈符藏在函谷關尹喜的故宅。派人去挖，果然挖到了。朝廷為這個改了年號，叫天寶。"
+    },
+    {
+      "id": "fo_743",
+      "kind": "flavor",
+      "w": 2,
+      "year": [
+        743,
+        746
+      ],
+      "tag": "道觀",
+      "scene": "temple",
+      "req": {
+        "anyFlag": [
+          "fo_miao_yi",
+          "fo_laozi_book"
+        ],
+        "age": [
+          10,
+          90
+        ]
+      },
+      "text": "州裡的玄元皇帝廟改了名，叫紫極宮。聽說長安的那一座叫太清宮，洛陽的叫太微宮。名字一年比一年大，廟前的香爐也換了一個更大的。"
+    },
+    {
+      "id": "fo_dj_seed",
+      "kind": "flavor",
+      "w": 3,
+      "year": [
+        741,
+        753
+      ],
+      "tag": "道舉",
+      "scene": "study",
+      "req": {
+        "gender": "m",
+        "stat": {
+          "文": 8
+        },
+        "age": [
+          16,
+          35
+        ],
+        "nocls": [
+          "gongshang"
+        ],
+        "noflag": "fo_daoju_done",
+        "nofaction": "rebel"
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_daoju"
+        }
+      },
+      "text": "州裡新設了崇玄學，招學生讀《老子》《莊子》《列子》《文子》，說是讀通了，可以照明經的例子去應試，叫做道舉。"
+    },
+    {
+      "id": "fo_daoju",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "道舉",
+      "title": "道舉",
+      "scene": "study",
+      "req": {
+        "gender": "m",
+        "age": [
+          16,
+          40
+        ],
+        "year": [
+          742,
+          755
+        ],
+        "noflag": "fo_daoju_done"
+      },
+      "text": "崇玄學的博士給你們講《莊子》，講到莊周夢蝶，有個學生問：那到底誰是誰？博士說：考試不考這個。年底，州裡要把學得好的送去應試。",
+      "choices": [
+        {
+          "t": "去應道舉",
+          "chk": {
+            "base": 0.3,
+            "stat": "文",
+            "k": 0.02
+          },
+          "ok": {
+            "eff": {
+              "flag": [
+                "fo_daoju_done",
+                "fo_daoju_pass"
+              ],
+              "名": 3
+            },
+            "out": "你中了。榜上道舉的名字只有寥寥幾個，你的名字在裡頭。里中的人說，這是讀老子讀出來的功名。"
+          },
+          "fail": {
+            "eff": {
+              "flag": [
+                "fo_daoju_done",
+                "fo_daoju_fail"
+              ]
+            },
+            "out": "考《莊子》的時候，你把一段注文記混了。回來的路上，你一直在想那段話到底該怎麼念。"
+          }
+        },
+        {
+          "t": "回去種地",
+          "eff": {
+            "flag": "fo_daoju_done"
+          },
+          "out": "你說四部經讀下來，地都荒了。你把書還給了學裡。"
+        }
+      ]
+    },
+    {
+      "id": "fo_ng_seed",
+      "kind": "flavor",
+      "w": 2,
+      "p": 0.05,
+      "year": [
+        620,
+        763
+      ],
+      "tag": "女冠",
+      "scene": "temple",
+      "req": {
+        "gender": "f",
+        "flag": "spouse_dead_old",
+        "age": [
+          30,
+          62
+        ],
+        "noflag": [
+          "fo_nvguan",
+          "fo_ng_no",
+          "fo_seng"
+        ]
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_nvguan_ev"
+        }
+      },
+      "text": "城外的道觀裡住著幾個女冠，有的是守寡的婦人，有的是一直沒嫁的姑娘。她們穿黃色的道服，戴小小的冠子，看上去比在家裡清閒。"
+    },
+    {
+      "id": "fo_ng_seed2",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.03,
+      "year": [
+        620,
+        763
+      ],
+      "tag": "女冠",
+      "scene": "temple",
+      "req": {
+        "gender": "f",
+        "age": [
+          15,
+          17
+        ],
+        "married": false,
+        "noflag": [
+          "fo_nvguan",
+          "fo_ng_no",
+          "fo_seng",
+          "single"
+        ]
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_nvguan_ev"
+        }
+      },
+      "text": "城外道觀裡的女冠來里中送符水，看見你，說這姑娘骨相清，若是入了道，倒是個修行的料子。"
+    },
+    {
+      "id": "fo_nvguan_ev",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "女冠",
+      "title": "入道",
+      "scene": "temple",
+      "req": {
+        "gender": "f",
+        "age": [
+          15,
+          70
+        ],
+        "noflag": [
+          "fo_nvguan",
+          "fo_ng_no",
+          "fo_seng",
+          "single"
+        ]
+      },
+      "text": "觀主是個五十多歲的女冠，說話慢條斯理。她說入了道，就不再是誰家的媳婦、誰家的女兒，每天誦經、服氣，種觀裡的菜園子。只是要入道籍，得官府准了才行。",
+      "choices": [
+        {
+          "t": "求入道籍",
+          "chk": {
+            "base": 0.45,
+            "stat": "德",
+            "k": 0.015
+          },
+          "ok": {
+            "eff": {
+              "flag": [
+                "fo_nvguan",
+                "single"
+              ],
+              "德": 1
+            },
+            "out": "州裡准了。你換上黃色的道服，觀主替你挽起頭髮，戴上冠子，給你取了一個道號。"
+          },
+          "fail": {
+            "eff": {
+              "flag": "fo_ng_no"
+            },
+            "out": "州裡說今年沒有度人的名額。觀主說，你先回去吧。你回去了，往後也就沒再來。"
+          }
+        },
+        {
+          "t": "寄住在觀裡",
+          "show": {
+            "flag": "spouse_dead_old"
+          },
+          "eff": {
+            "flag": [
+              "fo_guan_ji",
+              "fo_ng_no"
+            ]
+          },
+          "out": "你沒有入道籍，只在觀裡賃了一間屋子住下，幫著做些雜事。觀裡的人都叫你一聲大娘。"
+        },
+        {
+          "t": "還是在家",
+          "eff": {
+            "flag": "fo_ng_no"
+          },
+          "out": "你說家裡還有人要照顧。觀主送了你一卷《度人經》，你帶回去，放在枕頭邊。"
+        }
+      ]
+    },
+    {
+      "id": "fo_ng_life",
+      "kind": "flavor",
+      "w": 3,
+      "repeat": 2,
+      "repeatGap": 6,
+      "tag": "女冠",
+      "scene": "night",
+      "req": {
+        "flag": "fo_nvguan"
+      },
+      "text": "觀裡的日子很靜。早上誦一卷《道德經》，午後在菜園裡澆水，晚上點一盞燈，看星星從觀頂上轉過去。",
+      "alt": [
+        "觀主老了，觀裡的帳交給你管。一年的香火錢、菜園裡賣菜的錢，你一筆一筆記得清清楚楚。"
+      ]
+    },
+    {
+      "id": "fo_ng_life2",
+      "kind": "flavor",
+      "w": 2,
+      "tag": "女冠",
+      "scene": "birth",
+      "req": {
+        "flag": "fo_nvguan",
+        "age": [
+          35,
+          90
+        ]
+      },
+      "eff": {
+        "德": 1
+      },
+      "text": "里中有個婦人難產，家裡人來觀裡求符。觀主畫了一道符，讓你送去。你在產房外頭站了一夜，天亮的時候，聽見了孩子的哭聲。"
+    },
+    {
+      "id": "fo_dan_seed",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.0025,
+      "tag": "煉丹",
+      "scene": "road",
+      "req": {
+        "age": [
+          35,
+          65
+        ],
+        "noflag": [
+          "fo_dan_done",
+          "fo_seng"
+        ]
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_dan"
+        }
+      },
+      "text": "村裡來了個遊方的道士，鬚髮都白了，說自己一百多歲了，全靠服丹。他背著一個葫蘆，倒出來的藥丸紅得發亮。"
+    },
+    {
+      "id": "fo_dan",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "煉丹",
+      "title": "金丹",
+      "scene": "sick",
+      "req": {
+        "age": [
+          35,
+          70
+        ],
+        "noflag": [
+          "fo_dan_done",
+          "fo_seng"
+        ]
+      },
+      "text": "道士說，這丹是用丹砂、雄黃燒了九轉煉成的，吃了身輕體健，百病不生。一丸要五百文。他還說，要是你有心，他可以教你自己燒煉。",
+      "choices": [
+        {
+          "t": "買丹服食",
+          "eff": {
+            "財": -2,
+            "flag": [
+              "fo_dan_done",
+              "fo_dan_eat"
+            ],
+            "later": {
+              "in": 2,
+              "id": "fo_dan_after"
+            }
+          },
+          "out": "你吃了一丸，渾身發熱，夜裡睡不著，覺得自己年輕了十歲。"
+        },
+        {
+          "t": "跟他學燒煉",
+          "eff": {
+            "財": -3,
+            "文": 1,
+            "flag": [
+              "fo_dan_done",
+              "fo_dan_learn"
+            ],
+            "later": {
+              "in": 3,
+              "id": "fo_dan_lu"
+            }
+          },
+          "out": "你在後院壘了一座小爐，跟著道士學配藥、看火候。道士住了三個月，帶著你給的盤纏走了。"
+        },
+        {
+          "t": "把他打發走",
+          "eff": {
+            "flag": "fo_dan_done"
+          },
+          "out": "你說家裡的錢是要買種子的。道士笑了笑，說你沒有仙緣，背著葫蘆走了。"
+        }
+      ]
+    },
+    {
+      "id": "fo_dan_after",
+      "kind": "stage",
+      "recheck": true,
+      "tag": "煉丹",
+      "title": "丹毒",
+      "scene": "sick",
+      "req": {
+        "flag": "fo_dan_eat",
+        "age": [
+          35,
+          75
+        ]
+      },
+      "text": "服丹兩年了。這些日子，你背上生了一個瘡，一直不收口，手也開始發抖，夜裡口渴，要起來喝好幾回水。",
+      "choices": [
+        {
+          "t": "停了不吃",
+          "eff": {
+            "健": -4,
+            "flag": "fo_dan_stop"
+          },
+          "out": "你把剩下的丹丸埋在了院子裡。瘡過了大半年才好，手抖的毛病卻落下了。"
+        },
+        {
+          "t": "再加一丸",
+          "sub": "道士說，是毒氣還沒發散完",
+          "eff": {
+            "健": -6,
+            "flag": "fo_dan_more",
+            "risk": {
+              "base": 0.35,
+              "cause": "病故"
+            }
+          },
+          "out": "你又吞了一丸，燒了三天三夜。燒退了，人瘦了一大圈，手抖得端不住碗。",
+          "deathOut": "你又吞了一丸，當夜就發起高燒，說胡話，叫的是小時候的名字。第三天早上，你沒有再醒過來。"
+        }
+      ]
+    },
+    {
+      "id": "fo_dan_lu",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "煉丹",
+      "title": "丹爐",
+      "scene": "fire",
+      "req": {
+        "flag": "fo_dan_learn",
+        "age": [
+          35,
+          75
+        ]
+      },
+      "text": "你在後院燒了三年的爐子，丹砂、水銀、硫黃買了一回又一回，家裡的錢都化成了煙。這天夜裡，爐子轟的一聲炸了。",
+      "choices": [
+        {
+          "t": "從此不燒了",
+          "eff": {
+            "健": -3,
+            "財": -1,
+            "flag": "fo_dan_quit"
+          },
+          "out": "爐子炸了，你的眉毛也燎沒了。你把爐子的碎磚撿起來，砌了豬圈。"
+        },
+        {
+          "t": "再壘一座",
+          "eff": {
+            "財": -3,
+            "flag": "fo_dan_lu2"
+          },
+          "out": "你又壘了一座更大的爐子。里中的人路過你家後院，都捏著鼻子走。"
+        }
+      ]
+    },
+    {
+      "id": "fo_feng_seed",
+      "kind": "flavor",
+      "w": 2,
+      "p": 0.4,
+      "tag": "烽燧",
+      "scene": "registry",
+      "req": {
+        "region": [
+          "shazhou",
+          "xizhou"
+        ],
+        "gender": "m",
+        "age": [
+          20,
+          50
+        ],
+        "year": [
+          619,
+          763
+        ],
+        "noflag": [
+          "fo_feng_done",
+          "fo_seng"
+        ],
+        "nofaction": "rebel"
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_fengzi"
+        }
+      },
+      "text": "縣裡排差科簿，你的名字底下注了「烽子」兩個字。里正說，這一番要去城外的烽上守半年。"
+    },
+    {
+      "id": "fo_fengzi",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "烽燧",
+      "title": "烽子",
+      "scene": "fire",
+      "req": {
+        "region": [
+          "shazhou",
+          "xizhou"
+        ],
+        "gender": "m",
+        "age": [
+          20,
+          55
+        ],
+        "noflag": "fo_feng_done"
+      },
+      "text": "烽建在高處，一座土臺，幾間小屋，一個烽帥帶著幾個烽子。白天瞭望，夜裡放平安火；賊來了，就點烽，一座接一座地往州城傳。",
+      "choices": [
+        {
+          "t": "上烽去",
+          "eff": {
+            "武": 1,
+            "flag": [
+              "fo_feng_done",
+              "fo_fengzi"
+            ],
+            "later": {
+              "in": 1,
+              "id": "fo_feng_smoke"
+            }
+          },
+          "out": "你背著一袋乾糧上了烽。烽臺上風大，夜裡蓋兩層氈子還是冷。"
+        },
+        {
+          "t": "雇人代番",
+          "req": {
+            "stat": {
+              "財": 4
+            }
+          },
+          "lock": "家裡雇不起人",
+          "eff": {
+            "財": -3,
+            "flag": [
+              "fo_feng_done",
+              "fo_feng_hire"
+            ]
+          },
+          "out": "你出錢雇了城裡一個沒地的後生替你去。他走的時候，你多給了他一雙鞋。"
+        }
+      ],
+      "note": "據《唐六典・兵部・職方郎中》：凡烽候所置，大率相去三十里；若有山岡隔絕，須逐便安置，得相望見，不必要限三十里。"
+    },
+    {
+      "id": "fo_feng_life",
+      "kind": "flavor",
+      "w": 3,
+      "repeat": 2,
+      "repeatGap": 3,
+      "tag": "烽燧",
+      "scene": "night",
+      "req": {
+        "flag": "fo_fengzi",
+        "region": [
+          "shazhou",
+          "xizhou"
+        ],
+        "age": [
+          20,
+          60
+        ]
+      },
+      "text": "烽上的日子一天跟一天一樣：天亮掃臺，記一筆平安；天黑點一把火，遠處的烽也點一把。有一回對面的火遲了半個時辰，你一夜沒合眼。",
+      "alt": [
+        "烽上要積柴草、積蘆葦，一捆一捆碼得整整齊齊。州裡的官人來點檢，少一捆都要挨罵。"
+      ]
+    },
+    {
+      "id": "fo_feng_smoke",
+      "kind": "stage",
+      "recheck": true,
+      "tag": "烽燧",
+      "title": "煙塵",
+      "scene": "fire",
+      "req": {
+        "flag": "fo_fengzi",
+        "region": [
+          "shazhou",
+          "xizhou"
+        ],
+        "age": [
+          20,
+          60
+        ]
+      },
+      "text": "這天下午，西南邊的天上起了一道煙塵，越來越近。烽帥爬上臺頂看了一會兒，說是騎兵，不下百騎。",
+      "choices": [
+        {
+          "t": "點烽報警",
+          "eff": {
+            "武": 1,
+            "名": 2,
+            "flag": "fo_feng_lit",
+            "risk": {
+              "base": 0.15,
+              "cause": "兵禍"
+            }
+          },
+          "out": "你把柴堆點著了。濃煙一起，遠處的烽一座接一座也起了煙。騎兵在烽下轉了一圈，射了幾箭，掉頭走了。",
+          "deathOut": "你把柴堆點著了。濃煙一起，遠處的烽一座接一座也起了煙。騎兵圍了上來，一支箭從垛口射進來，正中你的胸口。"
+        },
+        {
+          "t": "關了塢門躲著",
+          "out": "烽帥說人少守不住，你們關了塢門，在裡頭躲了一夜。第二天一早，州裡的兵到了，烽帥挨了一頓罵。"
+        }
+      ]
+    },
+    {
+      "id": "fo_gs_seed",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.07,
+      "tag": "過所",
+      "scene": "caravan",
+      "req": {
+        "region": [
+          "shazhou",
+          "xizhou",
+          "guanzhong"
+        ],
+        "cls": [
+          "gongshang",
+          "hu",
+          "junfarmer",
+          "kehu"
+        ],
+        "age": [
+          18,
+          55
+        ],
+        "year": [
+          627,
+          755
+        ],
+        "noflag": "fo_gs_done",
+        "nofaction": "rebel"
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_guosuo"
+        }
+      },
+      "text": "{friend}要往西州去販絹，問你要不要一道走。他說，西州的絹價比這邊高三成。",
+      "textIf": [
+        {
+          "req": {
+            "region": "xizhou"
+          },
+          "text": "{friend}要往沙州去販一批貨，問你要不要一道走。他說，這一趟走下來，夠買一頭牛。"
+        }
+      ]
+    },
+    {
+      "id": "fo_guosuo",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "過所",
+      "title": "過所",
+      "scene": "caravan",
+      "req": {
+        "age": [
+          18,
+          60
+        ],
+        "noflag": "fo_gs_done"
+      },
+      "text": "出關要過所。先到州裡遞牒，寫明去哪裡、帶幾個人、幾頭牲口、什麼貨，還要找保人作保。批下來以後，沿路每一座關、每一個鎮戍都要驗過、簽了字，才放行。",
+      "choices": [
+        {
+          "t": "老老實實請過所",
+          "eff": {
+            "財": -1,
+            "flag": [
+              "fo_gs_done",
+              "fo_guosuo"
+            ],
+            "later": {
+              "in": 1,
+              "id": "fo_gs_road"
+            }
+          },
+          "out": "州裡的戶曹給你寫了過所，蓋了印。你把它用油紙包了，貼身揣著。"
+        },
+        {
+          "t": "不請過所，繞小路",
+          "sub": "私度關，按律要徒一年",
+          "eff": {
+            "flag": [
+              "fo_gs_done",
+              "fo_toudu"
+            ],
+            "later": {
+              "in": 1,
+              "id": "fo_gs_caught"
+            }
+          },
+          "out": "你跟著{friend}繞開大路，打算從烽燧望不見的地方走過去。"
+        },
+        {
+          "t": "不去了",
+          "eff": {
+            "flag": "fo_gs_done"
+          },
+          "out": "你說家裡離不開人。{friend}一個人走了，半年後回來，買了兩頭驢。"
+        }
+      ]
+    },
+    {
+      "id": "fo_gs_road",
+      "kind": "stage",
+      "recheck": true,
+      "tag": "過所",
+      "title": "沿路勘過",
+      "scene": "road",
+      "req": {
+        "flag": "fo_guosuo",
+        "age": [
+          18,
+          65
+        ]
+      },
+      "text": "你們走了一個多月。每到一座關、一個鎮戍，就有人把過所拿進去看，對著人數一個個點，在紙背後寫上某月某日勘過，放行。到了最後一站，城門口的官人看了半天，說你帶的驢多了一頭。",
+      "choices": [
+        {
+          "t": "拿出市券",
+          "chk": {
+            "base": 0.6
+          },
+          "ok": {
+            "eff": {
+              "財": 2
+            },
+            "out": "你把路上買驢時立的市券拿了出來。官人看了，在過所背後添了一行字，放你進了城。"
+          },
+          "fail": {
+            "eff": {
+              "財": -2
+            },
+            "out": "官人說過所上沒寫，就是來路不明。驢被扣下了，你又交了一筆錢，才進了城。"
+          }
+        },
+        {
+          "t": "塞點錢",
+          "eff": {
+            "財": -1,
+            "德": -1
+          },
+          "out": "你把一串錢塞進官人的袖子裡。他咳了一聲，揮手放你過去了。"
+        }
+      ],
+      "note": "吐魯番阿斯塔那出土《唐開元二十一年石染典過所》：西州商人石染典往來瓜、沙、伊、西諸州，過所背面有沿途守捉官員逐一勘驗放行的簽署。"
+    },
+    {
+      "id": "fo_gs_caught",
+      "kind": "stage",
+      "recheck": true,
+      "tag": "過所",
+      "title": "私度關",
+      "scene": "army",
+      "req": {
+        "flag": "fo_toudu",
+        "age": [
+          18,
+          65
+        ]
+      },
+      "text": "你們在沙磧裡走了三天，水快喝完了，遠處的烽上起了一道煙。不到半天，一隊騎兵追了上來。",
+      "choices": [
+        {
+          "t": "跪下認罪",
+          "eff": {
+            "名": -2,
+            "健": -3,
+            "flag": "fo_toudu_caught"
+          },
+          "out": "你們被押回州裡。私度關，按律徒一年。你在州裡的作坊做了一年苦工，才放了出來。"
+        },
+        {
+          "t": "往沙裡跑",
+          "eff": {
+            "flag": "fo_toudu_run",
+            "risk": {
+              "base": 0.25,
+              "cause": "傷病交加"
+            }
+          },
+          "out": "你扔下驢往沙丘後頭跑。騎兵追了一陣，沒有再追。你在沙裡走了五天，嘴唇裂得流血，終於看見了一片綠洲。",
+          "deathOut": "你扔下驢往沙丘後頭跑。騎兵沒有追，沙磧替他們追了。過了好些年，有過路的商隊在沙裡看見一副骨頭。"
+        }
+      ],
+      "note": "《唐律疏議・衛禁》：諸私度關者，徒一年；越度者，加一等。"
+    },
+    {
+      "id": "fo_xz_seed",
+      "kind": "flavor",
+      "w": 2,
+      "p": 0.6,
+      "tag": "西州",
+      "scene": "caravan",
+      "req": {
+        "region": "shazhou",
+        "cls": [
+          "junfarmer",
+          "kehu",
+          "hu",
+          "gongshang",
+          "fubing"
+        ],
+        "age": [
+          20,
+          45
+        ],
+        "year": [
+          650,
+          745
+        ],
+        "noflag": "fo_xz_no",
+        "nofaction": "rebel"
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_xz_move"
+        }
+      },
+      "text": "從西州回來的商人說，那邊的葡萄一串有一尺長，官府缺人，去了的人家都能分到地。"
+    },
+    {
+      "id": "fo_xz_move",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "西州",
+      "title": "往西州去",
+      "scene": "caravan",
+      "req": {
+        "region": "shazhou",
+        "age": [
+          20,
+          50
+        ],
+        "noflag": "fo_xz_no"
+      },
+      "text": "從敦煌往西州，走大海道要穿過一千多里的沙磧，路上沒有水草。走伊州那條路遠一些，可是有驛站。你跟家裡人商量了好幾個晚上。",
+      "choices": [
+        {
+          "t": "舉家遷去",
+          "eff": {
+            "健": -3,
+            "flag": [
+              "to_xizhou",
+              "fo_xz_moved"
+            ]
+          },
+          "out": "你們跟著一支商隊上了路。走了一個多月，看見火焰山紅色的山脊時，驢都走不動了。"
+        },
+        {
+          "t": "留在敦煌",
+          "eff": {
+            "flag": "fo_xz_no"
+          },
+          "out": "你說，祖墳在這裡。商人聳了聳肩，說西州的葡萄是真甜。"
+        }
+      ]
+    },
+    {
+      "id": "fo_xz_tian",
+      "kind": "flavor",
+      "w": 3,
+      "tag": "西州",
+      "scene": "field",
+      "req": {
+        "region": "xizhou",
+        "age": [
+          18,
+          70
+        ],
+        "noflag": "fo_xz_tian"
+      },
+      "eff": {
+        "flag": "fo_xz_tian"
+      },
+      "text": "西州是狹鄉，地少人多。籍帳上寫著你應受田多少，實際分到手的，只有常田幾畝、部田幾畝，還是零零碎碎的好幾小塊，一塊在城東，一塊在河邊。"
+    },
+    {
+      "id": "fo_xz_yinqian",
+      "kind": "flavor",
+      "w": 3,
+      "year": [
+        640,
+        700
+      ],
+      "tag": "西州",
+      "scene": "contract",
+      "req": {
+        "region": "xizhou",
+        "age": [
+          18,
+          70
+        ]
+      },
+      "eff": {
+        "flag": "fo_xz_yinqian"
+      },
+      "text": "西州人立契借錢，算的還是高昌國時候的銀錢。你向鄰家借了十文銀錢，契上寫著：月別生利一文，到期不還，任掣奪家資。",
+      "note": "吐魯番出土的唐前期西州借貸契，多以銀錢計，常見「月別生利」等語；至武周以後，漸多以銅錢、練帛計價。"
+    },
+    {
+      "id": "fo_xz_gaochang",
+      "kind": "flavor",
+      "w": 3,
+      "year": [
+        642,
+        700
+      ],
+      "tag": "西州",
+      "scene": "old",
+      "req": {
+        "region": "xizhou",
+        "age": [
+          10,
+          80
+        ]
+      },
+      "text": "隔壁住著一個高昌國時候的老人，說起麴王在的時候，城裡有多少座寺、多少個和尚。唐軍來的那年，麴家的人都被送去了長安，他的主人也跟著走了。"
+    },
+    {
+      "id": "fo_xz_658",
+      "kind": "flavor",
+      "w": 5,
+      "year": [
+        658,
+        661
+      ],
+      "tag": "西州",
+      "scene": "city",
+      "req": {
+        "region": "xizhou",
+        "age": [
+          10,
+          85
+        ]
+      },
+      "text": "安西都護府搬到龜茲去了。城裡的官署空了一半，留下的人說，往後西州就只是個州了。"
+    },
+    {
+      "id": "fo_670",
+      "kind": "flavor",
+      "w": 5,
+      "year": [
+        670,
+        672
+      ],
+      "tag": "吐蕃",
+      "scene": "caravan",
+      "req": {
+        "region": [
+          "shazhou",
+          "xizhou"
+        ],
+        "age": [
+          10,
+          85
+        ]
+      },
+      "text": "西邊來的消息說，吐蕃攻陷了西域十八州，安西四鎮都丟了。商隊不敢再往西走，駱駝在城外臥了一大片。"
+    },
+    {
+      "id": "fo_hu_seed",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.3,
+      "tag": "鄰里",
+      "scene": "market",
+      "req": {
+        "region": "shazhou",
+        "nocls": "hu",
+        "age": [
+          20,
+          60
+        ],
+        "year": [
+          650,
+          755
+        ],
+        "noflag": "fo_hu_done"
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_hu"
+        }
+      },
+      "text": "城東從化鄉住的多是粟特人家，姓安、姓康、姓石。跟你家隔著一條渠的那家姓康，男人一年有大半年跟著駝隊在外頭。"
+    },
+    {
+      "id": "fo_hu",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "鄰里",
+      "title": "胡漢合本",
+      "scene": "market",
+      "req": {
+        "region": "shazhou",
+        "age": [
+          20,
+          65
+        ],
+        "noflag": "fo_hu_done"
+      },
+      "text": "康家的男人來找你，說他要往西州販一批絹，本錢不夠。你家要是出一份，賺了錢對半分。他說契可以寫漢文，也可以寫胡書，你挑。",
+      "choices": [
+        {
+          "t": "出一份本錢",
+          "chk": {
+            "base": 0.6
+          },
+          "eff": {
+            "flag": [
+              "fo_hu_done",
+              "fo_hu_partner"
+            ]
+          },
+          "ok": {
+            "eff": {
+              "財": 3
+            },
+            "out": "半年後，康家的駝隊回來了。他把你那一份連本帶利數給你，又送了一小罐葡萄酒。"
+          },
+          "fail": {
+            "eff": {
+              "財": -2
+            },
+            "out": "駝隊在路上遇上了沙暴，貨丟了一半。康家的男人上門來，把剩下的錢數給你，一文也沒少。"
+          }
+        },
+        {
+          "t": "不摻和",
+          "eff": {
+            "flag": "fo_hu_done"
+          },
+          "out": "你說種地的人不懂買賣。康家的男人也不惱，往後見了面，照樣打招呼。"
+        }
+      ]
+    },
+    {
+      "id": "fo_saixian",
+      "kind": "flavor",
+      "w": 1,
+      "tag": "鄰里",
+      "scene": "festival",
+      "req": {
+        "region": "shazhou",
+        "age": [
+          6,
+          80
+        ]
+      },
+      "text": "州城東邊的祆祠在祭祆神。粟特人宰了羊，吹著胡笛，圍著火跳胡旋。你擠在人群裡看了半天，回去的時候，袖子裡還留著烤羊肉的味道。"
+    },
+    {
+      "id": "fo_chaike751",
+      "kind": "flavor",
+      "w": 4,
+      "year": [
+        750,
+        754
+      ],
+      "tag": "差科",
+      "scene": "registry",
+      "req": {
+        "region": "shazhou",
+        "age": [
+          18,
+          75
+        ]
+      },
+      "text": "縣裡又在造差科簿。一鄉一鄉排下來，每家的男丁都寫上了：這個是衛士，那個是烽子，這個是白丁，那個老了，免。從化鄉那一卷，一連幾十行都姓安、姓康、姓石。",
+      "note": "敦煌出土《唐天寶年間敦煌郡敦煌縣差科簿》（P.3559 等），按鄉逐戶開列丁男色役；其中從化鄉多為安、康、石、曹、米等粟特姓氏。"
+    },
+    {
+      "id": "fo_727",
+      "kind": "stage",
+      "year": [
+        727,
+        728
+      ],
+      "order": 40,
+      "tag": "吐蕃",
+      "title": "瓜州陷落",
+      "scene": "flee",
+      "req": {
+        "region": "shazhou",
+        "age": [
+          16,
+          80
+        ]
+      },
+      "text": "吐蕃的大軍打下了瓜州，毀了城，把刺史和河西節度使的老父親都擄走了。瓜州離敦煌只有三百來里，村裡的人連夜把糧食往州城裡搬。",
+      "choices": [
+        {
+          "t": "上城去守",
+          "show": {
+            "gender": "m"
+          },
+          "eff": {
+            "武": 1,
+            "flag": "fo_tubo_shou",
+            "risk": {
+              "base": 0.06,
+              "cause": "兵禍"
+            }
+          },
+          "out": "你分到了一段城牆，白天搬石頭，夜裡守垛口。吐蕃的騎兵在城外轉了幾天，沒有攻城，往南去了。",
+          "deathOut": "你分到了一段城牆，白天搬石頭，夜裡守垛口。第三天夜裡，城下射上來一陣亂箭。"
+        },
+        {
+          "t": "躲進州城",
+          "eff": {
+            "財": -1,
+            "flag": "fo_tubo_bao"
+          },
+          "out": "你把糧食裝上車，進了州城，在親戚家的院子裡擠了一個多月。吐蕃的兵沒有來，你們才回了村。"
+        }
+      ],
+      "note": "據《舊唐書・玄宗紀》：開元十五年九月，吐蕃陷瓜州，執刺史田元獻及河西節度使王君㚟之父。"
+    },
+    {
+      "id": "fo_tb_seed",
+      "kind": "flavor",
+      "w": 1,
+      "p": 0.5,
+      "year": [
+        670,
+        763
+      ],
+      "tag": "寇抄",
+      "scene": "village",
+      "req": {
+        "region": [
+          "shazhou",
+          "xizhou"
+        ],
+        "age": [
+          16,
+          70
+        ],
+        "noflag": "fo_tb_done"
+      },
+      "eff": {
+        "later": {
+          "in": 1,
+          "id": "fo_tubo_raid"
+        }
+      },
+      "text": "山那邊放牧的人說，最近山口外頭常有生面孔的騎手轉悠。里正讓各家把牛羊趕得近一些，夜裡門要閂緊。"
+    },
+    {
+      "id": "fo_tubo_raid",
+      "kind": "stage",
+      "recheck": true,
+      "homeOnly": true,
+      "tag": "寇抄",
+      "title": "寇抄",
+      "scene": "flee",
+      "req": {
+        "region": [
+          "shazhou",
+          "xizhou"
+        ],
+        "age": [
+          16,
+          75
+        ],
+        "noflag": "fo_tb_done"
+      },
+      "text": "天剛亮，村口有人敲鑼。一群騎兵從山口衝了出來，見牛羊就趕，見人就砍。村裡的人都往堡子裡跑。",
+      "choices": [
+        {
+          "t": "躲進堡子",
+          "eff": {
+            "財": -2,
+            "flag": [
+              "fo_tb_done",
+              "fo_tubo_bao"
+            ]
+          },
+          "out": "你們擠在堡子裡，聽著外頭的馬蹄聲。騎兵走了以後出來一看，羊少了一半，草垛也燒了。"
+        },
+        {
+          "t": "去追牛羊",
+          "show": {
+            "gender": "m"
+          },
+          "eff": {
+            "武": 1,
+            "flag": [
+              "fo_tb_done",
+              "fo_tubo_chase"
+            ],
+            "risk": {
+              "base": 0.2,
+              "cause": "兵禍"
+            }
+          },
+          "out": "你跟著幾個後生騎馬追了出去，在河灘上奪回了十幾頭羊。",
+          "deathOut": "你跟著幾個後生騎馬追了出去。到了河灘上，前頭的騎兵忽然掉轉了馬頭。"
+        }
+      ]
+    },
+    {
+      "id": "fo_756_son",
+      "kind": "stage",
+      "year": [
+        756,
+        757
+      ],
+      "order": 40,
+      "tag": "兵亂",
+      "title": "東去勤王",
+      "scene": "army",
+      "req": {
+        "region": [
+          "shazhou",
+          "xizhou"
+        ],
+        "son": [
+          16,
+          45
+        ],
+        "age": [
+          34,
+          90
+        ]
+      },
+      "text": "河西、安西的兵都要往東去勤王。州裡又在點人，{son}的名字也在東去的名冊上。隊伍後天就走。",
+      "choices": [
+        {
+          "t": "送他走",
+          "eff": {
+            "flag": "fo_son_east",
+            "tagKid": "fo_east",
+            "kidOut": 30,
+            "later": {
+              "in": 3,
+              "id": "fo_letter"
+            }
+          },
+          "out": "你給{son}縫了一雙新鞋，在鞋底裡縫了幾十文錢。隊伍出了東門，揚起來的土半天才落下去。"
+        },
+        {
+          "t": "讓他躲起來",
+          "chk": {
+            "base": 0.5
+          },
+          "ok": {
+            "eff": {
+              "flag": "fo_son_hide"
+            },
+            "out": "你把{son}藏在地窖裡，對來點名的人說他進山打柴，摔斷了腿。隊伍走了以後，{son}在地窖裡又待了半個月。"
+          },
+          "fail": {
+            "eff": {
+              "flag": "fo_son_east",
+              "tagKid": "fo_east",
+              "kidOut": 30,
+              "later": {
+                "in": 3,
+                "id": "fo_letter"
+              }
+            },
+            "out": "點名的人在地窖裡把{son}拖了出來，捆著帶走了。你追到東門口，一句話也沒說上。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fo_letter",
+      "kind": "stage",
+      "recheck": true,
+      "tag": "家書",
+      "title": "寄信",
+      "scene": "home",
+      "req": {
+        "flag": "fo_son_east",
+        "kidTag": "fo_east",
+        "region": [
+          "shazhou",
+          "xizhou"
+        ],
+        "age": [
+          38,
+          90
+        ]
+      },
+      "text": "{son}走了三年，一封信也沒有。聽說東邊的仗還在打，隴右的路也不好走了。城裡有一支胡商的駝隊要往東去，說是要一直走到長安。",
+      "choices": [
+        {
+          "t": "託胡商帶信",
+          "eff": {
+            "財": -1,
+            "later": {
+              "in": 3,
+              "id": "fo_letter_end"
+            }
+          },
+          "out": "你請人寫了一封信，信上只說家裡都好，讓{son}吃飽穿暖。胡商把信塞進一個皮袋，說到了長安就替你打聽。"
+        },
+        {
+          "t": "等他自己回來",
+          "eff": {
+            "later": {
+              "in": 3,
+              "id": "fo_letter_end"
+            }
+          },
+          "out": "你說，信寄出去也是石沉大海。每天傍晚，你都到東門口站一會兒。"
+        }
+      ]
+    },
+    {
+      "id": "fo_letter_end",
+      "kind": "stage",
+      "recheck": true,
+      "tag": "家書",
+      "title": "沒有回音",
+      "scene": "night",
+      "req": {
+        "flag": "fo_son_east",
+        "kidTag": "fo_east",
+        "age": [
+          38,
+          95
+        ]
+      },
+      "text": "又過了幾年，東邊的消息一年比一年少。往東去的人走到半路又折了回來，說隴右一帶到處是吐蕃的兵，路斷了。那封信，那個人，都沒有回音。",
+      "choices": [
+        {
+          "t": "再寫一封",
+          "eff": {
+            "德": 1,
+            "flag": "fo_letter_lost"
+          },
+          "out": "你又請人寫了一封，跟上一封一字不差。寫好了，沒有人往東走，你就把它壓在枕頭底下。"
+        },
+        {
+          "t": "立個衣冠塚",
+          "eff": {
+            "flag": [
+              "fo_letter_lost",
+              "fo_yiguan"
+            ]
+          },
+          "out": "你把{son}小時候穿過的一件衣裳埋在了祖墳邊上，立了一塊小木牌。立完了，你又說：說不定哪天就回來了。"
+        }
+      ]
+    },
+    {
+      "id": "fo_763",
+      "kind": "flavor",
+      "w": 5,
+      "year": [
+        761,
+        763
+      ],
+      "tag": "兵亂",
+      "scene": "city",
+      "req": {
+        "region": [
+          "shazhou",
+          "xizhou"
+        ],
+        "age": [
+          10,
+          90
+        ]
+      },
+      "text": "朝廷改元的詔書到州裡的時候，已經晚了大半年。從長安來的人越來越少，市上的絹一天比一天貴。州裡的官人說，往東的路，隴右那一段已經過不去了。"
+    }
+  ],
+  "arcBook": [
+    {
+      "name": "寺門",
+      "items": [
+        {
+          "id": "fo_dudie",
+          "title": "官度為僧"
+        },
+        {
+          "id": "fo_sidu",
+          "title": "私度"
+        },
+        {
+          "id": "fo_huansu",
+          "title": "沙汰還俗"
+        },
+        {
+          "id": "fo_maidie",
+          "title": "香水錢"
+        },
+        {
+          "id": "fo_kid_visit",
+          "title": "寺裡探子"
+        },
+        {
+          "id": "fo_kid714",
+          "title": "私度子被查"
+        },
+        {
+          "id": "fo_zx_name",
+          "title": "造像題名"
+        },
+        {
+          "id": "fo_zx_li",
+          "title": "出力造像"
+        },
+        {
+          "id": "fo_xj",
+          "title": "寫經追福"
+        },
+        {
+          "id": "fo_xj_self",
+          "title": "親手抄經"
+        },
+        {
+          "id": "fo_jingsheng",
+          "title": "坊間經生"
+        },
+        {
+          "id": "fo_jing_si",
+          "title": "入寺抄經"
+        },
+        {
+          "id": "fo_jing_quit",
+          "title": "收了筆墨"
+        },
+        {
+          "id": "fo_wj_give",
+          "title": "無盡藏施錢"
+        },
+        {
+          "id": "fo_wj_borrow",
+          "title": "無盡藏借錢"
+        },
+        {
+          "id": "fo_wj_repaid",
+          "title": "無契自還"
+        },
+        {
+          "id": "fo_wj_keep",
+          "title": "借了不還"
+        },
+        {
+          "id": "fo_jiang",
+          "title": "聽講目連"
+        },
+        {
+          "id": "fo_loan_work",
+          "title": "做工抵債"
+        },
+        {
+          "id": "fo_loan_forgive",
+          "title": "寺主免利"
+        },
+        {
+          "id": "fo_zy_kang",
+          "title": "免了加租"
+        },
+        {
+          "id": "fo_zy_quit",
+          "title": "退佃"
+        },
+        {
+          "id": "fo_wz_yi",
+          "title": "神都修寺"
+        }
+      ]
+    },
+    {
+      "name": "道觀",
+      "items": [
+        {
+          "id": "fo_laozi_book",
+          "title": "家藏老子"
+        },
+        {
+          "id": "fo_miao_yi",
+          "title": "修玄元廟"
+        },
+        {
+          "id": "fo_daoju_pass",
+          "title": "道舉及第"
+        },
+        {
+          "id": "fo_daoju_fail",
+          "title": "道舉落第"
+        },
+        {
+          "id": "fo_nvguan",
+          "title": "入道女冠"
+        },
+        {
+          "id": "fo_guan_ji",
+          "title": "寄住道觀"
+        },
+        {
+          "id": "fo_dan_eat",
+          "title": "服丹"
+        },
+        {
+          "id": "fo_dan_stop",
+          "title": "停丹"
+        },
+        {
+          "id": "fo_dan_learn",
+          "title": "學燒煉"
+        },
+        {
+          "id": "fo_dan_quit",
+          "title": "爐炸罷手"
+        },
+        {
+          "id": "fo_dan_lu2",
+          "title": "再壘丹爐"
+        }
+      ]
+    },
+    {
+      "name": "邊地",
+      "items": [
+        {
+          "id": "fo_fengzi",
+          "title": "烽子番上"
+        },
+        {
+          "id": "fo_feng_hire",
+          "title": "雇人代番"
+        },
+        {
+          "id": "fo_feng_lit",
+          "title": "舉烽"
+        },
+        {
+          "id": "fo_guosuo",
+          "title": "請過所"
+        },
+        {
+          "id": "fo_toudu",
+          "title": "私度關"
+        },
+        {
+          "id": "fo_toudu_caught",
+          "title": "徒役一年"
+        },
+        {
+          "id": "fo_toudu_run",
+          "title": "逃進沙磧"
+        },
+        {
+          "id": "fo_xz_moved",
+          "title": "遷居西州"
+        },
+        {
+          "id": "fo_xz_tian",
+          "title": "狹鄉受田"
+        },
+        {
+          "id": "fo_xz_yinqian",
+          "title": "銀錢契"
+        },
+        {
+          "id": "fo_hu_partner",
+          "title": "胡漢合本"
+        },
+        {
+          "id": "fo_tubo_bao",
+          "title": "入堡避寇"
+        },
+        {
+          "id": "fo_tubo_shou",
+          "title": "守沙州城"
+        },
+        {
+          "id": "fo_tubo_chase",
+          "title": "追奪牛羊"
+        },
+        {
+          "id": "fo_son_east",
+          "title": "兒子東去"
+        },
+        {
+          "id": "fo_son_hide",
+          "title": "藏子地窖"
+        },
+        {
+          "id": "fo_letter_lost",
+          "title": "家書無回音"
+        },
+        {
+          "id": "fo_yiguan",
+          "title": "衣冠塚"
+        }
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "id": "fo_a1_seng",
+      "when": "alive",
+      "chapter": 1,
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu"
+      },
+      "title": "開皇出家",
+      "text": "{name}在寺裡過完了開皇、仁壽年間。這些年州裡的寺一座接一座地蓋，舍利塔也立起來了。{name}每天掃地、念經、種菜，聽說新天子也信佛，寺裡的人都說，往後的日子會更好。"
+    },
+    {
+      "id": "fo_a2_seng",
+      "when": "alive",
+      "chapter": 2,
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu"
+      },
+      "title": "大業出家",
+      "text": "大業末年，天下亂了，寺裡也收留了好些逃難的人。{name}把自己的一份齋飯分給了一個小孩。山門外頭殺聲不斷，山門裡頭，鐘照舊一天敲兩回。"
+    },
+    {
+      "id": "fo_a3_seng",
+      "when": "alive",
+      "chapter": 3,
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu"
+      },
+      "title": "武德沙汰",
+      "text": "武德九年，朝廷說要沙汰僧尼，{name}差一點就還了俗。後來長安出了大事，詔書沒有再提。{name}在寺裡照舊上早課，只是聽見馬蹄聲，總要抬頭看一眼。"
+    },
+    {
+      "id": "fo_a4_seng",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu"
+      },
+      "title": "貞觀僧籍",
+      "text": "{name}在寺裡度過了貞觀年間。聽說有個長安的法師偷出了玉門關，去天竺取經，十幾年後又回來了。{name}這輩子沒出過州界，可是會背的經，一部比一部多。"
+    },
+    {
+      "id": "fo_a4_wj",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "flag": "fo_wj_borrow"
+      },
+      "title": "無契之債",
+      "text": "{name}借過無盡藏的錢。那筆錢沒有契紙，沒有保人，也沒有人上門來催。貞觀年間的日子還算好過，{name}常想，那個院子裡的錢，到底是誰的。"
+    },
+    {
+      "id": "fo_a4_zhuang",
+      "when": "alive",
+      "chapter": 4,
+      "req": {
+        "anyFlag": [
+          "fo_zy_kang",
+          "fo_loan_forgive"
+        ]
+      },
+      "title": "老寺主",
+      "text": "{name}一家還佃著寺裡的田。那個免了你家債、免了你家租的老寺主，後來圓寂了，莊上的人都去送了。新的寺主姓什麼，{name}還沒記住。"
+    },
+    {
+      "id": "fo_a5_seng",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu"
+      },
+      "title": "空門",
+      "text": "{name}出家已經很多年了。這些年太后臨朝，外頭說什麼的都有，寺裡的人說，誰坐朝堂，經總是要念的。{name}念經的時候，聲音越來越低，越來越穩。"
+    },
+    {
+      "id": "fo_a5_feng",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "fo_fengzi"
+      },
+      "title": "烽上",
+      "text": "{name}在烽上守過好幾番。吐蕃一年比一年近，烽上的火也點得越來越勤。回到家裡，{name}夜裡還是會醒過來，往窗外看一眼，看遠處有沒有火光。"
+    },
+    {
+      "id": "fo_a5_dan",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "flag": "fo_dan_learn"
+      },
+      "title": "燒煉",
+      "text": "{name}後院的丹爐燒了好些年。鄰里說，太宗皇帝吃了天竺方士的長生藥，也沒有成神仙。{name}不理，照舊每天蹲在爐前看火，看到天黑。"
+    },
+    {
+      "id": "fo_a5_xz",
+      "when": "alive",
+      "chapter": 5,
+      "req": {
+        "region": "xizhou",
+        "anyFlag": [
+          "fo_xz_moved",
+          "fo_xz_tian"
+        ]
+      },
+      "title": "狹鄉",
+      "text": "{name}住在西州。這裡地少，分到手的田零零碎碎，葡萄卻長得好。鄰里有漢人，有高昌國時候留下的老戶，也有粟特人，說起話來幾種口音混在一起。安西四鎮丟了又收回來，西州的城門，開了又關。"
+    },
+    {
+      "id": "fo_a6_wz",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "flag": "fo_wz_yi"
+      },
+      "title": "神都役夫",
+      "text": "{name}在神都扛過造寺的大木。那些寺後來香火很旺，進香的人絡繹不絕，沒有人知道是誰扛的木頭。{name}的肩膀上留著一塊老繭，到死都沒有消。"
+    },
+    {
+      "id": "fo_a6_zx",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "anyFlag": [
+          "fo_zx_name",
+          "fo_zx_li"
+        ]
+      },
+      "title": "題名",
+      "text": "村口佛堂裡的那尊石像，有{name}的一份。女皇的年代，寺越蓋越多，像越造越大，村口那一尊算是小的。{name}每次路過佛堂，都要站一會兒，看看那尊像。"
+    },
+    {
+      "id": "fo_a6_seng",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu"
+      },
+      "title": "天授僧",
+      "text": "女皇在位的時候，僧尼排在了道士前頭，寺裡的人高興了好些年。後來換了天子，又說僧道並行。{name}想想，每天要掃的地、要念的經，一點也沒有少。"
+    },
+    {
+      "id": "fo_a6_ng",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "anyFlag": [
+          "fo_nvguan",
+          "fo_guan_ji"
+        ]
+      },
+      "title": "觀裡",
+      "text": "{name}在道觀裡住了好些年。這些年僧尼排在了道士前頭，觀裡冷清，香火錢少，倒也落得清靜。{name}在菜園裡種的韭菜，割了一茬又長一茬。"
+    },
+    {
+      "id": "fo_a6_jing",
+      "when": "alive",
+      "chapter": 6,
+      "req": {
+        "flag": "fo_jingsheng"
+      },
+      "title": "經生",
+      "text": "{name}抄過的經，少說也有幾百卷。女皇的年代，寺多，經也賣得好。那些經散到了各家各戶、各座寺裡，卷尾寫的是施主的名字，沒有一卷寫著{name}。"
+    },
+    {
+      "id": "fo_a7_daoju",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "fo_daoju_pass"
+      },
+      "title": "道舉",
+      "text": "{name}靠著讀《老子》《莊子》中了道舉。天寶年間，天子一年比一年信道，說是玄元皇帝屢次顯靈。{name}讀了那麼多年的道經，對這些事，倒是一句話也沒說。"
+    },
+    {
+      "id": "fo_a7_dan",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "fo_dan_learn"
+      },
+      "title": "丹爐",
+      "text": "{name}後院的那座丹爐，煙熏了好幾年。金丹沒有煉成，家裡的錢倒少了一大半。范陽那邊傳來兵亂的消息時，{name}正蹲在爐子前頭看火。"
+    },
+    {
+      "id": "fo_a7_bian",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "region": [
+          "shazhou",
+          "xizhou"
+        ],
+        "anyFlag": [
+          "fo_tubo_shou",
+          "fo_tubo_bao",
+          "fo_tubo_chase",
+          "fo_fengzi",
+          "fo_feng_hire",
+          "fo_hu_partner",
+          "fo_guosuo",
+          "fo_toudu"
+        ]
+      },
+      "title": "邊城",
+      "text": "{name}在邊地過了大半輩子：上過烽，請過過所，也躲過吐蕃。邊地的日子就是這樣，一年種地，一年躲兵。天寶末年，河西的兵一隊一隊往東開，城裡一下子空了。"
+    },
+    {
+      "id": "fo_a7_miao",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "fo_miao_yi"
+      },
+      "title": "玄元廟",
+      "text": "{name}給州裡的玄元皇帝廟夯過地基。廟後來改叫紫極宮，香火一年比一年旺。范陽起兵的消息傳來那天，廟裡正在做齋醮，煙一直升到天上。"
+    },
+    {
+      "id": "fo_a7_kid",
+      "when": "alive",
+      "chapter": 7,
+      "req": {
+        "flag": "fo_kid_visit"
+      },
+      "title": "寺裡的孩子",
+      "text": "{name}有一個孩子在寺裡。逢年過節，寺裡會捎來一包素餅，{name}也託人送去一雙鞋。開元、天寶年間的太平日子，就這樣一年一年過去了。{name}有時候想，那孩子念經的時候，會不會也念到家裡的人。"
+    },
+    {
+      "id": "fo_a8_letter",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "fo_letter_lost"
+      },
+      "title": "無回音",
+      "text": "{name}寄往東邊的信，一直沒有回音。往長安去的路斷了，州裡用的還是大唐的年號，可是長安的消息，一年也來不了幾回。{name}每天傍晚，還是到東門口去站一會兒。"
+    },
+    {
+      "id": "fo_a8_xz",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "region": "xizhou",
+        "anyFlag": [
+          "fo_xz_moved",
+          "fo_xz_tian",
+          "fo_xz_yinqian"
+        ]
+      },
+      "title": "火焰山下",
+      "text": "{name}住在西州。安西、北庭的兵都往東去了，往長安的信要繞好幾千里的路。城裡的人照舊引坎兒井的水澆葡萄，契約上寫的，還是大唐的年號。"
+    },
+    {
+      "id": "fo_a8_seng",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu"
+      },
+      "title": "亂後的僧",
+      "text": "仗打了八年，總算打完了。朝廷為了湊軍費，賣過好些度牒，寺裡一下子多了許多新面孔。{name}看著他們剃得青青的頭，想起自己剃度的那一天。"
+    },
+    {
+      "id": "fo_a8_ng",
+      "when": "alive",
+      "chapter": 8,
+      "req": {
+        "anyFlag": [
+          "fo_nvguan",
+          "fo_guan_ji"
+        ]
+      },
+      "title": "亂後的觀",
+      "text": "仗打完了，城外的道觀燒了一半。{name}跟觀裡剩下的幾個人，一塊磚一塊磚地把丹房砌了回去。觀主早已不在了，新來的人有事，都先來問{name}。"
+    },
+    {
+      "id": "fo_d_dan",
+      "when": "dead",
+      "before": "d_liao",
+      "cause": "病故",
+      "req": {
+        "anyFlag": [
+          "fo_dan_more",
+          "fo_dan_lu2"
+        ]
+      },
+      "title": "金丹",
+      "text": "{name}{age}歲上死了，臨死前嘴唇發紫，指甲發黑。家裡人在枕頭底下找到一個小葫蘆，裡頭還剩兩丸紅得發亮的藥。"
+    },
+    {
+      "id": "fo_d_toudu",
+      "when": "dead",
+      "before": "d_liao",
+      "cause": "傷病交加",
+      "req": {
+        "flag": "fo_toudu_run"
+      },
+      "title": "沙磧",
+      "text": "{name}{age}歲那年，死在了關外的沙磧裡。沒有過所，也就沒有名字報回州裡。家裡人等了一年，才在籍帳上把{name}注了「死」。"
+    },
+    {
+      "id": "fo_d_feng",
+      "when": "dead",
+      "before": "d_liao",
+      "cause": "兵禍",
+      "req": {
+        "flag": "fo_feng_lit"
+      },
+      "title": "烽火",
+      "text": "{name}死在烽上，{age}歲。那天的烽火點得及時，一座接一座傳到了州城，城外的人都躲進了城裡。{name}的名字，記在了烽帥報上去的牒文裡。"
+    },
+    {
+      "id": "fo_d_tubo",
+      "when": "dead",
+      "before": "d_liao",
+      "cause": "兵禍",
+      "req": {
+        "anyFlag": [
+          "fo_tubo_shou",
+          "fo_tubo_chase"
+        ],
+        "region": [
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "邊寇",
+      "text": "{name}死在山口外來的騎兵手裡，那年{age}歲。邊地的人家，十家裡有三家死過人。{name}葬在城外的沙地上，墳頭朝著東邊。"
+    },
+    {
+      "id": "fo_d_letter",
+      "when": "dead",
+      "before": "d_liao",
+      "req": {
+        "flag": "fo_son_east",
+        "region": [
+          "shazhou",
+          "xizhou"
+        ]
+      },
+      "title": "倚門",
+      "text": "{name}{age}歲上過世了，到死也沒有等到東去的兒子回來。臨終前，{name}讓家裡人把一雙新鞋放進棺材裡，說：他回來要是找不著我，總得有雙鞋穿。"
+    },
+    {
+      "id": "fo_d_ng",
+      "when": "dead",
+      "before": "d_liao",
+      "req": {
+        "flag": "fo_nvguan"
+      },
+      "title": "羽化",
+      "text": "{name}在觀裡過世了，{age}歲。觀裡的人說是羽化，替{name}換上了新的道服。墓誌上寫的是道號，沒有寫俗家的姓名。"
+    },
+    {
+      "id": "fo_d_huansu",
+      "when": "dead",
+      "before": "d_liao",
+      "req": {
+        "flag": "fo_huansu"
+      },
+      "title": "還俗",
+      "text": "{name}{age}歲上過世了。開元二年那一回沙汰，{name}還了俗，後來種地、交租，跟旁人一樣過日子。鄰里的老人還記得，{name}從前是有法名的。"
+    },
+    {
+      "id": "fo_d_seng",
+      "when": "dead",
+      "before": "d_liao",
+      "req": {
+        "flag": "fo_seng",
+        "noflag": "fo_huansu",
+        "age": [
+          30,
+          200
+        ]
+      },
+      "title": "荼毗",
+      "text": "{name}在寺裡圓寂了，{age}歲。寺裡的人把{name}荼毗了，撿了幾塊靈骨，起了一座小小的塔，塔銘上刻著法名和出家的年數。"
+    }
+  ],
+  "epilogues": [
+    {
+      "req": {
+        "flag": "fo_dudie"
+      },
+      "text": "你剃度那天落下的頭髮，家裡人偷偷收了起來，用紅線紮著，壓在箱底。",
+      "final": true,
+      "pri": 3,
+      "life": true
+    },
+    {
+      "req": {
+        "flag": "fo_sidu"
+      },
+      "text": "你是私度的。官府的籍帳上，你一輩子都是那一戶人家的丁口；寺裡的人，卻只記得你的法名。",
+      "final": true,
+      "pri": 2,
+      "life": true
+    },
+    {
+      "req": {
+        "flag": "fo_huansu"
+      },
+      "text": "你還了俗以後，那件袈裟一直疊在箱子裡。有一年夏天曬衣裳，你把它拿出來抖了抖，又疊了回去。",
+      "final": true,
+      "pri": 3,
+      "life": true
+    },
+    {
+      "req": {
+        "flag": "fo_nvguan"
+      },
+      "text": "你在觀裡種的那一畦韭菜，後來的女冠接著割，割了很多年。她們不知道，第一茬是誰種下的。",
+      "final": true,
+      "pri": 3,
+      "life": true
+    },
+    {
+      "req": {
+        "flag": "fo_wj_repaid"
+      },
+      "text": "你借過無盡藏的錢，也還了。沒有契，沒有保人，那筆帳只記在一個和尚的冊子上，和你自己心裡。",
+      "final": true,
+      "pri": 2,
+      "life": true
+    },
+    {
+      "req": {
+        "flag": "fo_xj"
+      },
+      "text": "你替爹娘寫的那一卷經，後來在寺裡的經藏裡放了很多年。卷尾的題記，寫著他們的名字。",
+      "final": true,
+      "pri": 2,
+      "life": true
+    },
+    {
+      "req": {
+        "flag": "fo_zx_name"
+      },
+      "text": "村口佛堂那塊石碑的背面，有你的名字。風吹雨打，字一年比一年淺，可是用手摸，還摸得出來。",
+      "final": true,
+      "pri": 2,
+      "life": true
+    },
+    {
+      "req": {
+        "flag": "fo_daoju_pass"
+      },
+      "text": "你是讀《老子》《莊子》考中的。後來有人問你，老子到底說了什麼，你想了半天，說：少說話。",
+      "final": true,
+      "pri": 2
+    },
+    {
+      "req": {
+        "flag": "fo_dan_stop"
+      },
+      "text": "你吃過道士的金丹，後來停了。手抖的毛病跟了你一輩子，你說這是老天留給你的一個記號。",
+      "final": true,
+      "pri": 2,
+      "life": true
+    },
+    {
+      "req": {
+        "flag": "fo_feng_lit"
+      },
+      "text": "你在烽上點過一回真烽。那一道煙，一座接一座傳出去好幾百里，你這輩子再沒見過那麼長的煙。",
+      "final": true,
+      "pri": 3
+    },
+    {
+      "req": {
+        "flag": "fo_toudu_caught"
+      },
+      "text": "你年輕時沒請過所就想出關，被抓回來做了一年苦工。後來誰家的後生要出遠門，你都要問一句：過所請了沒有？",
+      "final": true,
+      "pri": 2,
+      "life": true
+    },
+    {
+      "req": {
+        "flag": "fo_letter_lost"
+      },
+      "text": "你寫給東邊的那封信，一直壓在枕頭底下。紙黃了，字也淡了，可是你一直沒讓人拆開。",
+      "final": true,
+      "pri": 3
+    },
+    {
+      "req": {
+        "flag": "fo_xz_moved"
+      },
+      "text": "你從敦煌遷到西州，走了一個多月的沙磧。後來說起那一路，你只記得驢走不動的時候，遠處那道紅色的山。",
+      "final": true,
+      "pri": 2
+    }
+  ]
+}
