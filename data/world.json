@@ -2306,5 +2306,6 @@
       "prev_young",
       "prev_fell"
     ]
-  }
+  },
+  "partDeadBefore": "d_plague_young"
 }
