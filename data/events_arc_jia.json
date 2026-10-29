@@ -1,0 +1,913 @@
+{
+  "events": [
+    {
+      "id": "jia_fq_seed_quarrel", "kind": "flavor", "w": 1, "p": 0.014, "tag": "家事", "scene": "home",
+      "req": { "married": true, "age": [24, 55], "wedFor": 3, "noflag": ["jia_fq_q", "jia_fq_heli"] },
+      "eff": { "later": { "in": 1, "id": "jia_fq_quarrel" } },
+      "text": "為了一斗借出去沒還回來的粟，你跟{spouse}拌了兩句嘴。本來是小事，後來越說越遠，連成親那年的舊帳都翻出來了。"
+    },
+    {
+      "id": "jia_fq_quarrel", "kind": "stage", "recheck": true, "tag": "家事", "title": "吵架", "scene": "home",
+      "req": { "married": true, "noflag": "jia_fq_q" },
+      "text": "這一年家裡不順，你跟{spouse}一句話不對就吵。吵到後來，{spouse}把碗往桌上一放，說這日子沒法過了。鄰里隔著牆都聽得見。",
+      "choices": [
+        { "t": "先低頭", "eff": { "flag": ["jia_fq_q", "jia_fq_lowhead"], "德": 1 },
+          "out": "夜裡你把灶上溫著的粥端過去，說了一句：是我不對。{spouse}沒吭聲，可是把粥喝了。" },
+        { "t": "請族裡長輩評理", "eff": { "flag": ["jia_fq_q", "jia_fq_elder"], "名": -1 },
+          "out": "族裡的長輩來了，坐在堂屋裡聽兩邊各說一遍，末了每人各說了幾句重話。回家的路上，你們誰也沒看誰，可是也沒再吵。" },
+        { "t": "誰也不理誰", "eff": { "flag": ["jia_fq_q", "jia_fq_cold"], "later": { "in": 1, "id": "jia_fq_cold_after" } },
+          "out": "從那天起，你們一個睡裡屋，一個睡外間。吃飯的時候，只聽得見筷子碰碗的聲音。" }
+      ]
+    },
+    {
+      "id": "jia_fq_cold_after", "kind": "stage", "recheck": true, "tag": "家事", "title": "冷了一年", "scene": "home",
+      "req": { "married": true, "flag": "jia_fq_cold" },
+      "text": "你跟{spouse}已經一年沒好好說過話了。族裡有人來勸，也有人私下說：夫妻實在過不到一塊的，官府也許兩家和離，寫一紙放妻書，各走各的。",
+      "choices": [
+        { "t": "先開口", "eff": { "flag": "jia_fq_reconcile", "德": 1 },
+          "out": "那天下大雨，屋頂漏了。你們兩個一起把盆子擺好，{spouse}忽然笑了一聲，你也笑了。這一年沒說的話，那天夜裡說了大半。" },
+        { "t": "寫放妻書", "sub": "夫妻不相安諧而和離者，不坐。",
+          "eff": { "flag": ["jia_fq_heli", "spouse_taken"], "名": -2, "later": { "in": 2, "id": "jia_fq_remarry" } },
+          "out": "請了寫字的先生，兩家的親族都來了。先生照著書儀上的樣子寫，末了一句是「一別兩寬，各生歡喜」。{spouse}收拾了東西，回了娘家。",
+          "outIf": [ { "req": { "gender": "f" }, "out": "請了寫字的先生，兩家的親族都來了。{spouse}在放妻書上畫了押，末了一句是「一別兩寬，各生歡喜」。你收拾了自己的妝奩，回了娘家。" } ] },
+        { "t": "就這麼過下去", "eff": { "flag": "jia_fq_endure", "健": -2 },
+          "out": "你說，日子總要過。往後你們還是一個睡裡屋、一個睡外間，可是收麥的時候，還是一起下地。" }
+      ],
+      "note": "《唐律疏議・戶婚》：諸犯義絕者離之，違者徒一年。若夫妻不相安諧而和離者，不坐。"
+    },
+    {
+      "id": "jia_fq_remarry", "kind": "stage", "recheck": true, "tag": "人生", "title": "再說一門親", "scene": "wedding",
+      "req": { "flag": "jia_fq_heli", "noflag": ["jia_fq_rewed", "jia_fq_alone"], "age": [18, 52] },
+      "text": "和離兩年了。媒人又上了門，說的是一戶人家，對方也是和離過的，不嫌棄。",
+      "choices": [
+        { "t": "再成一個家", "eff": { "spouse": "@random", "flag": "jia_fq_rewed" },
+          "out": "你和{spouse}成了親。這一回沒有搭青廬，兩家人吃了一頓飯，就算拜過堂了。" },
+        { "t": "一個人過", "eff": { "flag": "jia_fq_alone" },
+          "out": "你把媒人送出門，說不必了。一個人吃飯，一個人睡，倒也清淨。" }
+      ]
+    },
+    {
+      "id": "jia_fq_heli_meet", "kind": "flavor", "w": 2, "tag": "鄰里", "scene": "market",
+      "req": { "flag": "jia_fq_heli", "noflag": "jia_fq_rewed", "age": [18, 80] },
+      "text": "在市上，你遠遠看見了{spouse}，正在跟人講價錢。你站了一會兒，轉身走了另一條路。"
+    },
+    {
+      "id": "jia_fq_alone_life", "kind": "flavor", "w": 2, "tag": "日常", "scene": "night",
+      "req": { "flag": "jia_fq_alone" },
+      "text": "一個人過日子，飯做一回吃兩頓。夜裡風吹得門響，你起來看了一眼，又躺下了。"
+    },
+    {
+      "id": "jia_fq_rewed_life", "kind": "flavor", "w": 2, "tag": "家事", "scene": "home",
+      "req": { "flag": "jia_fq_rewed", "married": true },
+      "text": "{spouse}做飯的口味跟從前那個人不一樣，鹽放得重。你吃了幾年，也就慣了。"
+    },
+    {
+      "id": "jia_fq_seed_sick", "kind": "flavor", "w": 1, "p": 0.009, "tag": "家事", "scene": "sick",
+      "req": { "married": true, "age": [32, 68], "wedFor": 5, "noflag": "jia_fq_sickdone" },
+      "eff": { "later": { "in": 1, "id": "jia_fq_sick" } },
+      "text": "{spouse}這些日子總說胸口悶，夜裡咳得睡不著，白天還硬撐著做活。"
+    },
+    {
+      "id": "jia_fq_sick", "kind": "stage", "recheck": true, "tag": "家事", "title": "{spouse}病倒了", "scene": "sick",
+      "req": { "married": true, "noflag": "jia_fq_sickdone" },
+      "text": "{spouse}病倒了，躺在床上起不來，連水都喝不下。鄰里說，城裡有個醫人看得好，就是診金貴。",
+      "choices": [
+        { "t": "請醫人來", "req": { "stat": { "財": 3 } }, "lock": "家裡拿不出診金",
+          "eff": { "財": -3, "flag": ["jia_fq_sickdone", "jia_fq_nursed"] }, "chk": { "base": 0.7 },
+          "out": "你把一匹絹送去當了診金。醫人來了，按了脈，開了三副藥。",
+          "ok": { "out": "三副藥吃完，{spouse}能下床了。頭一件事，是去看雞窩裡有沒有蛋。" },
+          "fail": { "eff": { "flag": "jia_fq_frail" }, "out": "病是好了，可是落下了病根。往後一到冬天，{spouse}就咳個不停。" } },
+        { "t": "去寺裡許願", "eff": { "財": -1, "flag": ["jia_fq_sickdone", "jia_fq_vow"], "later": { "in": 1, "id": "jia_fq_vow_pay" } },
+          "out": "你到寺裡佛前磕了頭，許下願：{spouse}好了，就來還願。回家的時候，{spouse}的燒已經退了一些。" },
+        { "t": "自己守著熬藥", "eff": { "健": -3, "flag": ["jia_fq_sickdone", "jia_fq_nursed"] },
+          "out": "你跟鄰家討了幾味草藥，日夜守在床邊熬。一個月下來，{spouse}好了，你瘦了一圈。" }
+      ]
+    },
+    {
+      "id": "jia_fq_vow_pay", "kind": "stage", "recheck": true, "tag": "家事", "title": "還願", "scene": "temple",
+      "req": { "flag": "jia_fq_vow", "married": true },
+      "text": "{spouse}的病好了。去年在佛前許下的願，該還了。",
+      "choices": [
+        { "t": "請人抄一卷經", "eff": { "財": -1, "flag": "jia_fq_huanyuan" },
+          "out": "你請寺裡的經生抄了一卷經，卷尾寫上了你們兩個人的名字。" },
+        { "t": "去寺裡做一個月工", "eff": { "健": -1, "flag": "jia_fq_huanyuan" },
+          "out": "你到寺裡挑了一個月的水。和尚說，心到了就好。" }
+      ]
+    },
+    {
+      "id": "jia_fq_frail_life", "kind": "flavor", "w": 2, "tag": "家事", "scene": "night",
+      "req": { "flag": "jia_fq_frail", "married": true },
+      "text": "入冬以後，{spouse}又咳起來了。你在床頭擺了一碗溫水，夜裡起來兩三回。"
+    },
+    {
+      "id": "jia_fq_seed_duty", "kind": "flavor", "w": 1, "p": 0.022, "tag": "家事", "scene": "army",
+      "req": { "gender": "f", "married": true, "age": [17, 45], "year": [582, 754], "noflag": "jia_fq_duty" },
+      "eff": { "later": { "in": 1, "id": "jia_fq_duty" } },
+      "text": "里正來過一趟，翻著簿子問{spouse}今年多大、身子結不結實。他走了以後，{spouse}一整晚坐在門檻上，沒怎麼說話。",
+      "textIf": [ { "req": { "cls": "fubing", "year": [582, 748] }, "text": "軍府來了文書，這一回不是番上，是點去邊上鎮戍。{spouse}把弓弦換了新的，又把乾糧袋翻出來補了補。" } ]
+    },
+    {
+      "id": "jia_fq_duty", "kind": "stage", "recheck": true, "tag": "家事", "title": "他要走了", "scene": "road",
+      "req": { "gender": "f", "married": true, "noflag": "jia_fq_duty" },
+      "text": "{spouse}被點了去遠處當防人，說是要好些日子才能回來。家裡的地和雜事，往後都落在你一個人身上。",
+      "textIf": [ { "req": { "cls": "fubing", "year": [582, 748] }, "text": "{spouse}被軍府點去邊上鎮戍，衣糧兵器都得自備，說是要好些日子才回得來。家裡的地和雜事，往後都落在你一個人身上。" } ],
+      "choices": [
+        { "t": "連夜縫冬衣", "eff": { "財": -1, "flag": ["jia_fq_duty", "jia_fq_coat"], "later": { "in": 2, "id": "jia_fq_duty_back" } },
+          "out": "你把家裡僅有的一點絲綿絮進夾衣裡，一夜沒睡。天亮的時候，{spouse}穿著走了。" },
+        { "t": "送到路口", "eff": { "flag": "jia_fq_duty", "later": { "in": 2, "id": "jia_fq_duty_back" } },
+          "out": "你送{spouse}到路口。{spouse}說，回去吧。你點頭，可是一直站到人看不見了才回去。" }
+      ]
+    },
+    {
+      "id": "jia_fq_duty_wait", "kind": "flavor", "w": 3, "tag": "家事", "scene": "harvest",
+      "req": { "gender": "f", "married": true, "flag": "jia_fq_duty", "noflag": "jia_fq_back" },
+      "text": "麥熟了，{spouse}還沒回來。你一個人割了三天，手上的泡破了又起。"
+    },
+    {
+      "id": "jia_fq_duty_back", "kind": "stage", "recheck": true, "tag": "家事", "title": "回來了", "scene": "home",
+      "req": { "gender": "f", "married": true, "flag": "jia_fq_duty" },
+      "text": "{spouse}回來了，比走的時候黑了、瘦了，腳上的鞋磨穿了底。",
+      "choices": [
+        { "t": "殺一隻雞", "eff": { "財": -1, "flag": "jia_fq_back" },
+          "out": "你殺了家裡那隻不下蛋的老母雞。{spouse}吃了兩碗飯，說外頭的飯沒有一頓是熱的。" },
+        { "t": "先打一盆熱水", "eff": { "德": 1, "flag": "jia_fq_back" },
+          "out": "你打了一盆熱水給{spouse}洗腳，腳底全是繭和血泡。{spouse}說，路上走了一個多月。" }
+      ]
+    },
+    {
+      "id": "jia_fq_seed_old", "kind": "flavor", "w": 1, "p": 0.06, "tag": "晚年", "scene": "old",
+      "req": { "married": true, "age": [58, 72], "wedFor": 30, "noflag": "jia_fq_old_on" },
+      "eff": { "flag": "jia_fq_old_on", "later": { "in": 1, "id": "jia_fq_old" } },
+      "text": "{spouse}叫你的時候，你沒聽見；你叫{spouse}的時候，{spouse}也沒聽見。兩個人隔著院子喊了半天，喊完了一起笑。"
+    },
+    {
+      "id": "jia_fq_old", "kind": "stage", "recheck": true, "tag": "晚年", "title": "老伴", "scene": "old",
+      "req": { "married": true },
+      "text": "你跟{spouse}都老了。{spouse}耳朵背了，你說話得說兩遍；你眼睛花了，穿針得叫{spouse}幫忙。往後的日子還有多少，誰也說不準。",
+      "choices": [
+        { "t": "備下兩身壽衣", "eff": { "財": -1, "flag": ["jia_fq_oldpair", "jia_fq_shouyi"] },
+          "out": "你們扯了布，請人裁了兩身壽衣，疊好了收在同一口箱子裡。{spouse}說，到時候誰先穿，誰就在那邊等著。" },
+        { "t": "一起回一趟老家", "eff": { "健": -2, "flag": ["jia_fq_oldpair", "jia_fq_trip"] },
+          "out": "你們搭了別人的車，回了一趟{spouse}小時候住的地方。老屋早就不在了，{spouse}在一棵樹底下站了很久，說就是這裡。" },
+        { "t": "坐在門口曬太陽", "eff": { "健": 2, "flag": "jia_fq_oldpair" },
+          "out": "天好的時候，你們搬兩個蒲團坐在門口。誰也不說話，有時候坐著坐著就睡著了。" }
+      ]
+    },
+    {
+      "id": "jia_fq_old_walk", "kind": "flavor", "w": 2, "tag": "晚年", "scene": "old",
+      "req": { "married": true, "age": [60, 95], "flag": "jia_fq_oldpair" },
+      "text": "{spouse}走路要拄杖了。你們去寺裡聽講經，一路走走停停，從前一頓飯的工夫，現在要走半天。"
+    },
+    {
+      "id": "jia_fq_newwed", "kind": "flavor", "w": 1, "tag": "家事", "scene": "home",
+      "req": { "gender": "m", "married": true, "age": [17, 35] },
+      "text": "{spouse}回娘家住了幾天。你一個人吃了兩天冷飯，才知道灶上的事原來那麼多。{spouse}回來的時候，你到村口去接了。"
+    },
+    {
+      "id": "jia_fq_night", "kind": "flavor", "w": 1, "p": 0.25, "tag": "家事", "scene": "night",
+      "req": { "married": true, "age": [25, 60], "flag": "has_child" },
+      "text": "夜裡孩子們都睡了，你跟{spouse}躺著說話：今年的租調、明年的種子、哪個孩子該說親了。說著說著，{spouse}先睡著了。"
+    },
+    {
+      "id": "jia_fq_mend", "kind": "flavor", "w": 1, "p": 0.25, "tag": "家事", "scene": "loom",
+      "req": { "gender": "m", "married": true, "age": [18, 60] },
+      "text": "你的袍子肘上磨了個洞。{spouse}就著油燈補了一夜，補丁的顏色跟袍子不一樣，可是針腳很密。"
+    },
+    {
+      "id": "jia_fq_qichu", "kind": "flavor", "w": 1, "p": 0.04, "tag": "鄰里", "scene": "village",
+      "req": { "age": [16, 75] },
+      "text": "鄰家男人說媳婦進門多年沒生兒子，要出妻。那媳婦說，她替公婆守過三年喪，按律不能休。請來的族老翻了半天律文，休書終究沒寫成。",
+      "note": "《唐律疏議・戶婚》：七出者，依令：一無子，二淫泆，三不事舅姑，四口舌，五盜竊，六妒忌，七惡疾。"
+    },
+    {
+      "id": "jia_fq_seed_xu", "kind": "flavor", "w": 1, "p": 0.3, "tag": "家事", "scene": "home",
+      "req": { "flag": "spouse_dead_old", "age": [30, 46], "noflag": ["jia_fq_xu", "jia_fq_shou", "jia_fq_xu_on"] },
+      "eff": { "flag": "jia_fq_xu_on", "later": { "in": 1, "id": "jia_fq_xu" } },
+      "text": "{spouse}走了一年多了。親戚來看你，臨走的時候站在門口，說了一句：日子還長。"
+    },
+    {
+      "id": "jia_fq_xu", "kind": "stage", "recheck": true, "tag": "人生", "title": "再成家", "scene": "wedding",
+      "req": { "flag": "spouse_dead_old", "noflag": ["jia_fq_xu", "jia_fq_shou"] },
+      "text": "{spouse}走後，家裡冷清了許多。親戚託了媒人來，說有一戶人家，也是沒了另一半的，年紀相當。",
+      "textIf": [ { "req": { "gender": "f" }, "text": "{spouse}走後，娘家的兄嫂來勸你再嫁，說你還年輕，往後的日子長。媒人已經在門外等著了。" } ],
+      "choices": [
+        { "t": "再成一個家", "eff": { "unflag": "spouse_dead_old", "spouse": "@random", "flag": "jia_fq_xu" },
+          "out": "你和{spouse}成了親。頭幾年，你常常叫錯名字，{spouse}也不計較。" },
+        { "t": "守著這個家", "eff": { "flag": "jia_fq_shou", "德": 1 },
+          "out": "你說不必了。往後逢年過節，你還是在{spouse}的墳前多燒一把紙錢。" }
+      ]
+    },
+    {
+      "id": "jia_fq_xu_life", "kind": "flavor", "w": 2, "tag": "家事", "scene": "home",
+      "req": { "flag": "jia_fq_xu", "married": true },
+      "text": "{spouse}進門以後，把屋裡重新收拾了一遍。舊人的東西都收進一口箱子，一樣也沒有扔。你心裡記著這件事。"
+    },
+
+    {
+      "id": "jia_qs_seed", "kind": "flavor", "w": 1, "p": 0.035, "tag": "家事", "scene": "home",
+      "req": { "child": [14, 17], "kidUnwed": true, "age": [30, 62], "noflag": ["jia_qs_on", "jia_qs_txon", "jia_qs_ljon"] },
+      "eff": { "tagKid": "jia_qs", "flag": "jia_qs_on", "later": { "in": 1, "id": "jia_qs_match" } },
+      "text": "{kid}長大了。這些日子常有媒人從門口經過，腳步放得特別慢，眼睛往院子裡看。"
+    },
+    {
+      "id": "jia_qs_match", "kind": "stage", "recheck": true, "tag": "家事", "title": "說親", "scene": "wedding",
+      "req": { "kidTag": "jia_qs" },
+      "text": "媒人上門了，替{kid}說的是鄰里一戶人家，家境跟你家差不多，有幾畝地，人也本分。婚書、聘財，媒人都說好商量。",
+      "textIf": [ { "req": { "cls": ["gentry_gl", "gentry_sd", "gentry_jn"] }, "text": "族裡的長輩替{kid}議親，對方也是有門第的人家。光是問名、納吉，兩家就往來了大半年。" } ],
+      "choices": [
+        { "t": "就這一家", "eff": { "kidWed": true, "flag": "jia_qs_mendang", "財": -1, "德": 1 },
+          "out": "兩家換了婚書，過了禮。{kid}成親那天，你在院子裡站著，看人來人往，一句話也插不上。" },
+        { "t": "問問{kid}的意思", "eff": { "later": { "in": 1, "id": "jia_qs_kidwill" } },
+          "out": "你沒當場答應。夜裡你把{kid}叫到跟前，{kid}低著頭，半天沒說話。" },
+        { "t": "嫌對方門戶低", "eff": { "名": 1, "later": { "in": 2, "id": "jia_qs_match2" } },
+          "out": "你跟媒人說，這家不行。媒人臉上笑著，出門的時候嘴裡嘀咕了一句。" }
+      ]
+    },
+    {
+      "id": "jia_qs_kidwill", "kind": "stage", "recheck": true, "tag": "家事", "title": "{kid}的心意", "scene": "home",
+      "req": { "kidTag": "jia_qs" },
+      "text": "過了些日子，{kid}才開口：里中有一戶人家，{kid}早就看中了，對方也有這個意思。只是那家窮，兩家的門戶差得遠。",
+      "choices": [
+        { "t": "依了{kid}", "eff": { "kidWed": true, "flag": "jia_qs_yiyi", "財": -1 },
+          "out": "你託媒人去說。那家人聽了，愣了半天，才請媒人進屋坐。成親那天，{kid}一直在笑。" },
+        { "t": "照媒人說的辦", "eff": { "kidWed": true, "flag": "jia_qs_buyi", "名": 1 },
+          "out": "你說，親事是爹娘做主的。{kid}哭了一夜，第二天照樣拜了堂。" },
+        { "t": "再等兩年", "eff": { "later": { "in": 2, "id": "jia_qs_match2" } },
+          "out": "你說，再等兩年看看。{kid}沒說好，也沒說不好。" }
+      ]
+    },
+    {
+      "id": "jia_qs_match2", "kind": "stage", "recheck": true, "tag": "家事", "title": "又來說親", "scene": "wedding",
+      "req": { "kidTag": "jia_qs" },
+      "text": "兩年過去，{kid}的親事還沒定下來。鄰里開始有閒話了，說你家眼光高。",
+      "choices": [
+        { "t": "這回定了", "eff": { "kidWed": true, "flag": "jia_qs_late" },
+          "out": "這回你沒再挑。{kid}的親事定在秋收以後，兩家都鬆了一口氣。" },
+        { "t": "由{kid}自己吧", "eff": { "flag": "jia_qs_free", "名": -1 },
+          "out": "你說，隨{kid}去吧。往後再有媒人上門，你都讓{kid}自己去見。" }
+      ]
+    },
+    {
+      "id": "jia_qs_buyi_after", "kind": "flavor", "w": 3, "tag": "家事", "scene": "home",
+      "req": { "flag": "jia_qs_buyi", "kidTag": "jia_qs" },
+      "text": "{kid}回來看你，坐了一會兒就要走。你想問那邊待{kid}好不好，話到嘴邊，又嚥回去了。"
+    },
+    {
+      "id": "jia_qs_free_life", "kind": "flavor", "w": 3, "tag": "家事", "scene": "home",
+      "req": { "flag": "jia_qs_free", "kidTag": "jia_qs" },
+      "text": "{kid}還是沒有成親，在家裡幫著料理裡外的事。鄰里問起，{kid}就說：家裡離不開人。"
+    },
+    {
+      "id": "jia_qs_dowry", "kind": "flavor", "w": 3, "tag": "家事", "scene": "wedding",
+      "req": { "anyFlag": ["jia_qs_mendang", "jia_qs_yiyi", "jia_qs_late"], "kidTag": "jia_qs" },
+      "text": "為了{kid}的親事，家裡把攢了幾年的東西都拿出來了：兩匹絹、一口木箱、一面銅鏡。如今箱子空了，你倒覺得心裡踏實。"
+    },
+    {
+      "id": "jia_qs_wedday", "kind": "flavor", "w": 3, "tag": "家事", "scene": "wedding",
+      "req": { "anyFlag": ["jia_qs_buyi", "jia_qs_tx_hide", "jia_qs_fangliang"], "kidTag": "jia_qs" },
+      "text": "{kid}成親那天，迎親的車剛出巷口，就被一群後生攔住了，要酒要肉才肯放行。你在後頭看著，想起自己成親那年，也是這樣被攔的。"
+    },
+    {
+      "id": "jia_qs_seed_tx", "kind": "flavor", "w": 1, "p": 0.02, "tag": "家事", "scene": "home",
+      "req": { "child": [15, 20], "kidUnwed": true, "age": [33, 62], "noflag": ["jia_qs_txon", "jia_qs_on", "jia_qs_ljon"] },
+      "eff": { "tagKid": "jia_qs", "flag": "jia_qs_txon", "later": { "in": 1, "id": "jia_qs_tongxing" } },
+      "text": "鄰縣有一戶人家託人來打聽{kid}，說是家境殷實。你一問，那家跟{kid}同姓。"
+    },
+    {
+      "id": "jia_qs_tongxing", "kind": "stage", "recheck": true, "tag": "家事", "title": "同姓", "scene": "registry",
+      "req": { "kidTag": "jia_qs" },
+      "text": "媒人說，雖說同姓，可兩家的祖上隔了不知多少代，郡望也不一樣，算不得一家人。可是律上寫得明白：同姓為婚的，兩家都要判徒。",
+      "choices": [
+        { "t": "推掉", "eff": { "flag": "jia_qs_tx", "德": 1 },
+          "out": "你把媒人送了出去，說這門親結不得。媒人說可惜了，那家有三十畝地。" },
+        { "t": "瞞著辦", "eff": { "財": 1 }, "chk": { "base": 0.6 },
+          "out": "你們兩家商量好，婚書上不提這一層，悄悄把親事辦了。",
+          "ok": { "eff": { "kidWed": true, "flag": "jia_qs_tx_hide" }, "out": "一年過去，沒人說破。{kid}過得還好，只是兩家走親戚的時候，誰也不提姓。" },
+          "fail": { "eff": { "flag": "jia_qs_tx_caught", "名": -3, "財": -3 }, "out": "不知是誰告到了縣裡。縣尉把兩家的人都叫去問了一回，判了離。你上下打點，花光了積蓄，才沒有吃官司。" } }
+      ],
+      "note": "《唐律疏議・戶婚》：諸同姓為婚者，各徒二年。"
+    },
+    {
+      "id": "jia_qs_seed_lj", "kind": "flavor", "w": 1, "p": 0.02, "tag": "家事", "scene": "city",
+      "req": { "child": [15, 22], "kidUnwed": true, "age": [33, 65], "noflag": ["jia_qs_ljon", "jia_qs_on", "jia_qs_txon"] },
+      "eff": { "tagKid": "jia_qs", "flag": "jia_qs_ljon", "later": { "in": 1, "id": "jia_qs_liangjian" } },
+      "text": "{kid}這些日子常往城東一戶大人家附近轉。你問了鄰里才知道，{kid}跟那家的一個家僮走得很近。"
+    },
+    {
+      "id": "jia_qs_liangjian", "kind": "stage", "recheck": true, "tag": "家事", "title": "良賤", "scene": "city",
+      "req": { "kidTag": "jia_qs" },
+      "text": "{kid}跪在你面前，說非那人不可。可那人是大戶人家的奴婢，屬賤籍。良人跟奴婢是不能做夫妻的，除非主家肯放那人出來從良。",
+      "choices": [
+        { "t": "不許", "eff": { "flag": "jia_qs_lj_no", "名": 1 },
+          "out": "你把{kid}關在家裡三個月。後來{kid}再也不往城東去了，只是飯吃得很少。" },
+        { "t": "湊錢求主家放良", "req": { "stat": { "財": 5 } }, "lock": "家裡拿不出這筆錢",
+          "eff": { "財": -5 }, "chk": { "base": 0.5, "stat": "德", "k": 0.02 },
+          "out": "你帶著錢去那家求情。主人聽完，說要想一想。",
+          "ok": { "eff": { "kidWed": true, "flag": "jia_qs_fangliang" }, "out": "主家寫了放良的文書，到縣裡改了籍。那人從此是良人了。過了半年，兩個年輕人成了親。" },
+          "fail": { "eff": { "flag": "jia_qs_lj_fail", "財": 3 }, "out": "過了幾天，主家把錢退了回來，說家裡用慣了的人，不放。" } },
+        { "t": "睜一眼閉一眼", "eff": { "flag": "jia_qs_lj_blind", "德": -1 },
+          "out": "你什麼也沒說。{kid}照舊往城東跑，你只當沒看見。" }
+      ]
+    },
+    {
+      "id": "jia_qs_lj_blind_after", "kind": "flavor", "w": 3, "tag": "家事", "scene": "city",
+      "req": { "flag": "jia_qs_lj_blind", "kidTag": "jia_qs" },
+      "text": "城東那戶人家搬去了外州，家裡的奴婢也都跟著走了。{kid}在門口坐了一下午，天黑了才進屋。"
+    },
+    {
+      "id": "jia_qs_seed_s", "kind": "flavor", "w": 1, "p": 0.035, "tag": "家事", "scene": "home",
+      "req": { "son": [17, 24], "kidUnwed": true, "age": [36, 66], "noflag": "jia_qs_son_on" },
+      "eff": { "tagKid": "jia_qs_s", "flag": "jia_qs_son_on", "later": { "in": 1, "id": "jia_qs_pin" } },
+      "text": "{son}到了娶親的年紀。媒人說好了一家姑娘，人勤快，就是女家開口要的聘財不少。"
+    },
+    {
+      "id": "jia_qs_pin", "kind": "stage", "recheck": true, "tag": "家事", "title": "聘財", "scene": "contract",
+      "req": { "kidTag": "jia_qs_s" },
+      "text": "女家要的聘財：絹五匹、粟十石，外加酒和羊。你算了算，把家裡的存糧全賣了也不夠。媒人說，如今娶婦都是這個價。",
+      "choices": [
+        { "t": "借錢下聘", "eff": { "財": -4, "flag": "jia_qs_jiepin" }, "chk": { "base": 0.6 },
+          "out": "你到寺裡借了兩石麥，又跟親戚借了兩匹絹，總算把聘財湊齊，送了過去。",
+          "ok": { "eff": { "kidWed": true }, "out": "秋後，{kid}把新婦娶進了門。往後兩年，全家省吃儉用，才把債還上。" },
+          "fail": { "eff": { "later": { "in": 1, "id": "jia_qs_huihun" } }, "out": "聘財送過去沒多久，就聽說女家那邊又有人上門提親了。" } },
+        { "t": "讓{kid}入贅女家", "eff": { "childAway": true, "flag": "jia_qs_ruzhui" },
+          "out": "另有一戶人家沒有兒子，正想招個女婿。{kid}收拾了一個包袱，住到女家去了。往後{kid}的孩子，跟的是女家的姓。" },
+        { "t": "託媒人去講價", "chk": { "base": 0.5, "stat": "名", "k": 0.01 },
+          "out": "媒人收了你一隻雞，來回跑了五趟。",
+          "ok": { "eff": { "kidWed": true, "flag": "jia_qs_jiangjia", "財": -2 }, "out": "聘財減了一半。成親那天，女家的人臉色不大好看，新婦倒是笑著進的門。" },
+          "fail": { "eff": { "名": -1 }, "out": "女家一文也不肯讓。這門親，就這樣散了。" } }
+      ]
+    },
+    {
+      "id": "jia_qs_huihun", "kind": "stage", "recheck": true, "tag": "家事", "title": "悔婚", "scene": "court",
+      "req": { "kidTag": "jia_qs_s" },
+      "text": "女家收了你的聘財，如今又收了另一家的，想把姑娘許給那邊。媒人來傳話，說聘財可以退一半。",
+      "choices": [
+        { "t": "告到縣裡", "sub": "許嫁女已報婚書而輒悔者，杖六十。", "eff": { "名": -1 }, "chk": { "base": 0.65, "stat": "名", "k": 0.01 },
+          "out": "你請人寫了狀子，拿著婚書告到縣裡。",
+          "ok": { "eff": { "kidWed": true, "flag": "jia_qs_gao" }, "out": "縣令看了婚書，判女家杖六十，姑娘仍歸你家。成親那天，兩家的人誰也不看誰。" },
+          "fail": { "eff": { "flag": "jia_qs_gao_fail", "財": -1 }, "out": "女家咬定婚書是媒人偽造的，官司拖了一年。最後判下來，親事作罷，聘財退還。" } },
+        { "t": "收回聘財就算了", "eff": { "財": 2, "flag": "jia_qs_suanle" },
+          "out": "你把聘財要了回來，少了兩匹絹。{kid}說，這樣的人家，不進門也好。" }
+      ],
+      "note": "《唐律疏議・戶婚》：諸許嫁女，已報婚書及有私約，而輒悔者，杖六十。"
+    },
+    {
+      "id": "jia_qs_ruzhui_life", "kind": "flavor", "w": 3, "tag": "家事", "scene": "home",
+      "req": { "flag": "jia_qs_ruzhui", "age": [36, 85] },
+      "text": "入贅到女家的那個兒子，逢年過節才回來一趟，帶著跟女家姓的孩子。孩子怯生生地喊了你一聲，就躲到爹身後去了。"
+    },
+    {
+      "id": "jia_qs_zhaoxu", "kind": "stage", "age": [14, 22], "p": 0.2, "tag": "人生", "title": "招婿", "scene": "wedding",
+      "req": { "gender": "f", "flag": "heir", "brother": false, "married": false, "noflag": "single" },
+      "text": "家裡沒有兄弟，這個家往後得靠你撐著。族裡的長輩說，不如招一個女婿上門，生了孩子跟你家姓。",
+      "choices": [
+        { "t": "招一個上門女婿", "eff": { "spouse": "@random", "flag": "jia_qs_zhaoxu", "德": 1 },
+          "out": "{spouse}背著一個包袱進了門。拜堂的時候，族裡有人小聲說閒話，{spouse}只當沒聽見。" },
+        { "t": "先不說親", "eff": { "名": 1 },
+          "out": "你說，等家裡的事理順了再說。族裡的長輩搖搖頭，走了。" }
+      ]
+    },
+    {
+      "id": "jia_qs_zhaoxu_life", "kind": "flavor", "w": 3, "tag": "家事", "scene": "field",
+      "req": { "flag": "jia_qs_zhaoxu", "married": true },
+      "text": "{spouse}在你家住久了，鄰里也就不再叫他「上門的」，改叫他的名字了。他犁的地，比誰的都直。"
+    },
+    {
+      "id": "jia_qs_neighbor_pin", "kind": "flavor", "w": 1, "p": 0.12, "tag": "鄰里", "scene": "wedding",
+      "req": { "age": [25, 70], "child": [10, 20] },
+      "text": "鄰家嫁女兒，聘財收了三十匹絹，在里中誇了好幾天。後來聽說，那姑娘到了夫家，公婆嫌她娘家貪財，處處給她臉色看。"
+    },
+
+    {
+      "id": "jia_out_seed", "kind": "flavor", "w": 1, "p": 0.04, "tag": "家事", "scene": "road",
+      "req": { "son": [15, 22], "age": [34, 66], "noflag": "jia_out_on" },
+      "eff": { "tagKid": "jia_out", "flag": "jia_out_on", "later": { "in": 1, "id": "jia_out_ask" } },
+      "text": "{son}這一年總往大路上跑，跟過路的商人、回鄉的人打聽外頭的事。吃飯的時候，{son}說的都是京城。"
+    },
+    {
+      "id": "jia_out_ask", "kind": "stage", "recheck": true, "tag": "家事", "title": "{kid}要走", "scene": "road",
+      "req": { "kidTag": "jia_out" },
+      "text": "{kid}跟你說，想出去闖一闖。有人說京城裡給人做工，一天的工錢抵得上家裡幾天的收成；也有商隊在招腳夫。{kid}說，不想一輩子守著這幾畝地。",
+      "choices": [
+        { "t": "讓{kid}去京城", "tIf": [ { "req": { "region": "guanzhong" }, "t": "讓{kid}進城做工" } ],
+          "eff": { "kidOut": 6, "flag": "jia_out_city", "later": [ { "in": 2, "id": "jia_out_letter" }, { "in": 4, "id": "jia_out_farwed" }, { "in": 6, "id": "jia_out_return" } ] },
+          "out": "你把家裡攢的一點錢縫進{kid}的衣襟裡。{kid}走的那天早上，回頭看了一眼，就再也沒回頭。" },
+        { "t": "讓{kid}跟商隊走",
+          "eff": { "kidOut": 5, "flag": "jia_out_trade", "later": [ { "in": 2, "id": "jia_out_letter" }, { "in": 5, "id": "jia_out_trade_back" } ] },
+          "out": "你帶{kid}去縣裡請了過所，上頭寫明了名字、年紀、要往哪裡去。{kid}跟著商隊，趕著牲口出了城。" },
+        { "t": "不許", "eff": { "flag": "jia_out_kept", "later": { "in": 2, "id": "jia_out_kept_after" } },
+          "out": "你說，家裡的地誰種？{kid}沒再說話，第二天照樣下了田，只是幹活的時候常常往路上看。" }
+      ]
+    },
+    {
+      "id": "jia_out_seed_army", "kind": "flavor", "w": 1, "p": 0.15, "year": [737, 750], "tag": "家事", "scene": "registry",
+      "req": { "son": [17, 25], "age": [36, 66], "noflag": "jia_out_on" },
+      "eff": { "tagKid": "jia_out", "flag": "jia_out_on", "later": { "in": 1, "id": "jia_out_ask_army" } },
+      "text": "州裡貼了榜，說邊上在募長征健兒。{son}在榜前站了半天，回家吃飯的時候一句話也沒說，碗一放就出門去了。"
+    },
+    {
+      "id": "jia_out_ask_army", "kind": "stage", "recheck": true, "tag": "家事", "title": "應募", "scene": "army",
+      "req": { "kidTag": "jia_out" },
+      "text": "{kid}跟你說，想去應募當健兒。榜上寫著，募上了就長住軍中，不再輪番回鄉；家口願意跟去的，官府給田地屋宅。{kid}說，在家種一輩子地，也不過是這樣。",
+      "choices": [
+        { "t": "讓{kid}去", "eff": { "kidOut": 8, "flag": "jia_out_army", "later": [ { "in": 3, "id": "jia_out_army_letter" }, { "in": 8, "id": "jia_out_army_end" } ] },
+          "out": "{kid}去州裡應了募，跟著一隊新募的健兒往西北去了。走的時候，{kid}穿著官府發的袍子，看著像換了一個人。" },
+        { "t": "不許", "eff": { "flag": "jia_out_kept", "later": { "in": 2, "id": "jia_out_kept_after" } },
+          "out": "你說，邊上去了的人，有幾個回得來？{kid}跟你吵了一架，第二天還是扛著鋤頭下了田。" }
+      ]
+    },
+    {
+      "id": "jia_out_letter", "kind": "stage", "recheck": true, "tag": "家事", "title": "家書", "scene": "study",
+      "req": { "kidTag": "jia_out", "anyFlag": ["jia_out_city", "jia_out_trade"] },
+      "text": "有個同鄉從外頭回來，帶了{kid}的一封信。信是請人代寫的，說在外頭一切都好，吃得飽，叫家裡不要掛念。",
+      "choices": [
+        { "t": "請人寫回信", "eff": { "財": -1, "flag": "jia_out_jiashu" },
+          "out": "你請人寫了回信，叮囑{kid}天冷添衣。寫完了，你又讓人添了一句：家裡都好。" },
+        { "t": "託人捎一雙鞋", "eff": { "德": 1, "flag": "jia_out_jiashu" },
+          "out": "你連夜納了一雙鞋底，託那個同鄉回去的時候帶上。你不知道{kid}的腳長大了沒有。" }
+      ]
+    },
+    {
+      "id": "jia_out_farwed", "kind": "stage", "recheck": true, "tag": "家事", "title": "遠方的親事", "scene": "wedding",
+      "req": { "kidTag": "jia_out", "flag": "jia_out_city" },
+      "text": "{kid}又捎了信來，說在城裡認識了一戶人家，人家願意把女兒許給{kid}，只是要{kid}留在那邊，不回來了。",
+      "choices": [
+        { "t": "答應", "eff": { "kidWed": true, "flag": "jia_qs_far" },
+          "out": "你請人回信，說只要人好就行。信寄走了，你一個人坐在門口，想著{kid}娶親的那天，爹娘都不在場。" },
+        { "t": "叫{kid}先回來", "eff": { "flag": "jia_out_callback" },
+          "out": "你讓人回信，說親事要回家來辦，爹娘得先見一見。" }
+      ]
+    },
+    {
+      "id": "jia_out_return", "kind": "stage", "recheck": true, "tag": "家事", "title": "盼歸", "scene": "road",
+      "req": { "kidTag": "jia_out", "flag": "jia_out_city" },
+      "text": "{kid}走了六年了。說好的歸期到了，你天天往路口走一趟。",
+      "textIf": [ { "req": { "flag": "jia_out_callback" }, "text": "{kid}走了六年了。你捎信叫{kid}回來辦親事，回信說快了，可是一直沒見到人。" } ],
+      "choices": [
+        { "t": "去京城找", "tIf": [ { "req": { "region": "guanzhong" }, "t": "進城去找" } ],
+          "eff": { "健": -3, "財": -1 }, "chk": { "base": 0.6 },
+          "out": "你跟著一隊運租的車進了城，一條巷子一條巷子地問。",
+          "ok": { "eff": { "flag": ["jia_out_back", "jia_out_home"] }, "out": "在市後頭的一條巷子裡，你找到了{kid}。{kid}瘦了，說話的腔調也變了。過了年，{kid}跟你一起回了家。" },
+          "fail": { "eff": { "childAway": true, "flag": "jia_out_gone" }, "out": "你在城裡找了一個月，有人說{kid}跟人去了江南，也有人說去了邊上。盤纏用完了，你只好一個人回來。" } },
+        { "t": "在家等", "chk": { "base": 0.5 },
+          "out": "你說，{kid}認得回家的路。",
+          "ok": { "eff": { "flag": ["jia_out_back", "jia_out_home"] }, "out": "秋收以後的一個傍晚，{kid}背著包袱站在門口，比走的時候高了半個頭。" },
+          "fail": { "eff": { "childAway": true, "flag": "jia_out_gone" }, "out": "那一年{kid}沒有回來，第二年也沒有。後來有人說在江南見過{kid}，也有人說沒有。" } }
+      ]
+    },
+    {
+      "id": "jia_out_trade_back", "kind": "stage", "recheck": true, "tag": "家事", "title": "商隊回來了", "scene": "caravan",
+      "req": { "kidTag": "jia_out", "flag": "jia_out_trade" },
+      "text": "聽說{kid}跟的那支商隊回來了，在城外歇腳。",
+      "choices": [
+        { "t": "去城外迎", "chk": { "base": 0.6 },
+          "out": "你一大早就去了城外，在牲口和車子中間一個一個地找。",
+          "ok": { "eff": { "flag": ["jia_out_back", "jia_out_home"], "財": 3 }, "out": "{kid}從一輛車後頭鑽出來，曬得黑黑的，懷裡揣著兩匹自己換來的絹，說是給家裡的。" },
+          "fail": { "eff": { "childAway": true, "flag": "jia_out_gone" }, "out": "商隊的頭領說，{kid}在半路上跟了另一支商隊，往更遠的地方去了，說是要多掙幾年。" } },
+        { "t": "在家等消息", "chk": { "base": 0.5 },
+          "out": "你沒有去，在家裡把{kid}的床鋪了又鋪。",
+          "ok": { "eff": { "flag": ["jia_out_back", "jia_out_home"], "財": 2 }, "out": "傍晚{kid}自己回來了，進門先喊了一聲餓。" },
+          "fail": { "eff": { "childAway": true, "flag": "jia_out_gone" }, "out": "天黑了，{kid}沒回來。第二天有人捎話來，說{kid}留在外頭，跟人合夥做起了買賣，暫時不回來了。" } }
+      ]
+    },
+    {
+      "id": "jia_out_army_letter", "kind": "stage", "recheck": true, "tag": "家事", "title": "軍中來信", "scene": "army",
+      "req": { "kidTag": "jia_out", "flag": "jia_out_army" },
+      "text": "軍中有人回鄉，帶來{kid}的口信：在邊上築城、屯田，也跟著出過兩回陣，人沒事。",
+      "choices": [
+        { "t": "託人帶冬衣去", "eff": { "財": -1, "flag": "jia_out_armyword" },
+          "out": "你把一件新絮的冬衣託給那人。他說，路遠，不一定送得到。你說，送得到就好，送不到也不怪你。" },
+        { "t": "問他邊上苦不苦", "eff": { "德": 1, "flag": "jia_out_armyword" },
+          "out": "那人想了想，說，邊上冬天冷，夏天風沙大，可是軍糧沒短過。你聽了，心裡好受了一些。" }
+      ]
+    },
+    {
+      "id": "jia_out_army_wait", "kind": "flavor", "w": 3, "tag": "家事", "scene": "temple",
+      "req": { "flag": "jia_out_armyword", "kidTag": "jia_out", "noflag": ["jia_out_army_back", "jia_out_army_dead"] },
+      "text": "聽說邊上又打了仗，死了不少人。你到寺裡佛前點了一盞燈，沒有說是替誰點的。"
+    },
+    {
+      "id": "jia_out_army_end", "kind": "stage", "recheck": true, "tag": "家事", "title": "邊上的消息", "scene": "army",
+      "req": { "kidTag": "jia_out", "flag": "jia_out_army" },
+      "text": "{kid}去邊上八年了。同去的人，有的回來了，有的沒回來。",
+      "textIf": [ { "req": { "year": [755, 763] }, "text": "范陽起兵以後，邊上的兵一撥一撥調回來打仗。{kid}在哪一支隊伍裡，你到處打聽，誰也說不清。" } ],
+      "choices": [
+        { "t": "託人去軍中打聽", "chk": { "base": 0.55 },
+          "out": "你託了一個往西去的商人，把{kid}的名字和軍名寫在一張紙上帶去。",
+          "ok": { "eff": { "flag": ["jia_out_army_back", "jia_out_home"], "名": 1 }, "out": "半年以後，{kid}自己回來了，臉上多了一道疤，說是放歸了。進門的時候，{kid}叫了你一聲，你半天沒認出來。" },
+          "fail": { "eff": { "childDie": "jia_out", "flag": "jia_out_army_dead" }, "out": "商人回來說，{kid}的名字已經在軍中的死籍上了。屍首沒有運回來，只帶回一個空的箭囊。" } },
+        { "t": "等著", "chk": { "base": 0.5 },
+          "out": "你沒有託人，只是每天把門口掃乾淨。",
+          "ok": { "eff": { "flag": ["jia_out_army_back", "jia_out_home"] }, "out": "一個下雪的早上，{kid}站在門口，肩上背著一張舊弓。{kid}說，回來了，不走了。" },
+          "fail": { "eff": { "childDie": "jia_out", "flag": "jia_out_army_dead" }, "out": "州裡來了人，送來一張文書，說{kid}死在了陣上。你不識字，那人念了兩遍，你才聽明白。" } }
+      ]
+    },
+    {
+      "id": "jia_out_kept_after", "kind": "stage", "recheck": true, "tag": "家事", "title": "留下的{kid}", "scene": "field",
+      "req": { "kidTag": "jia_out", "flag": "jia_out_kept" },
+      "text": "{kid}留在家裡兩年了。活照幹，飯照吃，就是話越來越少。",
+      "choices": [
+        { "t": "把家交給{kid}", "eff": { "kidHouse": true, "flag": "jia_out_house", "德": 1 },
+          "out": "你把哪塊地是口分、哪塊是永業，哪家欠著你家的、你家欠著哪家的，一樣一樣交代給{kid}。{kid}聽著聽著，坐直了身子。" },
+        { "t": "這回放{kid}走", "eff": { "kidOut": 5, "flag": ["jia_out_late_go", "jia_out_trade"], "later": { "in": 5, "id": "jia_out_trade_back" } },
+          "out": "你說，去吧。{kid}愣了一下，第二天就跟著一支商隊走了。" }
+      ]
+    },
+    {
+      "id": "jia_out_kept_road", "kind": "flavor", "w": 3, "tag": "農事", "scene": "field",
+      "req": { "flag": "jia_out_kept", "kidTag": "jia_out", "noflag": ["jia_out_house", "jia_out_late_go"] },
+      "text": "{kid}在田頭停下鋤頭，看著大路上走過的一隊人，看了很久，才又低下頭去鋤地。"
+    },
+    {
+      "id": "jia_out_miss", "kind": "flavor", "w": 3, "tag": "家事", "scene": "night",
+      "req": { "kidTag": "jia_out", "anyFlag": ["jia_out_city", "jia_out_trade", "jia_out_army"], "noflag": ["jia_out_back", "jia_out_gone", "jia_out_army_back", "jia_out_army_dead"] },
+      "text": "過年的時候，你照舊在桌上多擺了一雙筷子。誰也沒說什麼，那雙筷子一直擺到收碗。",
+      "alt": [ "有人從外頭回來，你跑去問有沒有見過{kid}。那人說，外頭人那麼多，哪裡碰得上。" ]
+    },
+    {
+      "id": "jia_out_gone_after", "kind": "flavor", "w": 2, "repeat": 2, "repeatGap": 8, "tag": "家事", "scene": "night",
+      "req": { "flag": "jia_out_gone" },
+      "text": "有時候你會想，那個沒回來的孩子，如今在哪裡，成了家沒有，還記不記得家門口那棵樹。"
+    },
+    {
+      "id": "jia_out_back_life", "kind": "flavor", "w": 3, "tag": "家事", "scene": "home",
+      "req": { "flag": "jia_out_back", "kidTag": "jia_out" },
+      "text": "{kid}跟里中的後生講外頭的事：城有多大、市上賣些什麼、坊門幾時關。後生們聽得眼睛發亮，你在一旁聽著，心裡有點發慌。"
+    },
+    {
+      "id": "jia_out_army_dead_after", "kind": "flavor", "w": 3, "tag": "家事", "scene": "grave",
+      "req": { "flag": "jia_out_army_dead" },
+      "text": "你在祖墳邊上堆了一個小土堆，裡頭埋的是那個空箭囊。清明的時候，你也在那裡壓幾張紙錢。"
+    },
+
+    {
+      "id": "jia_nj_guining", "kind": "flavor", "w": 1, "p": 0.25, "tag": "族裡", "scene": "home",
+      "req": { "gender": "f", "married": true, "age": [17, 45], "notAll": ["father_dead", "mother_dead"] },
+      "eff": { "flag": "jia_nj_guining" },
+      "text": "你回娘家住了幾天。娘拉著你的手問這問那，臨走時又往你的包袱裡塞了一包棗。",
+      "alt": [ "你回了一趟娘家。爹坐在門口剝豆子，看見你，手裡的豆子撒了一地。那天晚上，家裡多炒了一個菜。" ]
+    },
+    {
+      "id": "jia_nj_seed_bro", "kind": "flavor", "w": 1, "p": 0.07, "tag": "家事", "scene": "home",
+      "req": { "gender": "f", "married": true, "brother": true, "statMax": { "財": 4 }, "age": [20, 55], "noflag": "jia_nj_bro_on" },
+      "eff": { "flag": "jia_nj_bro_on", "later": { "in": 1, "id": "jia_nj_brother" } },
+      "text": "這一年收成不好，家裡的糧缸見了底。你回娘家的時候，什麼也沒說，可是兄弟看了你一眼，就什麼都知道了。"
+    },
+    {
+      "id": "jia_nj_brother", "kind": "stage", "recheck": true, "tag": "族裡", "title": "兄弟", "scene": "home",
+      "req": { "gender": "f", "brother": true },
+      "text": "沒過幾天，娘家的兄弟挑著兩擔粟來了，說是家裡吃不完的。他放下擔子，連水也不喝就要走。",
+      "choices": [
+        { "t": "收下", "eff": { "財": 3, "flag": "jia_nj_brohelp" },
+          "out": "你把粟倒進缸裡，眼睛紅了。兄弟走到門口，回頭說：明年要是還不夠，再說。" },
+        { "t": "推回去", "eff": { "名": 1, "flag": "jia_nj_pride" },
+          "out": "你說家裡還過得去，硬讓他把擔子挑了回去。夜裡你看著空缸，一宿沒睡。" },
+        { "t": "讓{spouse}去道謝", "show": { "married": true }, "eff": { "財": 3, "德": 1, "flag": "jia_nj_brohelp" },
+          "out": "{spouse}提了一壺酒去你娘家道謝。兩個男人喝到半夜，{spouse}是被扶回來的。" }
+      ]
+    },
+    {
+      "id": "jia_nj_seed_par", "kind": "flavor", "w": 1, "p": 0.16, "tag": "家事", "scene": "sick",
+      "req": { "gender": "f", "married": true, "age": [25, 55], "notAll": ["father_dead", "mother_dead"], "noflag": "jia_nj_par_on" },
+      "eff": { "flag": "jia_nj_par_on", "later": { "in": 1, "id": "jia_nj_parents" } },
+      "text": "娘家捎來口信，說爹娘這些日子身子不大好，吃得少，也不大下床了。"
+    },
+    {
+      "id": "jia_nj_parents", "kind": "stage", "recheck": true, "tag": "族裡", "title": "娘家爹娘", "scene": "sick",
+      "req": { "gender": "f", "notAll": ["father_dead", "mother_dead"] },
+      "text": "你回了一趟娘家。老人躺在床上，兄嫂忙著地裡的活，屋裡冷鍋冷灶。",
+      "choices": [
+        { "t": "留下來侍候一陣", "eff": { "健": -2, "德": 2, "flag": "jia_nj_care" },
+          "out": "你在娘家住了兩個月，熬藥、擦身、餵飯。老人好些了，你才回去。" },
+        { "t": "送錢送藥", "req": { "stat": { "財": 2 } }, "lock": "家裡拿不出多的錢", "eff": { "財": -2, "flag": "jia_nj_send" },
+          "out": "你把攢下的一點錢塞給嫂子，又託人抓了藥。嫂子推了兩下，收下了。" },
+        { "t": "接到自家來住", "show": { "married": true }, "eff": { "財": -1, "德": 1, "flag": "jia_nj_jielai" },
+          "out": "你跟{spouse}商量，把老人接到自家來住。{spouse}二話沒說，把向陽的那間屋騰了出來。" }
+      ]
+    },
+    {
+      "id": "jia_nj_yuejia", "kind": "flavor", "w": 1, "p": 0.25, "tag": "人情", "scene": "home",
+      "req": { "gender": "m", "married": true, "age": [20, 60] },
+      "text": "岳家過壽，你跟{spouse}帶了一隻雞、兩斗米去拜壽。岳父喝多了，拉著你說了一晚上{spouse}小時候的事。"
+    },
+    {
+      "id": "jia_nj_jiujiu", "kind": "flavor", "w": 1, "tag": "族裡", "scene": "play",
+      "req": { "gender": "f", "married": true, "brother": true, "child": [4, 12] },
+      "text": "娘家兄弟來了，給{kid}帶了一個竹馬、一包飴糖。{kid}騎著竹馬，追著舅舅滿院子跑。"
+    },
+    {
+      "id": "jia_nj_seed_tomb", "kind": "flavor", "w": 1, "p": 0.0025, "tag": "族裡", "scene": "storm",
+      "req": { "age": [28, 70], "ancestral": true, "noflag": "jia_nj_tomb_on" },
+      "eff": { "flag": "jia_nj_tomb_on", "later": { "in": 1, "id": "jia_nj_tomb" } },
+      "text": "一場大雨過後，有人來報，說祖墳塌了一角，連墳前那棵柏樹都歪了。"
+    },
+    {
+      "id": "jia_nj_tomb", "kind": "stage", "recheck": true, "tag": "族裡", "title": "修祖墳", "scene": "grave",
+      "req": { "ancestral": true },
+      "text": "族裡的人聚在一起商量修墳。有錢的出錢，有力的出力，也有人推說家裡忙，不來。",
+      "choices": [
+        { "t": "出錢", "req": { "stat": { "財": 2 } }, "lock": "家裡拿不出錢", "eff": { "財": -2, "名": 1, "flag": "jia_nj_tomb_fix" },
+          "out": "你出了兩匹絹。墳修好那天，族長在墳前念各家的名字，念到你家，聲音特別響。" },
+        { "t": "出力", "eff": { "健": -2, "德": 1, "flag": "jia_nj_tomb_fix" },
+          "out": "你扛了十天的土。柏樹重新扶正了，你在樹根底下踩了又踩。" },
+        { "t": "推說家裡忙", "eff": { "名": -1, "flag": "jia_nj_tomb_skip" },
+          "out": "你說家裡走不開。後來族裡祭祖，排座次的時候，你家被排到了最後。" }
+      ]
+    },
+    {
+      "id": "jia_nj_seed_far", "kind": "flavor", "w": 1, "p": 0.06, "tag": "族裡", "scene": "grave",
+      "req": { "age": [28, 70], "ancestral": false, "tombAcross": false, "noflag": "jia_nj_far_on" },
+      "eff": { "flag": "jia_nj_far_on", "later": { "in": 1, "id": "jia_nj_tomb_far" } },
+      "text": "清明又到了。鄰里都去上墳，你家的祖墳卻在老家，好些年沒人去看過了。"
+    },
+    {
+      "id": "jia_nj_tomb_far", "kind": "stage", "recheck": true, "tag": "族裡", "title": "回鄉上墳", "scene": "road",
+      "req": { "ancestral": false, "tombAcross": false },
+      "text": "你想回老家看看祖墳。路不近，來回得一個多月，還得先去縣裡請過所。",
+      "choices": [
+        { "t": "回一趟老家", "eff": { "健": -2, "財": -1, "flag": "jia_nj_homevisit" },
+          "out": "你走了半個月，才回到老家。墳上的草長得比人還高。你拔了三天的草，臨走前，在墳前磕了三個頭。" },
+        { "t": "朝老家的方向祭", "eff": { "flag": "jia_nj_wangji" },
+          "out": "你在院子裡擺了酒和餅，朝著老家的方向拜了三拜。燒紙的時候，風一直往那邊吹。" }
+      ]
+    },
+    {
+      "id": "jia_nj_tomb_lost", "kind": "flavor", "w": 1, "p": 0.3, "tag": "族裡", "scene": "grave",
+      "req": { "tombAcross": true, "age": [20, 80] },
+      "text": "老家早就斷了音信，祖墳在那邊不知道還在不在。你只記得長輩說過，墳前有一棵柏樹。"
+    },
+    {
+      "id": "jia_nj_hanshi", "kind": "flavor", "w": 2, "year": [732, 760], "tag": "族裡", "scene": "grave",
+      "req": { "age": [15, 80] },
+      "text": "朝廷下了敕，說寒食上墓的習俗，從此算進拜掃的禮裡頭。這一年清明，路上上墳的人比往年都多，你也帶著家裡人去了。",
+      "note": "《唐會要・寒食拜掃》載開元二十年敕：寒食上墓，禮經無文，近代相傳，浸以成俗。"
+    },
+    {
+      "id": "jia_nj_seed_fen", "kind": "flavor", "w": 1, "p": 0.012, "tag": "族裡", "scene": "home",
+      "req": { "gender": "m", "brother": true, "flag": ["father_dead", "mother_dead"], "age": [22, 60], "noflag": "jia_nj_fen_on" },
+      "eff": { "flag": "jia_nj_fen_on", "later": { "in": 1, "id": "jia_nj_fenjia" } },
+      "text": "爹娘都不在了。兄弟各自成了家，一個院子裡住著幾房人，灶上天天有人拌嘴。"
+    },
+    {
+      "id": "jia_nj_fenjia", "kind": "stage", "recheck": true, "tag": "族裡", "title": "分家", "scene": "contract",
+      "req": { "gender": "m", "brother": true },
+      "text": "兄弟們商量分家。田宅、牛、農具，一樣一樣地點。按令，兄弟均分；可是誰家人口多、誰家吃了虧，各有各的說法。",
+      "choices": [
+        { "t": "均分", "eff": { "flag": "jia_nj_fen" },
+          "out": "請了族老和里正來作證，抓鬮分了田宅。寫好的分書一式幾份，兄弟各執一份。" },
+        { "t": "多讓兄弟一些", "eff": { "財": -2, "德": 2, "flag": "jia_nj_rang" },
+          "out": "你把靠水的那塊地讓給了兄弟。族老說你厚道，回家以後，你一個人在院子裡坐了很久。",
+          "outIf": [ { "req": { "married": true }, "out": "你把靠水的那塊地讓給了兄弟。族老說你厚道，{spouse}在家裡跟你生了三天的氣。" } ] },
+        { "t": "不分了，一起過", "eff": { "名": 2, "flag": "jia_nj_tongju" },
+          "out": "你說，爹娘在的時候沒分，如今也不分。往後一個灶上吃飯，誰家缺了，就從公中拿。" }
+      ],
+      "note": "《唐律疏議・戶婚》引戶令：應分田宅及財物者，兄弟均分。"
+    },
+    {
+      "id": "jia_nj_tongju_life", "kind": "flavor", "w": 3, "tag": "族裡", "scene": "home",
+      "req": { "flag": "jia_nj_tongju" },
+      "text": "幾房人住在一個院子裡，吃飯得擺兩張案子。誰家孩子哭了，誰家媳婦都去哄。吵也吵，可是一到收麥，全院的人一起下地。"
+    },
+    {
+      "id": "jia_nj_seed_chu", "kind": "flavor", "w": 1, "p": 0.2, "tag": "族裡", "scene": "home",
+      "req": { "gender": "m", "brother": true, "child": [0, 3], "son": [4, 10], "age": [25, 50], "noflag": "jia_nj_chu_on" },
+      "eff": { "tagKid": "jia_nj_chu", "flag": "jia_nj_chu_on", "later": { "in": 1, "id": "jia_nj_chuji" } },
+      "text": "你的兄弟成親多年，膝下一直沒有兒子。他來你家的時候，總愛抱著{son}，抱了就不撒手。"
+    },
+    {
+      "id": "jia_nj_chuji", "kind": "stage", "recheck": true, "tag": "族裡", "title": "出繼", "scene": "home",
+      "req": { "kidTag": "jia_nj_chu", "brother": true },
+      "text": "族裡的長輩來了，說你兄弟那一房沒有後，想讓{kid}過繼過去，承那一房的香火。往後{kid}再叫你，就得改口了。",
+      "choices": [
+        { "t": "答應", "eff": { "childAway": true, "德": 2, "flag": "jia_nj_chuji" },
+          "out": "過繼那天，族裡寫了文書。{kid}被兄弟抱走的時候，回頭喊了一聲，你沒敢應。" },
+        { "t": "捨不得", "eff": { "名": -1, "flag": "jia_nj_buchu" },
+          "out": "你說，孩子還小，離不開爹娘。兄弟沒說什麼，那年過年，他沒有來。" }
+      ]
+    },
+    {
+      "id": "jia_nj_chuji_after", "kind": "flavor", "w": 3, "tag": "族裡", "scene": "village",
+      "req": { "flag": "jia_nj_chuji" },
+      "text": "過繼出去的那個孩子，在兄弟家長大了。在族裡碰見你，規規矩矩地行禮，稱呼一點也不錯。你應了一聲，轉過身去。"
+    },
+    {
+      "id": "jia_nj_seed_widow", "kind": "flavor", "w": 1, "p": 0.0018, "tag": "鄰里", "scene": "village",
+      "req": { "age": [22, 65], "noflag": "jia_nj_widow_on" },
+      "eff": { "flag": "jia_nj_widow_on", "later": { "in": 1, "id": "jia_nj_widow" } },
+      "text": "鄰家的男人前年死了，留下媳婦和一個小孩子。服滿以後，有人看見媒人進了她家的門。"
+    },
+    {
+      "id": "jia_nj_widow", "kind": "stage", "recheck": true, "tag": "鄰里", "title": "鄰家寡婦", "scene": "village",
+      "req": { "age": [22, 70] },
+      "text": "鄰家的寡婦要改嫁了。夫家的叔伯不肯，說她要走可以，嫁妝和孩子都得留下，堵在門口吵了一上午。她看見你，叫了你一聲。",
+      "choices": [
+        { "t": "替她說句公道話", "eff": { "名": -1, "德": 2, "flag": "jia_nj_widow_help" },
+          "out": "你說，嫁妝是她娘家帶來的，本就不在夫家分產的數裡。叔伯們罵了你幾句，到底讓開了路。" },
+        { "t": "幫她找個好人家", "eff": { "德": 1, "flag": "jia_nj_widow_mei" },
+          "out": "你託了相熟的媒人，給她說了鄰村一個老實的鰥夫。成親那天沒有鼓樂，她給你家送來一籃雞蛋。" },
+        { "t": "不管閒事", "eff": { "flag": "jia_nj_widow_no" },
+          "out": "你關上了門。外頭吵到中午才散。後來聽說，她是一個人走的，孩子留在了夫家。" }
+      ]
+    },
+    {
+      "id": "jia_nj_widow_after", "kind": "flavor", "w": 3, "tag": "鄰里", "scene": "village",
+      "req": { "anyFlag": ["jia_nj_widow_help", "jia_nj_widow_mei", "jia_nj_widow_no"] },
+      "text": "那年改嫁的鄰家寡婦，有一回回來看孩子，在巷口碰見你，站住說了幾句話。她胖了些，說那邊的日子還過得去。"
+    },
+    {
+      "id": "jia_nj_shouzhi", "kind": "flavor", "w": 1, "p": 0.04, "tag": "鄰里", "scene": "court",
+      "req": { "age": [18, 75] },
+      "text": "里中有個寡婦說要守著亡夫的孩子過，不嫁了。夫家的伯叔想要她那份田，硬要把她嫁出去。鬧到縣裡，縣令說，按律，逼人改嫁是要判徒的。伯叔們這才不吭聲了。",
+      "note": "《唐律疏議・戶婚》：諸夫喪服除而欲守志，非女之祖父母、父母而強嫁之者，徒一年。"
+    },
+    {
+      "id": "jia_nj_seed_zu", "kind": "flavor", "w": 1, "p": 0.005, "tag": "族裡", "scene": "home",
+      "req": { "age": [28, 65], "stat": { "財": 4 }, "noflag": "jia_nj_zu_on" },
+      "eff": { "flag": "jia_nj_zu_on", "later": { "in": 1, "id": "jia_nj_zu_loan" } },
+      "text": "族裡一個遠房的親戚，這些日子常來你家坐，坐下就嘆氣，說今年的租調交不上了。"
+    },
+    {
+      "id": "jia_nj_zu_loan", "kind": "stage", "recheck": true, "tag": "族裡", "title": "族人借絹", "scene": "contract",
+      "req": { "stat": { "財": 2 } },
+      "text": "那個遠房親戚終於開了口，要借兩匹絹交調，說秋後就還。他說話的時候，一直看著自己的鞋。",
+      "choices": [
+        { "t": "借給他", "eff": { "財": -2, "flag": "jia_nj_zu_lend", "later": { "in": 2, "id": "jia_nj_zu_repay" } },
+          "out": "你把兩匹絹拿了出來。他要寫契，你說，一族的人，不用寫了。" },
+        { "t": "推說沒有", "eff": { "名": -1, "flag": "jia_nj_zu_refuse" },
+          "out": "你說家裡也緊。他點點頭，坐了一會兒就走了。後來在族裡碰見，他總是先把臉轉開。" }
+      ]
+    },
+    {
+      "id": "jia_nj_zu_repay", "kind": "stage", "recheck": true, "tag": "族裡", "title": "那兩匹絹", "scene": "home",
+      "req": { "flag": "jia_nj_zu_lend" },
+      "text": "兩年過去了，借出去的兩匹絹還沒見還回來。聽說那個親戚今年收成不錯。",
+      "choices": [
+        { "t": "上門去討", "chk": { "base": 0.5 },
+          "out": "你提著一壺酒上了門，話繞了半天才說到正事。",
+          "ok": { "eff": { "財": 2, "flag": "jia_nj_zu_repaid" }, "out": "他當場把絹拿了出來，還多給了一斗粟，說這兩年一直記著。" },
+          "fail": { "eff": { "名": -1, "flag": "jia_nj_zu_fallout" }, "out": "他說今年還不上，明年再說。你們在門口吵了起來，從此兩家不大走動了。" } },
+        { "t": "算了", "eff": { "德": 2, "flag": "jia_nj_zu_forgive" },
+          "out": "你沒去討。年底祭祖的時候，那個親戚在你身邊磕頭，磕得特別重。" }
+      ]
+    },
+    {
+      "id": "jia_nj_zu_after", "kind": "flavor", "w": 3, "tag": "族裡", "scene": "grave",
+      "req": { "anyFlag": ["jia_nj_zu_repaid", "jia_nj_zu_fallout", "jia_nj_zu_forgive", "jia_nj_zu_refuse"] },
+      "text": "族裡祭祖的時候，各房按輩分站好。你看著前前後後這些人，誰借過誰的、誰欠過誰的，你心裡都有一本帳。"
+    },
+    {
+      "id": "jia_nj_jizu", "kind": "flavor", "w": 1, "p": 0.05, "repeat": 2, "repeatGap": 10, "tag": "族裡", "scene": "grave",
+      "req": { "age": [25, 85] },
+      "text": "歲末祭祖，你把祖上幾代人的名字一個一個念過去。念到後來，有兩個名字，你也想不起是哪一輩的了。"
+    }
+  ],
+
+  "arcBook": [
+    { "name": "夫妻", "items": [
+      { "id": "jia_fq_lowhead", "title": "先低頭" },
+      { "id": "jia_fq_elder", "title": "長輩評理" },
+      { "id": "jia_fq_reconcile", "title": "雨夜和好" },
+      { "id": "jia_fq_heli", "title": "放妻書" },
+      { "id": "jia_fq_rewed", "title": "和離再娶嫁" },
+      { "id": "jia_fq_nursed", "title": "侍疾" },
+      { "id": "jia_fq_huanyuan", "title": "佛前還願" },
+      { "id": "jia_fq_coat", "title": "連夜縫衣" },
+      { "id": "jia_fq_back", "title": "征人歸" },
+      { "id": "jia_fq_oldpair", "title": "老伴" },
+      { "id": "jia_fq_shouyi", "title": "兩身壽衣" },
+      { "id": "jia_fq_xu", "title": "喪偶再成家" }
+    ] },
+    { "name": "兒女親事", "items": [
+      { "id": "jia_qs_mendang", "title": "門當戶對" },
+      { "id": "jia_qs_yiyi", "title": "依了孩子" },
+      { "id": "jia_qs_buyi", "title": "父母之命" },
+      { "id": "jia_qs_tx", "title": "同姓不婚" },
+      { "id": "jia_qs_fangliang", "title": "求主放良" },
+      { "id": "jia_qs_jiepin", "title": "借錢下聘" },
+      { "id": "jia_qs_gao", "title": "告女家悔婚" },
+      { "id": "jia_qs_ruzhui", "title": "兒子入贅" },
+      { "id": "jia_qs_zhaoxu", "title": "招婿上門" },
+      { "id": "jia_qs_far", "title": "娶在遠方" }
+    ] },
+    { "name": "想闖蕩的孩子", "items": [
+      { "id": "jia_out_city", "title": "去了京城" },
+      { "id": "jia_out_trade", "title": "跟商隊走" },
+      { "id": "jia_out_army", "title": "應募健兒" },
+      { "id": "jia_out_kept", "title": "不許走" },
+      { "id": "jia_out_jiashu", "title": "家書" },
+      { "id": "jia_out_armyword", "title": "軍中口信" },
+      { "id": "jia_out_home", "title": "回來了" },
+      { "id": "jia_out_gone", "title": "沒有回來" },
+      { "id": "jia_out_army_dead", "title": "死在邊上" },
+      { "id": "jia_out_house", "title": "把家交給他" }
+    ] },
+    { "name": "娘家與族裡", "items": [
+      { "id": "jia_nj_guining", "title": "歸寧" },
+      { "id": "jia_nj_brohelp", "title": "兄弟接濟" },
+      { "id": "jia_nj_care", "title": "回娘家侍疾" },
+      { "id": "jia_nj_jielai", "title": "接爹娘來住" },
+      { "id": "jia_nj_tomb_fix", "title": "修祖墳" },
+      { "id": "jia_nj_homevisit", "title": "回鄉上墳" },
+      { "id": "jia_nj_fen", "title": "兄弟均分" },
+      { "id": "jia_nj_tongju", "title": "不分家" },
+      { "id": "jia_nj_chuji", "title": "出繼" },
+      { "id": "jia_nj_widow_help", "title": "替寡婦說話" },
+      { "id": "jia_nj_zu_lend", "title": "借給族人" }
+    ] }
+  ],
+
+  "endings": [
+    { "id": "jia_a4_out", "when": "alive", "chapter": 4, "req": { "anyFlag": ["jia_out_city", "jia_out_trade", "jia_out_army", "jia_out_kept"], "noflag": ["gong_in", "official"] },
+      "title": "想出門的孩子", "text": "{name}活到了貞觀二十三年。這些年太平，路上的行人多了，里中的後生一個一個往外走。{name}家的孩子也鬧過要出門，{name}到現在還記得那天說過的每一句話。" },
+    { "id": "jia_a4_qs", "when": "alive", "chapter": 4, "req": { "anyFlag": ["jia_qs_mendang", "jia_qs_yiyi", "jia_qs_buyi", "jia_qs_late", "jia_qs_tx", "jia_qs_tx_hide", "jia_qs_tx_caught", "jia_qs_lj_no", "jia_qs_fangliang", "jia_qs_lj_fail", "jia_qs_jiepin", "jia_qs_jiangjia", "jia_qs_gao", "jia_qs_gao_fail", "jia_qs_suanle", "jia_qs_ruzhui", "jia_qs_far", "jia_qs_free"], "noflag": ["gong_in", "official"] },
+      "title": "兒女親事", "text": "{name}活到了貞觀二十三年。米價賤，嫁娶的人家也多，里中隔三差五就有迎親的車。{name}這些年最費心的，就是孩子的那一樁親事。" },
+    { "id": "jia_a4_nj", "when": "alive", "chapter": 4, "req": { "anyFlag": ["jia_nj_brohelp", "jia_nj_pride", "jia_nj_care", "jia_nj_send", "jia_nj_jielai", "jia_nj_tomb_fix", "jia_nj_homevisit", "jia_nj_wangji", "jia_nj_fen", "jia_nj_rang", "jia_nj_tongju", "jia_nj_chuji", "jia_nj_buchu", "jia_nj_widow_help", "jia_nj_widow_mei", "jia_nj_zu_lend"], "noflag": ["gong_in", "official"] },
+      "title": "親戚族人", "text": "{name}活到了貞觀二十三年。親戚族人裡誰家缺了什麼、誰家有了難處，{name}都記在心上。這樣的日子沒什麼大事，一年一年也就這麼過來了。" },
+    { "id": "jia_a4_fq", "when": "alive", "chapter": 4, "req": { "married": true, "anyFlag": ["jia_fq_lowhead", "jia_fq_elder", "jia_fq_reconcile", "jia_fq_endure", "jia_fq_nursed", "jia_fq_vow", "jia_fq_back", "jia_fq_oldpair", "jia_fq_rewed", "jia_fq_xu"], "noflag": ["gong_in", "official"] },
+      "title": "結髮", "text": "{name}活到了貞觀二十三年。跟{spouse}吵過、鬧過，也一起熬過病、熬過荒年。天下太平的這些年，{name}家裡也算太平。" },
+
+    { "id": "jia_a5_heli", "when": "alive", "chapter": 5, "req": { "flag": "jia_fq_heli", "noflag": ["gong_in", "official"] },
+      "title": "放妻書", "text": "{name}跟從前那個人和離，已經好些年了。這些年洛陽改叫了神都，朝中換了一撥又一撥的人，{name}只管過自己的日子。那紙放妻書，一直壓在箱底。" },
+    { "id": "jia_a5_out", "when": "alive", "chapter": 5, "req": { "anyFlag": ["jia_out_city", "jia_out_trade", "jia_out_army", "jia_out_kept"], "noflag": ["gong_in", "official"] },
+      "title": "兒行千里", "text": "{name}活過了二聖的年月。家裡那個想出去闖的孩子，走的走了，留的留了。{name}有時候想，要是當年換一個說法，如今又是什麼樣子。" },
+    { "id": "jia_a5_qs", "when": "alive", "chapter": 5, "req": { "anyFlag": ["jia_qs_mendang", "jia_qs_yiyi", "jia_qs_buyi", "jia_qs_late", "jia_qs_tx", "jia_qs_tx_hide", "jia_qs_tx_caught", "jia_qs_lj_no", "jia_qs_fangliang", "jia_qs_lj_fail", "jia_qs_jiepin", "jia_qs_jiangjia", "jia_qs_gao", "jia_qs_gao_fail", "jia_qs_suanle", "jia_qs_ruzhui", "jia_qs_far", "jia_qs_free"], "noflag": ["gong_in", "official"] },
+      "title": "嫁娶", "text": "{name}給孩子操辦的那門親事，成了里中好些年的話題。如今太后臨朝，市上的人說的都是告密和銅匭，{name}關心的，只是孩子過得好不好。" },
+    { "id": "jia_a5_nj", "when": "alive", "chapter": 5, "req": { "anyFlag": ["jia_nj_brohelp", "jia_nj_pride", "jia_nj_care", "jia_nj_send", "jia_nj_jielai", "jia_nj_tomb_fix", "jia_nj_homevisit", "jia_nj_wangji", "jia_nj_fen", "jia_nj_rang", "jia_nj_tongju", "jia_nj_chuji", "jia_nj_buchu", "jia_nj_widow_help", "jia_nj_widow_mei", "jia_nj_zu_lend"], "noflag": ["gong_in", "official"] },
+      "title": "肯出力的人", "text": "{name}在親戚族人中間，一直是那個肯出力的人。這些年朝中的事一件比一件大，{name}聽了，也只是搖搖頭，轉身去忙自家的事。" },
+    { "id": "jia_a5_fq", "when": "alive", "chapter": 5, "req": { "married": true, "anyFlag": ["jia_fq_lowhead", "jia_fq_elder", "jia_fq_reconcile", "jia_fq_endure", "jia_fq_nursed", "jia_fq_vow", "jia_fq_back", "jia_fq_oldpair", "jia_fq_rewed", "jia_fq_xu"], "noflag": ["gong_in", "official"] },
+      "title": "半輩子", "text": "{name}跟{spouse}過了大半輩子。年輕時吵架的那些事，如今說起來都成了笑話。外頭的世道換了，家裡的灶火沒有斷過。" },
+
+    { "id": "jia_a6_gone", "when": "alive", "chapter": 6, "req": { "flag": "jia_out_gone", "noflag": ["gong_in", "official"], "bondMax": { "direnjie": 1, "huineng": 1 } },
+      "title": "望門", "text": "新天子即位那年，{name}還是每天往路口走一趟。那個出了門就沒回來的孩子，{name}一直沒有等到。" },
+    { "id": "jia_a6_out", "when": "alive", "chapter": 6, "req": { "anyFlag": ["jia_out_city", "jia_out_trade", "jia_out_army", "jia_out_kept"], "noflag": ["gong_in", "official"], "bondMax": { "direnjie": 1, "huineng": 1 } },
+      "title": "出門的孩子", "text": "{name}家的孩子鬧著要出門的那一年，{name}想了很久。如今新天子即位，外頭的人都說，往後是好日子了。{name}想，那就好。" },
+    { "id": "jia_a6_qs", "when": "alive", "chapter": 6, "req": { "anyFlag": ["jia_qs_mendang", "jia_qs_yiyi", "jia_qs_buyi", "jia_qs_late", "jia_qs_tx", "jia_qs_tx_hide", "jia_qs_tx_caught", "jia_qs_lj_no", "jia_qs_fangliang", "jia_qs_lj_fail", "jia_qs_jiepin", "jia_qs_jiangjia", "jia_qs_gao", "jia_qs_gao_fail", "jia_qs_suanle", "jia_qs_ruzhui", "jia_qs_far", "jia_qs_free"], "noflag": ["gong_in", "official"], "bondMax": { "direnjie": 1, "huineng": 1 } },
+      "title": "媒人的腳步", "text": "{name}這輩子操心最多的，是孩子的親事。成也好，不成也好，回頭看，都過去了。外頭換了幾回天子，{name}只記得那幾年媒人進進出出的腳步聲。" },
+    { "id": "jia_a6_nj", "when": "alive", "chapter": 6, "req": { "anyFlag": ["jia_nj_brohelp", "jia_nj_pride", "jia_nj_care", "jia_nj_send", "jia_nj_jielai", "jia_nj_tomb_fix", "jia_nj_homevisit", "jia_nj_wangji", "jia_nj_fen", "jia_nj_rang", "jia_nj_tongju", "jia_nj_chuji", "jia_nj_buchu", "jia_nj_widow_help", "jia_nj_widow_mei", "jia_nj_zu_lend"], "noflag": ["gong_in", "official"], "bondMax": { "direnjie": 1, "huineng": 1 } },
+      "title": "族裡的事", "text": "{name}在族裡是個說得上話的人。誰家分家、誰家修墳、誰家借錢，都要來問一聲。天下換了幾回主人，族裡的這些事，一年也沒少過。" },
+    { "id": "jia_a6_fq", "when": "alive", "chapter": 6, "req": { "married": true, "anyFlag": ["jia_fq_lowhead", "jia_fq_elder", "jia_fq_reconcile", "jia_fq_endure", "jia_fq_nursed", "jia_fq_vow", "jia_fq_back", "jia_fq_oldpair", "jia_fq_rewed", "jia_fq_xu"], "noflag": ["gong_in", "official"], "bondMax": { "direnjie": 1, "huineng": 1 } },
+      "title": "吵兩句又和好", "text": "{name}跟{spouse}這些年，經過的事不比外頭少。周又改回了唐，新天子也即位了，{name}家的日子還是那樣：吵兩句，又和好。" },
+
+    { "id": "jia_a7_heli", "when": "alive", "chapter": 7, "req": { "flag": "jia_fq_heli", "noflag": ["gong_in", "official"], "noregion": "hebei", "bondMax": { "huineng": 1 } },
+      "title": "箱底的放妻書", "text": "{name}跟從前那個人和離，已經很多年了。天寶十四載冬天，范陽起兵的消息傳過來，{name}收拾東西的時候，又翻到了那紙放妻書，看了一會兒，又放回了箱底。" },
+    { "id": "jia_a7_out", "when": "alive", "chapter": 7, "req": { "anyFlag": ["jia_out_city", "jia_out_trade", "jia_out_army", "jia_out_kept"], "noflag": ["gong_in", "official"], "noregion": "hebei", "bondMax": { "huineng": 1 } },
+      "title": "遠行的孩子", "text": "天寶十四載冬天，范陽起兵了。{name}頭一個想到的，是那個想出門、也許已經出了門的孩子：這會兒在哪裡，平不平安。" },
+    { "id": "jia_a7_qs", "when": "alive", "chapter": 7, "req": { "anyFlag": ["jia_qs_mendang", "jia_qs_yiyi", "jia_qs_buyi", "jia_qs_late", "jia_qs_tx", "jia_qs_tx_hide", "jia_qs_tx_caught", "jia_qs_lj_no", "jia_qs_fangliang", "jia_qs_lj_fail", "jia_qs_jiepin", "jia_qs_jiangjia", "jia_qs_gao", "jia_qs_gao_fail", "jia_qs_suanle", "jia_qs_ruzhui", "jia_qs_far", "jia_qs_free"], "noflag": ["gong_in", "official"], "noregion": "hebei", "bondMax": { "huineng": 1 } },
+      "title": "往一處靠", "text": "天寶十四載冬天，范陽起兵的消息傳來。{name}讓人四處捎話給結了親的那幾家：要是亂起來，就往這邊來，一家人好歹在一處。" },
+    { "id": "jia_a7_nj", "when": "alive", "chapter": 7, "req": { "anyFlag": ["jia_nj_brohelp", "jia_nj_pride", "jia_nj_care", "jia_nj_send", "jia_nj_jielai", "jia_nj_tomb_fix", "jia_nj_homevisit", "jia_nj_wangji", "jia_nj_fen", "jia_nj_rang", "jia_nj_tongju", "jia_nj_chuji", "jia_nj_buchu", "jia_nj_widow_help", "jia_nj_widow_mei", "jia_nj_zu_lend"], "noflag": ["gong_in", "official"], "noregion": "hebei", "bondMax": { "huineng": 1 } },
+      "title": "要走一起走", "text": "天寶十四載冬天，消息說范陽的兵起來了。族裡的人聚在一起商量，{name}說，要走一起走，要留一起留。" },
+    { "id": "jia_a7_fq", "when": "alive", "chapter": 7, "req": { "married": true, "anyFlag": ["jia_fq_lowhead", "jia_fq_elder", "jia_fq_reconcile", "jia_fq_endure", "jia_fq_nursed", "jia_fq_vow", "jia_fq_back", "jia_fq_oldpair", "jia_fq_rewed", "jia_fq_xu"], "noflag": ["gong_in", "official"], "noregion": "hebei", "bondMax": { "huineng": 1 } },
+      "title": "不怕", "text": "范陽起兵的消息傳來那天夜裡，{name}跟{spouse}躺著說了很久的話。{spouse}說，這些年什麼都經過了，不怕。" },
+
+    { "id": "jia_a8_army", "when": "alive", "chapter": 8, "req": { "anyFlag": ["jia_out_army_dead", "jia_out_army_back"], "noflag": ["gong_in", "official"] },
+      "title": "邊兵", "text": "廣德元年，亂平了。{name}家那個去邊上當過健兒的孩子，是這些年裡{name}最常想起的人。打了這些年的仗，聽人說起邊兵的事，{name}的心就揪一回。" },
+    { "id": "jia_a8_gone", "when": "alive", "chapter": 8, "req": { "flag": "jia_out_gone", "noflag": ["gong_in", "official"] },
+      "title": "不歸", "text": "廣德元年，亂平了。逃難的人陸續回鄉，{name}天天去路口看。那個多年前出了門的孩子，始終沒有在人群裡出現。" },
+    { "id": "jia_a8_out", "when": "alive", "chapter": 8, "req": { "anyFlag": ["jia_out_city", "jia_out_trade", "jia_out_army", "jia_out_kept"], "noflag": ["gong_in", "official"] },
+      "title": "歸人", "text": "廣德元年，亂平了。{name}家當年那個想出去闖的孩子，走過的路、留下的事，如今都成了家裡人說了又說的故事。" },
+    { "id": "jia_a8_qs", "when": "alive", "chapter": 8, "req": { "anyFlag": ["jia_qs_mendang", "jia_qs_yiyi", "jia_qs_buyi", "jia_qs_late", "jia_qs_tx", "jia_qs_tx_hide", "jia_qs_tx_caught", "jia_qs_lj_no", "jia_qs_fangliang", "jia_qs_lj_fail", "jia_qs_jiepin", "jia_qs_jiangjia", "jia_qs_gao", "jia_qs_gao_fail", "jia_qs_suanle", "jia_qs_ruzhui", "jia_qs_far", "jia_qs_free"], "noflag": ["gong_in", "official"] },
+      "title": "親事", "text": "廣德元年，亂平了。{name}操心過的那些親事，有的成了，有的散了。打了這些年的仗，能熬到今天的人家，都算是有福氣。" },
+    { "id": "jia_a8_nj", "when": "alive", "chapter": 8, "req": { "anyFlag": ["jia_nj_brohelp", "jia_nj_pride", "jia_nj_care", "jia_nj_send", "jia_nj_jielai", "jia_nj_tomb_fix", "jia_nj_homevisit", "jia_nj_wangji", "jia_nj_fen", "jia_nj_rang", "jia_nj_tongju", "jia_nj_chuji", "jia_nj_buchu", "jia_nj_widow_help", "jia_nj_widow_mei", "jia_nj_zu_lend"], "noflag": ["gong_in", "official"] },
+      "title": "清點人口", "text": "廣德元年，亂平了。族裡清點人口，少了好些人。{name}帶著剩下的人去上墳，在墳前把各房的名字念了一遍。" },
+    { "id": "jia_a8_fq", "when": "alive", "chapter": 8, "req": { "married": true, "anyFlag": ["jia_fq_lowhead", "jia_fq_elder", "jia_fq_reconcile", "jia_fq_endure", "jia_fq_nursed", "jia_fq_vow", "jia_fq_back", "jia_fq_oldpair", "jia_fq_rewed", "jia_fq_xu"], "noflag": ["gong_in", "official"] },
+      "title": "安穩覺", "text": "廣德元年，亂平了。{name}跟{spouse}熬過了這些年。{spouse}說，總算可以睡個安穩覺了。那天夜裡，兩個人都睡得很沉。" },
+
+    { "id": "jia_d_shouyi", "when": "dead", "cause": "壽終", "req": { "flag": "jia_fq_shouyi", "married": true },
+      "title": "壽衣", "text": "{name}活到了{age}歲。那兩身壽衣，終究是{name}先穿上了。{spouse}替{name}繫好衣帶，說：你先去，在那邊等著。" },
+    { "id": "jia_d_oldpair", "when": "dead", "cause": "壽終", "req": { "flag": "jia_fq_oldpair", "married": true },
+      "title": "相守", "text": "{name}在{age}歲那年冬天走了。前一天下午，還跟{spouse}坐在門口曬太陽，誰也沒說話。" },
+    { "id": "jia_d_quarrel", "when": "dead", "cause": "壽終", "req": { "anyFlag": ["jia_fq_lowhead", "jia_fq_elder", "jia_fq_reconcile", "jia_fq_endure"], "married": true },
+      "title": "吵了一輩子", "text": "{name}活到了{age}歲。跟{spouse}吵了一輩子，臨走前還為了一碗粥的鹹淡拌了兩句嘴。{spouse}說，往後沒人跟我吵了。" },
+    { "id": "jia_d_nursed", "when": "dead", "cause": "病故", "req": { "flag": "jia_fq_nursed", "married": true },
+      "title": "侍疾的人", "text": "{name}照顧過病中的{spouse}，自己卻在{age}歲上先病倒了。{spouse}守在床邊，學著{name}當年的樣子熬藥，可是沒有熬好。" },
+    { "id": "jia_d_alone", "when": "dead", "cause": ["壽終", "病故"], "req": { "flag": "jia_fq_alone" },
+      "title": "一個人", "text": "{name}和離以後，一直一個人過。{age}歲那年，鄰里好幾天沒見{name}出門，推開門，人已經走了，屋裡收拾得乾乾淨淨。" },
+    { "id": "jia_d_shou", "when": "dead", "cause": ["壽終", "病故"], "req": { "flag": "jia_fq_shou" },
+      "title": "合葬", "text": "{name}沒有再成家，守著這個家過了下半輩子。{age}歲那年走了，家裡人把{name}跟{spouse}合葬在一處。" },
+    { "id": "jia_d_out_gone", "when": "dead", "cause": ["壽終", "病故"], "req": { "flag": "jia_out_gone" },
+      "title": "倚門", "text": "{name}到{age}歲走的時候，還念著那個出了門就沒回來的孩子。家裡人把{name}葬在祖墳邊上，墳頭朝著大路。" },
+    { "id": "jia_d_out_home", "when": "dead", "cause": "壽終", "req": { "flag": "jia_out_home" },
+      "title": "遠歸", "text": "{name}活到了{age}歲。當年出過遠門又回來的那一個，守在床前說外頭的事，說著說著，{name}就睡過去了，再也沒有醒。" },
+    { "id": "jia_d_tongju", "when": "dead", "cause": "壽終", "req": { "flag": "jia_nj_tongju" },
+      "title": "同爨", "text": "{name}活到了{age}歲。到死，兄弟幾房人還在一個灶上吃飯。出殯那天，院子裡站滿了人，分不清哪個是哪房的。" },
+    { "id": "jia_d_tomb", "when": "dead", "cause": "壽終", "req": { "flag": "jia_nj_tomb_fix" },
+      "title": "柏樹下", "text": "{name}活到了{age}歲，葬進了自己當年幫著修過的祖墳。墳前那棵柏樹，是{name}親手扶正的。" }
+  ],
+
+  "epilogues": [
+    { "req": { "flag": "jia_fq_heli" }, "text": "那紙放妻書，你一直收在箱底。上頭兩家親族畫的押，後來都褪了色。", "final": true, "life": true, "pri": 2 },
+    { "req": { "flag": "jia_fq_oldpair" }, "text": "你跟老伴坐在門口曬太陽的那些下午，家裡的晚輩後來還記得。他們說，兩個老人一句話也不說，可是誰也離不開誰。", "final": true, "life": true, "pri": 2 },
+    { "req": { "flag": "jia_fq_trip" }, "text": "那年你們回老家看的那棵樹，後來還在。只是再也沒有人站在底下，說就是這裡。", "final": true, "life": true, "pri": 1 },
+    { "req": { "flag": "jia_fq_coat" }, "text": "那年你連夜絮的那件冬衣，後來補了又補，一直穿到補不了為止。", "final": true, "life": true, "pri": 1 },
+    { "req": { "flag": "jia_fq_huanyuan" }, "text": "那年在佛前許的願，你還了。那卷經後來一直供在寺裡，卷尾的兩個名字，寫得一般大小。", "final": true, "life": true, "pri": 1 },
+    { "req": { "flag": "jia_qs_yiyi" }, "text": "那年你依了孩子的心意。那一家人後來日子過得不寬裕，可是每回來看你，都是兩個人一起來的。", "final": true, "life": true, "pri": 2 },
+    { "req": { "flag": "jia_qs_tx" }, "text": "那門同姓的親事，你推掉了。媒人後來逢人就說可惜，你從來不覺得可惜。", "final": true, "life": true, "pri": 1 },
+    { "req": { "flag": "jia_qs_zhaoxu" }, "text": "那年招進門的女婿，後來在這個家裡住了一輩子。鄰里早就忘了他是外姓人。", "final": true, "life": true, "pri": 2 },
+    { "req": { "flag": "jia_out_gone" }, "text": "那個出了門就沒回來的孩子，你到老也沒等到。家門口那棵樹，你一直不讓人砍。", "final": true, "life": true, "pri": 3 },
+    { "req": { "flag": "jia_out_house" }, "text": "那個想走沒走成的孩子，後來把這個家撐了起來。有時候他還會在田頭停一停，看一會兒大路，又低下頭去鋤地。", "final": true, "life": true, "pri": 2 },
+    { "req": { "flag": "jia_nj_tomb_fix" }, "text": "那年你幫著修的祖墳，墳前的柏樹後來長得比屋還高。族裡的後生上墳，都在那棵樹底下歇腳。", "final": true, "life": true, "pri": 2 },
+    { "req": { "flag": "jia_nj_tomb_skip" }, "text": "那年族裡修墳，你推說家裡忙。這件事，族裡的老人記了很多年。", "final": true, "life": true, "pri": 1 },
+    { "req": { "flag": "jia_nj_chuji" }, "text": "過繼出去的那個孩子，後來替兄弟那一房撐起了門戶。兄弟家的墳前，年年有人去上墳。", "final": true, "life": true, "pri": 2 },
+    { "req": { "flag": "jia_nj_buchu" }, "text": "那年你沒讓孩子過繼出去。兄弟後來一直沒有兒子，那一房，就這樣斷了。", "final": true, "life": true, "pri": 1 }
+  ]
+}
