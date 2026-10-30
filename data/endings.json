@@ -503,9 +503,7 @@
       "when": "alive",
       "chapter": 7,
       "req": {
-        "bond": {
-          "huineng": 1
-        }
+        "flag": "hn_zhenshen"
       },
       "title": "本來無一物",
       "text": "{name}活過了開元天寶。慧能大師的真身還在曹溪，{name}每隔幾年就去拜一次。山門外賣香燭的人換了好幾代，還是那條路。",

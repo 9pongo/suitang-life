@@ -201,6 +201,22 @@
       "text": "{name}一家種的是寺裡的地。開皇年間天子崇佛，各州度僧、起寺，寺裡的田一年比一年多，來佃地的人家也一年比一年多。{name}說，佛祖的地，租子一點也不比別家輕。"
     },
     {
+      "id": "zz_a1_fuji",
+      "when": "alive",
+      "chapter": 1,
+      "pin": true,
+      "req": {
+        "cls": "junfarmer",
+        "flag": "es_fuji",
+        "noflag": [
+          "gong_in",
+          "official"
+        ]
+      },
+      "title": "附籍",
+      "text": "{name}一家原是莊上的客戶。開皇年間朝廷行輸籍之法，{name}一家去縣裡報了戶，成了編戶。分到的口分田又遠又薄，可是從此交多少租調，官府的簿子上寫得明明白白，不必再看莊主的臉色。"
+    },
+    {
       "id": "zz_a1_kehu",
       "when": "alive",
       "chapter": 1,
@@ -208,7 +224,8 @@
         "cls": "kehu",
         "noflag": [
           "gong_in",
-          "official"
+          "official",
+          "es_fuji"
         ]
       },
       "title": "莊客",

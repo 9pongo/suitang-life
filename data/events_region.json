@@ -1,10 +1,15 @@
 {
   "events": [
     {
-      "id": "rg_ln_622", "kind": "anchor", "year": 622, "order": 20, "tag": "歸唐", "title": "馮盎", "scene": "court",
+      "id": "rg_ln_622", "kind": "anchor", "year": 621, "order": 20, "tag": "歸唐", "title": "馮盎", "scene": "court",
       "req": { "region": "lingnan" },
       "text": "這一年，高州的馮盎帶著他管的那一大片地方歸了唐。他是譙國夫人的孫子，手底下的地方從海邊一直到海南的島上。里中的老人說，三十年前夫人迎隋，如今孫子迎唐，嶺南的事，還是這一家說了算。",
       "note": "《舊唐書・馮盎傳》：（武德）四年，盎以南越之眾降，高祖以其地為羅、春、白、崖、儋、林等八州，仍授盎上柱國、高羅總管，封吳國公，尋改封越國公。"
+    },
+    {
+      "id": "rg_ln_caoxi", "kind": "flavor", "year": [714, 755], "w": 1, "p": 0.2, "tag": "曹溪", "scene": "temple",
+      "req": { "region": "lingnan", "age": [14, 75], "noflag": "hn_zhenshen" }, "eff": { "flag": "hn_zhenshen", "德": 1 },
+      "text": "你跟著鄉里的人走了好幾天山路，到曹溪的寶林寺去拜六祖的真身。大師盤腿坐在龕裡，跟活著的時候一樣。寺裡的和尚說，大師在這裡講了三十多年的法，不識字的人也聽得懂。"
     },
     {
       "id": "rg_ln_xian", "kind": "flavor", "year": [601, 602], "w": 4, "tag": "官府", "scene": "road",

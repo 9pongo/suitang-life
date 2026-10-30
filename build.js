@@ -5,8 +5,10 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 
+// 打包只跑少量人生，主要靠靜態檢查擋錯；完整的一萬條另外跑 node sim.js 10000。要多跑：BUILD_SIM=2000 node build.js
+const SIM_N = process.env.BUILD_SIM || '300';
 try {
-  execFileSync(process.execPath, [path.join(__dirname, 'sim.js'), '2000'], { stdio: 'inherit' });
+  execFileSync(process.execPath, [path.join(__dirname, 'sim.js'), SIM_N], { stdio: 'inherit' });
 } catch (e) {
   console.error('稽核沒過，停止打包。');
   process.exit(1);
