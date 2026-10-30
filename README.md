@@ -45,10 +45,11 @@ node build.js         # 打包；稽核有錯誤或頁面腳本有語法錯誤�
   "id": "h721_kuohu", "kind": "stage", "year": [721, 724], "order": 20,
   "req": { "anyFlag": ["taohu"], "noflag": ["kuohu_done"], "age": [16, 80] },
   "tag": "括戶", "title": "括戶", "scene": "registry", "text": "……",
-  "note": "史料出處（介面上的小字「史」）",
+  "note": "史料出處（介面上印成一張雜報）", "noteFrom": 618,
   "choices": [ { "t": "選項", "req": {}, "show": {}, "lock": "條件不足時的說明", "eff": {}, "out": "結果", "deathOut": "這一下沒活過去時的結果" } ]
 }
 ```
+`noteFrom`（可省）：這一年以前不刊雜報。卡片不限年份、引的卻是唐代律令時用。
 
 - `kind`：`anchor`（史實大事）、`stage`（人生階段與劇情）、`bond`（歷史人物羈絆）、`flavor`（隨機小事）。
 - `scene`：插圖要換成哪一幕（`data/scenes.json` 的 `scenes`）。

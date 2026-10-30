@@ -460,7 +460,7 @@
       }
       const entry = emit({
         type: ev.choices ? 'decision' : 'event', id: ev.id, kind: ev.kind,
-        tag: ev.tag, title: ev.title ? fmt(ev.title) : null, text, note: ev.note || null,
+        tag: ev.tag, title: ev.title ? fmt(ev.title) : null, text, note: (ev.note && !(s.year < ev.noteFrom)) ? ev.note : null, // noteFrom：引的史料比這年早就不刊
         who: ev.who || null, scene: ev.scene || null, // 插圖：介面依 data/scenes.json 畫這一幕
       });
       apply(ev.eff, entry);
@@ -1237,7 +1237,7 @@
     return {
       seed,
       get state() { return g.st; },
-      get pending() { return g.pending ? { title: g.pending.entry.title, tag: g.pending.ev.tag, text: g.pending.entry.text, note: g.pending.ev.note, who: g.pending.ev.who, opts: g.pending.opts } : null; },
+      get pending() { return g.pending ? { title: g.pending.entry.title, tag: g.pending.ev.tag, text: g.pending.entry.text, note: g.pending.entry.note, who: g.pending.ev.who, opts: g.pending.opts } : null; },
       get ended() { return g.ended; },
       get interlude() { return g.interlude; },
       get succession() { return g.succession ? { ...g.succession.result } : null; },
