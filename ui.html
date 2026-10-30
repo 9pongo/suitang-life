@@ -436,7 +436,13 @@ const DATA = /*__DATA__*/;
 
   // ---------------- 背景音樂：不用音檔，當場合成。撥弦（Karplus-Strong）彈五聲音階，底下一層很輕的低音持續音
   // 預設關閉；開過的人下次點任何按鈕就接著響（瀏覽器規定聲音要等使用者先點過）
+  // 暫時關掉：還在找合用的配樂，按鈕先藏起來，誰都不會響
+  const MUSIC_ENABLED = false;
   const music = (() => {
+    if (!MUSIC_ENABLED) {
+      document.querySelectorAll('.btnMusic').forEach((b) => { b.style.display = 'none'; });
+      return { toggle() {} };
+    }
     let ctx = null, out = null, on = pref(PFX + 'music') === '1', timer = null, step = 0, last = 5;
     const SCALE = [146.83, 164.81, 185.0, 220.0, 246.94]; // D 宮五聲：宮商角徵羽
     const notes = [];
