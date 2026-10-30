@@ -434,86 +434,72 @@ const DATA = /*__DATA__*/;
     pref(PFX + 'theme', t); applyTheme(t);
   }));
 
-  // ---------------- 背景音樂：不用音檔，當場合成。撥弦（Karplus-Strong）彈五聲音階，底下一層很輕的低音持續音
-  // 預設關閉；開過的人下次點任何按鈕就接著響（瀏覽器規定聲音要等使用者先點過）
-  // 暫時關掉：還在找合用的配樂，按鈕先藏起來，誰都不會響
-  const MUSIC_ENABLED = false;
+  // ---------------- 背景音樂：data/strings.json 的 ui.music.tracks 列出音檔（檔案放 assets/music/，打包時複製到 dist/music/）
+  // 一首放完換下一首；寫了 chapters 的曲子只在那幾章放，換章時淡出換曲。沒有曲子就把音樂按鈕藏起來
+  // 預設關閉；開過的人下次點任何地方就接著放（瀏覽器規定聲音要等使用者先點過）
+  // 音量用 Web Audio 的增益節點控制：iPhone 上 audio.volume 是唯讀的，淡入淡出只能這樣做
   const music = (() => {
-    if (!MUSIC_ENABLED) {
-      document.querySelectorAll('.btnMusic').forEach((b) => { b.style.display = 'none'; });
-      return { toggle() {} };
+    const M = UI.music || {};
+    const tracks = M.tracks || [];
+    const btns = document.querySelectorAll('.btnMusic');
+    if (!tracks.length) {
+      btns.forEach((b) => { b.style.display = 'none'; });
+      return { toggle() {}, chapter() {} };
     }
-    let ctx = null, out = null, on = pref(PFX + 'music') === '1', timer = null, step = 0, last = 5;
-    const SCALE = [146.83, 164.81, 185.0, 220.0, 246.94]; // D 宮五聲：宮商角徵羽
-    const notes = [];
-    for (let o = 0; o < 3; o++) for (const f of SCALE) notes.push(f * 2 ** (o - 1));
-    const bufs = {};
-    function pluck(f) {
-      if (bufs[f]) return bufs[f];
-      const sr = ctx.sampleRate, n = Math.floor(sr * 4), N = Math.round(sr / f);
-      const b = ctx.createBuffer(1, n, sr), d = b.getChannelData(0), ring = new Float32Array(N);
-      for (let i = 0; i < N; i++) ring[i] = Math.random() * 2 - 1;
-      let p = 0, prev = 0;
-      for (let i = 0; i < n; i++) {
-        const v = ring[p]; const nv = 0.4985 * (v + prev); prev = v; ring[p] = nv; p = (p + 1) % N;
-        d[i] = v * 0.5;
-      }
-      return (bufs[f] = b);
+    const VOL = M.volume ?? 0.5, FADE = 1.2; // FADE：淡入淡出的時間常數（秒）
+    let on = pref(PFX + 'music') === '1', ch = null, ctx = null, cur = null; // cur：{ t, el, g } 正在放的那首
+    const pool = () => { const p = tracks.filter((t) => !t.chapters || ch == null || t.chapters.includes(ch)); return p.length ? p : tracks; };
+    function fadeTo(c, v, then) {
+      const now = ctx.currentTime;
+      c.g.gain.cancelScheduledValues(now); c.g.gain.setValueAtTime(c.g.gain.value, now); c.g.gain.setTargetAtTime(v, now, FADE);
+      if (then) setTimeout(then, FADE * 4000);
     }
-    function play(f, t, vol) {
-      const src = ctx.createBufferSource(); src.buffer = pluck(f);
-      const g = ctx.createGain(); g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.001, t + 3.8);
-      src.connect(g); g.connect(out); src.start(t); src.stop(t + 4);
+    function play(t) {
+      if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+      ctx.resume();
+      const old = cur;
+      if (old) fadeTo(old, 0, () => { old.el.pause(); old.el.src = ''; });
+      const el = new Audio(t.file);
+      el.loop = pool().length === 1;
+      const g = ctx.createGain(); g.gain.value = 0;
+      ctx.createMediaElementSource(el).connect(g); g.connect(ctx.destination);
+      const c = (cur = { t, el, g });
+      el.addEventListener('ended', () => { if (cur === c) next(); });
+      el.play().then(() => { if (cur === c && on) fadeTo(c, VOL); }).catch(() => {});
     }
-    function setup() {
-      ctx = new (window.AudioContext || window.webkitAudioContext)();
-      out = ctx.createGain(); out.gain.value = 0;
-      const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2400;
-      // 簡單的殘響：兩條回授延遲
-      const dl = ctx.createDelay(), fb = ctx.createGain(), wet = ctx.createGain();
-      dl.delayTime.value = 0.33; fb.gain.value = 0.35; wet.gain.value = 0.3;
-      out.connect(lp); lp.connect(ctx.destination); lp.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(wet); wet.connect(ctx.destination);
-      for (const [f, v] of [[73.42, 0.05], [110, 0.03]]) {
-        const o = ctx.createOscillator(), g = ctx.createGain(), lfo = ctx.createOscillator(), lg = ctx.createGain();
-        o.frequency.value = f; g.gain.value = v; lfo.frequency.value = 0.05 + Math.random() * 0.05; lg.gain.value = v * 0.6;
-        lfo.connect(lg); lg.connect(g.gain); o.connect(g); g.connect(out); o.start(); lfo.start();
-      }
-    }
-    // 旋律：在音階上隨機小步走，偶爾兩音同彈、偶爾停一拍
-    function phrase() {
-      if (!on || !ctx) return;
-      const t = ctx.currentTime + 0.05;
-      if (Math.random() < 0.18) { timer = setTimeout(phrase, 1800); return; }
-      last = Math.max(2, Math.min(notes.length - 2, last + [-2, -1, -1, 1, 1, 2, 0][Math.floor(Math.random() * 7)]));
-      play(notes[last], t, 0.5);
-      if (Math.random() < 0.25) play(notes[Math.max(0, last - 3)], t + 0.02, 0.3);
-      if (++step % 8 === 0) play(notes[0], t, 0.35); // 每隔一段落回宮音
-      timer = setTimeout(phrase, 1100 + Math.random() * 1600);
+    function next() {
+      const p = pool(), i = cur ? p.indexOf(cur.t) : -1;
+      play(p[(i + 1) % p.length]);
     }
     function start() {
-      if (!ctx) setup();
-      ctx.resume();
-      out.gain.cancelScheduledValues(ctx.currentTime);
-      out.gain.setTargetAtTime(0.18, ctx.currentTime, 1.2);
-      clearTimeout(timer); phrase();
+      if (cur && pool().includes(cur.t)) {
+        ctx.resume(); cur.el.play().then(() => fadeTo(cur, VOL)).catch(() => {});
+      } else next();
     }
-    function stop() {
-      clearTimeout(timer);
-      if (ctx) out.gain.setTargetAtTime(0, ctx.currentTime, 0.4);
+    function stop() { if (cur) { const c = cur; fadeTo(c, 0, () => { if (!on) c.el.pause(); }); } }
+    // 換章：正在放的曲子不屬於這一章，就淡出換一首
+    function chapter(n) {
+      if (n === ch) return;
+      ch = n;
+      if (on && cur && !pool().includes(cur.t)) next();
+      else if (cur) cur.el.loop = pool().length === 1;
     }
     function label() {
-      document.querySelectorAll('.btnMusic').forEach((b) => {
+      btns.forEach((b) => {
         b.setAttribute('aria-pressed', on); b.title = on ? '關掉音樂' : '開啟音樂';
         b.textContent = b.classList.contains('cb') ? '♪' : (on ? '關掉音樂' : '開啟音樂');
       });
     }
     function toggle() { on = !on; pref(PFX + 'music', on ? '1' : '0'); on ? start() : stop(); label(); }
     // 開過音樂的人：第一次點畫面就接著放
-    document.addEventListener('pointerdown', () => { if (on && (!ctx || ctx.state !== 'running')) start(); }, { once: false });
-    document.addEventListener('visibilitychange', () => { if (!ctx) return; document.hidden ? ctx.suspend() : on && ctx.resume(); });
-    document.querySelectorAll('.btnMusic').forEach((b) => b.addEventListener('click', (e) => { e.stopPropagation(); toggle(); }));
+    document.addEventListener('pointerdown', () => { if (on && (!cur || cur.el.paused || ctx.state !== 'running')) start(); });
+    document.addEventListener('visibilitychange', () => {
+      if (!cur) return;
+      if (document.hidden) cur.el.pause(); else if (on) start();
+    });
+    btns.forEach((b) => b.addEventListener('click', (e) => { e.stopPropagation(); toggle(); }));
     label();
-    return { toggle };
+    return { toggle, chapter };
   })();
 
   // ---------------- 存檔：只記種子和每一步操作，重新打開時照著重播一遍
@@ -1264,6 +1250,7 @@ const DATA = /*__DATA__*/;
     const ch = DATA.world.chapters.find((c) => c.n === s.chapter);
     const [no, name] = (ch ? ch.title : '').split('　');
     if (name) $('#sideL').textContent = name;
+    music.chapter(s.chapter);
     $('#sideR').textContent = game.eraLabel(s.year).replace(/[（(].*$/, '');
     $('#sideR2').textContent = (no || '') + '　' + game.ganzhi(s.year) + '年';
   }

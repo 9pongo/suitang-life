@@ -18,7 +18,8 @@
 | `data/endings.json` | 結局（章末與身故），由上往下找第一個符合的 |
 | `sim.js` | 稽核與模擬：靜態檢查、執行時一致性檢查、統計報告 |
 | `assets/cover.js` | 產生分享用的封面圖 `assets/cover.png`（1200×630，用介面的插圖畫法，需要本機有 Chrome）；事件卡、結局數改變很多時重跑一次 |
-| `build.js` | 先跑稽核，再打包成 `dist/index.html`（發佈用）與 `dist/dev.html`（本機預覽用） |
+| `assets/music/` | 背景音樂的音檔（見下方「背景音樂」） |
+| `build.js` | 先跑稽核（模擬 300 條，`BUILD_SIM` 可調），再打包成 `dist/index.html`（發佈用）與 `dist/dev.html`（本機預覽用）；音檔複製到 `dist/music/` |
 
 ## 工作流程
 
@@ -28,6 +29,26 @@ node build.js         # 打包；稽核有錯誤或頁面腳本有語法錯誤�
 ```
 
 本機預覽請開 `dist/dev.html`。目標是每次修改後 **錯誤 0、提醒 0**：跑兩千條以上時，從沒觸發的事件、從沒被選到的選項也算提醒。
+
+## 背景音樂
+
+音檔放在 `assets/music/`，在 `data/strings.json` 的 `ui.music` 列出：
+
+```json
+"music": {
+  "volume": 0.5,
+  "tracks": [
+    { "file": "music/kaihuang.mp3", "chapters": [1, 2] },
+    { "file": "music/changan.mp3" }
+  ]
+}
+```
+
+- 一首放完換下一首；只有一首可放時單曲循環。
+- `chapters`（可省）：只在這幾章放。換章時，正在放的曲子不屬於新的一章，就淡出換曲。沒寫 `chapters` 的曲子每章都可以放。
+- `volume`：0～1。
+- 打包時把音檔複製到 `dist/music/`，GitHub Pages 跟著發佈。找不到檔案的曲子會略過並提醒；一首都沒有時，介面不顯示音樂按鈕。
+- 音檔建議用 mp3（各瀏覽器都能放），注意檔案大小與授權。
 
 ## 換一個朝代
 

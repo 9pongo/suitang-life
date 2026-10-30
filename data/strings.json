@@ -180,6 +180,10 @@
         }
       ]
     },
+    "music": {
+      "volume": 0.5,
+      "tracks": []
+    },
     "gazette": {
       "head": "雜報",
       "poem": "詩",

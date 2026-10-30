@@ -16,6 +16,20 @@ try {
 
 const { data } = require('./load.js').loadData();
 const UI = data.strings.ui;
+
+// 背景音樂：ui.music.tracks 的 file 寫「music/檔名」，檔案放 assets/music/。打包時複製到 dist/music/；
+// 找不到檔案的曲子不放進頁面（一首都沒有時，介面會把音樂按鈕藏起來）
+const MUSIC_OUT = path.join(__dirname, 'dist', 'music');
+fs.rmSync(MUSIC_OUT, { recursive: true, force: true });
+if (UI.music && UI.music.tracks) {
+  UI.music.tracks = UI.music.tracks.filter((t) => {
+    const src = path.join(__dirname, 'assets', t.file);
+    if (!/^music\/[^/\\]+$/.test(t.file) || !fs.existsSync(src)) { console.warn(`找不到音樂檔 assets/${t.file}，這首先不放`); return false; }
+    fs.mkdirSync(MUSIC_OUT, { recursive: true });
+    fs.copyFileSync(src, path.join(MUSIC_OUT, path.basename(t.file)));
+    return true;
+  });
+}
 const attr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const fill = (s) => String(s || '').replace('{EVENTS}', data.events.length).replace('{ENDINGS}', data.endings.filter((e) => !e.fallback).length);
 const engine = fs.readFileSync(path.join(__dirname, 'engine.js'), 'utf8');
