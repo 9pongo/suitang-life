@@ -14,7 +14,7 @@
 | `data/world.json` | 世界設定：章節、年號、各地歸誰管（`powers`、`regionControl`）、地區、家世、天賦、勢力、路線、死亡率、傳承規則、後記 |
 | `data/strings.json` | 文字：干支與數字（`calendar`）、引擎產生的句子（`engine`）、介面上的標題與說明（`ui`） |
 | `data/scenes.json` | 插圖：各地山水、村落盛衰、地標、各時期衣著、每種情節的道具 |
-| `data/events_*.json` | 事件卡：人生（`life`）、隨機小事（`flavor`）、隋（`sui`）、唐（`tang1`～`tang3`）、歷史人物（`bonds`）、故事線（`arc_*`：仕途、宮人、醫與商、俠與學與府兵、田地匠戶蠶織、家、鄉里、佛道與邊地）、各章結局（`zz_end`） |
+| `data/events_*.json` | 事件卡：人生（`life`）、隨機小事（`flavor`）、隋（`sui`）、唐（`tang1`～`tang3`）、各時代補充（`era_sui`、`era_tangchu`、`era_gaowu`、`era_kaiyuan`）、各地風土（`region`）、人生歲時（`life2`）、歷史人物（`bonds`）、故事線（`arc_*`：仕途、宮人、醫與商、俠與學與府兵、田地匠戶蠶織、家、鄉里、佛道與邊地）、各章結局（`zz_end`） |
 | `data/endings.json` | 結局（章末與身故），由上往下找第一個符合的 |
 | `sim.js` | 稽核與模擬：靜態檢查、執行時一致性檢查、統計報告 |
 | `assets/cover.js` | 產生分享用的封面圖 `assets/cover.png`（1200×630，用介面的插圖畫法，需要本機有 Chrome）；事件卡、結局數改變很多時重跑一次 |
